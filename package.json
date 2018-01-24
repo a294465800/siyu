@@ -1,0 +1,32 @@
+{
+  "name": "siyu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp clean && gulp build",
+    "watch": "gulp watch",
+    "dev": "http-server ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SHININGJACK",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-less": "^3.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.3",
+    "gulp-tag-include": "^1.1.6",
+    "gulp-uglify": "^3.0.0"
+  }
+}
