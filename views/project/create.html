@@ -74,6 +74,13 @@
   <div class="active section">新建立项</div>
 </div>
 
+<div style="display:none;" id="contractContent">
+  [{"id":1,"name":"内容1"},{"id":2,"name":"内容2"},{"id":3,"name":"内容3"}]
+</div>
+<div style="display:none;" id="contractTax">
+  [{"id":1,"name":"5%"},{"id":2,"name":"9%"},{"id":3,"name":"15%"}]
+</div>
+
 <h1 class="ui red header blue center aligned">项目立项</h1>
 
 <div class="invisible" id="projectCreate">
@@ -243,6 +250,10 @@
             <i class="icon plus"></i>
             <span>新增</span>
           </button>
+          <button v-if="index > 0" class="ui negative icon button" @click="deleteFirstItem('masterContract', item, index)">
+            <i class="icon minus"></i>
+            <span>删除该追加</span>
+          </button>
         </div>
       </div>
       <div class="ui form form-item">
@@ -260,10 +271,16 @@
               <div class="form-order">{{subIndex + 1}}</div>
             </div>
             <div class="four wide column">
-              <input v-model="subItem.name" type="text" placeholder="请输入内容名称">
+              <el-select v-model="subItem.name" placeholder="请选择内容">
+                <el-option v-for="item in contractContent" :key="item.id" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
             </div>
             <div class="two wide column">
-              <input v-model="subItem.tax" type="number" placeholder="请输入税率">
+              <el-select v-model="subItem.tax" placeholder="请选择税率">
+                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -313,6 +330,10 @@
             <i class="icon plus"></i>
             <span>新增</span>
           </button>
+          <button v-if="index > 0" class="ui negative icon button" @click="deleteFirstItem('subContract', item, index)">
+            <i class="icon minus"></i>
+            <span>删除该追加</span>
+          </button>
         </div>
       </div>
       <div class="ui form form-item">
@@ -330,10 +351,16 @@
               <div class="form-order">{{subIndex + 1}}</div>
             </div>
             <div class="four wide column">
-              <input v-model="subItem.name" type="text" placeholder="请输入内容名称">
+              <el-select v-model="subItem.name" placeholder="请选择内容">
+                <el-option v-for="item in contractContent" :key="item.id" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
             </div>
             <div class="two wide column">
-              <input v-model="subItem.tax" type="number" placeholder="请输入税率">
+              <el-select v-model="subItem.tax" placeholder="请选择税率">
+                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
+                </el-option>
+              </el-select>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -366,10 +393,232 @@
   </h4>
   <!-- / 分包合同 -->
 
-  <!-- / 项目实际情况 -->
-  <div class="ui button" @click="clickMe">点我</div>
-
+  <!-- 合计 -->
+  <div class="ui two column doubling stackable grid">
+    <div class="column">
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>类型</th>
+            <th>金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-if="sumAmount.result.length === 0">
+            <tr class="center aligned">
+              <td>\</td>
+              <td>\</td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr v-for="(item, index) in sumAmount.result" :key="item.id">
+              <template v-if="item.type == 'm'">
+                <td>主合同{{ item.head == true?'':'追加' }}金额</td>
+                <td>{{item.amount}}￥</td>
+              </template>
+              <template v-else>
+                <td>分包合同{{ item.head?'':'追加' }}金额</td>
+                <td>{{item.amount}}￥</td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>合计</th>
+            <th>{{sumAmount&&sumAmount.sum || 0}} ￥</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="column">
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>内容</th>
+            <th>税率</th>
+            <th>金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-if="sumContent && sumContent.result.length > 0">
+            <tr v-for="(item, index) in sumContent.result" :key="item.name">
+              <td>{{item.name}}</td>
+              <td>5%</td>
+              <td>{{item.amount}} ￥</td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr class="center aligned">
+              <td>\</td>
+              <td>\</td>
+              <td>\</td>
+            </tr>
+          </template>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2">合计</th>
+            <th>{{sumContent&&sumContent.sum || 0}} ￥</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
+  <!-- /合计 -->
+
+  <!-- / 项目实际情况 -->
+
+  <!-- 履约保证金情况 -->
+  <h4 class="ui dividing header blue">履约保证金情况</h4>
+  <div class="flex-row flex-end">
+    <button class="ui positive icon button" @click="addFirstItem('margins')">
+      <i class="icon plus"></i>
+      <span>新增</span>
+    </button>
+  </div>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="one wide column form-thead">序号</div>
+      <div class="four wide column form-thead">支付日期</div>
+      <div class="two wide column form-thead">支付金额</div>
+      <div class="two wide column form-thead">收款人</div>
+      <div class="six wide column form-thead">收回条件</div>
+      <div class="one wide column form-thead">操作</div>
+    </div>
+    <transition-group name="slide-down" tag="div" class="form-wrap">
+      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.margins" :key="item.id">
+        <div class="one wide column">
+          <div class="form-order">{{index + 1}}</div>
+        </div>
+        <div class="four wide column">
+          <el-date-picker v-model="item.date" type="date" placeholder="请选择支付日期" value-format="yyyy-MM-dd">
+          </el-date-picker>
+        </div>
+        <div class="two wide column">
+          <div class="block ui icon input">
+            <input v-model="item.amount" type="number" placeholder="请输入支付金额">
+            <i class="yen icon"></i>
+          </div>
+        </div>
+        <div class="two wide column">
+          <input v-model="item.payee" type="text" placeholder="请输入收款人">
+        </div>
+        <div class="six wide column">
+          <textarea v-model="item.recycle" placeholder="请输入收回条件" rows="1"></textarea>
+        </div>
+        <div class="one wide column flex-row flex-end">
+          <button class="circular ui negative icon button" @click="deleteFirstItem('margins', item, index)">
+            <i class="icon minus"></i>
+          </button>
+        </div>
+      </div>
+    </transition-group>
+    <div class="ui five column doubling stackable grid">
+      <div class="one wide column form-thead">合计</div>
+      <div class="four wide column form-thead"></div>
+      <div class="two wide column form-thead">{{ sumMargins }} ￥</div>
+      <div class="two wide column form-thead"></div>
+      <div class="six wide column form-thead"></div>
+      <div class="one wide column form-thead"></div>
+    </div>
+  </div>
+  <!-- / 履约保证金情况 -->
+
+  <!-- 收款比例 -->
+  <h4 class="ui dividing header blue">收款比例</h4>
+  <div class="flex-row flex-end">
+    <button class="ui positive icon button" @click="addFirstItem('paymentConditions')">
+      <i class="icon plus"></i>
+      <span>新增</span>
+    </button>
+  </div>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="one wide column form-thead">序号</div>
+      <div class="three wide column form-thead">收款比例</div>
+      <div class="three wide column form-thead">预计金额</div>
+      <div class="eight wide column form-thead">收款条件</div>
+      <div class="one wide column form-thead">操作</div>
+    </div>
+    <transition-group name="slide-down" tag="div" class="form-wrap">
+      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.paymentConditions" :key="item.id">
+        <div class="one wide column">
+          <div class="form-order">{{index + 1}}</div>
+        </div>
+        <div class="three wide column">
+          <div class="block ui icon input">
+            <input v-model="item.rate" type="number" placeholder="请输入收款比例">
+            <i class="icon percent"></i>
+          </div>
+        </div>
+        <div class="three wide column">
+          <div class="block ui icon input">
+            <input v-model="item.expected" type="number" placeholder="请输入预计金额">
+            <i class="yen icon"></i>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <textarea v-model="item.condition" placeholder="请输入收回条件" rows="1"></textarea>
+        </div>
+        <div class="one wide column flex-row flex-end">
+          <button class="circular ui negative icon button" @click="deleteFirstItem('paymentConditions', item, index)">
+            <i class="icon minus"></i>
+          </button>
+        </div>
+      </div>
+    </transition-group>
+    <div class="ui five column doubling stackable grid">
+      <div class="one wide column form-thead">合计</div>
+      <div class="four wide column form-thead"></div>
+      <div class="two wide column form-thead">{{ sumPaymentConditions }} ￥</div>
+      <div class="two wide column form-thead"></div>
+      <div class="six wide column form-thead"></div>
+      <div class="one wide column form-thead"></div>
+    </div>
+  </div>
+  <!-- / 收款比例 -->
+
+  <!-- 合同 -->
+  <h4 class="ui dividing header blue">合同</h4>
+  <div class="flex-row flex-end">
+    <label for="contractUpload" class="ui positive icon button">
+      <i class="icon upload"></i>
+      <span>选择合同文件</span>
+      <input style="display:none;" type="file" id="contractUpload" multiple @change="fileUpload($event)">
+    </label>
+  </div>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="one wide column form-thead">序号</div>
+      <div class="fourteen wide column form-thead">名称</div>
+      <div class="one wide column form-thead">操作</div>
+    </div>
+    <transition-group name="slide-down" tag="div" class="form-wrap">
+      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts" :key="item.id">
+        <div class="one wide column">
+          <div class="form-order">{{index + 1}}</div>
+        </div>
+        <div class="fourteen wide column">
+          <p>{{ item.name }}</p>
+        </div>
+        <div class="one wide column flex-row flex-end">
+          <button class="circular ui negative icon button" @click="deleteFirstItem('contracts', item, index)">
+            <i class="icon minus"></i>
+          </button>
+        </div>
+      </div>
+    </transition-group>
+  </div>
+  <!-- /合同 -->
+</div>
+<div class="inline-center margin-top-20">
+  <button class="ui button green large">
+    <i class="icon hand pointer"></i>
+    <span>提交</span>
+  </button>
+</div>
+</div>
 <!-- /主体内容 === 不可复用 -->
 
 <!-- 全局依赖 js === 通用 -->
