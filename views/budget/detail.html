@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>查看预算 - 15823910212</title>
+  <title>查看预算 - 项目号 15823910212</title>
 </head>
 
 <body>
@@ -218,7 +218,7 @@
   <div class="divider"> / </div>
   <a class="section" href="../budget/list.html">预算清单</a>
   <div class="divider"> / </div>
-  <div class="active section">查看预算 - 15823910212</div>
+  <div class="active section">查看预算 - 项目号 15823910212</div>
 </div>
 
 <div class="margin-top-20" id="project-check">
@@ -452,8 +452,14 @@
   </div>
   <!-- / 预算总额 -->
   <div class="flex-row flex-center margin-top-50">
-    <a class="ui button primary" href="../budget/create.html">录入 / 修改预算清单</a>
-    <a class="ui button green" href="#">导出预算清单格式</a>
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../budget/create.html');">
+      <i class="icon plus"></i>
+      <span>录入 / 修改预算清单</span>
+    </a>
+    <a class="ui icon button green" href="#">
+      <i class="icon download"></i>
+      <span>导出预算清单格式</span>
+    </a>
   </div>
 </div>
 
