@@ -18,7 +18,7 @@
 
 <body>
   <!-- 通用布局 === 复用 -->
-  <div class="index-navbar ui menu blue-background">
+  <div class="index-navbar ui menu blue-background print-hide">
     <span id="sidebarBtn" class="index-navbar-item-left pull-left">
       <i class="sidebar icon"></i>
       <span>森乾科技</span>
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <div class="index-aside invisible" id="navbar">
+  <div class="index-aside invisible print-hide" id="navbar">
     <el-menu :unique-opened="true" :default-active="navActive" class="el-menu-vertical-demo">
       <el-menu-item index="index" style="padding:0;">
         <a href="../index/index.html" slot="title" style="padding-left:20px">
@@ -211,7 +211,7 @@
   <!-- /通用布局 -->
 
   <!-- 主体内容 === 不可复用 -->
-  <div class="index-content">
+  <div class="index-content print-no-padding">
 
 <div class="ui breadcrumb">
   <a class="section">项目立项管理</a>
