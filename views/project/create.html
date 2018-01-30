@@ -198,8 +198,8 @@
   <div class="ui form form-item">
     <div class="ui five column doubling stackable grid">
       <div class="one wide column form-thead">序号</div>
-      <div class="four wide column form-thead">单位名称</div>
-      <div class="four wide column form-thead">金额</div>
+      <div class="four wide column form-thead">分包单位</div>
+      <div class="four wide column form-thead">分包金额</div>
       <div class="six wide column form-thead">备注</div>
       <div class="one wide column form-thead">操作</div>
     </div>
@@ -209,11 +209,11 @@
           <div class="form-order">{{index + 1}}</div>
         </div>
         <div class="four wide column">
-          <input v-model="item.name" type="text" placeholder="请输入发包单位">
+          <input v-model="item.name" type="text" placeholder="请输入分包单位">
         </div>
         <div class="four wide column">
           <div class="block ui icon input">
-            <input v-model="item.amount" type="number" placeholder="请输入发包金额">
+            <input v-model="item.amount" type="number" placeholder="请输入分包金额">
             <i class="yen icon"></i>
           </div>
         </div>
