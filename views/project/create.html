@@ -595,8 +595,7 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap">
-      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts"
-        :key="item.id">
+      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts" :key="item.id">
         <div class="one wide column">
           <div class="form-order">{{index + 1}}</div>
         </div>
