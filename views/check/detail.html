@@ -621,7 +621,7 @@
                 </td>
                 <td>
                   <button class="ui mini button green" @click="invoiceSave(item, index)">保存</button>
-                  <button @click="window._helper.fullWindow('/views/check/invoice_print.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                  <button @click="window._helper.fullWindow('../check/invoice_print.html?id='+item.id)" class="ui mini button primary">凭证</button>
                 </td>
               </template>
               <template v-else>
@@ -631,7 +631,7 @@
                 <td>{{ item.tax.value }}%</td>
                 <td>
                   <button class="ui mini button primary" @click="EditFnc(item, index, 'invoice')">修改</button>
-                  <button @click="window._helper.fullWindow('/views/check/invoice_print.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                  <button @click="window._helper.fullWindow('../check/invoice_print.html?id='+item.id)" class="ui mini button primary">凭证</button>
                 </td>
               </template>
             </tr>
@@ -774,7 +774,7 @@
               </td>
               <td>
                 <button class="ui mini button green" @click="masterContractSave(item, index)">保存</button>
-                <button @click="window._helper.fullWindow('/views/check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                <button @click="window._helper.fullWindow('../check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
               </td>
             </template>
             <template v-else>
@@ -785,7 +785,7 @@
               <td>{{ item.remark }}</td>
               <td>
                 <button class="ui mini button primary" @click="EditFnc(item, index, 'masterContract')">修改</button>
-                <button @click="window._helper.fullWindow('/views/check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                <button @click="window._helper.fullWindow('../check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
               </td>
             </template>
           </tr>
@@ -847,7 +847,7 @@
               </td>
               <td>
                 <button class="ui mini button green" @click="subContractSave(item, index)">保存</button>
-                <button @click="window._helper.fullWindow('/views/check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                <button @click="window._helper.fullWindow('../check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
               </td>
             </template>
             <template v-else>
@@ -858,7 +858,7 @@
               <td>{{ item.remark }}</td>
               <td>
                 <button class="ui mini button primary" @click="EditFnc(item, index, 'subContract')">修改</button>
-                <button @click="window._helper.fullWindow('/views/check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
+                <button @click="window._helper.fullWindow('../check/detail.html?id='+item.id)" class="ui mini button primary">凭证</button>
               </td>
             </template>
           </tr>
