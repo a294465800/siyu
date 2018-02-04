@@ -1,1 +1,1 @@
-"use strict";$(document).ready(function(){new Vue({el:"#navbar",data:{navActive:"buyProjectList"},mounted:function(){$("#navbar").removeClass("invisible")},methods:{}})});
+"use strict";$(document).ready(function(){$("#buyNewProjectLink").on("click",function(){console.log(1),$(".ui.dimmer").dimmer("show")}),new Vue({el:"#navbar",data:{navActive:"buyProjectList"},mounted:function(){$("#navbar").removeClass("invisible")},methods:{}})});
