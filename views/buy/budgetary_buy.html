@@ -232,25 +232,25 @@
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in budgetary_buy.list" :key="item.id">
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.name || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.model || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.model || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.price.toLocaleString('en-US') || '无'}} ￥</div>
+          <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || '无'}} ￥</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.quantity.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.quantity.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.buy_number.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.materail && item.materail.left_number.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.left_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <input v-model.number="item.real_quantity" type="number" min="0" :max="item.materail.left_number" placeholder="采购数量">
+          <input v-model.number="item.real_quantity" type="number" min="0" :max="item.material.left_number" placeholder="采购数量">
         </div>
         <div class="one wide column">
           <input v-model.number="item.real_price" type="number" placeholder="采购单价">
@@ -276,7 +276,7 @@
   <!-- / 采购物料清单 -->
 
   <!-- 合同 -->
-  <h4 class="ui dividing header blue">采购物料清单</h4>
+  <h4 class="ui dividing header blue">合同</h4>
   <div class="flex-row flex-end">
     <label class="ui icon button positive">
       <i class="icon upload"></i>
