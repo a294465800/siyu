@@ -1,0 +1,83 @@
+<include src="../template/normalHeader.html">
+  @title = 开票凭证
+</include>
+
+<div class="ui breadcrumb print-hide">
+  <a class="section">验收与收款管理</a>
+  <div class="divider"> / </div>
+  <a class="section" href="../check/list.html">验收与收款清单</a>
+  <div class="divider"> / </div>
+  <a class="section" href="../check/detail.html">项目明细 - 项目号 15823910212</a>
+  <div class="divider"> / </div>
+  <div class="active section">开票凭证</div>
+</div>
+
+
+<h1 class="ui header center aligned">开票记帐凭证 </h1>
+<p style="text-align:right;font-size: 13px;padding-right:25px;">记账凭证号：12312321231321321</p>
+<table class="ui celled structured table print-table">
+  <thead>
+    <tr>
+      <th>项目编号</th>
+      <th>15823910212</th>
+      <th>项目内容</th>
+      <th colspan="3">具体内容</th>
+    </tr>
+    <tr>
+      <th>开票日期</th>
+      <th colspan="2">2018-01-02</th>
+      <th>税率</th>
+      <th colspan="2">5%</th>
+    </tr>
+    <tr>
+      <th>付款单位</th>
+      <th colspan="5">xxx 单位</th>
+    </tr>
+    <tr>
+      <th style="min-width: 2em">序号</th>
+      <th style="min-width: 5em">发票号码</th>
+      <th style="min-width: 4em">含税销售额</th>
+      <th style="min-width: 4em">税额</th>
+      <th style="min-width: 4em">不含税销售额</th>
+      <th style="min-width: 6em">摘要</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>205492385428293</td>
+      <td>123,123,422.23 ￥</td>
+      <td>123,123,422.23 ￥</td>
+      <td>123,123,422.23 ￥</td>
+      <td>这是一段摘要</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>205492385428293</td>
+      <td>123,123,422.23 ￥</td>
+      <td>123,123,422.23 ￥</td>
+      <td>123,123,422.23 ￥</td>
+      <td>这是一段摘要这是一段摘要</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="2">合计</th>
+      <th>123,123,422.23 ￥</th>
+      <th>123,123,422.23 ￥</th>
+      <th>123,123,422.23 ￥</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+<div class="content-operation print-hide">
+  <div class="flex-row flex-end">
+    <a class="ui icon button primary" href="javascript:window.print();">
+      <i class="icon print"></i>
+      <span>打印</span>
+    </a>
+  </div>
+</div>
+
+<include src="../template/footer.html">
+</include>
