@@ -14,7 +14,6 @@
 
 <h1 class="ui red header blue center aligned">付款申请</h1>
 <div id="paymentCreate">
-  <form action="">
 
     <!-- 基本信息 -->
     <div class="ui form form-item">
@@ -23,7 +22,7 @@
           <div class="inline fields">
             <label class="four wide field">付款申请日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="pay_date" name="date" type="date" placeholder="付款申请日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="form.pay_date" name="date" type="date" placeholder="付款申请日期" value-format="yyyy-MM-dd">
               </el-date-picker>
               <input id="hiddenDate" type="hidden" value="2018-03-05">
             </div>
@@ -58,8 +57,9 @@
             <label class="four wide field">付款金额</label>
             <div class="twelve wide field">
               <div class="ui icon input">
-                <input type="number" name="amount" placeholder="请输入付款金额">
+                <input type="number" v-model.number="form.amount" name="amount" placeholder="请输入付款金额">
                 <i class="yen icon"></i>
+                <input id="hiddenAmount" type="hidden" value="222">
               </div>
             </div>
           </div>
@@ -68,12 +68,29 @@
     </div>
     <!-- /基本信息 -->
     <div class="inline-center margin-top-20">
-      <button class="ui button green large" type="submit">
+      <button class="ui button green large" @click="submitForm">
         <i class="icon hand pointer"></i>
         <span>提交</span>
       </button>
     </div>
-  </form>
+
+  <div class="ui page dimmer">
+    <div class="simple dimmer content">
+      <div class="center">
+        <div class="buy_dialog">
+          <div class="dialog_header">选择复核人</div>
+          <div class="dialog_content">
+            <el-checkbox-group v-model="checkedMen" @change="handleCheckManChange">
+              <el-checkbox v-for="man in menList" :label="man.id" :key="man.id">{{man.name}}</el-checkbox>
+            </el-checkbox-group>
+          </div>
+          <div class="diolag_footer">
+            <button class="ui button primary" @click="confirmRecheck">确 定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <include src="../template/footer.html">
