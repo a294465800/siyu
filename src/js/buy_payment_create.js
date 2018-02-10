@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){new Vue({el:"#paymentCreate",data:{pay_date:""},mounted:function(){this.pay_date=$("#hiddenDate").val()||""}})});
