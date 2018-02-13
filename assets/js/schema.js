@@ -191,6 +191,14 @@
     contracts: [] //采购合同
   }
 
+  const invoiceCreate = {
+    date: '', //收票日期
+    operator: '', //收票经办人
+    list: [{ // date, type, number, amount_without_tax, tax, amount
+      id: 1
+    }]
+  }
+
   // schemas
   const schemas = {
     projects,
@@ -202,7 +210,8 @@
     checkCollect,
     budget_type_reverse,
     budgetary_buy,
-    extrabudgetary
+    extrabudgetary,
+    invoiceCreate
   }
 
   return schemas
