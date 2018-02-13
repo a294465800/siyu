@@ -1,5 +1,5 @@
 <include src="../template/normalHeader.html">
-  @title = 库存清单
+  @title = 查询出入库记录
 </include>
 
 <div class="ui breadcrumb">
@@ -88,157 +88,160 @@
 
 <h1 class="ui header center aligned">出入库记录</h1>
 
-<table class="ui celled structured table center aligned">
-  <thead>
-    <tr>
-      <th rowspan="2">日期</th>
-      <th colspan="7">入库</th>
-      <th colspan="7">出库</th>
-      <th colspan="3">库存</th>
-    </tr>
-    <tr>
-      <th>数量</th>
-      <th>单价</th>
-      <th>金额</th>
-      <th>供货商</th>
-      <th>采购编号</th>
-      <th>收货/退料编号</th>
-      <th>收货人</th>
-      <th>数量</th>
-      <th>单价</th>
-      <th>金额</th>
-      <th>项目号</th>
-      <th>项目内容</th>
-      <th>领料/退货出库编号</th>
-      <th>领料人</th>
-      <th>数量</th>
-      <th>金额</th>
-      <th>库存均价</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>期初</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2018-01-02</td>
-      <td>20,523</td>
-      <td>145￥</td>
-      <td>12,523￥</td>
-      <td>xxx供货商</td>
-      <td>CG215213213</td>
-      <td>SHRK20171030005</td>
-      <td>陈先生</td>
-      <td>523</td>
-      <td>19.11￥</td>
-      <td>8,900￥</td>
-      <td>XM251321312</td>
-      <td class="table-content">这是项目内容</td>
-      <td>CK20171102001</td>
-      <td>刘先生</td>
-      <td>333</td>
-      <td>10,000￥</td>
-      <td>20.00￥</td>
-    </tr>
-    <tr>
-      <td>2018-01-02</td>
-      <td>20,523</td>
-      <td>145￥</td>
-      <td>12,523￥</td>
-      <td>xxx供货商</td>
-      <td>CG215213213</td>
-      <td>SHRK20171030005</td>
-      <td>陈先生</td>
-      <td>523</td>
-      <td>19.11￥</td>
-      <td>8,900￥</td>
-      <td>XM251321312</td>
-      <td class="table-content">这是项目内容</td>
-      <td>CK20171102001</td>
-      <td>刘先生</td>
-      <td>333</td>
-      <td>10,000￥</td>
-      <td>20.00￥</td>
-    </tr>
-    <tr>
-      <td>2018-01-02</td>
-      <td>20,523</td>
-      <td>145￥</td>
-      <td>12,523￥</td>
-      <td>xxx供货商</td>
-      <td>CG215213213</td>
-      <td>SHRK20171030005</td>
-      <td>陈先生</td>
-      <td>523</td>
-      <td>19.11￥</td>
-      <td>8,900￥</td>
-      <td>XM251321312</td>
-      <td class="table-content">这是项目内容</td>
-      <td>CK20171102001</td>
-      <td>刘先生</td>
-      <td>333</td>
-      <td>10,000￥</td>
-      <td>20.00￥</td>
-    </tr>
-    <tr>
-      <td>2018-01-02</td>
-      <td>20,523</td>
-      <td>145￥</td>
-      <td>12,523￥</td>
-      <td>xxx供货商</td>
-      <td>CG215213213</td>
-      <td>SHRK20171030005</td>
-      <td>陈先生</td>
-      <td>523</td>
-      <td>19.11￥</td>
-      <td>8,900￥</td>
-      <td>XM251321312</td>
-      <td class="table-content">这是项目内容</td>
-      <td>CK20171102001</td>
-      <td>刘先生</td>
-      <td>333</td>
-      <td>10,000￥</td>
-      <td>20.00￥</td>
-    </tr>
-    <tr>
-      <td>2018-01-02</td>
-      <td>20,523</td>
-      <td>145￥</td>
-      <td>12,523￥</td>
-      <td>xxx供货商</td>
-      <td>CG215213213</td>
-      <td>SHRK20171030005</td>
-      <td>陈先生</td>
-      <td>523</td>
-      <td>19.11￥</td>
-      <td>8,900￥</td>
-      <td>XM251321312</td>
-      <td class="table-content">这是项目内容</td>
-      <td>CK20171102001</td>
-      <td>刘先生</td>
-      <td>333</td>
-      <td>10,000￥</td>
-      <td>20.00￥</td>
-    </tr>
-  </tbody>
-</table>
+<div style="overflow:auto">
+
+  <table class="ui celled structured table center aligned">
+    <thead>
+      <tr>
+        <th rowspan="2">日期</th>
+        <th colspan="7">入库</th>
+        <th colspan="7">出库</th>
+        <th colspan="3">库存</th>
+      </tr>
+      <tr>
+        <th>数量</th>
+        <th>单价</th>
+        <th>金额</th>
+        <th>供货商</th>
+        <th>采购编号</th>
+        <th>收货/退料编号</th>
+        <th>收货人</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>金额</th>
+        <th>项目号</th>
+        <th>项目内容</th>
+        <th>领料/退货出库编号</th>
+        <th>领料人</th>
+        <th>数量</th>
+        <th>金额</th>
+        <th>库存均价</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>期初</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2018-01-02</td>
+        <td>20,523</td>
+        <td>145￥</td>
+        <td>12,523￥</td>
+        <td>xxx供货商</td>
+        <td>CG215213213</td>
+        <td>SHRK20171030005</td>
+        <td>陈先生</td>
+        <td>523</td>
+        <td>19.11￥</td>
+        <td>8,900￥</td>
+        <td>XM251321312</td>
+        <td class="table-content">这是项目内容</td>
+        <td>CK20171102001</td>
+        <td>刘先生</td>
+        <td>333</td>
+        <td>10,000￥</td>
+        <td>20.00￥</td>
+      </tr>
+      <tr>
+        <td>2018-01-02</td>
+        <td>20,523</td>
+        <td>145￥</td>
+        <td>12,523￥</td>
+        <td>xxx供货商</td>
+        <td>CG215213213</td>
+        <td>SHRK20171030005</td>
+        <td>陈先生</td>
+        <td>523</td>
+        <td>19.11￥</td>
+        <td>8,900￥</td>
+        <td>XM251321312</td>
+        <td class="table-content">这是项目内容</td>
+        <td>CK20171102001</td>
+        <td>刘先生</td>
+        <td>333</td>
+        <td>10,000￥</td>
+        <td>20.00￥</td>
+      </tr>
+      <tr>
+        <td>2018-01-02</td>
+        <td>20,523</td>
+        <td>145￥</td>
+        <td>12,523￥</td>
+        <td>xxx供货商</td>
+        <td>CG215213213</td>
+        <td>SHRK20171030005</td>
+        <td>陈先生</td>
+        <td>523</td>
+        <td>19.11￥</td>
+        <td>8,900￥</td>
+        <td>XM251321312</td>
+        <td class="table-content">这是项目内容</td>
+        <td>CK20171102001</td>
+        <td>刘先生</td>
+        <td>333</td>
+        <td>10,000￥</td>
+        <td>20.00￥</td>
+      </tr>
+      <tr>
+        <td>2018-01-02</td>
+        <td>20,523</td>
+        <td>145￥</td>
+        <td>12,523￥</td>
+        <td>xxx供货商</td>
+        <td>CG215213213</td>
+        <td>SHRK20171030005</td>
+        <td>陈先生</td>
+        <td>523</td>
+        <td>19.11￥</td>
+        <td>8,900￥</td>
+        <td>XM251321312</td>
+        <td class="table-content">这是项目内容</td>
+        <td>CK20171102001</td>
+        <td>刘先生</td>
+        <td>333</td>
+        <td>10,000￥</td>
+        <td>20.00￥</td>
+      </tr>
+      <tr>
+        <td>2018-01-02</td>
+        <td>20,523</td>
+        <td>145￥</td>
+        <td>12,523￥</td>
+        <td>xxx供货商</td>
+        <td>CG215213213</td>
+        <td>SHRK20171030005</td>
+        <td>陈先生</td>
+        <td>523</td>
+        <td>19.11￥</td>
+        <td>8,900￥</td>
+        <td>XM251321312</td>
+        <td class="table-content">这是项目内容</td>
+        <td>CK20171102001</td>
+        <td>刘先生</td>
+        <td>333</td>
+        <td>10,000￥</td>
+        <td>20.00￥</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <include src="../template/footer.html">
   @js = ../../src/js/stock_check.js
