@@ -199,6 +199,14 @@
     }]
   }
 
+  const stockBuyAdd = {
+    projectId: '',
+    date: '', //收货日期
+    receiver: '', //收货人
+    stock: '', //仓库
+    list: [], //采购列表
+  }
+
   // schemas
   const schemas = {
     projects,
@@ -211,7 +219,8 @@
     budget_type_reverse,
     budgetary_buy,
     extrabudgetary,
-    invoiceCreate
+    invoiceCreate,
+    stockBuyAdd,
   }
 
   return schemas
