@@ -207,6 +207,17 @@
     list: [], //采购列表
   }
 
+  const stockReturnAdd = {
+    project_id: '', //项目id
+    project_content: '', //项目内容
+    project_manger: '', //项目经理
+    return_people: '', //退料人
+    receiver: '', //收货人
+    stock_id: '', //入库仓库 id
+    stock_name: '', //仓库名称
+    list: [], //退料清单
+  }
+
   // schemas
   const schemas = {
     projects,
@@ -221,6 +232,7 @@
     extrabudgetary,
     invoiceCreate,
     stockBuyAdd,
+    stockReturnAdd,
   }
 
   return schemas
