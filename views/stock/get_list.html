@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>采购立项清单</title>
+  <title>领料出库清单</title>
 </head>
 
 <body>
@@ -220,18 +220,22 @@
   <div class="index-content print-no-padding">
 
 <div class="ui breadcrumb">
-  <a class="section">采购管理</a>
+  <a class="section">库存管理</a>
   <div class="divider"> / </div>
-  <div class="active section">采购立项清单</div>
+  <div class="active section">领料出库清单</div>
 </div>
 
 <!-- 操作区域 -->
 <div class="content-operation flex-row flex-between">
   <div>
-    <button id="buyNewProjectLink" class="ui primary button">
+    <a href="javascript:_helper.fullWindow('../stock/return_add.html')" class="ui primary button">
       <i class="icon plus"></i>
-      <span>新建立项</span>
-    </button>
+      <span>新增领料出库</span>
+    </a>
+    <a href="javascript:_helper.fullWindow('')" class="ui positive button">
+      <i class="icon print"></i>
+      <span>导出</span>
+    </a>
   </div>
   <form action="/views/buy/project_list.html" class="ui form flex-fluid">
     <div class="ui left action right input fluid">
@@ -240,10 +244,13 @@
         <div class="text">请选中搜索内容</div>
         <i class="dropdown icon"></i>
         <div class="menu">
-          <div class="item" data-value="1">采购编号</div>
-          <div class="item" data-value="2">供货商</div>
+          <div class="item" data-value="1">领料编号</div>
+          <div class="item" data-value="2">物料名称</div>
           <div class="item" data-value="3">项目编号</div>
           <div class="item" data-value="4">项目内容</div>
+          <div class="item" data-value="5">项目经理</div>
+          <div class="item" data-value="6">领料人</div>
+          <div class="item" data-value="7">出库仓库</div>
         </div>
       </div>
       <input name="value" type="text" placeholder="搜索内容" value="">
@@ -255,80 +262,76 @@
 
 <div class="content-wrap">
 
-  <table class="ui center aligned table selectable" id="projectDetailTable">
+  <table class="ui center aligned table selectable">
     <thead>
       <tr>
-        <th>采购编号</th>
-        <th>供货商</th>
-        <th>采购金额</th>
+        <th>领料编号</th>
+        <th>出库仓库</th>
+        <th>物料名称</th>
+        <th>型号</th>
+        <th>单位</th>
+        <th>库存均价</th>
+        <th>领料数量</th>
+        <th>领料金额</th>
         <th>项目编号</th>
         <th>项目内容</th>
         <th>项目经理</th>
-        <th>发票条件</th>
-        <th>经办人</th>
-        <th>复核人</th>
-        <th>审批人</th>
-        <th>预算内/外</th>
+        <th>领料人</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('')">LL20123542</a>
         </td>
-        <td>xx供货商</td>
-        <td>123,233,421 ￥</td>
-        <td>5123421312</td>
-        <td class="table-content" title="这是一大段内容这是一大段内容这是一大段内容这是一大段内容这是一大段内容">这是一大段内容</td>
-        <td>张喜</td>
-        <td>专用票17%</td>
-        <td>专用票11%</td>
-        <td>张三</td>
-        <td>李四</td>
-        <td>内</td>
+        <td>xxx仓库</td>
+        <td>线缆</td>
+        <td>xxxxx</td>
+        <td>条</td>
+        <td>21 ￥</td>
+        <td>521,231</td>
+        <td>11,111,111 ￥</td>
+        <td>XM2012222</td>
+        <td class="table-content">项目内容xxxxx</td>
+        <td>陈经理</td>
+        <td>刘相松</td>
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('')">LL20123542</a>
         </td>
-        <td>xx供货商</td>
-        <td>123,233,421 ￥</td>
-        <td>5123421312</td>
-        <td class="table-content" title="这是一大段内容这是一大段内容这是一大段内容这是一大段内容这是一大段内容">这是一大段内容</td>
-        <td>张喜</td>
-        <td>专用票17%</td>
-        <td>专用票11%</td>
-        <td>张三</td>
-        <td>李四</td>
-        <td>内</td>
+        <td>xxx仓库</td>
+        <td>线缆</td>
+        <td>xxxxx</td>
+        <td>条</td>
+        <td>21 ￥</td>
+        <td>521,231</td>
+        <td>11,111,111 ￥</td>
+        <td>XM2012222</td>
+        <td class="table-content">项目内容xxxxx</td>
+        <td>陈经理</td>
+        <td>刘相松</td>
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('')">LL20123542</a>
         </td>
-        <td>xx供货商</td>
-        <td>123,233,421 ￥</td>
-        <td>5123421312</td>
-        <td class="table-content">这是一大段内容</td>
-        <td>张喜</td>
-        <td>专用票17%</td>
-        <td>专用票11%</td>
-        <td>张三</td>
-        <td>李四</td>
-        <td>内</td>
+        <td>xxx仓库</td>
+        <td>线缆</td>
+        <td>xxxxx</td>
+        <td>条</td>
+        <td>21 ￥</td>
+        <td>521,231</td>
+        <td>11,111,111 ￥</td>
+        <td>XM2012222</td>
+        <td class="table-content">项目内容xxxxx</td>
+        <td>陈经理</td>
+        <td>刘相松</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<div class="ui page dimmer">
-  <div class="content">
-    <div class="center">
-      <a href="javascript:_helper.fullWindow('../buy/budgetary.html')" class="ui inverted teal approve button">预算内采购</a>
-      <a href="javascript:_helper.fullWindow('../buy/extrabudgetary.html')" class="ui inverted blue approve button">预算外采购</a>
-    </div>
-  </div>
-</div>
 
 </div>
 <!-- /主体内容 === 不可复用 -->
@@ -349,7 +352,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/buy_project_list.js"></script>
+<script src="../../src/js/stock_get_list.js"></script>
 <!-- / 独立 js -->
 </body>
 
