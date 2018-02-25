@@ -8,6 +8,7 @@
         },
         mounted() {
           $('#navbar').removeClass('invisible')
+          $('.ui.checkbox').checkbox()
         },
         methods: {}
       })

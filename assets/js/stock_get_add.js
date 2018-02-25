@@ -3,10 +3,11 @@
     .ready(() => {
 
       new Vue({
-        el: '#returnAdd',
+        el: '#stockGetAdd',
         data: {
+          stockGetAdd: _schemas.stockGetAdd,
           commodities: [],
-          stockReturnAdd: _schemas.stockReturnAdd,
+          currentType: 1,
           stocks: [{
               id: 1,
               name: '仓库一',
@@ -23,6 +24,8 @@
               manger: '洪先生'
             }
           ],
+
+
           currentMaterial: '',
           currentMaterialName: '',
           materials: [{
@@ -56,12 +59,13 @@
           ],
         },
         mounted() {
-          $('#returnAdd').removeClass('invisible')
           this.commodities = this.loadAll()
+          $('.ui.checkbox').checkbox()
+          $('#stockGetAdd').removeClass('invisible')
         },
         computed: {
           sumAmount() {
-            const list = this.stockReturnAdd.list
+            const list = this.stockGetAdd.list
             if (!list.length) {
               return 0
             }
@@ -161,6 +165,12 @@
               },
             ]
           },
+          handleSelect(item) {
+            this.stockGetAdd.project_id = item.id
+            this.stockGetAdd.project_content = item.parameter
+            this.stockGetAdd.project_manger = item.model
+          },
+
 
           //仓库名称
           querySearchStock(queryString, cb) {
@@ -175,8 +185,13 @@
           createFilterStock(queryString) {
             return (restaurant) => {
               return (restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
+            }
           },
+          handleSelectStock(item) {
+            this.stockGetAdd.stock_id = item.id
+            this.stockGetAdd.stock_name = item.name
+          },
+
 
           //物料
           querySearchMaterial(queryString, cb) {
@@ -193,16 +208,6 @@
               return (restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
             };
           },
-          handleSelect(item) {
-            this.stockReturnAdd.project_id = item.id
-            this.stockReturnAdd.project_content = item.parameter
-            this.stockReturnAdd.project_manger = item.model
-          },
-          handleSelectStock(item) {
-            this.stockReturnAdd.stock_id = item.id
-            this.stockReturnAdd.stock_name = item.name
-            this.stockReturnAdd.receiver = item.manger
-          },
           handleSelectMaterial(item) {
             this.currentMaterial = item
             this.currentMaterialName = item.name
@@ -217,17 +222,16 @@
               })
               return false
             }
-            const list = this.stockReturnAdd.list
+            const list = this.stockGetAdd.list
             let data = {
               id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
               material: this.currentMaterial
             }
-            this.stockReturnAdd.list.push(data)
+            this.stockGetAdd.list.push(data)
           },
-
           //删除
           deleteItem(name, item, index) {
-            this.stockReturnAdd[name].splice(index, 1)
+            this.stockGetAdd[name].splice(index, 1)
           },
 
           //提交
