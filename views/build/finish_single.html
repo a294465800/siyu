@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>录入合同</title>
+  <title>请款查询 - WGQK20171103001</title>
 </head>
 
 <body id="index">
@@ -69,29 +69,20 @@
 <div class="ui breadcrumb">
   <a class="section">施工管理</a>
   <div class="divider"> / </div>
-  <a class="section" href="../build/deal_list.html">备案合同清单</a>
+  <a class="section" href="../build/finish_list.html">完工请款清单</a>
   <div class="divider"> / </div>
-  <div class="active section">录入合同</div>
+  <div class="active section">请款查询 - WGQK20171103001</div>
 </div>
 
 <h4 class="ui dividing header blue">基本信息</h4>
-<div class="invisible" id="buildFinishAdd">
-
+<div id="buildFinishSingle">
   <div class="ui form">
     <div class="ui three column doubling stackable grid">
       <div class="column">
         <div class="inline fields">
           <label class="six wide field flex-center">施工队</label>
           <div class="eleven wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="buildFinishAdd.build_name" :fetch-suggestions="querySearchBuild"
-              placeholder="请输入施工队" @select="handleSelectBuild">
-              <i class="el-icon-edit el-input__icon" slot="suffix">
-              </i>
-              <template slot-scope="props">
-                <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.manager }}</span>
-              </template>
-            </el-autocomplete>
+            <div class="fake-input">xxx施工队</div>
           </div>
         </div>
       </div>
@@ -99,7 +90,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">施工经理</label>
           <div class="eleven wide field">
-            <div class="fake-input">{{ buildFinishAdd.build_manager || '暂无' }}</div>
+            <div class="fake-input">程经理</div>
           </div>
         </div>
       </div>
@@ -107,15 +98,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">项目编号</label>
           <div class="eleven wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="buildFinishAdd.project_id" :fetch-suggestions="querySearchProjectId"
-              placeholder="请输入项目编号" @select="handleSelectProjectId">
-              <i class="el-icon-edit el-input__icon" slot="suffix">
-              </i>
-              <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
-                <span class="addr">{{ props.item.manager }}</span>
-              </template>
-            </el-autocomplete>
+            <div class="fake-input">XM1202312</div>
           </div>
         </div>
       </div>
@@ -123,15 +106,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">项目内容</label>
           <div class="eleven wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="buildFinishAdd.project_content" :fetch-suggestions="querySearchProjectContent"
-              placeholder="请输入项目内容" @select="handleSelectProjectContent">
-              <i class="el-icon-edit el-input__icon" slot="suffix">
-              </i>
-              <template slot-scope="props">
-                <div class="name">{{ props.item.content }}</div>
-                <span class="addr">{{ props.item.id }}</span>
-              </template>
-            </el-autocomplete>
+            <div class="fake-input">这是项目内容</div>
           </div>
         </div>
       </div>
@@ -139,7 +114,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">项目经理</label>
           <div class="eleven wide field">
-            <div class="fake-input">{{ buildFinishAdd.project_manager || '暂无' }}</div>
+            <div class="fake-input">刘经理</div>
           </div>
         </div>
       </div>
@@ -147,8 +122,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">请款日期</label>
           <div class="eleven wide field">
-            <el-date-picker v-model="buildFinishAdd.date" type="date" placeholder="请选择请款日期" value-format="yyyy-MM-dd">
-            </el-date-picker>
+            <div class="fake-input">2018-02-01</div>
           </div>
         </div>
       </div>
@@ -156,65 +130,87 @@
         <div class="inline fields">
           <label class="six wide field flex-center">请款金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="buildFinishAdd.amount" placeholder="请选择请款金额">
+            <div class="fake-input">123,523 ￥</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <h4 class="ui dividing header blue">请款添加</h4>
-  <h4 class="ui header center aligned">请款清单</h4>
-  <div class="flex-row flex-end">
-    <div class="ui mini button positive" @click="addItem('list')">添加</div>
-  </div>
-  <h5 class="ui header right aligned">合计总额：{{ sumAmount.toLocaleString('en-US') }} ￥</h5>
-  <div class="ui form form-item">
-    <div class="ui five column doubling stackable grid font-size-13">
-      <div class="two wide column form-thead">具体项目</div>
-      <div class="three wide column form-thead">项目名称</div>
-      <div class="three wide column form-thead">说明</div>
-      <div class="two wide column form-thead">数量</div>
-      <div class="two wide column form-thead">单价</div>
-      <div class="two wide column form-thead">总价</div>
-      <div class="two wide column form-thead">操作</div>
-    </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in buildFinishAdd.list" :key="item.id">
-        <div class="two wide column">
-          <div class="fake-input">{{ index + 1}}</div>
-        </div>
-        <div class="three wide column">
-          <input type="text" placeholder="项目名称" v-model="item.project_name">
-        </div>
-        <div class="three wide column">
-          <input type="text" placeholder="说明" v-model="item.content">
-        </div>
-        <div class="two wide column">
-          <input type="text" placeholder="数量" v-model.number="item.quantity">
-        </div>
-        <div class="two wide column">
-          <input type="number" v-model.number="item.price" placeholder="单价">
-        </div>
-        <div class="two wide column">
-          <input type="number" v-model.number="item.amount" placeholder="总价">
-        </div>
-        <div class="two wide column flex-row">
-          <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
-          </div>
-        </div>
-      </div>
-    </transition-group>
-  </div>
 
-  <div class="inline-center margin-top-20">
-    <button class="ui button primary large" @click="submit">
-      <i class="icon hand pointer"></i>
-      <span>提交</span>
+  <h4 class="ui dividing header blue">请款清单</h4>
+
+  <table class="ui center aligned table selectable">
+    <thead>
+      <tr>
+        <th>具体项目</th>
+        <th>项目名称</th>
+        <th>说明</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>总价</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>这是项目名称</td>
+        <td>这是说明</td>
+        <td>123,521</td>
+        <td>12 ￥</td>
+        <td>1,231,523 ￥</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>这是项目名称</td>
+        <td>这是说明</td>
+        <td>123,521</td>
+        <td>12 ￥</td>
+        <td>1,231,523 ￥</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>这是项目名称</td>
+        <td>这是说明</td>
+        <td>123,521</td>
+        <td>12 ￥</td>
+        <td>1,231,523 ￥</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>这是项目名称</td>
+        <td>这是说明</td>
+        <td>123,521</td>
+        <td>12 ￥</td>
+        <td>1,231,523 ￥</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">合计</th>
+        <th>12,123,523 ￥</th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="flex-row flex-center margin-top-50">
+    <a class="ui icon button primary" href="#" style="margin:0 10px;">
+      <i class="icon edit"></i>
+      <span>修改</span>
+    </a>
+    <button class="ui icon button primary" @click="recheckFnc" style="margin:0 10px;">
+      <i class="icon legal"></i>
+      <span>复核</span>
     </button>
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../buy/extrabudgetary_print.html')" style="margin:0 10px;">
+      <i class="icon write"></i>
+      <span>审批</span>
+    </a>
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../buy/budgetary_print.html')" style="margin:0 10px;">
+      <i class="icon print"></i>
+      <span>凭证</span>
+    </a>
   </div>
-
 
   <div class="ui page dimmer">
     <div class="simple dimmer content">
@@ -254,7 +250,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/build_finish_add.js"></script>
+<script src="../../src/js/build_finish_single.js"></script>
 <!-- / 独立 js -->
 </body>
 
