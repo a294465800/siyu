@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>库存清单</title>
+  <title>施工费清单</title>
 </head>
 
 <body>
@@ -220,32 +220,52 @@
   <div class="index-content print-no-padding">
 
 <div class="ui breadcrumb">
-  <a class="section">库存管理</a>
+  <a class="section">施工管理</a>
   <div class="divider"> / </div>
-  <div class="active section">库存清单</div>
+  <div class="active section">施工费清单</div>
 </div>
 
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between" style="align-items: flex-end;">
-  <div>
-    <a class="ui green button" href="#">
-      <i class="icon download"></i>
-      <span>Excel 导出</span>
-    </a>
-  </div>
-  <form action="/views/buy/charge_list.html" class="ui form flex-fluid">
-    <div class="ui left action right input fluid">
-      <div class="ui button white dropdown ">
-        <input name="seartch-type" type="hidden">
-        <div class="text">请选中搜索内容</div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <div class="item" data-value="1">物料名称</div>
-          <div class="item" data-value="2">仓库</div>
+<div class="content-operation">
+
+  <form action="" class="ui form">
+    <div class="inline fields" style="justify-content:flex-end;">
+      <label>系统状态：</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" name="system" value="1">
+          <label>已结清</label>
         </div>
       </div>
-      <input name="value" type="text" placeholder="搜索内容" value="">
-      <button class="ui button">搜索</button>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" name="system" value="0">
+          <label>未结清</label>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row flex-between">
+      <div>
+        <a class="ui green button" href="#">
+          <i class="icon download"></i>
+          <span>Excel 导出</span>
+        </a>
+      </div>
+      <div class="ui left action right input fluid flex-fluid">
+        <div class="ui button white dropdown ">
+          <input name="seartch-type" type="hidden">
+          <div class="text">请选中搜索内容</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item" data-value="2">施工队</div>
+            <div class="item" data-value="3">项目编号</div>
+            <div class="item" data-value="4">项目内容</div>
+            <div class="item" data-value="5">项目经理</div>
+          </div>
+        </div>
+        <input name="value" type="text" placeholder="搜索内容" value="">
+        <button class="ui button">搜索</button>
+      </div>
     </div>
   </form>
 </div>
@@ -256,34 +276,54 @@
   <table class="ui center aligned table selectable">
     <thead>
       <tr>
-        <th>序号</th>
-        <th>物料名称</th>
-        <th>品牌型号</th>
-        <th>单位</th>
-        <th>单价</th>
-        <th>库存数量</th>
-        <th>库存金额</th>
-        <th>评价单价</th>
-        <th>仓库</th>
-        <th>操作</th>
+        <th>施工队</th>
+        <th>施工经理</th>
+        <th>项目编号</th>
+        <th>项目内容</th>
+        <th>已完工请款</th>
+        <th>已付款</th>
+        <th>应付账款</th>
+        <th>已收票</th>
+        <th>未收票</th>
+        <th>系统状态</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>
-          <a href="javascript:_helper.fullWindow('')">物料一</a>
-        </td>
-        <td>ak-47</td>
-        <td>个</td>
-        <td>321 ￥</td>
-        <td>213,523,123</td>
-        <td>123,522,321 ￥</td>
-        <td>21,523 ￥</td>
-        <td>仓库一</td>
-        <td>
-          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../stock/check.html?id=1')" title="查询出入库记录">查询</a>
-        </td>
+        <td>xxx施工队</td>
+        <td>陈经理</td>
+        <td>XM20170921</td>
+        <td class="table-content">这是项目内容</td>
+        <td>刘经理</td>
+        <td>123,523 ￥</td>
+        <td>20,123 ￥</td>
+        <td>100,231 ￥</td>
+        <td>100,231 ￥</td>
+        <td>未结清</td>
+      </tr>
+      <tr>
+        <td>xxx施工队</td>
+        <td>陈经理</td>
+        <td>XM20170921</td>
+        <td class="table-content">这是项目内容</td>
+        <td>刘经理</td>
+        <td>123,523 ￥</td>
+        <td>20,123 ￥</td>
+        <td>100,231 ￥</td>
+        <td>100,231 ￥</td>
+        <td>已结清</td>
+      </tr>
+      <tr>
+        <td>xxx施工队</td>
+        <td>陈经理</td>
+        <td>XM20170921</td>
+        <td class="table-content">这是项目内容</td>
+        <td>刘经理</td>
+        <td>123,523 ￥</td>
+        <td>20,123 ￥</td>
+        <td>100,231 ￥</td>
+        <td>20,123 ￥</td>
+        <td>已结清</td>
       </tr>
     </tbody>
   </table>
@@ -308,7 +348,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/stock_list.js"></script>
+<script src="../../src/js/build_list.js"></script>
 <!-- / 独立 js -->
 </body>
 
