@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>付款查询 - SGFK20171103001</title>
+  <title>实际付款录入</title>
 </head>
 
 <body id="index">
@@ -71,11 +71,13 @@
   <div class="divider"> / </div>
   <a class="section" href="../build/pay_list.html">施工付款款清单</a>
   <div class="divider"> / </div>
-  <div class="active section">付款查询 - SGFK20171103001</div>
+  <a class="section" href="../build/pay_single.html?id=SGFK20171103001">付款查询 - SGFK20171103001</a>
+  <div class="divider"> / </div>
+  <div class="active section">实际付款录入</div>
 </div>
 
 <h4 class="ui dividing header blue">基本信息</h4>
-<div id="buildPaySingle">
+<div id="buildPayAdd">
   <div class="ui form">
     <div class="ui three column doubling stackable grid">
       <div class="column">
@@ -120,7 +122,7 @@
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="six wide field flex-center">剩余应付账款</label>
+          <label class="six wide field flex-center">付款金额</label>
           <div class="eleven wide field">
             <div class="fake-input">123,523 ￥</div>
           </div>
@@ -129,151 +131,66 @@
     </div>
   </div>
 
-
-  <h4 class="ui dividing header blue">请款清单</h4>
-
-  <table class="ui celled center aligned table selectable">
-    <thead>
-      <tr>
-        <th>请款编号</th>
-        <th>请款日期</th>
-        <th>请款金额</th>
-        <th>经办人</th>
-        <th>复核人</th>
-        <th>审批人</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>QK29232131</td>
-        <td>2018-02-12</td>
-        <td>123,523 ￥</td>
-        <td>程某</td>
-        <td>李朝友</td>
-        <td>何求</td>
-      </tr>
-      <tr>
-        <td>QK29232131</td>
-        <td>2018-02-12</td>
-        <td>123,523 ￥</td>
-        <td>程某</td>
-        <td>李朝友</td>
-        <td>何求</td>
-      </tr>
-      <tr>
-        <td>QK29232131</td>
-        <td>2018-02-12</td>
-        <td>123,523 ￥</td>
-        <td>程某</td>
-        <td>李朝友</td>
-        <td>何求</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th colspan="2">合计</th>
-        <th colspan="4">12,123,523 ￥</th>
-      </tr>
-    </tfoot>
-  </table>
-
-  <h4 class="ui dividing header blue">付款情况</h4>
-  <div class="table-head-nowrap">
-    <table class="ui celled center aligned table selectable">
-      <thead>
-        <tr>
-          <th colspan="8">付款申请</th>
-          <th colspan="5">实际付款</th>
-          <th>操作</th>
-        </tr>
-        <tr>
-          <th>付款编号</th>
-          <th>申请日期</th>
-          <th>申请金额</th>
-          <th>收款人</th>
-          <th>收款银行/账号</th>
-          <th>经办人</th>
-          <th>复核人</th>
-          <th>审批人</th>
-          <th>付款日期</th>
-          <th>付款金额</th>
-          <th>付款银行/账号</th>
-          <th>备注</th>
-          <th>经办人</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>SGFK20171103001</td>
-          <td>2018-01-03</td>
-          <td>123,232 ￥</td>
-          <td>程xx</td>
-          <td>中国银行/620932192321293212</td>
-          <td>刘一飞</td>
-          <td>何常</td>
-          <td>白起</td>
-          <td>2018-09-21</td>
-          <td>12,523 ￥</td>
-          <td>中国银行/620932192321293212</td>
-          <td style="min-width:200px;">这是备注</td>
-          <td>刘某某</td>
-          <td style="min-width:220px;">
-            <a class="ui mini button" href="javascript:_helper.fullWindow('../build/pay_apply.html?id=1')">修改</a>
-            <a class="ui mini button positive" href="#">复核</a>
-            <a class="ui mini button primary" href="javascript:_helper.fullWindow('../build/pay_add.html?id=1')">录入</a>
-          </td>
-        </tr>
-        <tr>
-          <td>SGFK20171103001</td>
-          <td>2018-01-03</td>
-          <td>123,232 ￥</td>
-          <td>程xx</td>
-          <td>中国银行/620932192321293212</td>
-          <td>刘一飞</td>
-          <td>何常</td>
-          <td>白起</td>
-          <td colspan="5">暂未付款</td>
-          <td style="min-width:220px;">
-            <a class="ui mini button" href="javascript:_helper.fullWindow('../build/pay_apply.html?id=1')">修改</a>
-            <a class="ui mini button positive" href="#">复核</a>
-            <a class="ui mini button primary" href="javascript:_helper.fullWindow('../build/pay_add.html?id=1')">录入</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="flex-row flex-center margin-top-50">
-    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../build/pay_apply.html')" style="margin-right:50px;">
-      <i class="icon plus"></i>
-      <span>新增付款申请</span>
-    </a>
-    <a class="ui icon button positive" href="#">
-      <i class="icon print"></i>
-      <span>凭证</span>
-    </a>
-  </div>
-
-  <div class="ui page dimmer">
-    <div class="simple dimmer content">
-      <div class="center">
-        <div class="buy_dialog">
-          <div class="dialog_header">选择复核人</div>
-          <div class="dialog_content">
-            <el-checkbox-group v-model="checkedMen" @change="handleCheckManChange">
-              <el-checkbox v-for="man in menList" :label="man.id" :key="man.id">{{man.name}}</el-checkbox>
-            </el-checkbox-group>
+  <h4 class="ui dividing header blue">信息录入</h4>
+  <div class="ui form">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">实际付款日期</label>
+          <div class="eleven wide field">
+            <el-date-picker v-model="addForm.date" type="date" placeholder="请选择实际付款日期" value-format="yyyy-MM-dd">
+            </el-date-picker>
           </div>
-          <div class="diolag_footer">
-            <button class="ui button primary" @click="confirmRecheck">确 定</button>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">收款银行</label>
+          <div class="eleven wide field">
+            <input type="hidden" id="bankAccount" value="1">
+            <el-select v-model="addForm.bank" placeholder="请选择银行账号">
+              <el-option label="平安银行 63242342362342334" value="1"></el-option>
+              <el-option label="中国银行 62342356234232343" value="2"></el-option>
+            </el-select>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">收款账号</label>
+          <div class="eleven wide field">
+            <input type="number" v-model.number="addForm.account" placeholder="请输入收款账号">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">付款经办人</label>
+          <div class="eleven wide field">
+            <input type="text" v-model="addForm.payment" placeholder="请输入付款经办人">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">备注</label>
+          <div class="eleven wide field">
+            <input type="text" v-model="addForm.remark" placeholder="请输入备注">
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
+
+  <div class="inline-center margin-top-20">
+    <button class="ui button primary large" @click="submit">
+      <i class="icon hand pointer"></i>
+      <span>确定</span>
+    </button>
+  </div>
+
+</div>
 </div>
 <!-- /主体内容 === 不可复用 -->
 
@@ -293,7 +210,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/build_pay_single.js"></script>
+<script src="../../src/js/build_pay_add.js"></script>
 <!-- / 独立 js -->
 </body>
 
