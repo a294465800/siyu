@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- 全局依赖 ==== 所有页面都要有 -->
+<link rel="stylesheet" type="text/css" href="../../plugins/semantic/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="../../plugins/element-ui/index.css">
+<!-- <link rel="stylesheet" href="../../plugins/nprogress/nprogress.css"> -->
+<link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
+<!-- /全局依赖 -->
+
+  <title>查看凭证</title>
+</head>
+
+<body id="index">
+  <!-- 通用布局 === 复用 -->
+  <div class="index-navbar ui menu blue-background print-hide">
+    <span class="index-navbar-item-left pull-left">
+      <span>森乾科技</span>
+    </span>
+    <div class="index-navbar-item-show right menu">
+      <a class="item">
+        <i class="user icon"></i>
+        <span>管理员</span>
+      </a>
+      <a class="item">
+        <i class="help circle icon"></i>
+        <span>帮助</span>
+      </a>
+      <a class="item">
+        <i class="sound icon"></i>
+        <span>客服</span>
+      </a>
+      <a class="item">
+        <i class="power icon"></i>
+        <span>退出</span>
+      </a>
+    </div>
+    <div class="index-navbar-item-hidden margin-right ui dropdown">操作
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" href="#">
+          <i class="user icon"></i>
+          <span>管理员</span>
+        </a>
+        <a class="item">
+          <i class="help circle icon"></i>
+          <span>帮助</span>
+        </a>
+        <a class="item">
+          <i class="sound icon"></i>
+          <span>客服</span>
+        </a>
+        <a class="item">
+          <i class="power icon"></i>
+          <span>退出</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 没有导航的单独窗口页面 -->
+  <div class="normal-content print-no-padding">
+
+<div class="ui breadcrumb print-hide">
+  <a class="section">施工管理</a>
+  <div class="divider"> / </div>
+  <a class="section" href="../build/pay_list.html">施工付款款清单</a>
+  <div class="divider"> / </div>
+  <a class="section" href="../build/pay_single.html?id=SGFK20171103001">付款查询 - SGFK20171103001</a>
+  <div class="divider"> / </div>
+  <div class="active section">查看凭证</div>
+</div>
+
+<h1 class="ui header center aligned">施工付款记帐凭证</h1>
+<p style="text-align:right;font-size: 13px;padding-right:250px;">记账凭证号：</p>
+<table class="ui celled center aligned table selectable" style="margin-bottom:0;">
+  <thead>
+    <tr>
+      <th>施工队</th>
+      <th class="fake-td">xxx施工队</th>
+      <th>施工经理</th>
+      <th class="fake-td">陈经理</th>
+      <th>项目编号</th>
+      <th class="fake-td">XM20123212</th>
+      <th>项目内容</th>
+      <th class="fake-td" colspan="3">这是项目内容这是项目内容~</th>
+      <th>项目经理</th>
+      <th class="fake-td">刘经理</th>
+      <th>剩余应付账款</th>
+      <th class="fake-td">123,523,123￥</th>
+    </tr>
+    <tr>
+      <th>请款编号</th>
+      <th>请款日期</th>
+      <th>请款金额</th>
+      <th>经办人</th>
+      <th>复核人</th>
+      <th>审批人</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>WGQK20171103001</td>
+      <td>2017-11-03</td>
+      <td>123,231 ￥</td>
+      <td>刘一飞</td>
+      <td>章丘</td>
+      <td>何博清</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>WGQK20171103001</td>
+      <td>2017-11-03</td>
+      <td>123,231 ￥</td>
+      <td>刘一飞</td>
+      <td>章丘</td>
+      <td>何博清</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>WGQK20171103001</td>
+      <td>2017-11-03</td>
+      <td>123,231 ￥</td>
+      <td>刘一飞</td>
+      <td>章丘</td>
+      <td>何博清</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="2">合计</th>
+      <th>123,523,123 ￥</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="table-head-nowrap">
+  <table class="ui celled center aligned table selectable" style="margin-top:0;border-top:0;">
+    <thead>
+      <tr>
+        <th colspan="8">申请付款</th>
+        <th colspan="5">实际付款</th>
+      </tr>
+      <tr>
+        <th>付款编号</th>
+        <th>申请付款日期</th>
+        <th>申请付款金额</th>
+        <th>收款人名称</th>
+        <th>收款银行及账号</th>
+        <th>经办人</th>
+        <th>复核人</th>
+        <th>审批人</th>
+        <th>付款日期</th>
+        <th>付款金额</th>
+        <th>付款银行及账号</th>
+        <th>备注</th>
+        <th>经办人</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SGFK20171103001</td>
+        <td>2018-02-01</td>
+        <td>123,523￥</td>
+        <td>陈逸飞</td>
+        <td>中国银行 6023212523212342</td>
+        <td>李一</td>
+        <td>张克启</td>
+        <td>曾国潘</td>
+        <td>2018-02-12</td>
+        <td>123,523￥</td>
+        <td>中国银行 6023212523212342</td>
+        <td style="max-width:150px;">这是备注</td>
+        <td>李四</td>
+      </tr>
+      <tr>
+        <td>SGFK20171103001</td>
+        <td>2018-02-01</td>
+        <td>123,523￥</td>
+        <td>陈逸飞</td>
+        <td>中国银行 6023212523212342</td>
+        <td>李一</td>
+        <td>张克启</td>
+        <td>曾国潘</td>
+        <td>2018-02-12</td>
+        <td>123,523￥</td>
+        <td>中国银行 6023212523212342</td>
+        <td style="max-width:150px;">这是备注</td>
+        <td>李四</td>
+      </tr>
+      <tr>
+        <td>SGFK20171103001</td>
+        <td>2018-02-01</td>
+        <td>123,523￥</td>
+        <td>陈逸飞</td>
+        <td>中国银行 6023212523212342</td>
+        <td>李一</td>
+        <td>张克启</td>
+        <td>曾国潘</td>
+        <td>2018-02-12</td>
+        <td>123,523￥</td>
+        <td>中国银行 6023212523212342</td>
+        <td style="max-width:150px;">这是备注</td>
+        <td>李四</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="10">合计</th>
+        <th>123,523￥</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="content-operation print-hide">
+  <div class="flex-row flex-end">
+    <a class="ui icon button primary" href="javascript:window.print();">
+      <i class="icon print"></i>
+      <span>打印</span>
+    </a>
+  </div>
+</div>
+
+</div>
+<!-- /主体内容 === 不可复用 -->
+
+<!-- 全局依赖 js === 通用 -->
+<script src="../../plugins/jquery/jquery.3.2.1.min.js"></script>
+<script src="../../plugins/vue/vue.min.js"></script>
+<script src="../../plugins/semantic/semantic.min.js"></script>
+<script src="../../plugins/element-ui/index.min.js"></script>
+<!-- <script src="../../plugins/lodash/lodash.min.js"></script> -->
+<script src="../../plugins/axios/axios.min.js"></script>
+<script src="../../plugins/axios/qs.min.js"></script>
+<!-- <script src="../../plugins/nprogress/nprogress.js"></script> -->
+<!-- <script src="../../plugins/layDate/laydate.js"></script> -->
+<script src="../../src/js/helper.js"></script>
+<!-- <script src="../../src/js/api.js"></script> -->
+<script src="../../src/js/schema.js"></script>
+<script src="../../src/js/global.js"></script>
+<!-- / 全局依赖 js === 通用 -->
+<!-- 独立 js -->
+<script src=""></script>
+<!-- / 独立 js -->
+</body>
+
+</html>
