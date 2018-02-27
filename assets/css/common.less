@@ -243,7 +243,16 @@
 .font-bold {
     font-weight: 600;
 }
+
 .fake-td {
     background-color: #fff!important;
     font-weight: normal!important;
+}
+
+.table-head-nowrap {
+    overflow: auto;
+    thead>tr>th,
+    thead>tr>td {
+        white-space: nowrap!important;
+    }
 }
