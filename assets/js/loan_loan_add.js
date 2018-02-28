@@ -7,7 +7,7 @@
 
           loanForm: {
             people: '',
-            data: '',
+            date: '',
             amount: '',
             reason: ''
           },
@@ -37,7 +37,7 @@
         },
         mounted() {
           $('#loanLoanAdd').removeClass('invisible')
-          this.loanFomr.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          this.loanForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
         },
         methods: {
 
