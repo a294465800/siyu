@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){new Vue({el:"#dataBankAdd",data:{bankForm:{name:"",account:""}},mounted:function(){this.bankForm.name=$("#bankName").val(),this.bankForm.account=$("#bankAccount").val()},methods:{submit:function(){for(var n in this.bankForm)this.bankForm[n]="";console.log(this.bankForm),this.$notify({title:"成功",message:"提交成功",type:"success"})}}})});
