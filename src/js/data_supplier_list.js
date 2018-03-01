@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){new Vue({el:"#navbar",data:{navActive:"dataSupplier"},mounted:function(){$("#navbar").removeClass("invisible")},methods:{}})});
