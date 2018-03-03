@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>库存清单</title>
+  <title>报销费用类别列表</title>
 </head>
 
 <body>
@@ -235,34 +235,17 @@
   <div class="index-content print-no-padding">
 
 <div class="ui breadcrumb">
-  <a class="section">库存管理</a>
+  <a class="section">数据维护</a>
   <div class="divider"> / </div>
-  <div class="active section">库存清单</div>
+  <div class="active section">报销费用类别列表</div>
 </div>
 
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between" style="align-items: flex-end;">
-  <div>
-    <a class="ui green button" href="#">
-      <i class="icon download"></i>
-      <span>Excel 导出</span>
-    </a>
-  </div>
-  <form action="/views/buy/charge_list.html" class="ui form flex-fluid">
-    <div class="ui left action right input fluid">
-      <div class="ui button white dropdown ">
-        <input name="seartch-type" type="hidden">
-        <div class="text">请选中搜索内容</div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <div class="item" data-value="1">物料名称</div>
-          <div class="item" data-value="2">仓库</div>
-        </div>
-      </div>
-      <input name="value" type="text" placeholder="搜索内容" value="">
-      <button class="ui button">搜索</button>
-    </div>
-  </form>
+<div class="content-operation">
+  <a class="ui primary button" href="javascript:_helper.fullWindow('../data/payment_add.html')">
+    <i class="icon plus"></i>
+    <span>新增类别</span>
+  </a>
 </div>
 <!-- / 操作区域 -->
 
@@ -272,32 +255,28 @@
     <thead>
       <tr>
         <th>序号</th>
-        <th>物料名称</th>
-        <th>品牌型号</th>
-        <th>单位</th>
-        <th>单价</th>
-        <th>库存数量</th>
-        <th>库存金额</th>
-        <th>评价单价</th>
-        <th>仓库</th>
+        <th>费用类型</th>
+        <th>具体事项</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>1</td>
+        <td>交通运输费</td>
+        <td style="max-width:600px;">油费/路桥费/汽车维修费/汽车保养费/车辆保险/停车费/其他</td>
         <td>
-          <a href="javascript:_helper.fullWindow('')">物料一</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/payment_edit.html?id=1')">录入事项</a>
+          <a class="ui mini button negative" href="#">删除</a>
         </td>
-        <td>ak-47</td>
-        <td>个</td>
-        <td>321 ￥</td>
-        <td>213,523,123</td>
-        <td>123,522,321 ￥</td>
-        <td>21,523 ￥</td>
-        <td>仓库一</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>业务招待费</td>
+        <td>餐费/其他</td>
         <td>
-          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../stock/check.html?id=1')" title="查询出入库记录">查询</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/payment_edit.html?id=1')">录入事项</a>
+          <a class="ui mini button negative" href="#">删除</a>
         </td>
       </tr>
     </tbody>
@@ -323,7 +302,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/stock_list.js"></script>
+<script src="../../src/js/data_payment_list.js"></script>
 <!-- / 独立 js -->
 </body>
 
