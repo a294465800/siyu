@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>发票类型</title>
+  <title>项目类别列表</title>
 </head>
 
 <body>
@@ -240,22 +240,15 @@
 <div class="ui breadcrumb">
   <a class="section">数据维护</a>
   <div class="divider"> / </div>
-  <div class="active section">发票类型</div>
+  <div class="active section">项目类别列表</div>
 </div>
 
 <!-- 操作区域 -->
 <div class="content-operation">
-
-  <form action="" class="ui form">
-    <div class="flex-row flex-between">
-      <div>
-        <a class="ui primary button" href="javascript:_helper.fullWindow('../data/invoice_add.html')">
-          <i class="icon plus"></i>
-          <span>新增发票类型</span>
-        </a>
-      </div>
-    </div>
-  </form>
+  <a class="ui primary button" href="javascript:_helper.fullWindow('../data/type_add.html')">
+    <i class="icon plus"></i>
+    <span>新增类别</span>
+  </a>
 </div>
 <!-- / 操作区域 -->
 
@@ -264,33 +257,37 @@
   <table class="ui center aligned table selectable">
     <thead>
       <tr>
-        <th>发票类型</th>
-        <th>备注</th>
+        <th>序号</th>
+        <th>内容</th>
+        <th>税率</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>专用票11%</td>
-        <td>这是一些备注</td>
+        <td>1</td>
+        <td>设备</td>
+        <td>17%</td>
         <td>
-          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/type_add.html?id=1')">修改</a>
           <a class="ui mini button negative" href="#">删除</a>
         </td>
       </tr>
       <tr>
-        <td>普通票</td>
-        <td>这是一些备注</td>
+        <td>2</td>
+        <td>设备</td>
+        <td>17%</td>
         <td>
-          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/type_add.html?id=1')">修改</a>
           <a class="ui mini button negative" href="#">删除</a>
         </td>
       </tr>
       <tr>
-        <td>专用票5%</td>
-        <td>这是一些备注</td>
+        <td>3</td>
+        <td>设备</td>
+        <td>17%</td>
         <td>
-          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/type_add.html?id=1')">修改</a>
           <a class="ui mini button negative" href="#">删除</a>
         </td>
       </tr>
@@ -317,7 +314,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/data_invoice_list.js"></script>
+<script src="../../src/js/data_type_list.js"></script>
 <!-- / 独立 js -->
 </body>
 
