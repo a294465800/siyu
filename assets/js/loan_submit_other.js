@@ -61,6 +61,23 @@
           $('#loanSubmitOther').removeClass('invisible')
           this.submitOtherForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
         },
+        computed: {
+
+          sumAmount() {
+            const list = this.submitOtherForm.list
+            if (!list.length) {
+              return 0
+            }
+            let sum = 0
+            list.forEach((it, index) => {
+              const amount = it.amount
+              if (amount) {
+                sum += amount * 1
+              }
+            })
+            return sum
+          }
+        },
         methods: {
 
           //新增项
