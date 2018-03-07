@@ -117,6 +117,7 @@
   //开票
   const checkInvoice = {
     company: '', //付款单位
+    company_id: '', //付款单位
     date: '', //开票日期
     tax: '', //税率
     amount: '', //开票金额

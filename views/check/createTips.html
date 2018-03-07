@@ -76,29 +76,47 @@
   <div class="active section">收款提示</div>
 </div>
 
-<!-- 基本信息 -->
-<h4 class="ui dividing header blue">基本信息</h4>
-<table class="ui very basic table center aligned">
-  <thead>
-    <tr>
-      <th>项目编号</th>
-      <th>项目内容</th>
-      <th>验收日期</th>
-      <th>履约保证金余额</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>123123123</td>
-      <td>这是项目内容这是项目内容</td>
-      <td>2018-10-02</td>
-      <td>251231 ￥</td>
-    </tr>
-  </tbody>
-</table>
-<!-- / 基本信息 -->
-
+<h1 class="ui red header blue center aligned">收款提示</h1>
 <div class="invisible" id="checkCreateTips">
+  <!-- 基本信息 -->
+  <h4 class="ui dividing header blue">基本信息</h4>
+  <div class="ui form form-item">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目编号</label>
+          <div class="twelve wide field">
+            <div class="fake-input">XM2312312232</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目内容</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是项目内容</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">验收日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-22</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">履约保证金余额</label>
+          <div class="twelve wide field">
+            <div class="fake-input">123,523￥</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / 基本信息 -->
 
   <!-- 预计收回履约保证金 -->
   <h4 class="ui dividing header blue">预计收回履约保证金</h4>
@@ -117,10 +135,10 @@
       <div class="six wide column form-thead">备注</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui six column doubling stackable grid center aligned" v-for="(item,index) in tipsForm.margins" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
           <el-date-picker v-model="item.date" type="date" placeholder="请选择预计回收日期" value-format="yyyy-MM-dd">
@@ -136,13 +154,12 @@
           <input v-model="item.payee" type="text" placeholder="请输入付款人">
         </div>
         <div class="six wide column">
-          <textarea v-model="item.remark" placeholder="请输入备注" rows="1"></textarea>
+          <input type="text" v-model="item.remark" placeholder="请输入备注">
         </div>
-        <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteItem('margins', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+        <div class="one wide column">
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('margins', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>
@@ -166,10 +183,10 @@
       <div class="six wide column form-thead">备注</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui six column doubling stackable grid center aligned" v-for="(item,index) in tipsForm.requirepayment" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
           <el-date-picker v-model="item.date" type="date" placeholder="请选择请款日期" value-format="yyyy-MM-dd">
@@ -177,7 +194,7 @@
         </div>
         <div class="two wide column">
           <div class="block ui icon input">
-            <input v-model.enter="item.amount" type="number" placeholder="请输入请款金额">
+            <input v-model.number="item.amount" type="number" placeholder="请输入请款金额">
             <i class="yen icon"></i>
           </div>
         </div>
@@ -185,13 +202,12 @@
           <input v-model="item.company" type="text" placeholder="请输入付款单位">
         </div>
         <div class="six wide column">
-          <textarea v-model="item.remark" placeholder="请输入备注" rows="1"></textarea>
+          <input type="text" v-model="item.remark" placeholder="请输入备注">
         </div>
-        <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteItem('requirepayment', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+        <div class="one wide column">
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('requirepayment', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>
