@@ -270,8 +270,8 @@
 <!-- / 操作区域 -->
 
 <!-- 表格循环 -->
-<div class="content-wrap">
-  <table class="ui celled structured table">
+<div class="content-wrap table-head-nowrap">
+  <table class="ui celled structured table unstackable center aligned">
     <thead>
       <tr>
         <th rowspan="2">类型</th>
@@ -284,7 +284,7 @@
     </thead>
     <tbody>
       <tr>
-        <td rowspan="5">基本</td>
+        <td rowspan="6">基本</td>
         <td>项目号</td>
         <td>1234232</td>
         <td rowspan="2">
@@ -321,15 +321,14 @@
         <td>12,423,222 ￥</td>
       </tr>
       <tr>
-        <td>验收金额</td>
-        <td>12,423,222 ￥</td>
+        <td>验收日期</td>
+        <td>2018-11-21</td>
         <td>其他</td>
         <td>12,423,222 ￥</td>
       </tr>
       <tr>
-        <td class="center aligned" style="font-size: 40px;" colspan="3" rowspan="7">
-          <a href="../budget/detail.html">查看</a>
-        </td>
+        <td>保修截至日期</td>
+        <td>2018-11-21</td>
         <td rowspan="7">
           <div class="flex-row flex-between">
             <span>已发生成本</span>
@@ -340,10 +339,13 @@
         <td>12,423,222 ￥</td>
       </tr>
       <tr>
+        <td colspan="3" class="font-bold">成本 / 预算</td>
         <td>施工成本</td>
         <td>12,423,222 ￥</td>
       </tr>
       <tr>
+        <td colspan="2">总成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
         <td rowspan="3">
           <div class="flex-row flex-between">
             <span>报销项目成本</span>
@@ -358,6 +360,8 @@
         </td>
       </tr>
       <tr>
+        <td colspan="2">物料实际成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
         <td>
           <div class="flex-row flex-between">
             <span>报销材料款</span>
@@ -366,6 +370,8 @@
         </td>
       </tr>
       <tr>
+        <td colspan="2">工程实际成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
         <td>
           <div class="flex-row flex-between">
             <span>报销工程款</span>
@@ -374,10 +380,15 @@
         </td>
       </tr>
       <tr>
+        <td colspan="2">其他成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
         <td>费用付款其他成本</td>
         <td>12,423,222 ￥</td>
       </tr>
       <tr>
+        <td class="center aligned" style="font-size: 40px;" colspan="3">
+          <a href="javascript:_helper.fullWindow('../budget/detail.html?id=1')">查看</a>
+        </td>
         <td>退料成本</td>
         <td>12,423,222 ￥</td>
       </tr>
