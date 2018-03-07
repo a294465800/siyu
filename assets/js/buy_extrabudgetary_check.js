@@ -2,7 +2,7 @@
   $(document)
     .ready(() => {
       new Vue({
-        el: '#budgetaryCheck',
+        el: '#extrabudgetaryCheck',
         data: {
           checkedMen: [],
           menList: [{
@@ -30,7 +30,7 @@
 
         mounted() {
           const vm = this
-          $('#budgetaryCheckRecheck').on('click', function () {
+          $('#extraBudgetaryCheckRecheck').on('click', function () {
             vm.$confirm('确定复核, 是否继续?', '提示', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',

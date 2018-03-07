@@ -244,7 +244,7 @@
 </div>
 
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between">
+<div class="content-operation flex-row flex-between flex-wrap">
   <div>
     <button id="buyNewProjectLink" class="ui primary button">
       <i class="icon plus"></i>
@@ -271,9 +271,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable" id="projectDetailTable">
+  <table class="ui center aligned table selectable unstackable" id="projectDetailTable">
     <thead>
       <tr>
         <th>采购编号</th>
@@ -292,7 +292,7 @@
     <tbody>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -307,7 +307,7 @@
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -322,7 +322,7 @@
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html')">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/extrabudgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -333,7 +333,7 @@
         <td>专用票11%</td>
         <td>张三</td>
         <td>李四</td>
-        <td>内</td>
+        <td>外</td>
       </tr>
     </tbody>
   </table>

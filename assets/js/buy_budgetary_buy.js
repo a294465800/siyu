@@ -6,6 +6,33 @@
         data: {
           budgetary_buy: _schemas.budgetary_buy,
 
+          suppliers: [
+            {
+              id: 1,
+              name: '供货商一',
+              bank: '中国银行',
+              account: 63432423423423234
+            },
+            {
+              id: 2,
+              name: '供货商二',
+              bank: '平安银行',
+              account: 63432523123423234
+            },
+            {
+              id: 3,
+              name: '供货商三',
+              bank: '广发银行',
+              account: 63432423213123234
+            },
+            {
+              id: 4,
+              name: '供货商四',
+              bank: '建设银行',
+              account: 63452131252133234
+            }
+          ],
+
           //物料
           materials: [{
               id: 1,
@@ -58,7 +85,6 @@
           ],
 
           //复核人dialog
-          // recheckManDialog: false,
           checkedMen: [],
           menList: [{
               id: 1,
@@ -108,15 +134,37 @@
               let item = list[i]
               let material = item.material
               if (typeof item.real_quantity === 'undefined') break
-              sum += parseFloat(item.real_amount)
+              sum += parseFloat(item.real_amount || 0)
               let materialIndex = material.index
-              result[materialIndex].left_number -= parseInt(item.real_quantity)
+              result[materialIndex].left_number -= parseInt(item.real_quantity || 0)
             }
-            vm.budgetary_buy.amount = sum
+            vm.budgetary_buy.amount = sum || 0
             return result
           }
         },
         methods: {
+
+          //供货商搜索
+          querySearchSupplier(queryString, cb) {
+            var suppliers = this.suppliers
+            var results = queryString ? suppliers.filter(this.createFilterSupplier(queryString)) : suppliers;
+            // 调用 callback 返回建议列表的数据
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+              cb(results);
+            }, 1000 * Math.random());
+          },
+          createFilterSupplier(queryString) {
+            return (item) => {
+              return (item.id.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+            };
+          },
+          handleSelectSupplier(item) {
+            this.budgetary_buy.supplier.id = item.id
+            this.budgetary_buy.supplier.name = item.name
+            this.budgetary_buy.supplier.bank = item.bank
+            this.budgetary_buy.supplier.account = item.account
+          },
 
           //物料选择
           addMaterial(item, index) {

@@ -8,7 +8,7 @@
   <div class="active section">采购清单</div>
 </div>
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between" style="align-items: flex-end;">
+<div class="content-operation flex-row flex-between flex-wrap" style="align-items: flex-end;">
   <div>
     <a class="ui green button" href="#">
       <i class="icon download"></i>
@@ -97,9 +97,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>采购编号</th>
@@ -114,7 +114,7 @@
         <th>已付款</th>
         <th>应付账款</th>
         <th>发票条件</th>
-        <th>以收票</th>
+        <th>已收票</th>
         <th>未收票</th>
         <th>项目状态</th>
       </tr>
@@ -122,7 +122,7 @@
     <tbody>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html?id=1');">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,232,231 ￥</td>
@@ -141,7 +141,7 @@
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/extrabudgetary_check.html?id=1');">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,232,231 ￥</td>

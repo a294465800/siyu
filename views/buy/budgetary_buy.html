@@ -85,15 +85,17 @@
     <div class="ui two column doubling stackable grid">
       <div class="column">
         <div class="inline fields">
-          <label class="three wide field">项目编号</label>
-          <div class="thirteen wide field">{{ budgetary_buy.project_id || '暂无数据' }}
+          <label class="four wide field">项目编号</label>
+          <div class="twelve wide field">
+            <div class="fake-input">{{ budgetary_buy.project_id || '暂无数据' }}</div>
           </div>
         </div>
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="three wide field">项目内容</label>
-          <div class="thirteen wide field">{{ budgetary_buy.project_content || '暂无数据' }}
+          <label class="four wide field">项目内容</label>
+          <div class="twelve wide field">
+            <div class="fake-input">{{ budgetary_buy.project_content || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -115,7 +117,15 @@
         <div class="inline fields">
           <label class="four wide field">供货商名称</label>
           <div class="twelve wide field">
-            <input v-model="budgetary_buy.supplier.name" type="text" placeholder="请输入供货商名称">
+            <el-autocomplete popper-class="my-autocomplete" v-model="budgetary_buy.supplier.name" :fetch-suggestions="querySearchSupplier"
+              placeholder="请输入供货商名称" @select="handleSelectSupplier">
+              <i class="el-icon-edit el-input__icon" slot="suffix">
+              </i>
+              <template slot-scope="props">
+                <div class="name">{{ props.item.name }}</div>
+                <div class="addr">{{ props.item.bank }}</div>
+              </template>
+            </el-autocomplete>
           </div>
         </div>
       </div>

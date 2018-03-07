@@ -64,11 +64,13 @@
         </div>
       </div>
     </div>
-    <div class="margin-top-20 flex-row flex-between">
-      <a class="ui green button" href="#">
-        <i class="icon download"></i>
-        <span>Excel 导出</span>
-      </a>
+    <div class="margin-top-20 flex-row flex-between flex-wrap">
+      <div>
+        <a class="ui green button" href="#">
+          <i class="icon download"></i>
+          <span>Excel 导出</span>
+        </a>
+      </div>
       <div>
         <el-date-picker v-model="date" name="search-date" type="datetimerange" :picker-options="dateOption" range-separator="至" start-placeholder="开始日期"
           end-placeholder="结束日期" align="right" format="yyyy-MM-dd">
@@ -84,9 +86,9 @@
 <!-- / 操作 -->
 
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>采购日期</th>
