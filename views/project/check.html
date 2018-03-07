@@ -16,11 +16,10 @@
   <title>查看项目 - 15823910212</title>
 </head>
 
-<body>
+<body id="index">
   <!-- 通用布局 === 复用 -->
   <div class="index-navbar ui menu blue-background print-hide">
-    <span id="sidebarBtn" class="index-navbar-item-left pull-left">
-      <i class="sidebar icon"></i>
+    <span class="index-navbar-item-left pull-left">
       <span>森乾科技</span>
     </span>
     <div class="index-navbar-item-show right menu">
@@ -63,179 +62,9 @@
       </div>
     </div>
   </div>
-  <div class="index-aside invisible print-hide" id="navbar">
-    <el-menu :unique-opened="true" :default-active="navActive" class="el-menu-vertical-demo">
-      <el-menu-item index="index" style="padding:0;">
-        <a href="../index/index.html" slot="title" style="padding-left:20px">
-          <i class="icon home"></i>
-          <span>首页</span>
-        </a>
-      </el-menu-item>
-      <el-submenu index="project">
-        <template slot="title">
-          <i class="icon sticky note"></i>
-          <span>项目立项管理</span>
-        </template>
-        <el-menu-item index="projectDetail">
-          <a href="../project/detail.html">项目明细清单</a>
-        </el-menu-item>
-        <el-menu-item index="projectList">
-          <a href="../project/list.html">已立项清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="budget">
-        <template slot="title">
-          <i class="icon hashtag"></i>
-          <span>预算管理</span>
-        </template>
-        <el-menu-item index="budgetList">
-          <a href="../budget/list.html">预算清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="check">
-        <template slot="title">
-          <i class="icon suitcase"></i>
-          <span>验收与收款管理</span>
-        </template>
-        <el-menu-item index="checkCheck">
-          <a href="../check/list.html">验收与收款清单</a>
-        </el-menu-item>
-        <el-menu-item index="checkTips">
-          <a href="../check/tips.html">收款提示</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="buy">
-        <template slot="title">
-          <i class="icon shopping basket"></i>
-          <span>采购管理</span>
-        </template>
-        <el-menu-item index="buyList">
-          <a href="../buy/list.html">采购清单</a>
-        </el-menu-item>
-        <el-menu-item index="buyProjectList">
-          <a href="../buy/project_list.html">采购立项清单</a>
-        </el-menu-item>
-        <el-menu-item index="buyPayList">
-          <a href="../buy/pay_list.html">采购付款清单</a>
-        </el-menu-item>
-        <el-menu-item index="buyChargeList">
-          <a href="../buy/charge_list.html">采购收票清单</a>
-        </el-menu-item>
-        <el-menu-item index="buyCollect">
-          <a href="../buy/collect.html">采购汇总清单</a>
-        </el-menu-item>
-        <el-menu-item index="buyParity">
-          <a href="../buy/parity.html">物料采购比价</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="stock">
-        <template slot="title">
-          <i class="icon archive"></i>
-          <span>库存管理</span>
-        </template>
-        <el-menu-item index="stockList">
-          <a href="../stock/list.html">库存清单</a>
-        </el-menu-item>
-        <el-menu-item index="stockBuyList">
-          <a href="../stock/buy_list.html">采购收货清单</a>
-        </el-menu-item>
-        <el-menu-item index="stockReturnList">
-          <a href="../stock/return_list.html">退料入货清单</a>
-        </el-menu-item>
-        <el-menu-item index="stockGetList">
-          <a href="../stock/get_list.html">领料出货清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="build">
-        <template slot="title">
-          <i class="icon legal"></i>
-          <span>施工管理</span>
-        </template>
-        <el-menu-item index="buildList">
-          <a href="../build/list.html">施工费清单</a>
-        </el-menu-item>
-        <el-menu-item index="buildDealList">
-          <a href="../build/deal_list.html">备案合同清单</a>
-        </el-menu-item>
-        <el-menu-item index="buildFinishList">
-          <a href="../build/finish_list.html">完工请款清单</a>
-        </el-menu-item>
-        <el-menu-item index="buildPayList">
-          <a href="../build/pay_list.html">施工付款清单</a>
-        </el-menu-item>
-        <el-menu-item index="buildGetList">
-          <a href="../build/get_list.html">施工收票清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="loan">
-        <template slot="title">
-          <i class="icon ordered list"></i>
-          <span>报销与借款管理</span>
-        </template>
-        <el-menu-item index="loanList">
-          <a href="../loan/list.html">报销与借款清单</a>
-        </el-menu-item>
-        <el-menu-item index="loanDetailList">
-          <a href="../loan/detail_list.html">查询明细</a>
-        </el-menu-item>
-        <el-menu-item index="loanLoanList">
-          <a href="../loan/loan_list.html">借款清单</a>
-        </el-menu-item>
-        <el-menu-item index="loanSubmitList">
-          <a href="../loan/submit_list.html">报销申请清单</a>
-        </el-menu-item>
-        <el-menu-item index="loanPayList">
-          <a href="../loan/pay_list.html">报销付款清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="pay">
-        <template slot="title">
-          <i class="icon yen"></i>
-          <span>费用付款管理</span>
-        </template>
-        <el-menu-item index="payList">
-          <a href="../pay/list.html">付款审批清单</a>
-        </el-menu-item>
-      </el-submenu>
-      <el-submenu index="data">
-        <template slot="title">
-          <i class="icon database"></i>
-          <span>数据维护</span>
-        </template>
-        <el-menu-item index="dataAuth">
-          <a href="#">人员权限</a>
-        </el-menu-item>
-        <el-menu-item index="dataType">
-          <a href="../data/type_list.html">项目类别</a>
-        </el-menu-item>
-        <el-menu-item index="dataSupplier">
-          <a href="../data/supplier_list.html">供应商</a>
-        </el-menu-item>
-        <el-menu-item index="dataMateriel">
-          <a href="../data/material_list.html">物料</a>
-        </el-menu-item>
-        <el-menu-item index="dataWarehouse">
-          <a href="../data/warehouse_list.html">仓库</a>
-        </el-menu-item>
-        <el-menu-item index="dataBank">
-          <a href="../data/bank_list.html">银行账户</a>
-        </el-menu-item>
-        <el-menu-item index="dataInvoice">
-          <a href="../data/invoice_list.html">发票类型</a>
-        </el-menu-item>
-        <el-menu-item index="dataTeam">
-          <a href="../data/team_list.html">施工队</a>
-        </el-menu-item>
-        <el-menu-item index="dataPayment">
-          <a href="../data/payment_list.html">报销费用类型</a>
-        </el-menu-item>
-      </el-submenu>
-    </el-menu>
-  </div>
-  <!-- /通用布局 -->
 
-  <!-- 主体内容 === 不可复用 -->
-  <div class="index-content print-no-padding">
+  <!-- 没有导航的单独窗口页面 -->
+  <div class="normal-content print-no-padding">
 
 <div class="ui breadcrumb">
   <a class="section">项目立项管理</a>
@@ -245,9 +74,10 @@
   <div class="active section">15823910212</div>
 </div>
 
-<div class="margin-top-20" id="project-check">
+<h1 class="inline-center">项目编号 - XM15823910212</h1>
+<div class="margin-top-20" id="projectCheck">
   <!-- 基本信息 -->
-  <h4 class="ui dividing header blue">基本信息</h4>
+  <!-- <h4 class="ui dividing header blue">基本信息</h4>
   <div class="check-item">
     <table class="ui very basic table selectable center aligned">
       <thead>
@@ -272,79 +102,158 @@
         <tr>
       </tbody>
     </table>
+  </div> -->
+  <h4 class="ui dividing header blue">项目基本信息</h4>
+  <div class="ui form form-item">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">立项日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-02</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">单位名</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是单位名</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">甲方</label>
+          <div class="twelve wide field">
+            <div class="fake-input">甲方</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目合同金额</label>
+          <div class="twelve wide field icon input">
+            <div class="fake-input">123,523￥</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">预计完工日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-22</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目经理</label>
+          <div class="twelve wide field">
+            <div class="fake-input">陈一发</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">维护要求</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是维护要求</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /基本信息 -->
 
-  <!-- 合同中标情况 -->
-  <h4 class="ui dividing header blue margin-top-50">合同中标情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>单位名称</th>
-          <th>金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <!-- 主合同中标情况 -->
+  <h4 class="ui dividing header blue margin-top-50">主合同中标情况</h4>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">单位名称</div>
+      <div class="four wide column form-thead">金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /合同中标情况 -->
+  <!-- /主合同中标情况 -->
 
   <!-- 合同分包情况 -->
   <h4 class="ui dividing header blue margin-top-50">合同分包情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>分包单位</th>
-          <th>分包金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">发包单位</div>
+      <div class="four wide column form-thead">分包金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /合同分包情况 -->
 
   <!-- 项目实际情况 -->
   <h4 class="ui dividing header blue margin-top-50">项目实际情况</h4>
-  <div class="check-item">
-    <table class="ui celled structured table">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled structured table unstackable center aligned">
       <thead>
         <tr>
           <th rowspan="3">类型</th>
@@ -442,40 +351,70 @@
 
   <!-- 履约保证金情况 -->
   <h4 class="ui dividing header blue margin-top-50">履约保证金情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled structured table unstackable center aligned">
       <thead>
         <tr>
+          <th rowspan="2">序号</th>
+          <th colspan="5">保函情况</th>
+          <th colspan="5">付款情况</th>
+        </tr>
+        <tr>
+          <th>开具单位</th>
+          <th>金额</th>
+          <th>期限</th>
+          <th>费用</th>
+          <th>其他</th>
           <th>支付日期</th>
           <th>支付金额</th>
           <th>收款人</th>
+          <th>收款银行及账号</th>
           <th>回收条件</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>2017-12-22</td>
-          <td>200,000,232 ￥</td>
-          <td>李雪</td>
-          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
+          <td>1</td>
+          <td>xxxx单位</td>
+          <td>123,523￥</td>
+          <td>2018-02-11</td>
+          <td>12,321</td>
+          <td>这是其他信息</td>
+          <td>2018-02-12</td>
+          <td>1,232￥</td>
+          <td>陈一发</td>
+          <td>中国银行 60294825472829122234</td>
+          <td>这是回收条件</td>
         </tr>
         <tr>
-          <td>2017-12-22</td>
-          <td>200,000,232 ￥</td>
-          <td>李雪</td>
-          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
+          <td>2</td>
+          <td colspan="5">暂无数据</td>
+          <td>2018-02-12</td>
+          <td>1,232￥</td>
+          <td>陈一发</td>
+          <td>中国银行 60294825472829122234</td>
+          <td>这是回收条件</td>
         </tr>
         <tr>
-          <td>2017-12-22</td>
-          <td>200,000,232 ￥</td>
-          <td>李雪</td>
-          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
+          <td>3</td>
+          <td>xxxx单位</td>
+          <td>123,523￥</td>
+          <td>2018-02-11</td>
+          <td>12,321</td>
+          <td>这是其他信息</td>
+          <td colspan="5">暂无数据</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <th>合计</th>
-          <th>123,523,220 ￥</th>
+          <th></th>
+          <th>11,232￥</th>
+          <th></th>
+          <th>11,232￥</th>
+          <th></th>
+          <th>11,232￥</th>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -487,8 +426,8 @@
 
   <!-- 收款条件 -->
   <h4 class="ui dividing header blue margin-top-50">收款条件</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled table unstackable center aligned">
       <thead>
         <tr>
           <th>收款比例</th>

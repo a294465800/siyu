@@ -9,8 +9,8 @@
 </div>
 
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between">
-  <div>
+<div class="content-operation flex-row flex-between flex-wrap">
+  <div class="margin-top-20">
     <a class="ui primary button" href="javascript:_helper.fullWindow('../project/create.html');">
       <i class="icon plus"></i>
       <span>新建立项</span>
@@ -20,7 +20,7 @@
       <span>Excel 导出</span>
     </a>
   </div>
-  <form action="/views/project/list.html" class="ui form flex-fluid">
+  <form action="/views/project/list.html" class="ui form flex-fluid margin-top-20">
     <div class="ui left action right input fluid">
       <div class="ui button white dropdown ">
         <input name="seartch-type" type="hidden">
@@ -39,9 +39,8 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
-
-  <table class="ui center aligned table selectable" id="projectDetailTable">
+<div class="content-wrap table-head-nowrap">
+  <table class="ui center aligned table selectable unstackable" id="projectDetailTable">
     <thead>
       <tr>
         <th>项目号</th>
@@ -60,7 +59,7 @@
     <tbody>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../project/check.html?id=1')">154376453254</a>
         </td>
         <td>2017-12-01</td>
         <td class="table-content">这是一大段内容</td>
@@ -75,7 +74,7 @@
       </tr>
       <tr>
         <td>
-          <a href="../project/check.html">154236453254</a>
+          <a href="javascript:_helper.fullWindow('../project/check.html?id=1')">154236453254</a>
         </td>
         <td>2017-12-01</td>
         <td class="table-content">这是一大段内容</td>
@@ -90,7 +89,7 @@
       </tr>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../project/check.html?id=1')">154376453254</a>
         </td>
         <td>2017-12-01</td>
         <td class="table-content">这是一大段内容</td>
@@ -105,7 +104,7 @@
       </tr>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../project/check.html?id=1')">154376453254</a>
         </td>
         <td>2017-12-01</td>
         <td class="table-content">这是一大段内容</td>
