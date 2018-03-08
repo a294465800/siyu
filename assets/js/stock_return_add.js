@@ -5,7 +5,22 @@
       new Vue({
         el: '#returnAdd',
         data: {
-          commodities: [],
+          projects: [{
+              id: 'XM21232312222',
+              name: '项目一',
+              manager: '刘经理'
+            },
+            {
+              id: 'XM21235671222',
+              name: '项目二',
+              manager: '陈经理'
+            },
+            {
+              id: 'XM2126783222',
+              name: '项目三',
+              manager: '刘经理'
+            }
+          ],
           stockReturnAdd: _schemas.stockReturnAdd,
           stocks: [{
               id: 1,
@@ -30,30 +45,38 @@
               name: '物料一',
               model: '型号一',
               unit: '个',
-              avg_price: 111,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家'
             },
             {
               id: 2,
               name: '物料二',
               model: '型号二',
               unit: '个',
-              avg_price: 222,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家'
             },
             {
               id: 3,
               name: '物料三',
               model: '型号三',
               unit: '个',
-              avg_price: 333,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家'
             },
             {
               id: 4,
               name: '物料四',
               model: '型号四',
               unit: '个',
-              avg_price: 523,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家'
             },
           ],
+
+          currentMaterialListDialog: false,
+          currentMaterialListLoader: true,
+          currentMaterialList: [],
         },
         mounted() {
           $('#returnAdd').removeClass('invisible')
@@ -69,7 +92,7 @@
             list.forEach((it, index) => {
               const return_quantity = it.return_quantity
               if (return_quantity) {
-                sum += return_quantity * it.material.avg_price
+                sum += return_quantity * (it.price || 0)
               }
             })
             return sum
@@ -81,8 +104,8 @@
            * 搜索相关
            */
           querySearch(queryString, cb) {
-            var commodities = this.commodities
-            var results = queryString ? commodities.filter(this.createFilter(queryString)) : commodities;
+            var projects = this.projects
+            var results = queryString ? projects.filter(this.createFilter(queryString)) : projects;
             // 调用 callback 返回建议列表的数据
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
@@ -93,73 +116,6 @@
             return (restaurant) => {
               return (restaurant.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
             };
-          },
-          loadAll() {
-            return [{
-                "id": 1,
-                "name": "三全鲜食（北新泾店）",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号一",
-                "unit": "间",
-                "address": "长宁区新渔路144号"
-              },
-              {
-                "id": 2,
-                "name": "Hot honey 首尔炸鸡（仙霞路）",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号二",
-                "unit": "个",
-                "address": "上海市长宁区淞虹路661号"
-              },
-              {
-                "id": 3,
-                "name": "新旺角茶餐厅",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号三",
-                "unit": "只",
-                "address": "上海市普陀区真北路988号创邑金沙谷6号楼113"
-              },
-              {
-                "id": 4,
-                "name": "泷千家(天山西路店)",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号四",
-                "unit": "件",
-                "address": "天山西路438号"
-              },
-              {
-                "id": 5,
-                "name": "胖仙女纸杯蛋糕（上海凌空店）",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号五",
-                "unit": "间",
-                "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101"
-              },
-              {
-                "id": 6,
-                "name": "贡茶",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号六",
-                "unit": "间",
-                "address": "上海市长宁区金钟路633号"
-              },
-              {
-                "id": 7,
-                "name": "豪大大香鸡排超级奶爸",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号七",
-                "unit": "间",
-                "address": "上海市嘉定区曹安公路曹安路1685号"
-              },
-              {
-                "id": 8,
-                "name": "茶芝兰（奶茶，手抓饼）",
-                "parameter": "这些是一些参数和性能数据",
-                "model": "型号八",
-                "unit": "间",
-                "address": "上海市普陀区同普路1435号"
-              },
-            ]
           },
 
           //仓库名称
@@ -195,8 +151,8 @@
           },
           handleSelect(item) {
             this.stockReturnAdd.project_id = item.id
-            this.stockReturnAdd.project_content = item.parameter
-            this.stockReturnAdd.project_manger = item.model
+            this.stockReturnAdd.project_content = item.name
+            this.stockReturnAdd.project_manger = item.manager
           },
           handleSelectStock(item) {
             this.stockReturnAdd.stock_id = item.id
@@ -233,6 +189,76 @@
           //提交
           submit() {
             console.log(this.stockReturnAdd)
+          },
+
+          //查询单价
+          checkPrice() {
+            if (!this.currentMaterial.id) {
+              this.$notify({
+                title: '错误',
+                message: '请先选择物料',
+                type: 'error'
+              })
+              return false
+            }
+            this.currentMaterialListLoader = true
+            this.currentMaterialListDialog = true
+            setTimeout(() => {
+              this.currentMaterialListLoader = false
+              this.currentMaterialList = [{
+                  id: 1,
+                  get_id: 'LL23213123',
+                  stock: 'xxx仓库',
+                  material_name: '线缆',
+                  material_parameter: '这是参数技术',
+                  material_model: '1k23',
+                  material_manufacturer: 'xxx工厂',
+                  material_unit: '个',
+                  material_price: 123,
+                  count: 2221,
+                  amount: 12523,
+                  project_id: 'XM2312321',
+                  project_content: '这是内容xxx',
+                  project_manager: '陈一发',
+                  people: '刘义克'
+                },
+                {
+                  id: 2,
+                  get_id: 'LL23213123',
+                  stock: 'xxx仓库',
+                  material_name: '线缆',
+                  material_parameter: '这是参数技术',
+                  material_model: '1k23',
+                  material_manufacturer: 'xxx工厂',
+                  material_unit: '个',
+                  material_price: 123,
+                  count: 11,
+                  amount: 5232,
+                  project_id: 'XM2312321',
+                  project_content: '这是内容xxx',
+                  project_manager: '陈一发',
+                  people: '刘义克'
+                },
+                {
+                  id: 3,
+                  get_id: 'LL23213123',
+                  stock: 'xxx仓库',
+                  material_name: '线缆',
+                  material_parameter: '这是参数技术',
+                  material_model: '1k23',
+                  material_manufacturer: 'xxx工厂',
+                  material_unit: '个',
+                  material_price: 111,
+                  count: 254,
+                  amount: 5253,
+                  project_id: 'XM2312321',
+                  project_content: '这是内容xxx',
+                  project_manager: '陈一发',
+                  people: '刘义克'
+                }
+
+              ]
+            }, 1000)
           }
         }
       })

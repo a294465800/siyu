@@ -33,28 +33,36 @@
               name: '物料一',
               model: '型号一',
               unit: '个',
-              avg_price: 111,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家',
+              price: 321
             },
             {
               id: 2,
               name: '物料二',
               model: '型号二',
               unit: '个',
-              avg_price: 222,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家',
+              price: 55
             },
             {
               id: 3,
               name: '物料三',
               model: '型号三',
               unit: '个',
-              avg_price: 333,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家',
+              price: 11
             },
             {
               id: 4,
               name: '物料四',
               model: '型号四',
               unit: '个',
-              avg_price: 523,
+              parameter: '这是参数型号',
+              manufacturer: 'xx厂家',
+              price: 142
             },
           ],
         },
