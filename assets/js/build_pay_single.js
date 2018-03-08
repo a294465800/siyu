@@ -28,17 +28,27 @@
           ],
         },
         mounted() {
-          $('#navbar').removeClass('invisible')
+          const vm = this
+          $('.paySingleBtn').on('click', function () {
+            vm.$confirm('确定复核, 是否继续?', '提示', {
+              confirmButtonText: '确定',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }).then(() => {
+              vm.$message({
+                type: 'success',
+                message: '已复核!'
+              })
+              $('.ui.dimmer').addClass('active')
+            }).catch(() => {
+              vm.$message({
+                type: 'info',
+                message: '已取消'
+              })
+            })
+          })
         },
         methods: {
-          recheckFnc() {
-            this.$notify({
-              title: '成功',
-              message: '复核成功',
-              type: 'success'
-            })
-            $('.ui.dimmer').addClass('active')
-          },
           //选择审核人
           handleCheckManChange(value) {
             console.log(this.checkedMen)

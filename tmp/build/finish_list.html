@@ -12,7 +12,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../build/finish_add.html')">
           <i class="icon plus"></i>
@@ -44,9 +44,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>请款编号</th>
@@ -108,6 +108,12 @@
   </table>
 </div>
 
+<div class="margin-top-20" style="text-align:right;">
+  <a class="ui positive button" href="#">
+    <i class="icon download"></i>
+    <span>请款单标准格式导出</span>
+  </a>
+</div>
 <include src="../template/footer.html">
   @js = ../../src/js/build_finish_list.js
 </include>
