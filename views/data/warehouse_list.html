@@ -247,7 +247,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../data/warehouse_add.html')">
           <i class="icon plus"></i>
@@ -276,52 +276,57 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
+        <th>序号</th>
         <th>仓库名称</th>
-        <th>仓库地址</th>
+        <th style="min-width:300px">仓库地址</th>
         <th>仓管员</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td>1</td>
         <td>xxx仓库</td>
         <td>广东省广州市番禺xxxxxx</td>
         <td>刘琛</td>
-        <td>
+        <td style="white-space:nowrap;">
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataWarehouseDelete">删除</button>
         </td>
       </tr>
       <tr>
+        <td>2</td>
         <td>xxx仓库</td>
         <td>广东省广州市番禺xxxxxx</td>
         <td>刘琛</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataWarehouseDelete">删除</button>
         </td>
       </tr>
       <tr>
+        <td>3</td>
         <td>xxx仓库</td>
         <td>广东省广州市番禺xxxxxx</td>
         <td>刘琛</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataWarehouseDelete">删除</button>
         </td>
       </tr>
       <tr>
+        <td>4</td>
         <td>xxx仓库</td>
         <td>广东省广州市番禺xxxxxx</td>
         <td>刘琛</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataWarehouseDelete">删除</button>
         </td>
       </tr>
     </tbody>

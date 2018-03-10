@@ -12,7 +12,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../data/supplier_add.html')">
           <i class="icon plus"></i>
@@ -42,9 +42,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>供应商名称</th>
@@ -60,7 +60,7 @@
         <td>672372717285283212</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataSupplierDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -69,7 +69,7 @@
         <td>672372717285283212</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataSupplierDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -78,7 +78,7 @@
         <td>672372717285283212</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/supplier_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataSupplierDelete">删除</button>
         </td>
       </tr>
     </tbody>

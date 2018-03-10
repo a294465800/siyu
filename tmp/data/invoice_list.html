@@ -12,7 +12,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../data/invoice_add.html')">
           <i class="icon plus"></i>
@@ -24,9 +24,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>发票类型</th>
@@ -40,7 +40,7 @@
         <td>这是一些备注</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataInvoiceDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -48,7 +48,7 @@
         <td>这是一些备注</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataInvoiceDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -56,7 +56,7 @@
         <td>这是一些备注</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/invoice_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataInvoiceDelete">删除</button>
         </td>
       </tr>
     </tbody>

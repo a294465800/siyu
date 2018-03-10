@@ -12,7 +12,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../data/material_add.html')">
           <i class="icon plus"></i>
@@ -42,13 +42,13 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>物料名称</th>
-        <th>性能与技术参数</th>
+        <th style="min-width:300px;">性能与技术参数</th>
         <th>品牌型号</th>
         <th>生产厂家</th>
         <th>单位</th>
@@ -62,9 +62,9 @@
         <td>ak-25</td>
         <td>xxxx厂家</td>
         <td>个</td>
-        <td>
-          <a class="ui mini button primary" href="#">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+        <td style="white-space:nowrap;">
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/material_add.html?id=1')">修改</a>
+          <button class="ui mini button negative dataMaterialDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -74,8 +74,8 @@
         <td>xxxx厂家xxxx厂家xxxx厂家xxxx厂家</td>
         <td>个</td>
         <td>
-          <a class="ui mini button primary" href="#">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/material_add.html?id=1')">修改</a>
+          <button class="ui mini button negative dataMaterialDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -85,8 +85,8 @@
         <td>xxxx厂家</td>
         <td>个</td>
         <td>
-          <a class="ui mini button primary" href="#">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/material_add.html?id=1')">修改</a>
+          <button class="ui mini button negative dataMaterialDelete">删除</button>
         </td>
       </tr>
     </tbody>

@@ -252,14 +252,14 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>序号</th>
-        <th>费用类型</th>
-        <th>具体事项</th>
+        <th style="min-width:100px;">费用类型</th>
+        <th style="min-width:300px;">具体事项</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -268,9 +268,9 @@
         <td>1</td>
         <td>交通运输费</td>
         <td style="max-width:600px;">油费/路桥费/汽车维修费/汽车保养费/车辆保险/停车费/其他</td>
-        <td>
+        <td style="white-space:nowrap">
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/payment_edit.html?id=1')">录入事项</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataPaymentDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -279,7 +279,7 @@
         <td>餐费/其他</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/payment_edit.html?id=1')">录入事项</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataPaymentDelete">删除</button>
         </td>
       </tr>
     </tbody>

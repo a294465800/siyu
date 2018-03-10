@@ -12,7 +12,7 @@
 <div class="content-operation">
 
   <form action="" class="ui form">
-    <div class="flex-row flex-between">
+    <div class="flex-row flex-between flex-wrap">
       <div>
         <a class="ui primary button" href="javascript:_helper.fullWindow('../data/bank_add.html')">
           <i class="icon plus"></i>
@@ -41,9 +41,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>银行名称</th>
@@ -55,9 +55,9 @@
       <tr>
         <td>中国银行</td>
         <td>692832852812835921</td>
-        <td>
+        <td style="white-space:nowrap">
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/bank_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataBankDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -65,7 +65,7 @@
         <td>692832852812835921</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/bank_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataBankDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -73,7 +73,7 @@
         <td>692832852812835921</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/bank_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataBankDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -81,7 +81,7 @@
         <td>692832852812835921</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/bank_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataBankDelete">删除</button>
         </td>
       </tr>
       <tr>
@@ -89,7 +89,7 @@
         <td>692832852812835921</td>
         <td>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../data/bank_add.html?id=1')">修改</a>
-          <a class="ui mini button negative" href="#">删除</a>
+          <button class="ui mini button negative dataBankDelete">删除</button>
         </td>
       </tr>
     </tbody>
