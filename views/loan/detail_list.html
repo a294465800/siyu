@@ -259,11 +259,13 @@
         </div>
       </div>
     </div>
-    <div class="margin-top-20 flex-row flex-between">
-      <a class="ui green button" href="#">
-        <i class="icon download"></i>
-        <span>Excel 导出</span>
-      </a>
+    <div class="margin-top-20 flex-row flex-between flex-wrap">
+      <div>
+        <a class="ui green button" href="#">
+          <i class="icon download"></i>
+          <span>Excel 导出</span>
+        </a>
+      </div>
       <div>
         <el-date-picker v-model="date" name="search-date" type="datetimerange" :picker-options="dateOption" range-separator="至" start-placeholder="开始日期"
           end-placeholder="结束日期" align="right" format="yyyy-MM-dd">
@@ -279,21 +281,23 @@
 <!-- / 操作 -->
 
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui celled structured center aligned table selectable unstackable">
     <thead>
       <tr>
         <th rowspan="2">日期</th>
-        <th rowspan="2">借款编号</th>
-        <th rowspan="2">借款金额</th>
-        <th rowspan="2">报销编号</th>
-        <th rowspan="2">报销金额</th>
+        <th colspan="2">借款</th>
+        <th colspan="2">报销申请</th>
         <th colspan="5">报销支付</th>
         <th rowspan="2">未支付报销余额</th>
         <th rowspan="2">借款余额</th>
       </tr>
       <tr>
+        <th>借款编号</th>
+        <th>借款金额</th>
+        <th>报销编号</th>
+        <th>报销金额</th>
         <th>付款编号</th>
         <th>付款金额</th>
         <th>其中：抵扣借款</th>

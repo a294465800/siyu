@@ -252,9 +252,8 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
-
-  <table class="ui center aligned table selectable">
+<div class="content-wrap table-head-nowrap">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>借款编号</th>
@@ -277,9 +276,9 @@
         <td>陈晨</td>
         <td>未审批</td>
         <td colspan="4">暂无数据</td>
-        <td>
-          <a class="ui mini button negative" href="#">撤销</a>
-          <a class="ui mini button positive" href="#">审批</a>
+        <td style="white-space:nowrap;">
+          <button class="ui mini button negative loanLoanListCancel">撤销</button>
+          <button class="ui mini button positive loanLoanListCheck">审批</button>
         </td>
       </tr>
       <tr>
@@ -292,9 +291,9 @@
         <td>转账</td>
         <td>中国银行 60232123421232215</td>
         <td>蔡杰</td>
-        <td>
-          <a class="ui mini button negative" href="#">撤销</a>
-          <a class="ui mini button positive" href="#">审批</a>
+        <td style="white-space:nowrap;">
+          <button class="ui mini button negative loanLoanListCancel">撤销</button>
+          <button class="ui mini button positive loanLoanListCheck">审批</button>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../loan/loan_pay.html?id=1')">录入/修改</a>
           <a class="ui mini button positive" href="javascript:_helper.fullWindow('../loan/loan_print.html?id=1')">凭证</a>
         </td>
@@ -310,8 +309,8 @@
         <td>中国银行 60232123421232215</td>
         <td>蔡杰</td>
         <td>
-          <a class="ui mini button negative" href="#">撤销</a>
-          <a class="ui mini button positive" href="#">审批</a>
+          <button class="ui mini button negative loanLoanListCancel">撤销</button>
+          <button class="ui mini button positive loanLoanListCheck">审批</button>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../loan/loan_pay.html?id=1')">录入/修改</a>
           <a class="ui mini button positive" href="javascript:_helper.fullWindow('../loan/loan_print.html?id=1')">凭证</a>
         </td>
@@ -327,8 +326,8 @@
         <td>中国银行 60232123421232215</td>
         <td>蔡杰</td>
         <td>
-          <a class="ui mini button negative" href="#">撤销</a>
-          <a class="ui mini button positive" href="#">审批</a>
+          <button class="ui mini button negative loanLoanListCancel">撤销</button>
+          <button class="ui mini button positive loanLoanListCheck">审批</button>
           <a class="ui mini button primary" href="javascript:_helper.fullWindow('../loan/loan_pay.html?id=1')">录入/修改</a>
           <a class="ui mini button positive" href="javascript:_helper.fullWindow('../loan/loan_print.html?id=1')">凭证</a>
         </td>
