@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
 <!-- /全局依赖 -->
 
-  <title>付款审批查询 - FK20171103001</title>
+  <title>新增施工队</title>
 </head>
 
 <body id="index">
@@ -67,102 +67,50 @@
   <div class="normal-content print-no-padding">
 
 <div class="ui breadcrumb">
-  <a class="section">费用付款管理</a>
+  <a class="section">数据维护</a>
   <div class="divider"> / </div>
-  <a class="section" href="../pay/list.html">付款审批清单</a>
+  <a class="section" href="../data/type_list.html">项目类别列表</a>
   <div class="divider"> / </div>
-  <div class="active section">付款审批查询 - FK20171103001</div>
+  <div class="active section">新增类别</div>
 </div>
 
-<h3 class="ui header center aligned">付款审批查询 - FK20171103001</h3>
-<table class="ui celled center aligned table unstackable">
-  <thead>
-    <tr>
-      <th>付款编号</th>
-      <th class="fake-td">FK20171103001</th>
-      <th>付款金额</th>
-      <th class="fake-td" colspan="2">123,523￥</th>
-    </tr>
-    <tr>
-      <th>用途</th>
-      <th colspan="4" class="fake-td">这是一些用途</th>
-    </tr>
-    <tr>
-      <th>项目编号</th>
-      <th class="fake-td">XM23252312</th>
-      <th>项目内容</th>
-      <th colspan="2" class="fake-td">这是项目内容</th>
-    </tr>
-    <tr>
-      <th>申请人</th>
-      <th class="fake-td">瑞茜</th>
-      <th>审批人</th>
-      <th class="fake-td" colspan="2">何福清</th>
-    </tr>
-    <tr>
-      <th colspan="5">付款信息</th>
-    </tr>
-    <tr>
-      <th>付款日期</th>
-      <th class="fake-td">2018-03-11</th>
-      <th>付款金额</th>
-      <th colspan="2" class="fake-td">123,523￥</th>
-    </tr>
-    <tr>
-      <th colspan="5">付款方式</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>现金</td>
-      <td colspan="3">11,231￥</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>转账</td>
-      <td>123,523￥</td>
-      <td>银行及账号</td>
-      <td>中国银行 653234322234363312</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>其他</td>
-      <td colspan="3">0</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th>备注</th>
-      <th class="fake-td" colspan="4">这是一些备注</th>
-    </tr>
-    <tr>
-      <th>付款经办人</th>
-      <th class="fake-td" colspan="4">海子</th>
-    </tr>
-  </tfoot>
-</table>
+<h1 class="ui header blue aligned center">新增类别</h1>
+<div id="dataTypeAdd">
+  <h4 class="ui dividing header blue">信息录入</h4>
+  <div class="ui form">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">类别内容</label>
+          <div class="eleven wide field">
+            <input type="hidden" id="typeName" value="xxx类别内容">
+            <input type="text" v-model="typeForm.name" placeholder="请输入类别内容">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">税率</label>
+          <div class="eleven wide field">
+            <input type="hidden" id="typeManager" value="15">
+            <div class="ui icon input">
+              <input type="number" placeholder="请输入税率" v-model="typeForm.manager">
+              <i class="icon percent"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="flex-row flex-center margin-top-50" id="paySingleBtn">
-  <button class="ui icon button negative" id="paySingleCancel" style="margin:0 20px;">
-    <i class="icon delete"></i>
-    <span>撤销</span>
-  </button>
-  <button class="ui icon button primary" id="paySingleCheck" style="margin:0 20px;">
-    <i class="icon edit"></i>
-    <span>审批</span>
-  </button>
-  <a class="ui icon button primary" href="javascript:_helper.fullWindow('../pay/pay.html')" style="margin:0 20px;">
-    <i class="icon yen"></i>
-    <span>付款</span>
-  </a>
-  <a class="ui icon button positive" href="javascript:_helper.fullWindow('../pay/print.html?id=1')" style="margin:0 20px;">
-    <i class="icon print"></i>
-    <span>凭证</span>
-  </a>
+  <div class="inline-center margin-top-20">
+    <button class="ui button primary large" @click="submit">
+      <i class="icon hand pointer"></i>
+      <span>确定</span>
+    </button>
+  </div>
+
 </div>
-
-
 </div>
 <!-- /主体内容 === 不可复用 -->
 
@@ -182,7 +130,7 @@
 <script src="../../src/js/global.js"></script>
 <!-- / 全局依赖 js === 通用 -->
 <!-- 独立 js -->
-<script src="../../src/js/pay_single.js"></script>
+<script src="../../src/js/data_type_add.js"></script>
 <!-- / 独立 js -->
 </body>
 

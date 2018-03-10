@@ -11,7 +11,7 @@
 </div>
 
 <h3 class="ui header center aligned">付款审批查询 - FK20171103001</h3>
-<table class="ui celled center aligned table selectable">
+<table class="ui celled center aligned table unstackable">
   <thead>
     <tr>
       <th>付款编号</th>
@@ -27,7 +27,7 @@
       <th>项目编号</th>
       <th class="fake-td">XM23252312</th>
       <th>项目内容</th>
-      <th colspan="2">这是项目内容</th>
+      <th colspan="2" class="fake-td">这是项目内容</th>
     </tr>
     <tr>
       <th>申请人</th>
@@ -79,15 +79,15 @@
   </tfoot>
 </table>
 
-<div class="flex-row flex-center margin-top-50">
-  <a class="ui icon button negative" href="javascript:_helper.fullWindow('../build/pay_apply.html')" style="margin:0 20px;">
+<div class="flex-row flex-center margin-top-50" id="paySingleBtn">
+  <button class="ui icon button negative" id="paySingleCancel" style="margin:0 20px;">
     <i class="icon delete"></i>
-    <span>删除</span>
-  </a>
-  <a class="ui icon button primary" href="javascript:_helper.fullWindow('../build/pay_apply.html')" style="margin:0 20px;">
+    <span>撤销</span>
+  </button>
+  <button class="ui icon button primary" id="paySingleCheck" style="margin:0 20px;">
     <i class="icon edit"></i>
     <span>审批</span>
-  </a>
+  </button>
   <a class="ui icon button primary" href="javascript:_helper.fullWindow('../pay/pay.html')" style="margin:0 20px;">
     <i class="icon yen"></i>
     <span>付款</span>
@@ -100,4 +100,5 @@
 
 
 <include src="../template/footer.html">
+  @js = ../../src/js/pay_single.js
 </include>
