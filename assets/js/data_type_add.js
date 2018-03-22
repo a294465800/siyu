@@ -6,26 +6,38 @@
         el: '#dataTypeAdd',
         data: {
           typeForm: {
+            id: '',
             name: '',
-            tax: '',
+            rate: '',
           }
         },
         mounted() {
-          this.typeForm.name = $('#typeName').val()
-          this.typeForm.tax = $('#typeTax').val()
+          this.typeForm.id = $('#typeId').val() || ''
+          this.typeForm.name = $('#typeName').val() || ''
+          this.typeForm.rate = $('#typeRate').val() || ''
         },
         methods: {
           //提交
           submit() {
-            for (let it in this.typeForm) {
-              this.typeForm[it] = ''
-            }
-            console.log(this.typeForm)
-            this.$notify({
-              title: '成功',
-              message: '提交成功',
-              type: 'success'
-            })
+            _http.ProjectManager.createType(this.typeForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: '提交成功',
+                    type: 'success'
+                  })
+                } else {
+                  console.log(err)
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
         }
       })
