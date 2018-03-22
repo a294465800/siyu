@@ -83,6 +83,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">物料名称</label>
           <div class="eleven wide field">
+            <input type="hidden" id="materialId" value="">
             <input type="hidden" id="materialName" value="线缆">
             <input type="text" v-model="materialForm.name" placeholder="请输入物料名称">
           </div>
@@ -92,8 +93,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">性能与技术参数</label>
           <div class="eleven wide field">
-            <input type="hidden" id="materialParameter" value="这是性能和参数">
-            <input type="text" v-model="materialForm.parameter" placeholder="请输入性能与技术参数">
+            <input type="hidden" id="materialParam" value="这是性能和参数">
+            <input type="text" v-model="materialForm.param" placeholder="请输入性能与技术参数">
           </div>
         </div>
       </div>
@@ -110,8 +111,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">生产厂家</label>
           <div class="eleven wide field">
-            <input type="hidden" id="materialManufacturer" value="xxx工厂">
-            <input type="text" v-model="materialForm.manufacturer" placeholder="请输入生产厂家">
+            <input type="hidden" id="materialFactor" value="xxx工厂">
+            <input type="text" v-model="materialForm.factor" placeholder="请输入生产厂家">
           </div>
         </div>
       </div>

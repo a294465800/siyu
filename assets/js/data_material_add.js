@@ -7,31 +7,42 @@
         data: {
           materialForm: {
             name: '',
-            parameter: '',
+            param: '',
             model: '',
-            manufacturer: '',
+            factor: '',
             unit: ''
           }
         },
         mounted() {
-          this.materialForm.name = $('#materialName').val()
-          this.materialForm.parameter = $('#materialParameter').val()
-          this.materialForm.model = $('#materialModel').val()
-          this.materialForm.manufacturer = $('#materialManufacturer').val()
-          this.materialForm.unit = $('#materialUnit').val()
+          this.materialForm.id = $('#materialId').val() || ''
+          this.materialForm.name = $('#materialName').val() || ''
+          this.materialForm.param = $('#materialParam').val() || ''
+          this.materialForm.model = $('#materialModel').val() || ''
+          this.materialForm.factor = $('#materialFactor').val() || ''
+          this.materialForm.unit = $('#materialUnit').val() || ''
         },
         methods: {
           //提交
           submit() {
-            for (let it in this.materialForm) {
-              this.materialForm[it] = ''
-            }
-            console.log(this.materialForm)
-            this.$notify({
-              title: '成功',
-              message: '提交成功',
-              type: 'success'
-            })
+            _http.MaterialManager.createMaterial(this.materialForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: '提交成功',
+                    type: 'success'
+                  })
+                } else {
+                  console.log(err)
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
         }
       })

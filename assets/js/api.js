@@ -22,6 +22,7 @@
     }
 
 
+    //创建项目类别
     createType(data = {}) {
       return this._http.post('/project/type/create', data, this.dataMethodDefaults)
     }
@@ -41,8 +42,54 @@
     // }
   }
 
+  class SupplierManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+
+    //创建供应商
+    createSupplier(data = {}) {
+      return this._http.post('/supplier/create', data, this.dataMethodDefaults)
+    }
+  }
+
+  class MaterialManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+
+    //创建供应商
+    createMaterial(data = {}) {
+      return this._http.post('/material/create', data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
-    ProjectManager: new ProjectManager()
+    ProjectManager: new ProjectManager(),
+    SupplierManager: new SupplierManager(),
+    MaterialManager: new MaterialManager()
   }
 
   return http
