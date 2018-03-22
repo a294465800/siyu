@@ -28,9 +28,9 @@
 <!-- / 操作区域 -->
 
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
         <th>项目号</th>
@@ -39,6 +39,7 @@
         <th>合同金额</th>
         <th>实际金额</th>
         <th>验收日期</th>
+        <th>保修截至日期</th>
         <th>已开票请款</th>
         <th>主合同收款</th>
         <th>分包合同收额</th>
@@ -50,12 +51,13 @@
     <tbody>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../check/detail.html');">XM154376453254</a>
         </td>
-        <td class="table-content">这是一大段内容</td>
+        <td>这是一大段内容</td>
         <td>张喜</td>
         <td>20万</td>
         <td>30万</td>
+        <td>2017-12-01</td>
         <td>2017-12-01</td>
         <td>20万</td>
         <td>20万</td>
@@ -66,12 +68,13 @@
       </tr>
       <tr>
         <td>
-          <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../check/detail.html');">XM154376453254</a>
         </td>
-        <td class="table-content">这是一大段内容</td>
+        <td>这是一大段内容</td>
         <td>张喜</td>
         <td>20万</td>
         <td>30万</td>
+        <td>2017-12-01</td>
         <td>2017-12-01</td>
         <td>20万</td>
         <td>20万</td>

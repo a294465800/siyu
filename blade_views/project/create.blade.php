@@ -36,9 +36,9 @@
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="four wide field">项目名称</label>
+          <label class="four wide field">项目内容</label>
           <div class="twelve wide field">
-            <input v-model="project.name" type="text" placeholder="请输入项目名称">
+            <input v-model="project.name" type="text" placeholder="请输入项目内容">
           </div>
         </div>
       </div>
@@ -78,9 +78,9 @@
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="four wide field">维护条件</label>
+          <label class="four wide field">维护要求</label>
           <div class="twelve wide field">
-            <input v-model="project.maintain" type="text" placeholder="请输入维护条件">
+            <input v-model="project.maintain" type="text" placeholder="请输入维护要求">
           </div>
         </div>
       </div>
@@ -88,8 +88,8 @@
   </div>
   <!-- / 项目基本信息 -->
 
-  <!-- 合同中标情况 -->
-  <h4 class="ui dividing header blue">合同中标情况</h4>
+  <!-- 主合同中标情况 -->
+  <h4 class="ui dividing header blue">主合同中标情况</h4>
   <div class="flex-row flex-end">
     <button class="ui positive icon button" @click="addFirstItem('masterCompany')">
       <i class="icon plus"></i>
@@ -104,10 +104,10 @@
       <div class="six wide column form-thead">备注</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui three column doubling stackable grid center aligned" v-for="(item,index) in project.masterCompany" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="four wide column">
           <input v-model="item.name" type="text" placeholder="请输入发包单位">
@@ -119,18 +119,17 @@
           </div>
         </div>
         <div class="six wide column">
-          <textarea v-model="item.remark" placeholder="请输入备注" rows="1"></textarea>
+          <input type="text" v-model="item.remark" placeholder="请输入备注">
         </div>
-        <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteFirstItem('masterCompany', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+        <div class="one wide column">
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteFirstItem('masterCompany', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>
   </div>
-  <!-- / 合同中标情况 -->
+  <!-- / 主合同中标情况 -->
 
   <!-- 分包情况 -->
   <h4 class="ui dividing header blue">分包情况</h4>
@@ -148,10 +147,10 @@
       <div class="six wide column form-thead">备注</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui three column doubling stackable grid center aligned" v-for="(item,index) in project.subCompany" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="four wide column">
           <input v-model="item.name" type="text" placeholder="请输入分包单位">
@@ -163,13 +162,12 @@
           </div>
         </div>
         <div class="six wide column">
-          <textarea v-model="item.remark" placeholder="请输入备注" rows="1"></textarea>
+          <input type="text" v-model="item.remark" placeholder="请输入备注">
         </div>
-        <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteFirstItem('subCompany', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+        <div class="one wide column">
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteFirstItem('subCompany', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>
@@ -211,10 +209,10 @@
           <div class="six wide column form-thead">备注</div>
           <div class="one wide column form-thead">操作</div>
         </div>
-        <transition-group name="slide-down" tag="div" class="form-wrap">
+        <transition-group name="slide-down" tag="div" class="form-wrap special-form">
           <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subItem.id">
             <div class="one wide column">
-              <div class="form-order">{{subIndex + 1}}</div>
+              <div class="fake-input">{{subIndex + 1}}</div>
             </div>
             <div class="four wide column">
               <el-select v-model="subItem.name" placeholder="请选择内容">
@@ -235,13 +233,12 @@
               </div>
             </div>
             <div class="six wide column">
-              <textarea v-model="subItem.remark" placeholder="请输入备注" rows="1"></textarea>
+              <input type="text" v-model="subItem.remark" placeholder="请输入备注">
             </div>
-            <div class="one wide column flex-row flex-end">
-              <button class=" ui negative icon button" @click="deleteSecondItem('masterContract', index, subIndex, item)">
-                <i class="icon minus"></i>
-                <span>删除</span>
-              </button>
+            <div class="one wide column">
+              <div class="fake-input">
+                <i class="icon minus red" style="cursor:pointer;" @click="deleteSecondItem('masterContract', index, subIndex, item)"></i>
+              </div>
             </div>
           </div>
         </transition-group>
@@ -292,10 +289,10 @@
           <div class="six wide column form-thead">备注</div>
           <div class="one wide column form-thead">操作</div>
         </div>
-        <transition-group name="slide-down" tag="div" class="form-wrap">
+        <transition-group name="slide-down" tag="div" class="form-wrap special-form">
           <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subItem.id">
             <div class="one wide column">
-              <div class="form-order">{{subIndex + 1}}</div>
+              <div class="fake-input">{{subIndex + 1}}</div>
             </div>
             <div class="four wide column">
               <el-select v-model="subItem.name" placeholder="请选择内容">
@@ -316,13 +313,12 @@
               </div>
             </div>
             <div class="six wide column">
-              <textarea v-model="subItem.remark" placeholder="请输入备注" rows="1"></textarea>
+              <input type="text" v-model="subItem.remark" placeholder="请输入备注">
             </div>
             <div class="one wide column flex-row flex-end">
-              <button class="ui negative icon button" @click="deleteSecondItem('subContract', index, subIndex, item)">
-                <i class="icon minus"></i>
-                <span>删除</span>
-              </button>
+              <div class="fake-input">
+                <i class="icon minus red" style="cursor:pointer;" @click="deleteSecondItem('subContract', index, subIndex, item)"></i>
+              </div>
             </div>
           </div>
         </transition-group>
@@ -342,8 +338,10 @@
   <!-- / 分包合同 -->
 
   <!-- 合计 -->
+  <h3 class="inline-center">项目金额统计清单</h3>
   <div class="ui two column doubling stackable grid">
     <div class="column">
+      <h4 class="inline-center">综合统计</h4>
       <table class="ui celled table">
         <thead>
           <tr>
@@ -380,6 +378,7 @@
       </table>
     </div>
     <div class="column">
+      <h4 class="inline-center">细节统计</h4>
       <table class="ui celled table">
         <thead>
           <tr>
@@ -426,7 +425,7 @@
     </button>
   </div>
   <div class="ui form form-item">
-    <transition-group name="slide-down" tag="div" class="form-wrap" id="margins">
+    <transition-group name="slide-down" tag="div" class="form-wrap bg-hover" id="margins">
       <div class="relative" style="padding: 20px 10px;" v-for="(item, index) in project.margins" :key="item.id">
         <div class="ui horizontal divider violet hor-divider">分割线</div>
         <div class="ui four column doubling stackable grid">
@@ -474,7 +473,7 @@
           </div>
         </div>
         <div class="ui vertical divider margin-divider">
-          <span>保函 / 付款</span>
+          <span>保函 — 付款</span>
         </div>
         <div class="ui four column doubling stackable grid">
           <div class="column">
@@ -565,6 +564,7 @@
       <span>新增</span>
     </button>
   </div>
+  <h5 class="ui header right aligned">合计总额：{{ sumPaymentConditions.toLocaleString('en-US') }} ￥</h5>
   <div class="ui form form-item">
     <div class="ui five column doubling stackable grid">
       <div class="one wide column form-thead">序号</div>
@@ -573,10 +573,10 @@
       <div class="eight wide column form-thead">收款条件</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.paymentConditions" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
           <div class="block ui icon input">
@@ -591,24 +591,15 @@
           </div>
         </div>
         <div class="eight wide column">
-          <textarea v-model="item.condition" placeholder="请输入收回条件" rows="1"></textarea>
+          <input type="text" v-model="item.condition" placeholder="请输入收款条件">
         </div>
         <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteFirstItem('paymentConditions', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteFirstItem('paymentConditions', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>
-    <div class="ui five column doubling stackable grid">
-      <div class="one wide column form-thead">合计</div>
-      <div class="four wide column form-thead"></div>
-      <div class="two wide column form-thead">{{ sumPaymentConditions }} ￥</div>
-      <div class="two wide column form-thead"></div>
-      <div class="six wide column form-thead"></div>
-      <div class="one wide column form-thead"></div>
-    </div>
   </div>
   <!-- / 收款比例 -->
 
@@ -627,19 +618,18 @@
       <div class="fourteen wide column form-thead">名称</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="fourteen wide column">
-          <p>{{ item.name }}</p>
+          <div class="fake-input">{{ item.name }}</div>
         </div>
         <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteFirstItem('contracts', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteFirstItem('contracts', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>

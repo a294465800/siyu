@@ -23,12 +23,12 @@
 <!-- / 操作 -->
 
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable">
+  <table class="ui center aligned table selectable unstackable">
     <thead>
       <tr>
-        <th>项目号</th>
+        <th>项目编号</th>
         <th>项目内容</th>
         <th>项目经理</th>
         <th>请款/收回履约保证金</th>
@@ -43,7 +43,7 @@
         <td>
           <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
         </td>
-        <td class="table-content">这是一大段内容</td>
+        <td>这是一大段内容</td>
         <td>张喜</td>
         <td>10万/20万</td>
         <td>2017-12-01</td>
@@ -55,7 +55,7 @@
         <td>
           <a href="javascript:_helper.fullWindow('../check/detail.html');">154376453254</a>
         </td>
-        <td class="table-content">这是一大段内容</td>
+        <td>这是一大段内容</td>
         <td>张喜</td>
         <td>10万/20万</td>
         <td>2017-12-01</td>

@@ -12,31 +12,40 @@
   <div class="active section">开票</div>
 </div>
 
-<h4 class="ui dividing header blue">基本信息</h4>
+<h1 class="ui red header blue center aligned">开票</h1>
 <div class="invisible" id="checkInvoice">
   <!-- 基本信息 -->
+  <h4 class="ui dividing header blue">基本信息</h4>
   <div class="ui form form-item">
     <div class="ui three column doubling stackable grid">
       <div class="column">
         <div class="inline fields">
           <label class="four wide field">项目编号</label>
-          <div class="twelve wide field">213154232213</div>
+          <div class="twelve wide field">
+            <div class="fake-input">XM213154232213</div>
+          </div>
         </div>
       </div>
       <div class="column">
         <div class="inline fields">
           <label class="four wide field">项目内容</label>
-          <div class="twelve wide field">这是一些项目内容</div>
+          <div class="twelve wide field">
+            <div class="fake-input">这是一些项目内容</div>
+          </div>
         </div>
       </div>
       <div class="column">
         <div class="inline fields">
           <label class="four wide field">付款单位</label>
           <div class="twelve wide field">
-            <el-select v-model="invoiceForm.company" placeholder="请选择付款单位">
-              <el-option v-for="item in [{id:1,name:'单位一'},{id:2,name:'单位二'},{id:3,name:'单位三'}]" :key="item.id" :label="item.name" :value="item.id">
-              </el-option>
-            </el-select>
+            <el-autocomplete popper-class="my-autocomplete" v-model="invoiceForm.company" :fetch-suggestions="querySearchCompany" placeholder="请输入付款单位"
+              @select="handleSelectCompany">
+              <i class="el-icon-edit el-input__icon" slot="suffix">
+              </i>
+              <template slot-scope="props">
+                <div class="name">{{ props.item.name }}</div>
+              </template>
+            </el-autocomplete>
           </div>
         </div>
       </div>
@@ -91,40 +100,39 @@
       <div class="three wide column form-thead">摘要</div>
       <div class="one wide column form-thead">操作</div>
     </div>
-    <transition-group name="slide-down" tag="div" class="form-wrap">
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui six column doubling stackable grid center aligned" v-for="(item,index) in invoiceForm.invoices" :key="item.id">
         <div class="one wide column">
-          <div class="form-order">{{index + 1}}</div>
+          <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
           <input v-model="item.number" type="text" placeholder="请输入发票号码">
         </div>
         <div class="two wide column">
           <div class="block ui icon input">
-            <input v-model.enter="item.amount" type="number" placeholder="请输入含税销售额">
+            <input v-model.number="item.amount" type="number" placeholder="请输入含税销售额">
             <i class="yen icon"></i>
           </div>
         </div>
         <div class="three wide column">
           <div class="block ui icon input">
-            <input v-model.enter="item.tax_amount" type="number" placeholder="请输入税额">
+            <input v-model.number="item.tax_amount" type="number" placeholder="请输入税额">
             <i class="yen icon"></i>
           </div>
         </div>
         <div class="three wide column">
           <div class="block ui icon input">
-            <input v-model.enter="item.clear_amount" type="number" placeholder="请输入不含税销售额">
+            <input v-model.number="item.clear_amount" type="number" placeholder="请输入不含税销售额">
             <i class="yen icon"></i>
           </div>
         </div>
         <div class="three wide column">
-          <textarea v-model="item.summary" placeholder="请输入备注" rows="1"></textarea>
+          <input type="text" v-model="item.summary" placeholder="请输入备注">
         </div>
         <div class="one wide column flex-row flex-end">
-          <button class="ui negative icon button" @click="deleteItem('invoices', item, index)">
-            <i class="icon minus"></i>
-            <span>删除</span>
-          </button>
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('invoices', item, index)"></i>
+          </div>
         </div>
       </div>
     </transition-group>

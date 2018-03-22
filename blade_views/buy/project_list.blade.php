@@ -9,12 +9,12 @@
 </div>
 
 <!-- 操作区域 -->
-<div class="content-operation flex-row flex-between">
+<div class="content-operation flex-row flex-between flex-wrap">
   <div>
-    <a class="ui primary button" href="javascript:_helper.fullWindow('../project/create.html');">
+    <button id="buyNewProjectLink" class="ui primary button">
       <i class="icon plus"></i>
       <span>新建立项</span>
-    </a>
+    </button>
   </div>
   <form action="/views/buy/project_list.html" class="ui form flex-fluid">
     <div class="ui left action right input fluid">
@@ -36,9 +36,9 @@
 </div>
 <!-- / 操作区域 -->
 
-<div class="content-wrap">
+<div class="content-wrap table-head-nowrap">
 
-  <table class="ui center aligned table selectable" id="projectDetailTable">
+  <table class="ui center aligned table selectable unstackable" id="projectDetailTable">
     <thead>
       <tr>
         <th>采购编号</th>
@@ -57,7 +57,7 @@
     <tbody>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -72,7 +72,7 @@
       </tr>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/budgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -87,7 +87,7 @@
       </tr>
       <tr>
         <td>
-          <a href="../project/check.html">154376453254</a>
+          <a href="javascript:_helper.fullWindow('../buy/extrabudgetary_check.html?id=1')">154376453254</a>
         </td>
         <td>xx供货商</td>
         <td>123,233,421 ￥</td>
@@ -98,10 +98,19 @@
         <td>专用票11%</td>
         <td>张三</td>
         <td>李四</td>
-        <td>内</td>
+        <td>外</td>
       </tr>
     </tbody>
   </table>
+</div>
+
+<div class="ui page dimmer">
+  <div class="content">
+    <div class="center">
+      <a href="javascript:_helper.fullWindow('../buy/budgetary.html')" class="ui inverted teal approve button">预算内采购</a>
+      <a href="javascript:_helper.fullWindow('../buy/extrabudgetary.html')" class="ui inverted blue approve button">预算外采购</a>
+    </div>
+  </div>
 </div>
 
 <include src="../template/footer.html">

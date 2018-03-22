@@ -1,5 +1,5 @@
 <include src="../template/normalHeader.html">
-  @title = 项目明细 - 项目号 15823910212
+  @title = 项目明细 - 项目编号 XM15823910212
 </include>
 
 <div class="ui breadcrumb">
@@ -7,109 +7,179 @@
   <div class="divider"> / </div>
   <a class="section" href="../check/list.html">验收与收款清单</a>
   <div class="divider"> / </div>
-  <div class="active section">项目明细 - 项目号 15823910212</div>
+  <div class="active section">项目明细 - 项目编号 XM15823910212</div>
 </div>
 
-<div class="margin-top-20" id="project-check">
+<h1 class="inline-center">项目编号 - XM15823910212</h1>
+<div id="projectCheck">
   <!-- 基本信息 -->
-  <h4 class="ui dividing header blue">基本信息</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr></tr>
-        <th>立项日期</th>
-        <th>项目名</th>
-        <th>甲方</th>
-        <th>项目合同金额</th>
-        <th>预计完工日期</th>
-        <th>项目经理</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2017-08-22</td>
-          <td>朗朗项目</td>
-          <td>用和友谊公司</td>
-          <td>200,000,232 ￥</td>
-          <td>2017-11-22</td>
-          <td>程经理</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <h4 class="ui dividing header blue">项目基本信息</h4>
+  <div class="ui form form-item">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">立项日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-02</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">单位名</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是单位名</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">甲方</label>
+          <div class="twelve wide field">
+            <div class="fake-input">甲方</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目合同金额</label>
+          <div class="twelve wide field icon input">
+            <div class="fake-input">123,523￥</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">预计完工日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-22</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目经理</label>
+          <div class="twelve wide field">
+            <div class="fake-input">陈一发</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">维护要求</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是维护要求</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">验收日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-02</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">保修截止日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-02</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /基本信息 -->
 
-  <!-- 合同中标情况 -->
-  <h4 class="ui dividing header blue margin-top-50">合同中标情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>单位名称</th>
-          <th>金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <!-- 主合同中标情况 -->
+  <h4 class="ui dividing header blue margin-top-50">主合同中标情况</h4>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">单位名称</div>
+      <div class="four wide column form-thead">金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /合同中标情况 -->
+  <!-- /主合同中标情况 -->
 
   <!-- 合同分包情况 -->
   <h4 class="ui dividing header blue margin-top-50">合同分包情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>分包单位</th>
-          <th>分包金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">发包单位</div>
+      <div class="four wide column form-thead">分包金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /合同分包情况 -->
 
   <!-- 项目实际情况 -->
   <h4 class="ui dividing header blue margin-top-50">项目实际情况</h4>
-  <div class="check-item">
-    <table class="ui celled structured table">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled structured table unstackable center aligned">
       <thead>
         <tr>
           <th rowspan="3">类型</th>
@@ -180,64 +250,66 @@
           <td>13,000 ￥</td>
           <td>这是备注</td>
         </tr>
-        <tr>
-          <td rowspan="3">合计</td>
-          <td rowspan="3">123,542,000 ￥</td>
-          <td>内容一</td>
-          <td>17%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <td>内容二</td>
-          <td>9%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <td>内容三</td>
-          <td>9%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <th rowspan="3">合计</th>
+          <th rowspan="3">123,542,000 ￥</th>
+          <th>内容一</th>
+          <th>17%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+        <tr>
+          <th>内容二</th>
+          <th>9%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+        <tr>
+          <th>内容三</th>
+          <th>9%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <!-- /项目实际情况 -->
 
   <!-- 收款条件 -->
   <h4 class="ui dividing header blue margin-top-50">收款条件</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled table unstackable center aligned">
       <thead>
         <tr>
           <th>收款比例</th>
-          <th>收款条件</th>
           <th>预计金额</th>
+          <th>回收条件</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>15%</td>
-          <td>这是条件这是条件这是条件这是条件这是条件</td>
+          <td>17%</td>
           <td>200,000,232 ￥</td>
+          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
         </tr>
         <tr>
-          <td>25%</td>
-          <td>这是条件这是条件这是条件这是条件这是条件</td>
+          <td>8%</td>
           <td>200,000,232 ￥</td>
+          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
         </tr>
         <tr>
-          <td>35%</td>
-          <td>这是条件这是条件这是条件这是条件这是条件</td>
+          <td>5%</td>
           <td>200,000,232 ￥</td>
+          <td>回收条件回收条件回收条件回收条件回收条件回收条件</td>
         </tr>
-        <tr>
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="2">合计</th>
-          <th>123,423,422 元</th>
+          <th>合计</th>
+          <th>123,523,220 ￥</th>
+          <th></th>
         </tr>
       </tfoot>
     </table>
@@ -246,8 +318,8 @@
 
   <!-- 合同 -->
   <h4 class="ui dividing header blue margin-top-50">合同</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled table unstackable center aligned">
       <thead>
         <tr>
           <th>序号</th>
@@ -260,21 +332,21 @@
           <td>1</td>
           <td>合同一</td>
           <td>
-            <a href="#" target="_blank">查看</a>
+            <a href="https://www.huaguo.cn/resources/images/ht/hb1.jpg" target="_blank">查看</a>
           </td>
         </tr>
         <tr>
           <td>2</td>
           <td>合同二</td>
           <td>
-            <a href="#" target="_blank">查看</a>
+            <a href="https://www.huaguo.cn/resources/images/ht/hb1.jpg" target="_blank">查看</a>
           </td>
         </tr>
         <tr>
           <td>3</td>
           <td>合同三</td>
           <td>
-            <a href="#" target="_blank">查看</a>
+            <a href="https://www.huaguo.cn/resources/images/ht/hb1.jpg" target="_blank">查看</a>
           </td>
         </tr>
         <tr>
@@ -288,12 +360,9 @@
 
     <!-- 履约金保证情况 -->
     <h4 class="ui dividing header blue margin-top-50">履约金保证情况</h4>
-    <div class="check-item">
-      <table class="ui celled structured table center aligned">
+    <div class="check-item table-head-nowrap">
+      <table class="ui celled structured table unstackable center aligned">
         <thead>
-          <tr>
-            <th colspan="11">保函/付款</th>
-          </tr>
           <tr>
             <th colspan="5">保函情况</th>
             <th colspan="6">付款情况</th>
@@ -346,7 +415,7 @@
     </div>
 
     <div class="check-item margin-top-50" style="overflow:auto;">
-      <table class="ui celled structured table center aligned" v-if="marginRecyle.data.length">
+      <table class="ui celled structured table center aligned special" v-if="marginRecyle.data.length">
         <thead>
           <tr>
             <th colspan="10">履约保证金回收情况</th>
@@ -453,7 +522,7 @@
     <!-- 预计请款计划 -->
     <h4 class="ui dividing header blue margin-top-50">预计请款计划</h4>
     <div class="check-item">
-      <table class="ui celled structured table center aligned" v-if="requirement && requirement.data.length">
+      <table class="ui celled structured table center aligned special" v-if="requirement && requirement.data.length">
         <thead>
           <tr>
             <th colspan="5">预计请款计划</th>
@@ -676,7 +745,7 @@
             <th>收款日期</th>
             <th>收款金额</th>
             <th>收款银行</th>
-            <th>收款账号账号</th>
+            <th>收款账号</th>
             <th>备注</th>
             <th>操作</th>
           </tr>
@@ -749,7 +818,7 @@
             <th>收款日期</th>
             <th>收款金额</th>
             <th>收款银行</th>
-            <th>收款账号账号</th>
+            <th>收款账号</th>
             <th>备注</th>
             <th>操作</th>
           </tr>
@@ -812,19 +881,19 @@
   </div>
   <!-- / Vue 渲染部分 -->
   <div class="flex-row flex-center margin-top-50 btns">
-    <a class="ui icon button green" href="javascript:_helper.fullWindow('../check/acceptance.html');">
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../check/acceptance.html');">
       <i class="icon pin"></i>
       <span>验收</span>
     </a>
-    <a class="ui icon button green" href="javascript:_helper.fullWindow('../check/createTips.html');">
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../check/createTips.html');">
       <i class="icon bookmark"></i>
       <span>收款提示</span>
     </a>
-    <a class="ui icon button green" href="javascript:_helper.fullWindow('../check/invoice.html');">
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../check/invoice.html');">
       <i class="icon write"></i>
       <span>开票</span>
     </a>
-    <a class="ui icon button green" href="javascript:_helper.fullWindow('../check/collect.html');">
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../check/collect.html');">
       <i class="icon yen"></i>
       <span>收款</span>
     </a>

@@ -1,5 +1,5 @@
-<include src="../template/header.html">
-  @title = 查看预算 - 项目号 15823910212
+<include src="../template/normalHeader.html">
+  @title = 查看预算 - 项目号 XM15823910212
 </include>
 
 <div class="ui breadcrumb">
@@ -7,109 +7,164 @@
   <div class="divider"> / </div>
   <a class="section" href="../budget/list.html">预算清单</a>
   <div class="divider"> / </div>
-  <div class="active section">查看预算 - 项目号 15823910212</div>
+  <div class="active section">查看预算 - 项目号 XM15823910212</div>
 </div>
 
-<div class="margin-top-20" id="project-check">
+<h1 class="inline-center">项目编号 - XM15823910212</h1>
+<div class="margin-top-20" id="projectCheck">
   <!-- 基本信息 -->
   <h4 class="ui dividing header blue">基本信息</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr></tr>
-        <th>立项日期</th>
-        <th>项目名</th>
-        <th>甲方</th>
-        <th>项目合同金额</th>
-        <th>预计完工日期</th>
-        <th>项目经理</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2017-08-22</td>
-          <td>朗朗项目</td>
-          <td>用和友谊公司</td>
-          <td>200,000,232 ￥</td>
-          <td>2017-11-22</td>
-          <td>程经理</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+
+  <div class="ui form form-item">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">立项日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-02</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">单位名</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是单位名</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">甲方</label>
+          <div class="twelve wide field">
+            <div class="fake-input">甲方</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目合同金额</label>
+          <div class="twelve wide field icon input">
+            <div class="fake-input">123,523￥</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">预计完工日期</label>
+          <div class="twelve wide field">
+            <div class="fake-input">2018-01-22</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">项目经理</label>
+          <div class="twelve wide field">
+            <div class="fake-input">陈一发</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">维护要求</label>
+          <div class="twelve wide field">
+            <div class="fake-input">这是维护要求</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /基本信息 -->
 
-  <!-- 合同中标情况 -->
-  <h4 class="ui dividing header blue margin-top-50">合同中标情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>单位名称</th>
-          <th>金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <!-- 主合同中标情况 -->
+  <h4 class="ui dividing header blue margin-top-50">主合同中标情况</h4>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">单位名称</div>
+      <div class="four wide column form-thead">金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /合同中标情况 -->
+  <!-- /主合同中标情况 -->
 
   <!-- 合同分包情况 -->
   <h4 class="ui dividing header blue margin-top-50">合同分包情况</h4>
-  <div class="check-item">
-    <table class="ui very basic table selectable center aligned">
-      <thead>
-        <tr>
-          <th>分包单位</th>
-          <th>分包金额</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-          <td>百度公司</td>
-          <td>200,000,232 ￥</td>
-          <td>这是备注这是备注这是备注这是备注这是备注这是备注</td>
-        </tr>
-        <tr>
-      </tbody>
-    </table>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid">
+      <div class="two wide column form-thead">序号</div>
+      <div class="four wide column form-thead">发包单位</div>
+      <div class="four wide column form-thead">分包金额</div>
+      <div class="six wide column form-thead">备注</div>
+    </div>
+    <div class="form-wrap special-form">
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">1</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位A</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注</div>
+        </div>
+      </div>
+      <div class="ui three column doubling stackable grid center aligned">
+        <div class="two wide column">
+          <div class="fake-input">2</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">发包单位B</div>
+        </div>
+        <div class="four wide column">
+          <div class="fake-input">123,523￥</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">这是一些备注这是一些备注</div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /合同分包情况 -->
 
   <!-- 项目实际情况 -->
   <h4 class="ui dividing header blue margin-top-50">项目实际情况</h4>
-  <div class="check-item">
-    <table class="ui celled structured table">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled structured table unstackable center aligned">
       <thead>
         <tr>
           <th rowspan="3">类型</th>
@@ -180,35 +235,37 @@
           <td>13,000 ￥</td>
           <td>这是备注</td>
         </tr>
-        <tr>
-          <td rowspan="3">合计</td>
-          <td rowspan="3">123,542,000 ￥</td>
-          <td>内容一</td>
-          <td>17%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <td>内容二</td>
-          <td>9%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
-        <tr>
-          <td>内容三</td>
-          <td>9%</td>
-          <td>123,000 ￥</td>
-          <td>/</td>
-        </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <th rowspan="3">合计</th>
+          <th rowspan="3">123,542,000 ￥</th>
+          <th>内容一</th>
+          <th>17%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+        <tr>
+          <th>内容二</th>
+          <th>9%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+        <tr>
+          <th>内容三</th>
+          <th>9%</th>
+          <th>123,000 ￥</th>
+          <th>/</th>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <!-- /项目实际情况 -->
 
   <!-- 预算总额 -->
   <h4 class="ui dividing header blue margin-top-50">预算总额</h4>
-  <div class="check-item">
-    <table class="ui celled structured table">
+  <div class="check-item table-head-nowrap">
+    <table class="ui celled structured table unstackable center aligned">
       <thead>
         <tr>
           <th rowspan="2">类型</th>
@@ -241,11 +298,11 @@
   </div>
   <!-- / 预算总额 -->
   <div class="flex-row flex-center margin-top-50">
-    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../budget/create.html');">
+    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../budget/create.html');" style="margin: 0 20px;">
       <i class="icon plus"></i>
       <span>录入 / 修改预算清单</span>
     </a>
-    <a class="ui icon button green" href="#">
+    <a class="ui icon button green" href="#" style="margin: 0 20px;">
       <i class="icon download"></i>
       <span>导出预算清单格式</span>
     </a>
