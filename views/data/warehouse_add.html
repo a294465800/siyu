@@ -83,6 +83,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">仓库名称</label>
           <div class="eleven wide field">
+            <input type="hidden" id="warehouseId" value="">
             <input type="hidden" id="warehouseName" value="xxx仓库">
             <input type="text" v-model="warehouseForm.name" placeholder="请输入仓库名称">
           </div>
@@ -101,8 +102,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">仓管员</label>
           <div class="eleven wide field">
-            <input type="hidden" id="warehouseManager" value="陈子欣">
-            <input type="text" v-model="warehouseForm.manager" placeholder="请输入仓管员">
+            <input type="hidden" id="warehouseAdmin" value="陈子欣">
+            <input type="text" v-model="warehouseForm.admin" placeholder="请输入仓管员">
           </div>
         </div>
       </div>

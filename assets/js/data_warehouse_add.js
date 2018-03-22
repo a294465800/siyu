@@ -6,28 +6,40 @@
         el: '#dataWarehouseAdd',
         data: {
           warehouseForm: {
+            id: '',
             name: '',
             address: '',
-            manager: ''
+            admin: ''
           }
         },
         mounted() {
-          this.warehouseForm.name = $('#warehouseName').val()
-          this.warehouseForm.address = $('#warehouseAddress').val()
-          this.warehouseForm.manager = $('#warehouseManager').val()
+          this.warehouseForm.id = $('#warehouseId').val() || ''
+          this.warehouseForm.name = $('#warehouseName').val() || ''
+          this.warehouseForm.address = $('#warehouseAddress').val() || ''
+          this.warehouseForm.admin = $('#warehouseAdmin').val() || ''
         },
         methods: {
           //提交
           submit() {
-            for (let it in this.warehouseForm) {
-              this.warehouseForm[it] = ''
-            }
-            console.log(this.warehouseForm)
-            this.$notify({
-              title: '成功',
-              message: '提交成功',
-              type: 'success'
-            })
+            _http.WarehouseManager.createWarehouse(this.warehouseForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: '提交成功',
+                    type: 'success'
+                  })
+                } else {
+                  console.log(err)
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
         }
       })

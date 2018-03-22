@@ -86,10 +86,54 @@
     }
   }
 
+  class WarehouseManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //创建仓库
+    createWarehouse(data = {}) {
+      return this._http.post('/warehouse/create', data, this.dataMethodDefaults)
+    }
+  }
+
+  class BankManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //创建银行
+    createBank(data = {}) {
+      return this._http.post('/bank/create', data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
     ProjectManager: new ProjectManager(),
     SupplierManager: new SupplierManager(),
-    MaterialManager: new MaterialManager()
+    MaterialManager: new MaterialManager(),
+    WarehouseManager: new WarehouseManager(),
+    BankManager: new BankManager()
   }
 
   return http
