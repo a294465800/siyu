@@ -6,26 +6,38 @@
         el: '#dataInvoiceAdd',
         data: {
           invoiceForm: {
+            id: '',
             name: '',
             remark: '',
           }
         },
         mounted() {
+          this.invoiceForm.id = $('#invoiceId').val()
           this.invoiceForm.name = $('#invoiceName').val()
           this.invoiceForm.remark = $('#invoiceRemark').val()
         },
         methods: {
           //提交
           submit() {
-            for (let it in this.invoiceForm) {
-              this.invoiceForm[it] = ''
-            }
-            console.log(this.invoiceForm)
-            this.$notify({
-              title: '成功',
-              message: '提交成功',
-              type: 'success'
-            })
+            _http.InvoiceManager.createInvoice(this.invoiceForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: '提交成功',
+                    type: 'success'
+                  })
+                } else {
+                  console.log(err)
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
         }
       })

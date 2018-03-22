@@ -128,12 +128,56 @@
     }
   }
 
+  class InvoiceManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //创建银行
+    createInvoice(data = {}) {
+      return this._http.post('/invoice/create', data, this.dataMethodDefaults)
+    }
+  }
+
+  class TeamManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //创建银行
+    createTeam(data = {}) {
+      return this._http.post('/team/create', data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
     ProjectManager: new ProjectManager(),
     SupplierManager: new SupplierManager(),
     MaterialManager: new MaterialManager(),
     WarehouseManager: new WarehouseManager(),
-    BankManager: new BankManager()
+    BankManager: new BankManager(),
+    InvoiceManager: new InvoiceManager(),
+    TeamManager: new TeamManager(),
   }
 
   return http
