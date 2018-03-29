@@ -30,7 +30,11 @@
                     type: 'success'
                   })
                 } else {
-                  console.log(err)
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
                 }
               })
               .catch(err => {

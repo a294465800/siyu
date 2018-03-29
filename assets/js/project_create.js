@@ -2,8 +2,9 @@
   $(document)
     .ready(function () {
 
-      const contractContent = JSON.parse($('#contractContent').text())
-      const contractTax = JSON.parse($('#contractTax').text())
+      const contractContent = $('#contractContent').text().trim() === '' ? [] : JSON.parse($('#contractContent').text().trim())
+      const contractTax = $('#contractTax').text().trim() === '' ? [] : JSON.parse($('#contractTax').text().trim())
+      const projectData = $('#projectData').text().trim() === '' ? false : JSON.parse($('#projectData').text().trim())
 
       function idSearch(value) {
         let newObj = {}
@@ -25,6 +26,9 @@
           ContentIDMap
         },
         mounted() {
+          if (projectData) {
+            this.project = _helper.projectGetFormat(projectData)
+          }
           $('#projectCreate').removeClass('invisible')
         },
         computed: {
@@ -81,8 +85,8 @@
                   const amount = item.amount ? parseFloat(item.amount) : 0
                   sum += amount
                   if (typeof item.name !== 'undefined') {
-                    const trueName = vm.ContentIDMap[item.name]
-                    resultObj[trueName] = resultObj[trueName] ? resultObj[trueName] + amount : amount
+                    const key = item.name + '' + item.tax
+                    resultObj[key] = resultObj[key] ? resultObj[key] + amount : amount
                   }
                 })
               })
@@ -92,14 +96,18 @@
             calc(subContract)
 
             for (let it in resultObj) {
+              const val = it.split('')
+              const contentData = vm.ContentIDMap[val[0]]
+              const taxData = vm.TaxIDMap[val[1]]
               result.push({
-                name: it,
-                amount: resultObj[it].toLocaleString('en-US')
+                name: contentData,
+                tax: taxData,
+                amount: resultObj[it]
               })
             }
 
             return {
-              sum: sum.toLocaleString('en-US'),
+              sum: sum,
               result
             }
           },
@@ -193,14 +201,45 @@
           fileUpload(e) {
             const files = e.target.files
             let fileArr = []
-            let formData = new FormData()
             for (let file of files) {
-              this.project.contracts.push({
-                id: file.size,
-                name: file.name
-              })
+              let formData = new FormData()
               formData.append('image', file)
+              _http.UploadManager.createUpload(formData)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    const resData = res.data.data
+                    this.project.contracts.push({
+                      id: resData.size,
+                      name: resData.name,
+                      url: resData.url
+                    })
+                    this.$notify({
+                      title: '成功',
+                      message: `${resData.name} 提交成功`,
+                      type: 'success'
+                    })
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg,
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
             }
+          },
+
+          //提交
+          submit() {
+            const postData = _helper.projectCreatFormat(this.project)
+            console.log(JSON.stringify(postData))
           }
         }
       })

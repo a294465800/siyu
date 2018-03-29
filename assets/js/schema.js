@@ -5,13 +5,15 @@
 
   //立项项目
   const projects = {
-    signDate: '', //立项日期
-    name: '', //项目名
-    partyA: '', //甲方
-    amount: '', //项目总额
-    completeDate: '', //完工日期
-    manager: '', //项目经理
-    maintain: '', //维护条件
+    project: {
+      signDate: '', //立项日期
+      name: '', //项目名
+      partyA: '', //甲方
+      amount: '', //项目总额
+      completeDate: '', //完工日期
+      manager: '', //项目经理
+      maintain: '', //维护条件
+    },
     masterCompany: [{ //主合同中标情况 { name, amount, remark }
       id: 1
     }],

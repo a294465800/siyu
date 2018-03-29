@@ -80,7 +80,7 @@
       }
     }
 
-    //创建供应商
+    //创建材料
     createMaterial(data = {}) {
       return this._http.post('/material/create', data, this.dataMethodDefaults)
     }
@@ -164,9 +164,22 @@
         }]
       }
     }
-    //创建银行
+    //创建团队
     createTeam(data = {}) {
       return this._http.post('/team/create', data, this.dataMethodDefaults)
+    }
+  }
+
+  class UploadManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+    }
+    //上传
+    createUpload(data = {}) {
+      return this._http.post('/upload', data)
     }
   }
 
@@ -178,6 +191,7 @@
     BankManager: new BankManager(),
     InvoiceManager: new InvoiceManager(),
     TeamManager: new TeamManager(),
+    UploadManager: new UploadManager()
   }
 
   return http
