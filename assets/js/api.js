@@ -22,6 +22,11 @@
     }
 
 
+    //新建项目
+    createProject(data = {}){
+      return this._http.post('/project/create', data, this.dataMethodDefaults)
+    }
+
     //创建项目类别
     createType(data = {}) {
       return this._http.post('/project/type/create', data, this.dataMethodDefaults)

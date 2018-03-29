@@ -239,7 +239,29 @@
           //提交
           submit() {
             const postData = _helper.projectCreatFormat(this.project)
-            console.log(JSON.stringify(postData))
+            _http.ProjectManager.createProject(postData)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: `提交成功`,
+                    type: 'success'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })
