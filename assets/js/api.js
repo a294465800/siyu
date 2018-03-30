@@ -32,6 +32,13 @@
       return this._http.post('/project/type/create', data, this.dataMethodDefaults)
     }
 
+    //项目查询
+    searchProject(search = {}) {
+      return this._http.get(`/projects`, {
+        params: search
+      })
+    }
+
     // getUser(id) {
     //   if (!id) {
     //     return Promise.reject(new Error(`getUser：id(${id})无效`))
