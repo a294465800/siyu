@@ -6,10 +6,12 @@
         data: {
           budgetType: _schemas.budget_type,
           newBudget: _schemas.budget,
-          budgetForm: new Array()
+          budgetForm: new Array(),
+          project_id: ''
         },
         mounted() {
           $('#budgetCreate').removeClass('invisible')
+          this.project_id = $('#budgetCreate').data('id')
         },
         methods: {
 
@@ -43,6 +45,33 @@
           //删除预算
           deleteBudget(item, index) {
             this.budgetForm.splice(index, 1)
+          },
+
+          //提交
+          submit() {
+            _http.BudgetManager.createBudget(this.project_id, this.budgetForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: '提交成功',
+                    type: 'success'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg || '未知错误',
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })

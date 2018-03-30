@@ -347,7 +347,8 @@
 
       return result
 
-    }
+    },
+
   }
 
   return helper

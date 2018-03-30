@@ -47,13 +47,13 @@
   const budget = {
     id: 1, //id
     name: '', //物料名称
-    parameter: '', //参数
-    model: '', //型号
-    manufacturer: '', //生产厂家
+    param: '', //参数
+    brand: '', //型号
+    factory: '', //生产厂家
     unit: '', //单位
     price: '', //单价
-    quantity: '', //数量
-    amount: '', //金额
+    number: '', //数量
+    cost: '', //金额
     type: '', //物料  / 工程 / 其他
   }
 
