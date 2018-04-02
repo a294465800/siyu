@@ -238,16 +238,60 @@
     }
   }
 
+  class UserManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //录入员工
+    createUser(data = {}) {
+      return this._http.post(`/create/user`, data, this.dataMethodDefaults)
+    }
+  }
+
+  class PaymentManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //录入报销费用类型
+    createPayment(data = {}) {
+      return this._http.post(`/category/create`, data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
+    BankManager: new BankManager(),
+    BudgetManager: new BudgetManager(),
+    InvoiceManager: new InvoiceManager(),
+    MaterialManager: new MaterialManager(),
+    PaymentManager: new PaymentManager(),
     ProjectManager: new ProjectManager(),
     SupplierManager: new SupplierManager(),
-    MaterialManager: new MaterialManager(),
-    WarehouseManager: new WarehouseManager(),
-    BankManager: new BankManager(),
-    InvoiceManager: new InvoiceManager(),
     TeamManager: new TeamManager(),
     UploadManager: new UploadManager(),
-    BudgetManager: new BudgetManager()
+    UserManager: new UserManager(),
+    WarehouseManager: new WarehouseManager(),
   }
 
   return http
