@@ -20,7 +20,7 @@
           <label class="six wide field flex-center">人员名称</label>
           <div class="eleven wide field">
             <input type="hidden" id="authName" value="贺强">
-            <input type="text" v-model="authForm.name" placeholder="请输入人员名称">
+            <input type="text" v-model="authForm.username" placeholder="请输入人员名称">
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
           <label class="six wide field flex-center">手机号</label>
           <div class="eleven wide field">
             <input type="hidden" id="authNumber" value="12352321235">
-            <input type="text" v-model.number="authForm.number" placeholder="请输入手机号">
+            <input type="text" v-model.number="authForm.phone" placeholder="请输入手机号">
           </div>
         </div>
       </div>

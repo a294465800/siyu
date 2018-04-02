@@ -217,6 +217,27 @@
     }
   }
 
+  class UserManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //录入员工
+    createUser(data = {}) {
+      return this._http.post(`/create/user`, data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
     ProjectManager: new ProjectManager(),
     SupplierManager: new SupplierManager(),
