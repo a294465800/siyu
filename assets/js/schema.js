@@ -108,10 +108,10 @@
 
   //收款提示
   const checkTips = {
-    margins: [{ //date, amount, payee, remark
+    margins: [{ //pay_date, price, payee, remark
       id: 1,
     }],
-    requirepayment: [{ //date, amount, company, remark
+    requirepayment: [{ //pay_date, price, payee, remark
       id: 1,
     }]
   }

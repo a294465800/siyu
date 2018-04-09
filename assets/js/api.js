@@ -296,6 +296,11 @@
     createProjectCheck(data = {}) {
       return this._http.post(`/project/acceptance`, data, this.dataMethodDefaults)
     }
+
+    //收款提示
+    createTips(data = {}) {
+      return this._http.post(`/create/tips`, data, this.dataMethodDefaults)
+    }
   }
 
   const http = {
@@ -310,6 +315,7 @@
     UploadManager: new UploadManager(),
     UserManager: new UserManager(),
     WarehouseManager: new WarehouseManager(),
+    CheckManager: new CheckManager()
   }
 
   return http
