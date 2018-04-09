@@ -118,12 +118,13 @@
 
   //开票
   const checkInvoice = {
+    project_id: '', //项目 id
     company: '', //付款单位
-    company_id: '', //付款单位
+    payee: '', //付款单位
     date: '', //开票日期
-    tax: '', //税率
-    amount: '', //开票金额
-    invoices: [ //  number, amount, tax_amount, clear_amount, summary
+    rate: '', //税率
+    price: '', //开票金额
+    lists: [ //  number, with_tax, tax, without_tax, remark
       {
         id: 1,
       }

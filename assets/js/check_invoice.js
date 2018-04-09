@@ -18,10 +18,14 @@
               id: 2,
               name: '单位C'
             }
-          ]
+          ],
+
+          invoiceType: []
         },
         mounted() {
           $('#checkInvoice').removeClass('invisible')
+          const invoiceType = $('#invoiceType').text().trim()
+          this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
         },
         methods: {
           //单位搜索
@@ -62,6 +66,32 @@
             this.invoiceForm[name].push({
               id
             })
+          },
+
+          submit() {
+            _http.CheckManager.createProjectInvoice(this.invoiceForm)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify({
+                    title: '成功',
+                    message: `提交成功`,
+                    type: 'success'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })

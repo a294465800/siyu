@@ -301,6 +301,11 @@
     createTips(data = {}) {
       return this._http.post(`/create/tips`, data, this.dataMethodDefaults)
     }
+
+    //项目开票
+    createProjectInvoice(data ={}){
+      return this._http.post(`/project/invoice`, data, this.dataMethodDefaults)
+    }
   }
 
   const http = {
