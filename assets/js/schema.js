@@ -135,28 +135,28 @@
   const checkCollect = {
     margins: {
       payee: '',
-      date: '',
-      amount: '',
-      bank: '',
+      pay_date: '',
+      price: '',
+      bank_id: '',
       account: ''
     },
     masterContract: {
       payee: '',
-      date: '',
-      amount: '',
-      bank: '',
+      pay_date: '',
+      price: '',
+      bank_id: '',
       account: ''
     },
     subContract: {
       payee: '',
-      date: '',
-      amount: '',
-      bank: '',
+      pay_date: '',
+      price: '',
+      bank_id: '',
       account: ''
     },
     subCompany: {
-      date: '',
-      amount: '',
+      pay_date: '',
+      price: '',
     }
   }
 

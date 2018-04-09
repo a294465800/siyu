@@ -149,41 +149,121 @@
           //保证金提交
           marginsSubmit(name) {
             const vm = this
-            this.clearData(name)
-            vm.$notify.success({
-              title: '成功',
-              message: '提交成功！'
-            })
+            let data = this.collectForm[name]
+            data.type = 1
+            _http.CheckManager.createProjectCollect(data)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.clearData(name)
+                  vm.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
 
           //主合同提交
           marginsSubmit(name) {
             const vm = this
-            this.clearData(name)
-            vm.$notify.success({
-              title: '成功',
-              message: '提交成功！'
-            })
+            let data = this.collectForm[name]
+            data.type = 2
+            _http.CheckManager.createProjectCollect(data)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.clearData(name)
+                  vm.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
 
           //分包合同提交
           marginsSubmit(name) {
             const vm = this
-            this.clearData(name)
-            vm.$notify.success({
-              title: '成功',
-              message: '提交成功！'
-            })
+            let data = this.collectForm[name]
+            data.type = 3
+            _http.CheckManager.createProjectCollect(data)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.clearData(name)
+                  vm.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
 
           //发包公司提交
           marginsSubmit(name) {
             const vm = this
-            this.clearData(name)
-            vm.$notify.success({
-              title: '成功',
-              message: '提交成功！'
-            })
+            let data = this.collectForm[name]
+            data.type = 4
+            _http.CheckManager.createProjectCollect(data)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.clearData(name)
+                  vm.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })

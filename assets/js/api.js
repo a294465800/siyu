@@ -306,6 +306,11 @@
     createProjectInvoice(data ={}){
       return this._http.post(`/project/invoice`, data, this.dataMethodDefaults)
     }
+
+    // 项目收款
+    createProjectCollect(data = {}){
+      return this._http.post(`/project/collect`, data, this.dataMethodDefaults)
+    }
   }
 
   const http = {
