@@ -192,6 +192,11 @@
         params: search
       })
     }
+
+    //施工   新增请款
+    createFinish(data ={}){
+      return this._http.post('/finish/add', data, this.dataMethodDefaults)
+    }
   }
 
   //上传

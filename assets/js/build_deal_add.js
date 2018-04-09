@@ -7,40 +7,10 @@
           buildDealAdd: _schemas.buildDealAdd,
 
           //施工队
-          build_teams: [{
-              id: 1,
-              name: '施工队一',
-              manager: '陈经理'
-            },
-            {
-              id: 2,
-              name: '施工队二',
-              manager: '刘经理'
-            },
-            {
-              id: 3,
-              name: '施工队三',
-              manager: '海经理'
-            }
-          ],
+          build_teams: [],
 
           //项目
-          projects: [{
-              id: 1,
-              content: '这是内容一',
-              manager: '陈经理'
-            },
-            {
-              id: 2,
-              content: '这是内容三',
-              manager: '刘经理'
-            },
-            {
-              id: 3,
-              content: '这是内容三',
-              manager: '张经理'
-            }
-          ],
+          projects: [],
 
           throttle: {
             id_timer: null,
