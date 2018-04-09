@@ -194,7 +194,7 @@
     }
 
     //施工   新增请款
-    createFinish(data ={}){
+    createFinish(data = {}) {
       return this._http.post('/finish/add', data, this.dataMethodDefaults)
     }
   }
@@ -273,6 +273,28 @@
     //录入报销费用类型
     createPayment(data = {}) {
       return this._http.post(`/category/create`, data, this.dataMethodDefaults)
+    }
+  }
+
+  // 验收
+  class CheckManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //项目验收
+    createProjectCheck(data = {}) {
+      return this._http.post(`/project/acceptance`, data, this.dataMethodDefaults)
     }
   }
 
