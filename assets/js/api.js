@@ -180,6 +180,18 @@
     createTeam(data = {}) {
       return this._http.post('/team/create', data, this.dataMethodDefaults)
     }
+
+    //录入合同
+    createContract(data = {}) {
+      return this._http.post('/create/contract', data, this.dataMethodDefaults)
+    }
+
+    //搜索施工队
+    searchTeam(search = {}) {
+      return this._http.get(`/teams`, {
+        params: search
+      })
+    }
   }
 
   //上传
@@ -214,27 +226,6 @@
     //录入物料
     createBudget(project_id = '', data = {}) {
       return this._http.post(`/create/budget?project_id=${project_id}`, data, this.dataMethodDefaults)
-    }
-  }
-
-  class UserManager {
-    constructor() {
-      this._http = axios.create({
-        baseURL: url,
-        withCredentials: true
-      })
-      this.dataMethodDefaults = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        transformRequest: [function (data) {
-          return Qs.stringify(data)
-        }]
-      }
-    }
-    //录入员工
-    createUser(data = {}) {
-      return this._http.post(`/create/user`, data, this.dataMethodDefaults)
     }
   }
 

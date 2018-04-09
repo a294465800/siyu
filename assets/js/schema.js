@@ -233,13 +233,13 @@
 
   const buildDealAdd = {
     date: '', //日期
-    build_id: '', //施工队,id
+    team: '', //施工队,id
     build_name: '', //施工队, name
-    build_manager: '', //施工队, manager
+    manager: '', //施工队, manager
     project_id: '', //项目id
     project_content: '', //项目内容
     project_manger: '', //项目经理
-    list: [] //合同清单
+    lists: [] //合同清单
   }
 
   const buildFinishAdd = {

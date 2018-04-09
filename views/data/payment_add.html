@@ -83,7 +83,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">费用类型</label>
           <div class="eleven wide field">
-            <input class="special-input" type="text" v-model="paymentForm.name" placeholder="请输入费用类型">
+            <input class="special-input" type="text" v-model="paymentForm.title" placeholder="请输入费用类型">
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
         <div class="inline fields">
           <label class="two wide field flex-center">具体事项</label>
           <div class="eleven wide field">
-            <el-tag :key="tag" v-for="(tag, index) in paymentForm.list" closable :disable-transitions="false" @close="handleClose(tag, index)">
+            <el-tag :key="tag" v-for="(tag, index) in paymentForm.kinds" closable :disable-transitions="false" @close="handleClose(tag, index)">
               {{tag}}
             </el-tag>
             <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="small" @keyup.enter.native="handleInputConfirm"
