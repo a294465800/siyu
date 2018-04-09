@@ -142,7 +142,7 @@
                 .then(res => {
                   if (res.data.code === '200') {
                     const buildDealAdd = res.data.data
-                    this.buildDealAdd.list.push({
+                    this.buildDealAdd.lists.push({
                       id: resData.size,
                       name: resData.name,
                       url: resData.url

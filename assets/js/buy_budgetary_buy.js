@@ -6,8 +6,9 @@
         data: {
           budgetary_buy: _schemas.budgetary_buy,
 
-          suppliers: [
-            {
+          invoiceType: [],
+
+          suppliers: [{
               id: 1,
               name: '供货商一',
               bank: '中国银行',
@@ -109,9 +110,10 @@
           ],
         },
         mounted() {
-          this.budgetary_buy.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
-          this.budgetary_buy.project_id = 'xm12315123'
-          this.budgetary_buy.project_content = '这是项目内容这是项目内容'
+          this.budgetary_buy.info.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          const invoiceType = $('#invoiceType').text().trim()
+          this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
+          this.budgetary_buy.project_id = $('#projectId').val()
           $('#budgetaryBuy').removeClass('invisible')
         },
 
@@ -121,14 +123,14 @@
             if (vm.materials.length < 1) {
               return []
             }
-            if (vm.budgetary_buy.list.length < 1) {
+            if (vm.budgetary_buy.lists.length < 1) {
               const dataStr = JSON.stringify(vm.materials)
               return JSON.parse(dataStr)
             }
 
             const dataStr = JSON.stringify(vm.materials)
             let result = JSON.parse(dataStr)
-            let list = vm.budgetary_buy.list
+            let list = vm.budgetary_buy.lists
             let sum = 0
             for (let i in list) {
               let item = list[i]
@@ -168,13 +170,13 @@
 
           //物料选择
           addMaterial(item, index) {
-            const list = this.budgetary_buy.list
+            const list = this.budgetary_buy.lists
             let data = {
               id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
               material: item
             }
             data.material.index = index
-            this.budgetary_buy.list.push(data)
+            this.budgetary_buy.lists.push(data)
           },
 
           //删除项
@@ -188,25 +190,67 @@
             if (files.length < 1) {
               return
             }
-            const contracts = this.budgetary_buy.contracts
-            for (let i = 0; i < files.length; i++) {
-              const data = {
-                id: contracts.length > 0 ? contracts[contracts.length - 1].id ? contracts[contracts.length - 1].id + 1 : 1 : 1,
-                name: files[i].name,
-                url: 'http://xxx.com/upload/' + files[i].name
-              }
-              this.budgetary_buy.contracts.push(data)
+            let fileArr = []
+            for (let file of files) {
+              let formData = new FormData()
+              formData.append('image', file)
+              _http.UploadManager.createUpload(formData)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    const budgetary_buy = res.data.data
+                    this.budgetary_buy.contracts.push({
+                      id: resData.size,
+                      name: resData.name,
+                      href: resData.url
+                    })
+                    this.$notify({
+                      title: '成功',
+                      message: `${resData.name} 上传成功`,
+                      type: 'success'
+                    })
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg,
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
             }
           },
 
           //提交
           submitForm() {
-            this.$notify({
-              title: '成功',
-              message: '提交成功！',
-              type: 'success'
-            })
-            $('.ui.dimmer').addClass('active')
+            _http.BuyManager.createPurchase(this.budgetary_buy)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                  $('.ui.dimmer').addClass('active')
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           },
 
           //选择审核人

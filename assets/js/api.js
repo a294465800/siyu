@@ -313,6 +313,28 @@
     }
   }
 
+  // 采购
+  class BuyManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //采购立项
+    createPurchase(data = {}) {
+      return this._http.post(`/purchase/create`, data, this.dataMethodDefaults)
+    }
+  }
+
   const http = {
     BankManager: new BankManager(),
     BudgetManager: new BudgetManager(),
@@ -325,7 +347,8 @@
     UploadManager: new UploadManager(),
     UserManager: new UserManager(),
     WarehouseManager: new WarehouseManager(),
-    CheckManager: new CheckManager()
+    CheckManager: new CheckManager(),
+    BuyManager: new BuyManager()
   }
 
   return http
