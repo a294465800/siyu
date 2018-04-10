@@ -71,7 +71,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商名称</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.supplier.name" :fetch-suggestions="querySearchSupplier"
+            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.info.supplier_name" :fetch-suggestions="querySearchSupplier"
               placeholder="请输入供货商名称" @select="handleSelectSupplier">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -87,7 +87,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款银行</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ extrabudgetary.supplier.bank || '暂无数据' }}</div>
+            <div class="fake-input">{{ extrabudgetary.info.bank || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款账号</label>
           <div class="twelve wide field icon input">
-            <div class="fake-input">{{ extrabudgetary.supplier.account || '暂无数据' }}</div>
+            <div class="fake-input">{{ extrabudgetary.info.account || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
           <label class="four wide field">付款条件</label>
           <div class="twelve wide field">
             <el-select v-model="extrabudgetary.invoice_condition" placeholder="请选择内容">
-              <el-option v-for="item ininvoiceType" :key="item.id" :label="item.name" :value="item.id">
+              <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -126,7 +126,7 @@
   <h4 class="ui dividing header blue">采购物料清单</h4>
   <div class="flex-row" style="width:50%;">
     <div class="font-bold" style="white-space:nowrap;align-self:flex-end;margin-right:20px;">采购金额</div>
-    <div class="fake-input inline-center">{{ extrabudgetary.amount.toLocaleString('en-US') || 0 }} ￥</div>
+    <div class="fake-input inline-center">{{ amount.toLocaleString('en-US') || 0 }} ￥</div>
   </div>
   <div class="flex-row flex-end margin-top-20">
     <div style="width:40%;">
@@ -160,25 +160,25 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in extrabudgetary.lists" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in extrabudgetary.lists" :key="item.own_id">
         <template v-if="item.__type === 'new'">
           <div class="two wide column">
-            <input v-model="item.material.name" type="text" placeholder="物料名称">
+            <input v-model="item.name" type="text" placeholder="物料名称">
           </div>
           <div class="two wide column">
-            <input v-model="item.material.param" type="text" placeholder="性能及技术参数">
+            <input v-model="item.param" type="text" placeholder="性能及技术参数">
           </div>
           <div class="one wide column">
-            <input v-model="item.material.model" type="text" placeholder="品牌型号">
+            <input v-model="item.model" type="text" placeholder="品牌型号">
           </div>
           <div class="two wide column">
-            <input v-model="item.material.factory" type="text" placeholder="生产厂家">
+            <input v-model="item.factory" type="text" placeholder="生产厂家">
           </div>
           <div class="one wide column">
-            <input v-model="item.material.unit" type="text" placeholder="单位">
+            <input v-model="item.unit" type="text" placeholder="单位">
           </div>
           <div class="one wide column">
-            <input v-model.number="item.material.price" type="number" placeholder="单价">
+            <input v-model.number="item.price" type="number" placeholder="单价">
           </div>
         </template>
 
