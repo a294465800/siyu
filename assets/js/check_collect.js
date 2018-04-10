@@ -109,10 +109,10 @@
           checkSubmit(name) {
             const vm = this
             const data = vm.collectForm[name]
-
+            console.log(data)
             for (let it in data) {
               if (typeof data[it] === 'undefined' || data[it] === '') {
-
+                console.log(it)
                 vm.$notify.error({
                   title: '错误',
                   message: '请确保已填写所有内容！'
@@ -177,7 +177,7 @@
           },
 
           //主合同提交
-          marginsSubmit(name) {
+          masterContractSubmit(name) {
             const vm = this
             let data = this.collectForm[name]
             data.type = 2
@@ -207,7 +207,7 @@
           },
 
           //分包合同提交
-          marginsSubmit(name) {
+          subContractSubmit(name) {
             const vm = this
             let data = this.collectForm[name]
             data.type = 3
@@ -237,7 +237,7 @@
           },
 
           //发包公司提交
-          marginsSubmit(name) {
+          subCompanySubmit(name) {
             const vm = this
             let data = this.collectForm[name]
             data.type = 4

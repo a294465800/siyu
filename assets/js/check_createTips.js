@@ -34,8 +34,8 @@
 
           formatData() {
             let results = []
-            const margins = this.checkTips.margins
-            const requirepayment = this.checkTips.requirepayment
+            const margins = this.tipsForm.margins
+            const requirepayment = this.tipsForm.requirepayment
 
             margins.forEach((it, index) => {
               if (it) {

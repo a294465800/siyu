@@ -131,7 +131,7 @@
           <div class="inline fields">
             <label class="four wide field">收款日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="collectForm.margins.date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="collectForm.margins.pay_date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
               </el-date-picker>
             </div>
           </div>
@@ -140,7 +140,7 @@
           <div class="inline fields">
             <label class="four wide field">收款金额</label>
             <div class="twelve wide field icon input">
-              <input v-model.number="collectForm.margins.amount" type="number" placeholder="请输入收款金额">
+              <input v-model.number="collectForm.margins.price" type="number" placeholder="请输入收款金额">
               <i class="yen icon"></i>
             </div>
           </div>
@@ -220,7 +220,7 @@
           <div class="inline fields">
             <label class="four wide field">收款日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="collectForm.masterContract.date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="collectForm.masterContract.pay_date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
               </el-date-picker>
             </div>
           </div>
@@ -229,7 +229,7 @@
           <div class="inline fields">
             <label class="four wide field">收款金额</label>
             <div class="twelve wide field icon input">
-              <input v-model.number="collectForm.masterContract.amount" type="number" placeholder="请输入收款金额">
+              <input v-model.number="collectForm.masterContract.price" type="number" placeholder="请输入收款金额">
               <i class="yen icon"></i>
             </div>
           </div>
@@ -313,7 +313,7 @@
           <div class="inline fields">
             <label class="four wide field">收款日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="collectForm.subContract.date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="collectForm.subContract.pay_date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
               </el-date-picker>
             </div>
           </div>
@@ -322,7 +322,7 @@
           <div class="inline fields">
             <label class="four wide field">收款金额</label>
             <div class="twelve wide field icon input">
-              <input v-model.number="collectForm.subContract.amount" type="number" placeholder="请输入收款金额">
+              <input v-model.number="collectForm.subContract.price" type="number" placeholder="请输入收款金额">
               <i class="yen icon"></i>
             </div>
           </div>
@@ -387,7 +387,7 @@
           <div class="inline fields">
             <label class="four wide field">收款日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="collectForm.subCompany.date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="collectForm.subCompany.pay_date" type="date" placeholder="请选择收款日期" value-format="yyyy-MM-dd">
               </el-date-picker>
             </div>
           </div>
@@ -396,7 +396,7 @@
           <div class="inline fields">
             <label class="four wide field">收款金额</label>
             <div class="twelve wide field icon input">
-              <input v-model.number="collectForm.subCompany.amount" type="number" placeholder="请输入收款金额">
+              <input v-model.number="collectForm.subCompany.price" type="number" placeholder="请输入收款金额">
               <i class="yen icon"></i>
             </div>
           </div>
