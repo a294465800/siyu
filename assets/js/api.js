@@ -353,6 +353,11 @@
     createPayApply(data = {}){
       return this._http.post(`/purchase/ask/pay`, data, this.dataMethodDefaults)
     }
+
+    //采购实际付款
+    createPay(data = {}){
+      return this._http.post(`/purchase/pay`, data, this.dataMethodDefaults)
+    }
   }
 
   const http = {
