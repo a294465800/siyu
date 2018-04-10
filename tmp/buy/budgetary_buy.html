@@ -57,7 +57,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商名称</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="budgetary_buy.supplier.name" :fetch-suggestions="querySearchSupplier"
+            <el-autocomplete popper-class="my-autocomplete" v-model="budgetary_buy.info.supplier_name" :fetch-suggestions="querySearchSupplier"
               placeholder="请输入供货商名称" @select="handleSelectSupplier">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -73,7 +73,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款银行</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ budgetary_buy.supplier.bank || '暂无数据' }}</div>
+            <div class="fake-input">{{ budgetary_buy.info.bank || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款账号</label>
           <div class="twelve wide field icon input">
-            <div class="fake-input">{{ budgetary_buy.supplier.account || '暂无数据' }}</div>
+            <div class="fake-input">{{ budgetary_buy.info.account || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -191,16 +191,16 @@
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || '无'}} ￥</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.quantity.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
           <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.left_number.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.need_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <input v-model.number="item.real_quantity" type="number" min="0" :max="item.material.number" placeholder="采购数量">
+          <input v-model.number="item.number" type="number" min="0" :max="item.material.need_number" placeholder="采购数量">
         </div>
         <div class="one wide column">
           <input v-model.number="item.price" type="number" placeholder="采购单价">
