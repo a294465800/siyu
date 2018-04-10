@@ -12,6 +12,7 @@
   <div class="active section">开票</div>
 </div>
 
+<input type="hidden" id="projectId" value="XM15823910212">
 <div id="invoiceType" style="display:none">[{"id":1,"value":5},{"id":2,"value":5},{"id":3,"value":5}]</div>
 
 <h1 class="ui red header blue center aligned">开票</h1>
@@ -40,12 +41,12 @@
         <div class="inline fields">
           <label class="four wide field">付款单位</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="invoiceForm.company" :fetch-suggestions="querySearchCompany" placeholder="请输入付款单位"
+            <el-autocomplete popper-class="my-autocomplete" v-model="invoiceForm.payee" :fetch-suggestions="querySearchCompany" placeholder="请输入付款单位"
               @select="handleSelectCompany">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.name }}</div>
+                <div class="name">{{ props.item }}</div>
               </template>
             </el-autocomplete>
           </div>

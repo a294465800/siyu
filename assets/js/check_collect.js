@@ -48,7 +48,7 @@
             this.throttle.unit_timer = setTimeout(() => {
               const searchKey = {
                 payee: queryString,
-                project_id: ''
+                project_id: this.project_id || ''
               }
               _http.ProjectManager.searchProjectUnit(searchKey)
                 .then(res => {
