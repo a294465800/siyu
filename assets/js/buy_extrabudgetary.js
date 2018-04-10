@@ -5,10 +5,6 @@
       new Vue({
         el: '#buyExtrabudgetary',
         data: {
-          project: {
-            content: '',
-            number: ''
-          },
 
           projects: [{
               id: 'XM23141231232',
@@ -99,51 +95,84 @@
             }
           ],
           //新增物料
-          newMaterial: {}
+          newMaterial: {},
+
+          throttle: {
+            id_timer: null,
+            name_timer: null
+          }
         },
 
         mounted() {
-          this.extrabudgetary.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          this.extrabudgetary.info.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          const invoiceType = $('#invoiceType').text().trim()
+          this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           $('#buyExtrabudgetary').removeClass('invisible')
         },
         methods: {
           //项目搜索
           querySearchProjectId(queryString, cb) {
-            var projects = this.projects
-            var results = queryString ? projects.filter(this.createFilterProjectId(queryString)) : projects;
-            // 调用 callback 返回建议列表的数据
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-              cb(results);
-            }, 1000 * Math.random());
-          },
-          createFilterProjectId(queryString) {
-            return (item) => {
-              return (item.id.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
+            clearTimeout(this.throttle.id_timer)
+            this.throttle.id_timer = setTimeout(() => {
+              const searchKey = {
+                id: queryString
+              }
+              _http.ProjectManager.searchProject(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
           },
           handleSelectProjectId(item) {
-            this.project.id = item.id
-            this.project.content = item.name
+            this.extrabudgetary.project_id = item.number
+            this.extrabudgetary.project_content = item.name
           },
-          //项目自动提示函数
-          querySearch(queryString, cb) {
-            var projects = this.projects
-            var results = queryString ? projects.filter(this.createFilter(queryString)) : projects;
-            // 调用 callback 返回建议列表的数据
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-              cb(results);
-            }, 1000 * Math.random());
+
+          querySearchProjectContent(queryString, cb) {
+            clearTimeout(this.throttle.name_timer)
+            this.throttle.name_timer = setTimeout(() => {
+              const searchKey = {
+                name: queryString
+              }
+              _http.ProjectManager.searchProject(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
           },
-          createFilter(queryString) {
-            return (item) => {
-              return (item.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
-          },
-          handleSelect(item) {
-            this.project.id = item.id
-            this.project.content = item.name
+          handleSelectProjectContent(item) {
+            this.extrabudgetary.project_id = item.number
+            this.extrabudgetary.project_content = item.name
           },
 
           //供应商输入提示
@@ -224,9 +253,74 @@
               this.extrabudgetary.contracts.push(data)
             }
           },
+          //合同上传
+          uploadContract(e) {
+            const files = e.target.files
+            if (files.length < 1) {
+              return
+            }
+            let fileArr = []
+            for (let file of files) {
+              let formData = new FormData()
+              formData.append('image', file)
+              _http.UploadManager.createUpload(formData)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    const resData = res.data.data
+                    this.extrabudgetary.contracts.push({
+                      id: resData.size,
+                      name: resData.name,
+                      href: resData.url
+                    })
+                    this.$notify({
+                      title: '成功',
+                      message: `${resData.name} 上传成功`,
+                      type: 'success'
+                    })
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg,
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }
+          },
 
           //提交
-          submitForm() {}
+          submitForm() {
+            _http.BuyManager.createPurchase(this.extrabudgetary)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify.success({
+                    title: '成功',
+                    message: '提交成功！'
+                  })
+                  $('.ui.dimmer').addClass('active')
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
+          }
 
         }
       })

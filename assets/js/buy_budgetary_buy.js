@@ -197,7 +197,7 @@
               _http.UploadManager.createUpload(formData)
                 .then(res => {
                   if (res.data.code === '200') {
-                    const budgetary_buy = res.data.data
+                    const resData = res.data.data
                     this.budgetary_buy.contracts.push({
                       id: resData.size,
                       name: resData.name,

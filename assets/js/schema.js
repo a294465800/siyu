@@ -178,19 +178,32 @@
 
   //预算外采购 第一步
   const extrabudgetary = {
-    date: '', //日期
-    supplier: { //供应商: 名称, 银行, 银行账号
-      name: '',
-      bank: '',
-      account: ''
-    },
-    amount: '', //当前物料采购总金额
+    // date: '', //日期
+    // supplier: { //供应商: 名称, 银行, 银行账号
+    //   name: '',
+    //   bank: '',
+    //   account: ''
+    // },
+    // amount: '', //当前物料采购总金额
+    // project_id: '', //项目 id
+    // project_content: '', //项目内容
+    // invoice_condition: '', //发票条件
+    // payment_condition: '', //付款条件
+    // list: [], //采购清单
+    // contracts: [] //采购合同
+
+    
+    lists: [], //采购物料清单列表： 物料 { 名称，性能， 型号， 生产厂家， 单位，单价， 数量}, 已采购数量， 剩余未采购数量， 新信息 { 本次数量，本次单价，本次金额，截至日期，保修时间 }
+    contracts: [], //采购合同：名称
+
     project_id: '', //项目 id
-    project_content: '', //项目内容
-    invoice_condition: '', //发票条件
-    payment_condition: '', //付款条件
-    list: [], //采购清单
-    contracts: [] //采购合同
+    info: {
+      supplier_id: '', //供应商 id
+      date: '', //日期
+      condition: '',  //条件
+      content: '', //
+      type: 2  //立项外标志
+    }
   }
 
   const invoiceCreate = {
