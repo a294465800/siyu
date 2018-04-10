@@ -12,6 +12,9 @@
   <div class="active section">付款申请</div>
 </div>
 
+<input id="purchaseId" type="hidden" value="CG12512312521">
+<input id="hiddenDate" type="hidden" value="2018-03-05">
+<input id="hiddenAmount" type="hidden" value="222">
 <h1 class="ui red header blue center aligned">付款申请</h1>
 <div id="paymentCreate">
 
@@ -22,9 +25,8 @@
         <div class="inline fields">
           <label class="four wide field">付款申请日期</label>
           <div class="twelve wide field">
-            <el-date-picker v-model="form.pay_date" name="date" type="date" placeholder="付款申请日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="form.date" name="date" type="date" placeholder="付款申请日期" value-format="yyyy-MM-dd">
             </el-date-picker>
-            <input id="hiddenDate" type="hidden" value="2018-03-05">
           </div>
         </div>
       </div>
@@ -57,9 +59,8 @@
           <label class="four wide field">付款金额</label>
           <div class="twelve wide field">
             <div class="ui icon input">
-              <input type="number" v-model.number="form.amount" name="amount" placeholder="请输入付款金额">
+              <input type="number" v-model.number="form.price" name="amount" placeholder="请输入付款金额">
               <i class="yen icon"></i>
-              <input id="hiddenAmount" type="hidden" value="222">
             </div>
           </div>
         </div>
