@@ -39,19 +39,13 @@
       })
     }
 
-    // getUser(id) {
-    //   if (!id) {
-    //     return Promise.reject(new Error(`getUser：id(${id})无效`))
-    //   }
-    //   return this._http.get(`/users/${id}`)
-    // }
+    //项目单位查询
+    searchProjectUnit(search = {}){
+      return this._http.get(`/project/unit`, {
+        params: search
+      })
+    }
 
-    // createUser(data = {}) {
-    //   if (!data || !Object.keys(data).length) {
-    //     return Promise.reject(new Error('createUser：提交的数据无效'))
-    //   }
-    //   return this._http.post('/users', data, this.dataMethodDefaults)
-    // }
   }
 
   class SupplierManager {
@@ -74,6 +68,13 @@
     createSupplier(data = {}) {
       return this._http.post('/supplier/create', data, this.dataMethodDefaults)
     }
+
+    //搜索供应商
+    searchSuppliers(search = {}) {
+      return this._http.get(`/suppliers`, {
+        params: search
+      })
+    }
   }
 
   class MaterialManager {
@@ -95,6 +96,13 @@
     //创建材料
     createMaterial(data = {}) {
       return this._http.post('/material/create', data, this.dataMethodDefaults)
+    }
+
+    //搜索项目采购材料
+    searchProjectMaterial(search = {}) {
+      return this._http.get(`/project/material`, {
+        params: search
+      })
     }
   }
 
@@ -137,6 +145,13 @@
     //创建银行
     createBank(data = {}) {
       return this._http.post('/bank/create', data, this.dataMethodDefaults)
+    }
+
+    //银行搜索
+    searchBank(search = {}) {
+      return this._http.get(`/banks`, {
+        params: search
+      })
     }
   }
 
@@ -303,12 +318,12 @@
     }
 
     //项目开票
-    createProjectInvoice(data ={}){
+    createProjectInvoice(data = {}) {
       return this._http.post(`/project/invoice`, data, this.dataMethodDefaults)
     }
 
     // 项目收款
-    createProjectCollect(data = {}){
+    createProjectCollect(data = {}) {
       return this._http.post(`/project/collect`, data, this.dataMethodDefaults)
     }
   }
