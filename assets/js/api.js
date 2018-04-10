@@ -40,7 +40,7 @@
     }
 
     //项目单位查询
-    searchProjectUnit(search = {}){
+    searchProjectUnit(search = {}) {
       return this._http.get(`/project/unit`, {
         params: search
       })
@@ -350,13 +350,18 @@
     }
 
     //采购付款申请
-    createPayApply(data = {}){
+    createPayApply(data = {}) {
       return this._http.post(`/purchase/ask/pay`, data, this.dataMethodDefaults)
     }
 
     //采购实际付款
-    createPay(data = {}){
+    createPay(data = {}) {
       return this._http.post(`/purchase/pay`, data, this.dataMethodDefaults)
+    }
+
+    //采购收票
+    createInvoice(data = {}) {
+      return this._http.post(`/purchase/invoice`, data, this.dataMethodDefaults)
     }
   }
 

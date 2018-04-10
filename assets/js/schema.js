@@ -209,7 +209,7 @@
   const invoiceCreate = {
     date: '', //收票日期
     operator: '', //收票经办人
-    list: [{ // date, type, number, amount_without_tax, tax, amount
+    lists: [{ // date, type, number, amount_without_tax, tax, amount
       id: 1
     }]
   }

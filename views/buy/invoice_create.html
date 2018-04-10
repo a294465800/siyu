@@ -75,6 +75,10 @@
   <div class="divider"> / </div>
   <div class="active section">收票信息录入</div>
 </div>
+
+<div style="display: none" id="invoiceType">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
+<input type="hidden" id="purchaseId" value="CG12512312521">
+
 <h1 class="ui red header blue center aligned">收票信息录入</h1>
 <div class="invisible" id="buyInvoiceCreate">
 
@@ -124,7 +128,7 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in invoiceCreate.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in invoiceCreate.lists" :key="item.id">
         <div class="one wide column">
           <div class="fake-input">{{ index + 1 }}</div>
         </div>
@@ -137,22 +141,22 @@
         </div>
         <div class="two wide column">
           <el-select v-model="item.type" placeholder="发票类型">
-            <el-option v-for="item in [{id:1,name:'专用发票17%'},{id:2,name:'专用发票11%'}]" :key="item.id" :label="item.name" :value="item.id">
+            <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
             </el-option>
           </el-select>
         </div>
         <div class="two wide column">
-          <input type="text" v-model.number="item.amount_without_tax" placeholder="不含税">
+          <input type="text" v-model.number="item.without_tax" placeholder="不含税">
         </div>
         <div class="two wide column">
           <input type="text" v-model.number="item.tax" placeholder="税额">
         </div>
         <div class="two wide column">
-          <input type="text" v-model.number="item.amount" placeholder="含税金额">
+          <input type="text" v-model.number="item.with_tax" placeholder="含税金额">
         </div>
         <div class="two wide column">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>
