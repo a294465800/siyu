@@ -5,19 +5,6 @@
         el: '#checkCollect',
         data: {
           collectForm: _schemas.checkCollect,
-          companies: [{
-              id: 1,
-              name: '单位A'
-            },
-            {
-              id: 2,
-              name: '单位B'
-            },
-            {
-              id: 2,
-              name: '单位C'
-            }
-          ],
 
           banks: [{
               id: 1,
@@ -39,55 +26,91 @@
               name: '中央银行',
               account: 62343134314134313
             }
-          ]
+          ],
+
+          throttle: {
+            unit_timer: null,
+            bank_timer: null
+          }
         },
         mounted() {
           $('.tabular.menu .item').tab()
+          this.project_id = $('#projectId').val()
           $('#checkCollect').removeClass('invisible')
         },
         methods: {
           //单位搜索
           querySearchCompany(queryString, cb) {
-            var companies = this.companies
-            var results = queryString ? companies.filter(this.createFilterCompany(queryString)) : companies;
-            // 调用 callback 返回建议列表的数据
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-              cb(results);
-            }, 1000 * Math.random());
-          },
-          createFilterCompany(queryString) {
-            return (item) => {
-              return (item.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
+            
+            if (this.throttle.unit_timer) {
+              clearTimeout(this.throttle.unit_timer)
+            }
+            this.throttle.unit_timer = setTimeout(() => {
+              const searchKey = {
+                payee: queryString,
+                project_id: ''
+              }
+              _http.ProjectManager.searchProjectUnit(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
           },
           handleSelectCompanyA(item) {
-            this.collectForm.margins.payee_id = item.id
-            this.collectForm.margins.payee = item.name
+            this.collectForm.margins.payee = item
           },
           handleSelectCompanyB(item) {
-            this.collectForm.masterContract.payee_id = item.id
-            this.collectForm.masterContract.payee = item.name
+            this.collectForm.masterContract.payee = item
           },
           handleSelectCompanyC(item) {
-            this.collectForm.subContract.payee_id = item.id
-            this.collectForm.subContract.payee = item.name
+            this.collectForm.subContract.payee = item
           },
 
           //银行搜索
           querySearchBank(queryString, cb) {
-            var banks = this.banks
-            var results = queryString ? banks.filter(this.createFilterBank(queryString)) : banks;
-            // 调用 callback 返回建议列表的数据
-            clearTimeout(this.timeout);
-            this.timeout = setTimeout(() => {
-              cb(results);
-            }, 1000 * Math.random());
-          },
-          createFilterBank(queryString) {
-            return (item) => {
-              return (item.name.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-            };
+            
+            if (this.throttle.bank_timer) {
+              clearTimeout(this.throttle.bank_timer)
+            }
+            this.throttle.bank_timer = setTimeout(() => {
+              const searchKey = {
+                name: queryString
+              }
+              _http.BankManager.searchBank(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
           },
           handleSelectBankA(item) {
             this.collectForm.margins.bank_id = item.id
@@ -150,6 +173,7 @@
           marginsSubmit(name) {
             const vm = this
             let data = this.collectForm[name]
+            data.project_id = this.project_id
             data.type = 1
             _http.CheckManager.createProjectCollect(data)
               .then(res => {
@@ -180,6 +204,7 @@
           masterContractSubmit(name) {
             const vm = this
             let data = this.collectForm[name]
+            data.project_id = this.project_id
             data.type = 2
             _http.CheckManager.createProjectCollect(data)
               .then(res => {
@@ -210,6 +235,7 @@
           subContractSubmit(name) {
             const vm = this
             let data = this.collectForm[name]
+            data.project_id = this.project_id
             data.type = 3
             _http.CheckManager.createProjectCollect(data)
               .then(res => {
@@ -240,6 +266,7 @@
           subCompanySubmit(name) {
             const vm = this
             let data = this.collectForm[name]
+            data.project_id = this.project_id
             data.type = 4
             _http.CheckManager.createProjectCollect(data)
               .then(res => {

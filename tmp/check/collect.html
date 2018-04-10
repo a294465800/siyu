@@ -11,6 +11,8 @@
   <div class="divider"> / </div>
   <div class="active section">收款</div>
 </div>
+<input type="hidden" id="projectId" value="XM15823910212">
+
 <div class="invisible margin-top-20" id="checkCollect">
   <div class="ui top attached tabular menu" style="cursor:pointer;">
     <div class="item active" data-tab="tab-1">收回履约保证金</div>
@@ -57,7 +59,7 @@
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
                 <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
+                  <div class="name">{{ props.item }}</div>
                 </template>
               </el-autocomplete>
             </div>
@@ -146,7 +148,7 @@
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
                 <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
+                  <div class="name">{{ props.item }}</div>
                 </template>
               </el-autocomplete>
             </div>
@@ -230,16 +232,12 @@
           <div class="inline fields">
             <label class="four wide field">付款单位</label>
             <div class="twelve wide field">
-              <!-- <el-select style="width:100%;" v-model="collectForm.subContract.payee" placeholder="请选择付款单位">
-                <el-option v-for="item in [{id:1,name:'单位一'},{id:2,name:'单位二'},{id:3,name:'单位三'}]" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select> -->
               <el-autocomplete popper-class="my-autocomplete" v-model="collectForm.subContract.payee" :fetch-suggestions="querySearchCompany"
                 placeholder="请选择付款单位" @select="handleSelectCompanyC">
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
                 <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
+                  <div class="name">{{ props.item }}</div>
                 </template>
               </el-autocomplete>
             </div>
