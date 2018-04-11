@@ -65,6 +65,10 @@
             console.log(this.checkedMen)
           },
 
+          cancelClick() {
+            $('.ui.dimmer').dimmer('hide')
+          },
+
           //提交审核人
           confirmRecheck() {
             const url = `../project/auth_edit.html?type=${currentType}&user_id=${this.checkedMen}`
