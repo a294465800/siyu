@@ -48,8 +48,8 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
-                <span class="addr">{{ props.item.manager }}</span>
+                <div class="name">{{ props.item.number }}</div>
+                <span class="addr">{{ props.item.pm }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -64,8 +64,8 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.content }}</div>
-                <span class="addr">{{ props.item.id }}</span>
+                <div class="name">{{ props.item.name }}</div>
+                <span class="addr">{{ props.item.number }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -92,7 +92,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">请款金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="buildFinishAdd.amount" placeholder="请选择请款金额">
+            <input type="number" v-model.number="buildFinishAdd.price" placeholder="请选择请款金额">
           </div>
         </div>
       </div>
@@ -123,10 +123,10 @@
           <input type="text" placeholder="设备名称" v-model="item.name">
         </div>
         <div class="two wide column">
-          <input type="text" placeholder="性能参数" v-model="item.parameter">
+          <input type="text" placeholder="性能参数" v-model="item.para">
         </div>
         <div class="two wide column">
-          <input type="text" placeholder="数量" v-model.number="item.quantity">
+          <input type="text" placeholder="数量" v-model.number="item.number">
         </div>
         <div class="two wide column">
           <input type="text" placeholder="单位" v-model="item.unit">
@@ -135,7 +135,7 @@
           <input type="number" v-model.number="item.price" placeholder="含税单价">
         </div>
         <div class="two wide column">
-          <input type="number" v-model.number="item.amount" placeholder="含税总价">
+          <input type="number" v-model.number="item.total" placeholder="含税总价">
         </div>
         <div class="two wide column">
           <input type="text" placeholder="备注" v-model="item.remark">

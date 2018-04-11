@@ -9,6 +9,8 @@
   <div class="divider"> / </div>
   <div class="active section">预算外采购</div>
 </div>
+<div id="invoiceType" style="display:none">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
+
 <h1 class="ui red header blue center aligned">预算外采购</h1>
 <div class="invisible" id="buyExtrabudgetary">
 
@@ -20,12 +22,12 @@
         <div class="inline fields">
           <label class="four wide field">项目编号</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="project.id" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
+            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.project_id" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
               @select="handleSelectProjectId">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
+                <div class="name">{{ props.item.number }}</div>
                 <span class="addr">{{ props.item.name }}</span>
               </template>
             </el-autocomplete>
@@ -36,13 +38,13 @@
         <div class="inline fields">
           <label class="four wide field">项目内容</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="project.content" :fetch-suggestions="querySearch" placeholder="请输入项目内容"
-              @select="handleSelect">
+            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.project_content" :fetch-suggestions="querySearchProjectContent" placeholder="请输入项目内容"
+              @select="handleSelectProjectContent">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
                 <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.id }}</span>
+                <span class="addr">{{ props.item.number }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -60,7 +62,7 @@
         <div class="inline fields">
           <label class="four wide field">采购日期</label>
           <div class="twelve wide field">
-            <el-date-picker v-model="extrabudgetary.date" type="date" placeholder="请选择采购日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="extrabudgetary.info.date" type="date" placeholder="请选择采购日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
         </div>
@@ -69,7 +71,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商名称</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.supplier.name" :fetch-suggestions="querySearchSupplier"
+            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.info.supplier_name" :fetch-suggestions="querySearchSupplier"
               placeholder="请输入供货商名称" @select="handleSelectSupplier">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -85,7 +87,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款银行</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ extrabudgetary.supplier.bank || '暂无数据' }}</div>
+            <div class="fake-input">{{ extrabudgetary.info.bank || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款账号</label>
           <div class="twelve wide field icon input">
-            <div class="fake-input">{{ extrabudgetary.supplier.account || '暂无数据' }}</div>
+            <div class="fake-input">{{ extrabudgetary.info.account || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -101,7 +103,7 @@
         <div class="inline fields">
           <label class="four wide field">付款条件</label>
           <div class="twelve wide field">
-            <input v-model="extrabudgetary.payment_condition" type="text" placeholder="请输入付款条件">
+            <input v-model="extrabudgetary.info.condition" type="text" placeholder="请输入付款条件">
           </div>
         </div>
       </div>
@@ -110,7 +112,7 @@
           <label class="four wide field">付款条件</label>
           <div class="twelve wide field">
             <el-select v-model="extrabudgetary.invoice_condition" placeholder="请选择内容">
-              <el-option v-for="item in [{id:1,name:'专用发票17%'},{id:2,name:'专用发票11%'}]" :key="item.id" :label="item.name" :value="item.id">
+              <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -124,7 +126,7 @@
   <h4 class="ui dividing header blue">采购物料清单</h4>
   <div class="flex-row" style="width:50%;">
     <div class="font-bold" style="white-space:nowrap;align-self:flex-end;margin-right:20px;">采购金额</div>
-    <div class="fake-input inline-center">{{ extrabudgetary.amount.toLocaleString('en-US') || 0 }} ￥</div>
+    <div class="fake-input inline-center">{{ amount.toLocaleString('en-US') || 0 }} ￥</div>
   </div>
   <div class="flex-row flex-end margin-top-20">
     <div style="width:40%;">
@@ -158,25 +160,25 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in extrabudgetary.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in extrabudgetary.lists" :key="item.own_id">
         <template v-if="item.__type === 'new'">
           <div class="two wide column">
-            <input v-model="item.material.name" type="text" placeholder="物料名称">
+            <input v-model="item.name" type="text" placeholder="物料名称">
           </div>
           <div class="two wide column">
-            <input v-model="item.material.parameter" type="text" placeholder="性能及技术参数">
+            <input v-model="item.param" type="text" placeholder="性能及技术参数">
           </div>
           <div class="one wide column">
-            <input v-model="item.material.model" type="text" placeholder="品牌型号">
+            <input v-model="item.model" type="text" placeholder="品牌型号">
           </div>
           <div class="two wide column">
-            <input v-model="item.material.manufacturer" type="text" placeholder="生产厂家">
+            <input v-model="item.factory" type="text" placeholder="生产厂家">
           </div>
           <div class="one wide column">
-            <input v-model="item.material.unit" type="text" placeholder="单位">
+            <input v-model="item.unit" type="text" placeholder="单位">
           </div>
           <div class="one wide column">
-            <input v-model.number="item.material.price" type="number" placeholder="单价">
+            <input v-model.number="item.price" type="number" placeholder="单价">
           </div>
         </template>
 
@@ -185,13 +187,13 @@
             <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
           </div>
           <div class="two wide column">
-            <div class="fake-input">{{ item.material && item.material.parameter || '无'}}</div>
+            <div class="fake-input">{{ item.material && item.material.param || '无'}}</div>
           </div>
           <div class="one wide column">
             <div class="fake-input">{{ item.material && item.material.model || '无'}}</div>
           </div>
           <div class="two wide column">
-            <div class="fake-input">{{ item.material && item.material.manufacturer || '无'}}</div>
+            <div class="fake-input">{{ item.material && item.material.factory || '无'}}</div>
           </div>
           <div class="one wide column">
             <div class="fake-input">{{ item.material && item.material.unit || '无'}}</div>
@@ -201,21 +203,21 @@
           </div>
         </template>
         <div class="one wide column">
-          <input v-model.number="item.quantity" type="number" min="0" placeholder="数量">
+          <input v-model.number="item.number" type="number" min="0" placeholder="数量">
         </div>
         <div class="one wide column">
-          <input v-model.number="item.amount" type="number" placeholder="金额">
+          <input v-model.number="item.cost" type="number" placeholder="金额">
         </div>
         <div class="two wide column">
-          <el-date-picker v-model="item.deadline" type="date" placeholder="截至日期" value-format="yyyy-MM-dd">
+          <el-date-picker v-model="item.warranty_date" type="date" placeholder="截至日期" value-format="yyyy-MM-dd">
           </el-date-picker>
         </div>
         <div class="two wide column">
-          <input v-model="item.deadline_time" type="text" placeholder="保修时间">
+          <input v-model="item.warranty_time" type="text" placeholder="保修时间">
         </div>
         <div class="one wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>
@@ -251,7 +253,7 @@
         </div>
         <div class="six wide column">
           <div class="fake-input">
-            <a :href="item.url" target="_blank">{{ item.url }}</a>
+            <a :href="item.href" target="_blank">{{ item.href }}</a>
           </div>
         </div>
         <div class="two wide column flex-row">

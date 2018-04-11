@@ -57,8 +57,8 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
-                <span class="addr">{{ props.item.manager }}</span>
+                <div class="name">{{ props.item.number }}</div>
+                <span class="addr">{{ props.item.pm }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -73,8 +73,8 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.content }}</div>
-                <span class="addr">{{ props.item.id }}</span>
+                <div class="name">{{ props.item.name }}</div>
+                <span class="addr">{{ props.item.number }}</span>
               </template>
             </el-autocomplete>
           </div>

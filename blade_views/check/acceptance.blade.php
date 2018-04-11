@@ -12,6 +12,8 @@
   <div class="active section">验收录入</div>
 </div>
 
+<input type="hidden" id="getProjectId" value="15823910212">
+
 <h4 class="ui dividing header blue">基本信息</h4>
 
 <div class="invisible" id="checkAcceptance">
@@ -69,7 +71,7 @@
         </div>
       </div>
       <div class="column">
-        <el-checkbox v-model="acceptanceForm.finish">验收完毕项目进入保修期</el-checkbox>
+        <el-checkbox v-model="acceptanceForm.to_warranty">验收完毕项目进入保修期</el-checkbox>
       </div>
     </div>
   </div>
@@ -77,10 +79,10 @@
 
   <!-- 项目维护 -->
   <transition name="slide-down">
-    <h4 class="ui dividing header blue" v-if="acceptanceForm.finish">项目维护</h4>
+    <h4 class="ui dividing header blue" v-if="acceptanceForm.to_warranty">项目维护</h4>
   </transition>
   <transition name="slide-down">
-    <div class="ui form form-item" v-if="acceptanceForm.finish">
+    <div class="ui form form-item" v-if="acceptanceForm.to_warranty">
       <div class="ui two column doubling stackable grid">
         <div class="column">
           <div class="inline fields">
@@ -102,7 +104,7 @@
   </transition>
   <!-- / 项目维护 -->
   <div class="inline-center margin-top-20">
-    <button class="ui button green large">
+    <button class="ui button green large" @click="submit">
       <i class="icon hand pointer"></i>
       <span>提交</span>
     </button>

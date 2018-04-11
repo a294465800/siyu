@@ -17,6 +17,9 @@
   [{"id":1,"name":"5%"},{"id":2,"name":"9%"},{"id":3,"name":"15%"}]
 </div>
 
+<div style="display:none;" id="projectData">
+  {"project":{"id":"","name":"这是项目内容","PartyA":"xxx甲方","price":"1235412312","finishTime":"2018-11-15","pm":"陈强","createTime":"2018-03-14","condition":"这是一些维护要求"},"mainContracts":[{"id":1,"unit":"发包单位一","price":"523","remark":"备注xxxx"},{"id":2,"unit":"发包单位二","price":"5223","remark":"备注xxxxxxxxxxxxxx"}],"outContracts":[{"id":1,"unit":"分包单位一","price":"5213123","remark":"备注xx"},{"id":2,"unit":"分包单位二","price":"56234","remark":"备注xx"}],"situations":[{"price":"100000","type":1,"id":1,"is_main":1,"lists":[{"name":1,"tax":1,"price":"5000","remark":"备注xxx"},{"name":2,"tax":2,"price":"95000","remark":"备注xx"}]},{"price":"2000","type":1,"id":2,"is_main":0,"lists":[{"name":3,"tax":3,"price":"2000","remark":"备注xxx"}]},{"price":"5000","type":2,"id":3,"is_main":1,"lists":[{"name":2,"tax":1,"price":"3000","remark":"备注xx"},{"name":3,"tax":2,"price":"2000","remark":"备注"}]}],"bails":[{"unit":"开具单位一","price":"12321","term":"2018-03-13","cost":"123213","other":"其他","pay_date":"2018-03-14","pay_price":"213213","payee":"陈胜海","bank":"中国银行","bank_account":"695345343434343","condition":"条件一"},{"unit":"开具单位二","price":"123213","term":"2018-03-17","cost":"213123","other":"其他啊","pay_date":"2018-03-23","pay_price":"213123","payee":"刘飞","bank":"中国银行","bank_account":"656342342343242343","condition":"条件二"}],"receipts":[{"radio":"12","price":"52323","condition":"条件啊"},{"radio":"5","price":"2123","condition":"条件啊"}],"pictures":[{}]}
+</div>
 <h1 class="ui red header blue center aligned">项目立项</h1>
 
 <div class="invisible" id="projectCreate">
@@ -29,7 +32,7 @@
         <div class="inline fields">
           <label class="four wide field">立项日期</label>
           <div class="twelve wide field">
-            <el-date-picker v-model="project.signDate" type="date" placeholder="请选择日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="project.project.signDate" type="date" placeholder="请选择日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
         </div>
@@ -38,7 +41,7 @@
         <div class="inline fields">
           <label class="four wide field">项目内容</label>
           <div class="twelve wide field">
-            <input v-model="project.name" type="text" placeholder="请输入项目内容">
+            <input v-model="project.project.name" type="text" placeholder="请输入项目内容">
           </div>
         </div>
       </div>
@@ -46,7 +49,7 @@
         <div class="inline fields">
           <label class="four wide field">甲方</label>
           <div class="twelve wide field">
-            <input v-model="project.partyA" type="text" placeholder="请输入甲方">
+            <input v-model="project.project.partyA" type="text" placeholder="请输入甲方">
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@
         <div class="inline fields">
           <label class="four wide field">项目合同金额</label>
           <div class="twelve wide field icon input">
-            <input v-model="project.amount" type="number" placeholder="请输入项目合同金额">
+            <input v-model="project.project.amount" type="number" placeholder="请输入项目合同金额">
             <i class="yen icon"></i>
           </div>
         </div>
@@ -63,7 +66,7 @@
         <div class="inline fields">
           <label class="four wide field">预计完工日期</label>
           <div class="twelve wide field">
-            <el-date-picker v-model="project.completeDate" type="date" placeholder="请选择完工日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="project.project.completeDate" type="date" placeholder="请选择完工日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
         </div>
@@ -72,7 +75,7 @@
         <div class="inline fields">
           <label class="four wide field">项目经理</label>
           <div class="twelve wide field">
-            <input v-model="project.manager" type="text" placeholder="请输入项目经理">
+            <input v-model="project.project.manager" type="text" placeholder="请输入项目经理">
           </div>
         </div>
       </div>
@@ -80,7 +83,7 @@
         <div class="inline fields">
           <label class="four wide field">维护要求</label>
           <div class="twelve wide field">
-            <input v-model="project.maintain" type="text" placeholder="请输入维护要求">
+            <input v-model="project.project.maintain" type="text" placeholder="请输入维护要求">
           </div>
         </div>
       </div>
@@ -210,7 +213,7 @@
           <div class="one wide column form-thead">操作</div>
         </div>
         <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-          <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subItem.id">
+          <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subIndex">
             <div class="one wide column">
               <div class="fake-input">{{subIndex + 1}}</div>
             </div>
@@ -290,7 +293,7 @@
           <div class="one wide column form-thead">操作</div>
         </div>
         <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-          <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subItem.id">
+          <div class="ui three column doubling stackable grid center aligned" v-for="(subItem, subIndex) in item.details" :key="subIndex">
             <div class="one wide column">
               <div class="fake-input">{{subIndex + 1}}</div>
             </div>
@@ -391,8 +394,8 @@
           <template v-if="sumContent && sumContent.result.length > 0">
             <tr v-for="(item, index) in sumContent.result" :key="item.name">
               <td>{{item.name}}</td>
-              <td>5%</td>
-              <td>{{item.amount}} ￥</td>
+              <td>{{item.tax}}</td>
+              <td>{{item.amount.toLocaleString('en-US')}} ￥</td>
             </tr>
           </template>
           <template v-else>
@@ -406,7 +409,7 @@
         <tfoot>
           <tr>
             <th colspan="2">合计</th>
-            <th>{{sumContent&&sumContent.sum || 0}} ￥</th>
+            <th>{{sumContent&&sumContent.sum.toLocaleString('en-US') || 0}} ￥</th>
           </tr>
         </tfoot>
       </table>
@@ -619,7 +622,7 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts" :key="item.id">
+      <div class="ui three column doubling stackable grid center aligned" v-for="(item, index) in project.contracts" :key="index">
         <div class="one wide column">
           <div class="fake-input">{{index + 1}}</div>
         </div>
@@ -635,7 +638,7 @@
     </transition-group>
   </div>
   <!-- /合同 -->
-  <div class="inline-center margin-top-20">
+  <div class="inline-center margin-top-20" @click="submit">
     <button class="ui button green large">
       <i class="icon hand pointer"></i>
       <span>提交</span>

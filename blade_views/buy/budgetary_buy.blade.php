@@ -12,6 +12,10 @@
   <div class="active section">采购录入</div>
 </div>
 
+<div id="invoiceType" style="display:none">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
+<div id="materials" style="display:none">[{"id":1,"name":"物料一","param":"参数一","model":"型号一","factory":"厂家一","unit":"个","price":253,"number":2534,"buy_number":1500,"need_number":1034},{"id":2,"name":"物料二","param":"参数二","model":"型号二","factory":"厂家二","unit":"件","price":2542,"number":500,"buy_number":300,"need_number":200},{"id":4,"name":"物料三","param":"参数三","model":"型号三","factory":"厂家三","unit":"间","price":123,"number":5000,"buy_number":2300,"need_number":2700},{"id":3,"name":"物料四","param":"参数四","model":"型号四","factory":"厂家四","unit":"间","price":542,"number":5000,"buy_number":5000,"need_number":0}]</div>
+<input type="hidden" id="projectId" value="XM232131223">
+
 <h1 class="ui red header blue center aligned">预算内采购</h1>
 
 <div class="invisible" id="budgetaryBuy">
@@ -23,7 +27,7 @@
         <div class="inline fields">
           <label class="four wide field">项目编号</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ budgetary_buy.project_id || '暂无数据' }}</div>
+            <div class="fake-input">XM232131223</div>
           </div>
         </div>
       </div>
@@ -31,7 +35,7 @@
         <div class="inline fields">
           <label class="four wide field">项目内容</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ budgetary_buy.project_content || '暂无数据' }}</div>
+            <div class="fake-input">项目内容</div>
           </div>
         </div>
       </div>
@@ -44,7 +48,7 @@
         <div class="inline fields">
           <label class="four wide field">采购日期</label>
           <div class="twelve wide field">
-            <el-date-picker v-model="budgetary_buy.date" type="date" placeholder="请选择采购日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="budgetary_buy.info.date" type="date" placeholder="请选择采购日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
         </div>
@@ -53,7 +57,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商名称</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="budgetary_buy.supplier.name" :fetch-suggestions="querySearchSupplier"
+            <el-autocomplete popper-class="my-autocomplete" v-model="budgetary_buy.info.supplier_name" :fetch-suggestions="querySearchSupplier"
               placeholder="请输入供货商名称" @select="handleSelectSupplier">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -69,7 +73,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款银行</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ budgetary_buy.supplier.bank || '暂无数据' }}</div>
+            <div class="fake-input">{{ budgetary_buy.info.bank || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -77,7 +81,7 @@
         <div class="inline fields">
           <label class="four wide field">供货商收款账号</label>
           <div class="twelve wide field icon input">
-            <div class="fake-input">{{ budgetary_buy.supplier.account || '暂无数据' }}</div>
+            <div class="fake-input">{{ budgetary_buy.info.account || '暂无数据' }}</div>
           </div>
         </div>
       </div>
@@ -85,16 +89,16 @@
         <div class="inline fields">
           <label class="four wide field">付款条件</label>
           <div class="twelve wide field">
-            <input v-model="budgetary_buy.payment_condition" type="text" placeholder="请输入付款条件">
+            <input v-model="budgetary_buy.info.condition" type="text" placeholder="请输入付款条件">
           </div>
         </div>
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="four wide field">付款条件</label>
+          <label class="four wide field">发票条件</label>
           <div class="twelve wide field">
             <el-select v-model="budgetary_buy.invoice_condition" placeholder="请选择内容">
-              <el-option v-for="item in [{id:1,name:'专用发票17%'},{id:2,name:'专用发票11%'}]" :key="item.id" :label="item.name" :value="item.id">
+              <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -176,7 +180,7 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in budgetary_buy.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in budgetary_buy.lists" :key="item.own_id">
         <div class="one wide column">
           <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
         </div>
@@ -187,33 +191,33 @@
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || '无'}} ￥</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.quantity.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
           <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.left_number.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.need_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <input v-model.number="item.real_quantity" type="number" min="0" :max="item.material.left_number" placeholder="采购数量">
+          <input v-model.number="item.number" type="number" min="0" :max="item.material.need_number" placeholder="采购数量">
         </div>
         <div class="one wide column">
-          <input v-model.number="item.real_price" type="number" placeholder="采购单价">
+          <input v-model.number="item.price" type="number" placeholder="采购单价">
         </div>
         <div class="two wide column">
-          <input v-model.number="item.real_amount" type="number" placeholder="采购金额">
+          <input v-model.number="item.cost" type="number" placeholder="采购金额">
         </div>
         <div class="two wide column">
-          <el-date-picker v-model="item.deadline" type="date" placeholder="截至日期" value-format="yyyy-MM-dd">
+          <el-date-picker v-model="item.warranty_date" type="date" placeholder="截至日期" value-format="yyyy-MM-dd">
           </el-date-picker>
         </div>
         <div class="two wide column">
-          <input v-model="item.deadline_time" type="text" placeholder="保修时间">
+          <input v-model="item.warranty_time" type="text" placeholder="保修时间">
         </div>
         <div class="one wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>
@@ -248,7 +252,7 @@
         </div>
         <div class="six wide column">
           <div class="fake-input">
-            <a :href="item.url" target="_blank">{{ item.url }}</a>
+            <a :href="item.href" target="_blank">{{ item.href }}</a>
           </div>
         </div>
         <div class="two wide column flex-row">

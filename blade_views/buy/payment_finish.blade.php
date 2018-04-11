@@ -12,8 +12,13 @@
   <div class="active section">实际付款</div>
 </div>
 
+<input type="hidden" id="askId" value="11">
+<input id="hiddenDate" type="hidden" value="2018-03-05">
+<input type="hidden" id="bankAccount" value="1">
+<input type="hidden" id="remark" value="1">
+
 <h1 class="ui red header blue center aligned">实际付款</h1>
-<div id="paymentFinish">
+<div id="paymentFinish" class="invisible">
 
   <!-- 基本信息 -->
   <div class="ui form form-item">
@@ -32,7 +37,6 @@
           <div class="twelve wide field">
             <el-date-picker v-model="form.pay_date" name="date" type="date" placeholder="实际付款日期" value-format="yyyy-MM-dd">
             </el-date-picker>
-            <input id="hiddenDate" type="hidden" value="2018-03-05">
           </div>
         </div>
       </div>
@@ -40,10 +44,8 @@
         <div class="inline fields">
           <label class="four wide field">收款银行账号</label>
           <div class="twelve wide field icon input">
-            <input type="hidden" id="bankAccount" value="1">
-            <el-select v-model="form.bank" placeholder="请选择银行账号">
-              <el-option label="平安银行 63242342362342334" value="1"></el-option>
-              <el-option label="中国银行 62342356234232343" value="2"></el-option>
+            <el-select v-model="form.bank_id" placeholder="请选择银行账号">
+              <el-option v-for="(item, index) in banks" :key="item.id" :label="item.name + ' ' +  item.account" :value="item.id"></el-option>
             </el-select>
           </div>
         </div>

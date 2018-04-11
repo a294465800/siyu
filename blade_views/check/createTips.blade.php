@@ -77,12 +77,12 @@
           <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
-          <el-date-picker v-model="item.date" type="date" placeholder="请选择预计回收日期" value-format="yyyy-MM-dd">
+          <el-date-picker v-model="item.pay_date" type="date" placeholder="请选择预计回收日期" value-format="yyyy-MM-dd">
           </el-date-picker>
         </div>
         <div class="two wide column">
           <div class="block ui icon input">
-            <input v-model.enter="item.amount" type="number" placeholder="请输入预计回收金额">
+            <input v-model.enter="item.price" type="number" placeholder="请输入预计回收金额">
             <i class="yen icon"></i>
           </div>
         </div>
@@ -125,17 +125,17 @@
           <div class="fake-input">{{index + 1}}</div>
         </div>
         <div class="three wide column">
-          <el-date-picker v-model="item.date" type="date" placeholder="请选择请款日期" value-format="yyyy-MM-dd">
+          <el-date-picker v-model="item.pay_date" type="date" placeholder="请选择请款日期" value-format="yyyy-MM-dd">
           </el-date-picker>
         </div>
         <div class="two wide column">
           <div class="block ui icon input">
-            <input v-model.number="item.amount" type="number" placeholder="请输入请款金额">
+            <input v-model.number="item.price" type="number" placeholder="请输入请款金额">
             <i class="yen icon"></i>
           </div>
         </div>
         <div class="three wide column">
-          <input v-model="item.company" type="text" placeholder="请输入付款单位">
+          <input v-model="item.payee" type="text" placeholder="请输入付款单位">
         </div>
         <div class="six wide column">
           <input type="text" v-model="item.remark" placeholder="请输入备注">
@@ -151,7 +151,7 @@
   <!-- / 预计请款 -->
 
   <div class="inline-center margin-top-20">
-    <button class="ui button green large">
+    <button class="ui button green large" @click="submit">
       <i class="icon hand pointer"></i>
       <span>提交</span>
     </button>
