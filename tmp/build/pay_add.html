@@ -12,6 +12,8 @@
   <div class="active section">实际付款录入</div>
 </div>
 
+<input type="hidden" id="bankAccount" value="">
+
 <h1 class="ui header blue aligned center">实际付款录入 - SGFK20171103001</h1>
 <div id="buildPayAdd">
   <h4 class="ui dividing header blue">基本信息</h4>
@@ -84,19 +86,9 @@
         <div class="inline fields">
           <label class="six wide field flex-center">收款银行</label>
           <div class="eleven wide field">
-            <input type="hidden" id="bankAccount" value="1">
-            <el-select v-model="addForm.bank" placeholder="请选择银行账号">
-              <el-option label="平安银行 63242342362342334" value="1"></el-option>
-              <el-option label="中国银行 62342356234232343" value="2"></el-option>
+            <el-select v-model="addForm.bank_id" placeholder="请选择银行账号">
+              <el-option v-for="(item, index) in banks" :label="item.name + ' ' + item.account" :value="item.id"></el-option>
             </el-select>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="inline fields">
-          <label class="six wide field flex-center">收款账号</label>
-          <div class="eleven wide field">
-            <input type="number" v-model.number="addForm.account" placeholder="请输入收款账号">
           </div>
         </div>
       </div>
@@ -104,7 +96,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">付款经办人</label>
           <div class="eleven wide field">
-            <input type="text" v-model="addForm.payment" placeholder="请输入付款经办人">
+            <input type="text" v-model="addForm.worker" placeholder="请输入付款经办人">
           </div>
         </div>
       </div>

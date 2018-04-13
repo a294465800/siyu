@@ -224,6 +224,12 @@
     createPayApply(data = {}) {
       return this._http.post('/build/pay/apply', data, this.dataMethodDefaults)
     }
+
+
+    // 施工   付款申请  付款
+    createPayAdd(data = {}) {
+      return this._http.post('/build/pay/add', data, this.dataMethodDefaults)
+    }
   }
 
   //上传
