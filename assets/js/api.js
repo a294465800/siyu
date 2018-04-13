@@ -403,6 +403,12 @@
       return this._http.post(`/stock/get/add`, data, this.dataMethodDefaults)
     }
 
+
+    // 领料出库
+    createOutAdd(data = {}) {
+      return this._http.post(`/stock/out/add`, data, this.dataMethodDefaults)
+    }
+
     //仓库查询
     searchStock(search = {}) {
       return this._http.get(`/search/warehouse`, {

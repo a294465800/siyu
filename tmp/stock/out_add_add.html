@@ -12,6 +12,8 @@
   <div class="active section">退货出库</div>
 </div>
 
+<input type="hidden" id="purchaseId" value="">
+
 <h1 class="ui red header blue center aligned">退货出库</h1>
 <div class="invisible" id="outAddAdd">
   <h4 class="ui dividing header blue">基本信息</h4>
@@ -189,7 +191,7 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockOutAdd.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockOutAdd.lists" :key="item.id">
         <div class="two wide column">
           <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
         </div>
@@ -203,17 +205,17 @@
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || 0}} ￥</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.buy_count.toLocaleString('en-US') || 0}}</div>
+          <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || 0}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.buy_amount.toLocaleString('en-US') || 0}} ￥</div>
+          <div class="fake-input">{{ item.material && item.material.cost.toLocaleString('en-US') || 0}} ￥</div>
         </div>
         <div class="two wide column">
-          <input type="number" v-model="item.count" placeholder="出货数量">
+          <input type="number" v-model="item.number" placeholder="出货数量">
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>

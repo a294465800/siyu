@@ -15,7 +15,8 @@
           throttle: {
             project_timer: null,
             project_id_timer: null,
-            material_timer: null
+            material_timer: null,
+            stock_timer: null
           }
         },
         mounted() {
@@ -110,10 +111,10 @@
 
           //仓库名称
           querySearchStock(queryString, cb) {
-            if (this.throttle.project_timer) {
-              clearTimeout(this.throttle.project_timer)
+            if (this.throttle.stock_timer) {
+              clearTimeout(this.throttle.stock_timer)
             }
-            this.throttle.project_timer = setTimeout(() => {
+            this.throttle.stock_timer = setTimeout(() => {
               const searchKey = {
                 id: queryString
               }
@@ -154,7 +155,7 @@
                 name: queryString,
                 project_id: this.stockGetAdd.project_id || ''
               }
-              _http.StockManager.searchStock(searchKey)
+              _http.MaterialManager.searchProjectMaterial(searchKey)
                 .then(res => {
                   if (res.data.code === '200') {
                     cb(res.data.data)
