@@ -111,6 +111,17 @@
         params: search
       })
     }
+
+    //预算内采购项目材料
+    searchBudgetMaterial(id, search = {}){
+      return this._http.get(`/search/budget?project=${id}`, {
+        params: search
+      })
+    }
+
+    searchPurchase(id){
+      return this._http.get(`/search/purchase?budget=${id}`)
+    }
   }
 
   class WarehouseManager {
@@ -290,6 +301,13 @@
     //录入员工
     createUser(data = {}) {
       return this._http.post(`/create/user`, data, this.dataMethodDefaults)
+    }
+
+    //搜索成员
+    searchUsers(search = {}) {
+      return this._http.get(`/search/users`, {
+        params: search
+      })
     }
   }
 

@@ -48,7 +48,7 @@
     id: 1, //id
     name: '', //物料名称
     param: '', //参数
-    brand: '', //型号
+    model: '', //型号
     factory: '', //生产厂家
     unit: '', //单位
     price: '', //单价
