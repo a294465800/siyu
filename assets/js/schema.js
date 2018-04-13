@@ -215,11 +215,12 @@
   }
 
   const stockBuyAdd = {
-    projectId: '',
+    purchase_id: '',
     date: '', //收货日期
-    receiver: '', //收货人
-    stock: '', //仓库
-    list: [], //采购列表
+    warehouse_name: '', //仓库名字
+    warehouse_id: '', //仓库 id
+    worker: '',  //收货人
+    lists: [], //采购列表
   }
 
   const stockReturnAdd = {

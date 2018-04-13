@@ -104,6 +104,13 @@
         params: search
       })
     }
+
+    //搜索采购项目材料
+    searchBuyMaterial(search = {}) {
+      return this._http.get(`/search/purchase/material`, {
+        params: search
+      })
+    }
   }
 
   class WarehouseManager {
@@ -365,6 +372,37 @@
     }
   }
 
+
+  class StockManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //采购收货入库
+    createBuyAdd(data = {}) {
+      return this._http.post(`/stock/buy/add`, data, this.dataMethodDefaults)
+    }
+
+
+    //项目单位查询
+    searchStock(search = {}) {
+      return this._http.get(`/search/warehouse`, {
+        params: search
+      })
+    }
+  }
+
+
   const http = {
     BankManager: new BankManager(),
     BudgetManager: new BudgetManager(),
@@ -378,7 +416,8 @@
     UserManager: new UserManager(),
     WarehouseManager: new WarehouseManager(),
     CheckManager: new CheckManager(),
-    BuyManager: new BuyManager()
+    BuyManager: new BuyManager(),
+    StockManager: new StockManager()
   }
 
   return http
