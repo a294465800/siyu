@@ -454,6 +454,18 @@
       return this._http.post(`/loan/add`, data, this.dataMethodDefaults)
     }
 
+    //期间费用报销
+    createSubmit(data = {}) {
+      return this._http.post(`/loan/submit/other`, data, this.dataMethodDefaults)
+    }
+
+    //报销种类检索
+    searchCategory(search = {}) {
+      return this._http.get(`/search/category`, {
+        params: search
+      })
+    }
+
   }
 
 
