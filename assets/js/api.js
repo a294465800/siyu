@@ -293,6 +293,7 @@
     }
   }
 
+  //费用付款管理
   class PaymentManager {
     constructor() {
       this._http = axios.create({
@@ -312,6 +313,12 @@
     createPayment(data = {}) {
       return this._http.post(`/category/create`, data, this.dataMethodDefaults)
     }
+
+    //申请付款
+    createPayAdd(data = {}) {
+      return this._http.post(`/pay/add`, data, this.dataMethodDefaults)
+    }
+
   }
 
   // 验收
