@@ -96,8 +96,8 @@
               let data = {
                 id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
                 kind_id: sonIndex ? sonIndex : fatherIndex,
-                type: this.paymentData.currentType.name,
-                detailType: this.paymentData.currentDetailType.name,
+                type: this.paymentData.currentType.title,
+                detailType: this.paymentData.currentDetailType.title,
               }
               this.submitOtherForm.lists.push(data)
             } else {
@@ -118,14 +118,14 @@
           typeChange(typeIndex) {
 
             const currentType = this.paymentData.typeList[typeIndex]
-            this.paymentData.currentType = currentType.title
+            this.paymentData.currentType = currentType
             this.paymentData.currentDetailTypeIndex = ''
             this.paymentData.detailTypeList = currentType.kinds.length ? currentType.kinds : []
           },
 
           detailTypeChange(detailTypeIndex) {
             const currentDetailType = this.paymentData.detailTypeList[detailTypeIndex]
-            this.paymentData.currentDetailType = currentDetailType.title
+            this.paymentData.currentDetailType = currentDetailType
           },
 
           //提交

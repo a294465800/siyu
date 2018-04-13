@@ -459,6 +459,11 @@
       return this._http.post(`/loan/submit/other`, data, this.dataMethodDefaults)
     }
 
+    //项目成本报销
+    createSubmitProject(data = {}) {
+      return this._http.post(`/loan/submit/project`, data, this.dataMethodDefaults)
+    }
+
     //报销种类检索
     searchCategory(search = {}) {
       return this._http.get(`/search/category`, {
