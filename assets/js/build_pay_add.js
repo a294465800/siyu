@@ -51,7 +51,6 @@
                     message: `提交成功`,
                     type: 'success'
                   })
-                  $('.ui.dimmer').addClass('active')
                 } else {
                   this.$notify({
                     title: '错误',

@@ -230,6 +230,11 @@
     createPayAdd(data = {}) {
       return this._http.post('/build/pay/add', data, this.dataMethodDefaults)
     }
+
+    //施工   收票
+    createGetAdd(data = {}) {
+      return this._http.post('/build/get/add', data, this.dataMethodDefaults)
+    }
   }
 
   //上传

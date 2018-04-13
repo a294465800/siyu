@@ -12,6 +12,9 @@
   <div class="active section">收票信息录入</div>
 </div>
 <h1 class="ui red header blue center aligned">收票信息录入</h1>
+
+<div id="invoiceType" style="display:none">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
+
 <div class="invisible" id="buildGetAdd">
 
   <!-- 收票信息 -->
@@ -73,18 +76,18 @@
         </div>
         <div class="two wide column">
           <el-select v-model="item.type" placeholder="发票类型">
-            <el-option v-for="item in [{id:1,name:'专用发票17%'},{id:2,name:'专用发票11%'}]" :key="item.id" :label="item.name" :value="item.id">
+            <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
             </el-option>
           </el-select>
         </div>
         <div class="two wide column">
-          <input type="text" v-model.number="item.amount_without_tax" placeholder="不含税">
+          <input type="text" v-model.number="item.without_tax" placeholder="不含税">
         </div>
         <div class="two wide column">
           <input type="text" v-model.number="item.tax" placeholder="税额">
         </div>
         <div class="two wide column">
-          <input type="text" v-model.number="item.amount" placeholder="含税金额">
+          <input type="text" v-model.number="item.with_tax" placeholder="含税金额">
         </div>
         <div class="two wide column">
           <div class="fake-input">
