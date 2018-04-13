@@ -393,8 +393,12 @@
       return this._http.post(`/stock/buy/add`, data, this.dataMethodDefaults)
     }
 
+    //退料入库
+    createReturnAdd(data = {}) {
+      return this._http.post(`/stock/return/add`, data, this.dataMethodDefaults)
+    }
 
-    //项目单位查询
+    //仓库查询
     searchStock(search = {}) {
       return this._http.get(`/search/warehouse`, {
         params: search

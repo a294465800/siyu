@@ -225,13 +225,12 @@
 
   const stockReturnAdd = {
     project_id: '', //项目id
-    project_content: '', //项目内容
-    project_manger: '', //项目经理
-    return_people: '', //退料人
-    receiver: '', //收货人
-    stock_id: '', //入库仓库 id
-    stock_name: '', //仓库名称
-    list: [], //退料清单
+    project_content: '', //项目content
+    returnee: '',  //退料人
+    worker: '', //收货人
+    warehouse_id: '', //入库仓库 id
+    warehouse_name: '', //仓库名称
+    lists: [], //退料清单
   }
 
   const stockGetAdd = {

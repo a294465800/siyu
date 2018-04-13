@@ -74,6 +74,8 @@
   <div class="active section">新增退料入库录入</div>
 </div>
 
+<input type="hidden" id="returneeVal" value="">
+
 <h1 class="ui red header blue center aligned">新增退料入库录入</h1>
 <div class="invisible" id="returnAdd">
   <h4 class="ui dividing header blue">基本信息</h4>
@@ -123,7 +125,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">退料人</label>
           <div class="twelve wide field">
-            <input type="text" v-model="stockReturnAdd.return_people" placeholder="请输入退料人">
+            <input type="text" v-model="stockReturnAdd.returnee" placeholder="请输入退料人">
           </div>
         </div>
       </div>
@@ -131,7 +133,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">入库仓库</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.stock_name" :fetch-suggestions="querySearchStock"
+            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.warehouse_name" :fetch-suggestions="querySearchStock"
               placeholder="请输入入库仓库" @select="handleSelectStock">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -147,7 +149,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">收货人</label>
           <div class="twelve wide field">
-            <input type="text" v-model="stockReturnAdd.receiver" placeholder="请输入收货人">
+            <input type="text" v-model="stockReturnAdd.worker" placeholder="请输入收货人">
           </div>
         </div>
       </div>
@@ -236,7 +238,7 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockReturnAdd.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockReturnAdd.lists" :key="item.id">
         <div class="two wide column">
           <div class="fake-input">{{ index + 1}}</div>
         </div>
@@ -253,14 +255,14 @@
           <input type="number" v-model.number="item.price" placeholder="退料单价">
         </div>
         <div class="two wide column">
-          <input type="number" v-model.number="item.return_quantity" placeholder="退料数量">
+          <input type="number" v-model.number="item.number" placeholder="退料数量">
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.return_quantity&&item.price?(item.return_quantity*item.price).toLocaleString('en-US'):0}} ￥</div>
+          <div class="fake-input">{{ item.number&&item.price?(item.number*item.price).toLocaleString('en-US'):0}} ￥</div>
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>
