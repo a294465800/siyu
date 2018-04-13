@@ -238,7 +238,7 @@
     project_content: '', //项目内容
     project_manger: '', //项目经理
     get_people: '', //领料人
-    stock_id: '', //出货仓库, id
+    warehouse_id: '', //出货仓库, id
     stock_name: '', //出货仓库
     list: [], //领料清单
   }
