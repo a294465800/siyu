@@ -104,9 +104,9 @@
           },
 
           handleSelect(item) {
-            this.stockGetAdd.project_id = item.id
+            this.stockGetAdd.project_id = item.number
             this.stockGetAdd.project_content = item.name
-            this.stockGetAdd.project_manger = item.manager
+            this.stockGetAdd.project_manger = item.pm
           },
 
           //仓库名称

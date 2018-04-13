@@ -106,7 +106,7 @@
             }, 500)
           },
           handleSelectProjectId(item) {
-            this.submitProjectForm.project_id = item.id
+            this.submitProjectForm.project_id = item.number
             this.submitProjectForm.project_content = item.name
           },
 
@@ -140,7 +140,7 @@
             }, 500)
           },
           handleSelectProjectContent(item) {
-            this.submitProjectForm.project_id = item.id
+            this.submitProjectForm.project_id = item.number
             this.submitProjectForm.project_content = item.name
           },
 
