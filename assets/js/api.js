@@ -433,6 +433,29 @@
     }
   }
 
+  // 报销借款
+  class LoanManager {
+    constructor() {
+      this._http = axios.create({
+        baseURL: url,
+        withCredentials: true
+      })
+      this.dataMethodDefaults = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        transformRequest: [function (data) {
+          return Qs.stringify(data)
+        }]
+      }
+    }
+    //借款申请
+    createLoanAdd(data = {}) {
+      return this._http.post(`/loan/add`, data, this.dataMethodDefaults)
+    }
+
+  }
+
 
   const http = {
     BankManager: new BankManager(),
@@ -448,7 +471,8 @@
     WarehouseManager: new WarehouseManager(),
     CheckManager: new CheckManager(),
     BuyManager: new BuyManager(),
-    StockManager: new StockManager()
+    StockManager: new StockManager(),
+    LoanManager: new LoanManager()
   }
 
   return http
