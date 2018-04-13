@@ -205,7 +205,9 @@
 
           //提交
           submit() {
-            console.log(this.stockReturnAdd)
+            console.log(this.stockGetAdd)
+            let data = this.stockGetAdd
+            data.type = this.currentType
             _http.StockManager.createGetAdd(data)
               .then(res => {
                 if (res.data.code === '200') {
