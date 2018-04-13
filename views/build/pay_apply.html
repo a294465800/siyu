@@ -76,6 +76,9 @@
   <div class="active section">付款申请录入</div>
 </div>
 
+<input type="hidden" id="projectId" value="">
+<input type="hidden" id="teamId" value="">
+
 <h1 class="ui header blue aligned center">付款申请录入</h1>
 <div id="buildPayApply">
   <h4 class="ui dividing header blue">基本信息</h4>
@@ -164,7 +167,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">付款金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="applyForm.amount" placeholder="请输入付款金额">
+            <input type="number" v-model.number="applyForm.price" placeholder="请输入付款金额">
           </div>
         </div>
       </div>
@@ -172,7 +175,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">收款人</label>
           <div class="eleven wide field">
-            <input type="text" v-model="applyForm.payment" placeholder="请输入收款人">
+            <input type="text" v-model="applyForm.payee" placeholder="请输入收款人">
           </div>
         </div>
       </div>

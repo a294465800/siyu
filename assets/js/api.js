@@ -219,6 +219,11 @@
     createFinish(data = {}) {
       return this._http.post('/finish/add', data, this.dataMethodDefaults)
     }
+
+    // 施工   付款申请录入
+    createPayApply(data = {}) {
+      return this._http.post('/build/pay/apply', data, this.dataMethodDefaults)
+    }
   }
 
   //上传
