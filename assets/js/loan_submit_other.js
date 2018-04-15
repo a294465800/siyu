@@ -89,8 +89,8 @@
 
           //新增项
           addItem() {
-            const category_id = this.paymentData.currentType
-            const kind_id = this.paymentData.currentDetailType
+            const category_id = this.paymentData.currentType.id
+            const kind_id = this.paymentData.currentDetailType.id
             if (category_id !== '') {
               const list = this.submitOtherForm.lists
               let data = {
@@ -130,10 +130,31 @@
             this.paymentData.currentDetailType = currentDetailType
           },
 
+          formatData(data) {
+            let result = {
+              loan_user: data.loan_user,
+              date: data.date,
+              price: data.price,
+              lists: []
+            }
+            const list = data.lists
+            for(let i = 0; i < list.length; i++){
+              let tmp = {
+                category_id: list[i].category_id,
+                kind_id: list[i].kind_id,
+                remark: list[i].remark,
+                number: list[i].number,
+                price: list[i].price,
+              }
+            }
+            return result
+          },
+
           //提交
           submit() {
-            console.log(this.submitOtherForm)
-            _http.LoanManager.createSubmit(this.submitOtherForm)
+            const postData = this.formatData(this.submitOtherForm)
+            console.log(postData)
+            _http.LoanManager.createSubmit(postData)
               .then(res => {
                 if (res.data.code === '200') {
                   this.$notify({
