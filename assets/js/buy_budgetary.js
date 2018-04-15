@@ -105,6 +105,7 @@
           },
           handleSelect(item) {
             this.project.id = item.number
+            this.project.project_id = item.id
             this.project.content = item.name
           },
 
@@ -200,7 +201,7 @@
           //提交
           submit() {
             if (this.project.id && this.project.content) {
-              _helper.fullWindow(`../buy/budgetary_buy.html?id=${this.project.id}`)
+              _helper.fullWindow(`../buy/budgetary_buy.html?id=${this.project.project_id}`)
             } else {
               this.$notify({
                 type: 'error',
