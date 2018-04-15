@@ -137,10 +137,10 @@
           <td>{{ item.manufacturer }}</td>
           <td>{{ item.unit }}</td>
           <td>{{ item.price.toLocaleString('en-US') }}</td>
-          <td>{{ item.quantity.toLocaleString('en-US') }}</td>
+          <td>{{ item.number.toLocaleString('en-US') }}</td>
           <td>{{ item.buy_number.toLocaleString('en-US') }}</td>
-          <td>{{ item.left_number.toLocaleString('en-US') }}</td>
-          <td v-if="item.left_number>0">
+          <td>{{ item.need_number.toLocaleString('en-US') }}</td>
+          <td v-if="item.need_number>0">
             <button class="ui mini positive icon button" @click="addMaterial(item, index)">
               <i class="icon plus"></i>
               <span>添加物料</span>

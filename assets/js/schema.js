@@ -172,7 +172,8 @@
       condition: '',  //条件
       content: '', //
       type: 1  //立项内标志
-    }
+    },
+    amount: 0
   }
 
 
