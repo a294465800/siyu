@@ -143,7 +143,7 @@
               _http.UploadManager.createUpload(formData)
                 .then(res => {
                   if (res.data.code === '200') {
-                    const buildDealAdd = res.data.data
+                    const resData = res.data.data
                     this.buildDealAdd.list.push({
                       id: resData.size,
                       name: resData.name,
