@@ -11,7 +11,7 @@
             price: '',
             project_id: '',
             project_content: '',
-            lists: []
+            lists: [],
           },
 
           //费用类型
@@ -78,7 +78,7 @@
         computed: {
 
           sumAmount() {
-            const list = this.submitProjectForm.list
+            const list = this.submitProjectForm.lists
             if (!list.length) {
               return 0
             }
