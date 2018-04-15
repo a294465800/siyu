@@ -22,7 +22,7 @@
         <div class="inline fields">
           <label class="four wide field">项目编号</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.project_id" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
+            <el-autocomplete popper-class="my-autocomplete" v-model="extrabudgetary.project_number" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
               @select="handleSelectProjectId">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -109,10 +109,10 @@
       </div>
       <div class="column">
         <div class="inline fields">
-          <label class="four wide field">付款条件</label>
+          <label class="four wide field">发票条件</label>
           <div class="twelve wide field">
-            <el-select v-model="extrabudgetary.invoice_condition" placeholder="请选择内容">
-              <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
+            <el-select v-model="extrabudgetary.info.content" placeholder="请选择内容">
+              <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.name">
               </el-option>
             </el-select>
           </div>

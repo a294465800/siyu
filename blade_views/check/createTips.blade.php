@@ -12,6 +12,8 @@
   <div class="active section">收款提示</div>
 </div>
 
+<input type="hidden" id="projectId" value="">
+
 <h1 class="ui red header blue center aligned">收款提示</h1>
 <div class="invisible" id="checkCreateTips">
   <!-- 基本信息 -->
