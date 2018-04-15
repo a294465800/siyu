@@ -44,7 +44,9 @@
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           const materials = $('#materials').text().trim()
+          console.log('================material:', materials)
           this.materials = materials === '' ? [] : JSON.parse(materials)
+          console.log('================解析成功的material:', this.materials)
           this.budgetary_buy.project_id = $('#projectId').val()
           $('#budgetaryBuy').removeClass('invisible')
         },
