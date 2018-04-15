@@ -161,7 +161,7 @@
         <div class="inline fields">
           <label class="four wide field">发票条件</label>
           <div class="twelve wide field">
-            <el-select v-model="budgetary_buy.invoice_condition" placeholder="请选择内容">
+            <el-select v-model="budgetary_buy.info.content" placeholder="请选择内容">
               <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
@@ -193,7 +193,7 @@
       </tr>
     </thead>
     <tbody>
-      <template v-if="materialsComputed.length">
+      <template v-if="materialsComputed && materialsComputed.length">
         <tr v-for="(item, index) in materialsComputed" :key="item.id">
           <td>{{ item.name }}</td>
           <td>{{ item.parameter }}</td>
@@ -201,10 +201,10 @@
           <td>{{ item.manufacturer }}</td>
           <td>{{ item.unit }}</td>
           <td>{{ item.price.toLocaleString('en-US') }}</td>
-          <td>{{ item.quantity.toLocaleString('en-US') }}</td>
+          <td>{{ item.number.toLocaleString('en-US') }}</td>
           <td>{{ item.buy_number.toLocaleString('en-US') }}</td>
-          <td>{{ item.left_number.toLocaleString('en-US') }}</td>
-          <td v-if="item.left_number>0">
+          <td>{{ item.need_number.toLocaleString('en-US') }}</td>
+          <td v-if="item.need_number>0">
             <button class="ui mini positive icon button" @click="addMaterial(item, index)">
               <i class="icon plus"></i>
               <span>添加物料</span>

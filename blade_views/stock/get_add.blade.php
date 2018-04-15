@@ -24,7 +24,7 @@
               <label>项目采购</label>
             </div>
             <div class="ui radio checkbox">
-              <input type="radio" name="system" value="0" @change="currentType=0">
+              <input type="radio" name="system" value="0" @change="currentType=2">
               <label>统一采购</label>
             </div>
           </div>
@@ -37,13 +37,13 @@
           <div class="inline fields">
             <label class="four wide field flex-center">项目编号</label>
             <div class="twelve wide field">
-              <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.project_id" :fetch-suggestions="querySearch" placeholder="请输入项目编号"
+              <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.project_id" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
                 @select="handleSelect">
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
                 <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
-                  <span class="addr">{{ props.item.address }}</span>
+                  <div class="name">{{ props.item.number }}</div>
+                  <span class="addr">{{ props.item.name }}</span>
                 </template>
               </el-autocomplete>
             </div>
@@ -59,7 +59,7 @@
                 </i>
                 <template slot-scope="props">
                   <div class="name">{{ props.item.name }}</div>
-                  <span class="addr">{{ props.item.address }}</span>
+                  <span class="addr">{{ props.item.number }}</span>
                 </template>
               </el-autocomplete>
             </div>
@@ -96,7 +96,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">领料人</label>
           <div class="twelve wide field">
-            <input type="text" v-model="stockGetAdd.get_people" placeholder="请输入领料人">
+            <input type="text" v-model="stockGetAdd.worker" placeholder="请输入领料人">
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockGetAdd.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockGetAdd.lists" :key="item.id">
         <div class="two wide column">
           <div class="fake-input">{{ index + 1}}</div>
         </div>
@@ -207,14 +207,14 @@
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') + ' ￥' || '无'}}</div>
         </div>
         <div class="two wide column">
-          <input type="number" v-model.number="item.return_quantity" placeholder="领料数量">
+          <input type="number" v-model.number="item.number" placeholder="领料数量">
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.return_quantity?(item.return_quantity*item.material.price).toLocaleString('en-US'):0}} ￥</div>
+          <div class="fake-input">{{ item.number?(item.number*item.material.price).toLocaleString('en-US'):0}} ￥</div>
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
+                <div class="name">{{ props.item.number }}</div>
                 <span class="addr">{{ props.item.name }}</span>
               </template>
             </el-autocomplete>
@@ -42,7 +42,7 @@
               </i>
               <template slot-scope="props">
                 <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.id }}</span>
+                <span class="addr">{{ props.item.number }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -78,23 +78,23 @@
           <th>操作</th>
         </tr>
       </thead>
-      <template v-if="preMaterialsList && preMaterialsList.data.length">
+      <template v-if="preMaterialsList && preMaterialsList.length">
         <tbody>
-          <tr v-for="(item, index) in preMaterialsList.data" :key="item.id">
+          <tr v-for="(item, index) in preMaterialsList" :key="item.id">
             <td>{{ index + 1 }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.parameter }}</td>
+            <td>{{ item.param }}</td>
             <td>{{ item.model }}</td>
-            <td>{{ item.manufacturer }}</td>
+            <td>{{ item.factor }}</td>
             <td>{{ item.unit }}</td>
-            <td>{{ item.prePrice.toLocaleString('en-US') }} ￥</td>
-            <td>{{ item.preQuantity.toLocaleString('en-US') }}</td>
-            <td>{{ item.preAmount.toLocaleString('en-US') }} ￥</td>
+            <td>{{ item.price.toLocaleString('en-US') }} ￥</td>
+            <td>{{ item.number.toLocaleString('en-US') }}</td>
+            <td>{{ item.cost.toLocaleString('en-US') }} ￥</td>
             <td>{{ materialType[item.type] }}</td>
-            <td>{{ item.realQuantity.toLocaleString('en-US') }}</td>
-            <td>{{ item.realAmount.toLocaleString('en-US') }} ￥</td>
-            <td>{{ item.leftQuantity.toLocaleString('en-US') }}</td>
-            <td>{{ item.leftAmount.toLocaleString('en-US') }} ￥</td>
+            <td>{{ item.buy_number.toLocaleString('en-US') }}</td>
+            <td>{{ (item.buy_number * item.price).toLocaleString('en-US') }} ￥</td>
+            <td>{{ item.need_buy.toLocaleString('en-US') }}</td>
+            <td>{{ (item.need_buy * item.price).toLocaleString('en-US') }} ￥</td>
             <td>
               <el-button type="text" @click="checkDetail(item, index)">查询明细</el-button>
             </td>
@@ -103,12 +103,12 @@
         <tfoot>
           <tr>
             <th colspan="8">合计</th>
-            <th>{{ preMaterialsList.count1.toLocaleString('en-US') }} ￥</th>
+            <th>{{ amountCost.count1.toLocaleString('en-US') }} ￥</th>
             <th></th>
             <th></th>
-            <th>{{ preMaterialsList.count2.toLocaleString('en-US') }} ￥</th>
+            <th>{{ amountCost.count2.toLocaleString('en-US') }} ￥</th>
             <th></th>
-            <th>{{ preMaterialsList.count3.toLocaleString('en-US') }} ￥</th>
+            <th>{{ amountCost.count3.toLocaleString('en-US') }} ￥</th>
             <th></th>
           </tr>
         </tfoot>
@@ -134,17 +134,17 @@
         <thead>
           <tr>
             <th>物料名称</th>
-            <th class="font-normal">{{ materialsDetail.name }}</th>
+            <th class="font-normal">{{ currentMaterial.name }}</th>
             <th>性能技术参数</th>
-            <th class="font-normal table-content">{{ materialsDetail.parameter }}</th>
+            <th class="font-normal table-content">{{ currentMaterial.param }}</th>
             <th>品牌型号</th>
-            <th class="font-normal">{{ materialsDetail.model }}</th>
+            <th class="font-normal">{{ currentMaterial.model }}</th>
           </tr>
           <tr>
             <th>单位</th>
-            <th class="font-normal">{{ materialsDetail.unit }}</th>
+            <th class="font-normal">{{ currentMaterial.unit }}</th>
             <th>生产厂家</th>
-            <th class="font-normal" colspan="3">{{ materialsDetail.manufacturer }}</th>
+            <th class="font-normal" colspan="3">{{ currentMaterial.factor }}</th>
           </tr>
           <tr>
             <th>采购编号</th>
@@ -157,18 +157,18 @@
         <tbody>
           <tr>
             <td class="font-bold">预算成本</td>
-            <td>{{ materialsDetail.pre.quantity.toLocaleString('en-US') }}</td>
-            <td>{{ materialsDetail.pre.price.toLocaleString('en-US') }}</td>
-            <td>{{ materialsDetail.pre.amount.toLocaleString('en-US') }}</td>
+            <td>{{ currentMaterial.number.toLocaleString('en-US') }}</td>
+            <td>{{ currentMaterial.price.toLocaleString('en-US') }}</td>
+            <td>{{ currentMaterial.cost.toLocaleString('en-US') }}</td>
             <td colspan="2"></td>
           </tr>
-          <template v-if="materialsDetail.data.length">
-            <tr v-for="(item, index) in materialsDetail.data" :key="item.id">
-              <td>{{ item.number }}</td>
-              <td>{{ item.quantity.toLocaleString('en-US') }}</td>
-              <td>{{ item.amount.toLocaleString('en-US') }}</td>
-              <td>{{ item.amount.toLocaleString('en-US') }}</td>
-              <td colspan="2">{{ item.manufacturer }}</td>
+          <template v-if="materialsDetail.length">
+            <tr v-for="(item, index) in materialsDetail" :key="item.id">
+              <td>{{ item.id }}</td>
+              <td>{{ item.number.toLocaleString('en-US') }}</td>
+              <td>{{ item.price.toLocaleString('en-US') }}</td>
+              <td>{{ item.cost.toLocaleString('en-US') }}</td>
+              <td colspan="2">{{ item.supplier }}</td>
             </tr>
           </template>
 
@@ -181,9 +181,9 @@
         <tfoot>
           <tr>
             <th>余额</th>
-            <th>{{ materialsDetail.left.quantity.toLocaleString('en-US') }}</th>
+            <th>{{ singleCost.number.toLocaleString('en-US') }}</th>
             <th></th>
-            <th>{{ materialsDetail.left.amount.toLocaleString('en-US') }}</th>
+            <th>{{ singleCost.amount.toLocaleString('en-US') }}</th>
             <th colspan="2"></th>
           </tr>
         </tfoot>

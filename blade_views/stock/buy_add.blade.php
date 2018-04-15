@@ -12,6 +12,11 @@
   <div class="active section">收货入库</div>
 </div>
 
+<input type="hidden" id="projectId" value="">
+<input type="hidden" id="purchaseId" value="">
+<input type="hidden" id="stockReceiver" value="陈经理">
+<div style="display: none;" id="buyMaterials">[{"id":1,"name":"物料一","model":"型号一","unit":"个","price":253,"number":2534,"cost":50876,"buy_number":1500,"need_number":1034},{"id":2,"name":"物料二","model":"型号二","unit":"个","price":253,"number":2534,"cost":50876,"buy_number":1500,"need_number":1034},{"id":3,"name":"物料三","model":"型号三","unit":"个","price":253,"number":2534,"cost":50876,"buy_number":1500,"need_number":1034},{"id":4,"name":"物料四","model":"型号四","unit":"个","price":253,"number":2534,"cost":50876,"buy_number":1500,"need_number":1034}]</div>
+
 <h1 class="ui red header blue center aligned">收货入库</h1>
 <div class="invisible" id="stockBuyAdd">
   <h4 class="ui dividing header blue">基本信息</h4>
@@ -53,7 +58,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">项目编号</label>
           <div class="eleven wide field">
-            <div class="fake-input" id="stockProjectId">XM123125412321</div>
+            <div class="fake-input">XM123125412321</div>
           </div>
         </div>
       </div>
@@ -91,8 +96,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">收货人</label>
           <div class="eleven wide field">
-            <input type="hidden" id="stockReceiver" value="陈经理">
-            <input type="text" v-model="stockBuyAdd.receiver" placeholder="收货人">
+            <input type="text" v-model="stockBuyAdd.worker" placeholder="收货人">
           </div>
         </div>
       </div>
@@ -101,7 +105,7 @@
           <label class="six wide field flex-center">仓库</label>
           <div class="eleven wide field">
             <div class="fake-input" v-if="stockBuyAdd.projectId">{{ stockBuyAdd.projectId }}</div>
-            <el-autocomplete v-else popper-class="my-autocomplete" v-model="stockBuyAdd.stock" :fetch-suggestions="querySearch" placeholder="请输入项目内容"
+            <el-autocomplete v-else popper-class="my-autocomplete" v-model="stockBuyAdd.warehouse_name" :fetch-suggestions="querySearch" placeholder="请输入项目内容"
               @select="handleSelect">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -149,7 +153,7 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockBuyAdd.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in stockBuyAdd.lists" :key="item.id">
         <div class="two wide column">
           <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
         </div>
@@ -163,23 +167,23 @@
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') + ' ￥' || '无'}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.quantity.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.amount.toLocaleString('en-US') + ' ￥' || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.cost.toLocaleString('en-US') + ' ￥' || '无'}}</div>
         </div>
         <div class="two wide column">
           <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.left_number.toLocaleString('en-US') || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.need_number.toLocaleString('en-US') || '无'}}</div>
         </div>
         <div class="two wide column">
-          <input v-model.number="item.current_number" :min="0" :max="item.material.left_number" type="number" placeholder="本次入库数量">
+          <input v-model.number="item.number" :min="0" :max="item.material.need_number" type="number" placeholder="本次入库数量">
         </div>
         <div class="one wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>

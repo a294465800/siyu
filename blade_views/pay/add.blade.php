@@ -30,7 +30,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">付款金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="payForm.amount" placeholder="请输入付款金额">
+            <input type="number" v-model.number="payForm.price" placeholder="请输入付款金额">
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">用途</label>
           <div class="eleven wide field">
-            <input type="text" v-model="payForm.usage" placeholder="请输入用途">
+            <input type="text" v-model="payForm.application" placeholder="请输入用途">
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">申请人</label>
           <div class="eleven wide field">
-            <input type="text" v-model="payForm.people" placeholder="请输入申请人">
+            <input type="text" v-model="payForm.apply_user" placeholder="请输入申请人">
           </div>
         </div>
       </div>

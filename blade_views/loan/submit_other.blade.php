@@ -20,7 +20,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">报销人</label>
           <div class="eleven wide field">
-            <input type="text" v-model="submitOtherForm.people" placeholder="请输入报销人">
+            <input type="text" v-model="submitOtherForm.loan_user" placeholder="请输入报销人">
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">报销金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="submitOtherForm.amount" placeholder="请选择报销金额">
+            <input type="number" v-model.number="submitOtherForm.price" placeholder="请选择报销金额">
           </div>
         </div>
       </div>
@@ -48,12 +48,12 @@
   <h4 class="ui dividing header blue">报销单据录入</h4>
   <div class="flex-row">
     <el-select @change="typeChange" style="width:250px;margin-right:30px;" v-model="paymentData.currentTypeIndex" placeholder="请选择费用类别">
-      <el-option v-for="(item, index) in paymentData.typeList" :key="item.id" :label="item.name" :value="index">
+      <el-option v-for="(item, index) in paymentData.typeList" :key="item.id" :label="item.title" :value="index">
       </el-option>
     </el-select>
     <el-select @change="detailTypeChange" style="width:250px;margin-right:30px;" v-model="paymentData.currentDetailTypeIndex"
       placeholder="请选择具体事项">
-      <el-option v-for="(item, index) in paymentData.detailTypeList" :key="item.id" :label="item.name" :value="index">
+      <el-option v-for="(item, index) in paymentData.detailTypeList" :key="item.id" :label="item.title" :value="index">
       </el-option>
     </el-select>
     <button class="ui button positive" @click="addItem">新增单据</button>
@@ -71,7 +71,7 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in submitOtherForm.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in submitOtherForm.lists" :key="item.id">
         <div class="one wide column">
           <div class="fake-input">{{ index + 1 }}</div>
         </div>
@@ -88,11 +88,11 @@
           <input type="number" v-model.number="item.number" placeholder="单据张数">
         </div>
         <div class="two wide column">
-          <input type="number" v-model.number="item.amount" placeholder="金额">
+          <input type="number" v-model.number="item.price" placeholder="金额">
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>
