@@ -89,13 +89,14 @@
 
           //新增项
           addItem() {
-            const fatherIndex = this.paymentData.currentTypeIndex
-            const sonIndex = this.paymentData.currentDetailTypeIndex
-            if (fatherIndex !== '') {
+            const category_id = this.paymentData.currentType
+            const kind_id = this.paymentData.currentDetailType
+            if (category_id !== '') {
               const list = this.submitOtherForm.lists
               let data = {
                 id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
-                kind_id: sonIndex ? sonIndex : fatherIndex,
+                kind_id: kind_id,
+                category_id: category_id,
                 type: this.paymentData.currentType.title,
                 detailType: this.paymentData.currentDetailType.title,
               }
@@ -107,6 +108,7 @@
                 type: 'error'
               })
             }
+
           },
 
           //删除
@@ -130,7 +132,8 @@
 
           //提交
           submit() {
-            _http.LoanManager.createSubmit(this.loanForm)
+            console.log(this.submitOtherForm)
+            _http.LoanManager.createSubmit(this.submitOtherForm)
               .then(res => {
                 if (res.data.code === '200') {
                   this.$notify({
