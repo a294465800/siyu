@@ -141,6 +141,7 @@
           },
           handleSelectProjectId(item) {
             this.project.id = item.number
+            this.project.project_id = item.id
             this.project.content = item.name
             this.searchMaterials()
           },

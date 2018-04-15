@@ -78,7 +78,8 @@
             }, 500)
           },
           handleSelectProjectId(item) {
-            this.extrabudgetary.project_id = item.number
+            this.extrabudgetary.project_id = item.id
+            this.extrabudgetary.project_number = item.number
             this.extrabudgetary.project_content = item.name
           },
 
@@ -110,7 +111,8 @@
             }, 500)
           },
           handleSelectProjectContent(item) {
-            this.extrabudgetary.project_id = item.number
+            this.extrabudgetary.project_id = item.id
+            this.extrabudgetary.project_number = item.number
             this.extrabudgetary.project_content = item.name
           },
 
