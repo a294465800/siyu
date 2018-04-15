@@ -146,6 +146,7 @@
                 number: list[i].number,
                 price: list[i].price,
               }
+              result.lists.push(tmp)
             }
             return result
           },
