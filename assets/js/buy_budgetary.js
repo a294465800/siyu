@@ -24,16 +24,6 @@
           }
         },
         mounted() {
-          $('#submitBtn').on('click', () => {
-            if (this.project.id && this.project.content) {} else {
-              return false
-              this.$notify({
-                type: 'error',
-                title: '错误',
-                message: '请先选择项目'
-              })
-            }
-          })
           $('#buyBudgetary').removeClass('invisible')
         },
 
@@ -208,6 +198,19 @@
               })
 
           },
+
+          submit() {
+            if (this.project.id && this.project.content) {
+              _helper.fullWindow(`../buy/budgetary_buy?id=${this.project.project_id}`)
+            } else {
+              return false
+              this.$notify({
+                type: 'error',
+                title: '错误',
+                message: '请先选择项目'
+              })
+            }
+          }
 
         }
       })
