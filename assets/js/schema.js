@@ -252,7 +252,8 @@
     project_id: '', //项目id
     project_content: '', //项目内容
     project_manger: '', //项目经理
-    lists: [] //合同清单
+    lists: [], //合同清单
+    list: []
   }
 
   const buildFinishAdd = {

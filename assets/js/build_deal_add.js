@@ -164,6 +164,7 @@
                   }
                 })
                 .catch(err => {
+                  console.log(err)
                   this.$notify({
                     title: '错误',
                     message: '服务器出错',
