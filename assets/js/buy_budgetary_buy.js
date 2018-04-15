@@ -44,9 +44,7 @@
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           const materials = $('#materials').text().trim()
-          console.log('================material:', materials)
           this.materials = materials === '' ? [] : JSON.parse(materials)
-          console.log('================解析成功的material:', this.materials)
           this.budgetary_buy.project_id = $('#projectId').val()
           $('#budgetaryBuy').removeClass('invisible')
         },
@@ -82,10 +80,10 @@
           
           //供应商输入提示
           handleSelectSupplier(item) {
-            this.extrabudgetary.info.supplier_id = item.id
-            this.extrabudgetary.info.supplier_name = item.name
-            this.extrabudgetary.info.bank = item.bank
-            this.extrabudgetary.info.account = item.account
+            this.budgetary_buy.info.supplier_id = item.id
+            this.budgetary_buy.info.supplier_name = item.name
+            this.budgetary_buy.info.bank = item.bank
+            this.budgetary_buy.info.account = item.account
           },
           querySearchSupplier(queryString, cb) {
 
