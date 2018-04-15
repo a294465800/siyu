@@ -88,8 +88,9 @@
             }, 500)
           },
           handleSelectProjectId(item) {
-            this.payForm.project_id = item.number
-            this.payForm.project_content = item.name
+            this.buildDealAdd.project_id = item.id
+            this.buildDealAdd.project_number = item.number
+            this.buildDealAdd.project_content = item.name
             this.buildDealAdd.project_manager = item.pm
           },
           querySearchProjectContent(queryString, cb) {
@@ -122,7 +123,8 @@
             }, 500)
           },
           handleSelectProjectContent(item) {
-            this.buildDealAdd.project_id = item.number
+            this.buildDealAdd.project_id = item.id
+            this.buildDealAdd.project_number = item.number
             this.buildDealAdd.project_content = item.name
             this.buildDealAdd.project_manager = item.pm
           },
@@ -142,7 +144,7 @@
                 .then(res => {
                   if (res.data.code === '200') {
                     const buildDealAdd = res.data.data
-                    this.buildDealAdd.lists.push({
+                    this.buildDealAdd.list.push({
                       id: resData.size,
                       name: resData.name,
                       url: resData.url
