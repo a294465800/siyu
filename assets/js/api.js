@@ -316,11 +316,6 @@
       })
     }
 
-    //选择审批人
-    selectPay(data = {}) {
-      return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
-    }
-
     //搜索用户  包含role 和 project
     searchAuthUsers(search = {}) {
       return this._http.get(`/users`, {
@@ -372,6 +367,11 @@
     // 付款
     createPayPay(data = {}) {
       return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
+    }
+    
+    //选择审批人
+    selectPay(data = {}) {
+      return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
     }
 
   }
