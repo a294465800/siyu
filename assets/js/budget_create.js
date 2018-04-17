@@ -54,7 +54,7 @@
             this.newMaterial.material_id = item.id
             this.newMaterial.param = item.param
             this.newMaterial.model = item.model
-            this.newMaterial.factor = item.factor
+            this.newMaterial.factory = item.factory
             this.newMaterial.unit = item.unit
           },
 
