@@ -184,7 +184,7 @@
                 name: queryString,
                 project_id: this.extrabudgetary.project_id || ''
               }
-              _http.MaterialManager.searchProjectMaterial(searchKey)
+              _http.MaterialManager.searchMaterial(searchKey)
                 .then(res => {
                   if (res.data.code === '200') {
                     cb(res.data.data)
