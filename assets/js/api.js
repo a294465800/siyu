@@ -355,6 +355,25 @@
       return this._http.post(`/pay/add`, data, this.dataMethodDefaults)
     }
 
+    //撤销申请
+    calcelPay(data){
+      return this._http.get(`/pay/cancel`, {
+        params: data
+      })
+    }
+
+    //审批
+    confirmPay(data){
+      return this._http.get(`/pay/confirm`, {
+        params: data
+      })
+    }
+
+    // 付款
+    createPayPay(data = {}){
+      return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
+    }
+
   }
 
   // 验收
