@@ -169,6 +169,7 @@
             } else {
               data.name = newMaterial.name
             }
+            console.log(data, '============================')
             this.extrabudgetary.lists.push(data)
           },
 
