@@ -201,15 +201,16 @@
           },
 
           submit() {
+            console.log(1)
             if (this.project.id && this.project.content) {
               _helper.fullWindow(`../buy/budgetary_buy?id=${this.project.project_id}`)
             } else {
-              return false
               this.$notify({
                 type: 'error',
                 title: '错误',
                 message: '请先选择项目'
               })
+              return false
             }
           }
 
