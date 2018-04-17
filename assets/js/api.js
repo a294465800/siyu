@@ -317,7 +317,7 @@
     }
 
     //选择审批人
-    selectPay(data = {}){
+    selectPay(data = {}) {
       return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
     }
 
@@ -356,21 +356,21 @@
     }
 
     //撤销申请
-    calcelPay(data){
+    calcelPay(data) {
       return this._http.get(`/pay/cancel`, {
         params: data
       })
     }
 
     //审批
-    confirmPay(data){
+    confirmPay(data) {
       return this._http.get(`/pay/confirm`, {
         params: data
       })
     }
 
     // 付款
-    createPayPay(data = {}){
+    createPayPay(data = {}) {
       return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
     }
 
@@ -531,6 +531,33 @@
       return this._http.get(`/search/category`, {
         params: search
       })
+    }
+
+    //撤销借款
+    cancelLoan(data = {}) {
+      return this._http.get(`/loan/cancel`, {
+        params: data
+      })
+    }
+
+
+    //审批借款
+    confirmLoan(data = {}) {
+      return this._http.get(`/loan/confirm`, {
+        params: data
+      })
+    }
+
+    //选择审批人
+    selectLoan(data = {}) {
+      return this._http.get(`/loan/select`, {
+        params: data
+      })
+    }
+
+    //录入修改
+    payLoan(data = {}) {
+      return this._http.post(`/loan/pay/finish`, data, this.dataMethodDefaults)
     }
 
   }
