@@ -315,6 +315,18 @@
         params: search
       })
     }
+
+    //选择审批人
+    selectPay(data = {}){
+      return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
+    }
+
+    //搜索用户  包含role 和 project
+    searchAuthUsers(search = {}) {
+      return this._http.get(`/users`, {
+        params: search
+      })
+    }
   }
 
   //费用付款管理
