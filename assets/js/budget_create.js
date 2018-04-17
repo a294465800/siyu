@@ -56,6 +56,7 @@
             this.newMaterial.model = item.model
             this.newMaterial.factory = item.factory
             this.newMaterial.unit = item.unit
+            this.newMaterial.name = item.name
           },
 
           //检索物料添加
