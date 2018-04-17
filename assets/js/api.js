@@ -113,14 +113,20 @@
     }
 
     //预算内采购项目材料
-    searchBudgetMaterial(id, search = {}){
+    searchBudgetMaterial(id, search = {}) {
       return this._http.get(`/search/budget?project=${id}`, {
         params: search
       })
     }
 
-    searchPurchase(id){
+    searchPurchase(id) {
       return this._http.get(`/search/purchase?budget=${id}`)
+    }
+
+    searchMaterial(search = {}) {
+      return this._http.get(`/search/material`, {
+        params: search
+      })
     }
   }
 
@@ -309,6 +315,18 @@
         params: search
       })
     }
+
+    //选择审批人
+    selectPay(data = {}){
+      return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
+    }
+
+    //搜索用户  包含role 和 project
+    searchAuthUsers(search = {}) {
+      return this._http.get(`/users`, {
+        params: search
+      })
+    }
   }
 
   //费用付款管理
@@ -335,6 +353,25 @@
     //申请付款
     createPayAdd(data = {}) {
       return this._http.post(`/pay/add`, data, this.dataMethodDefaults)
+    }
+
+    //撤销申请
+    calcelPay(data){
+      return this._http.get(`/pay/cancel`, {
+        params: data
+      })
+    }
+
+    //审批
+    confirmPay(data){
+      return this._http.get(`/pay/confirm`, {
+        params: data
+      })
+    }
+
+    // 付款
+    createPayPay(data = {}){
+      return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
     }
 
   }
