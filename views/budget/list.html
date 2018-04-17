@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- 全局依赖 ==== 所有页面都要有 -->
+<link rel="stylesheet" type="text/css" href="../../plugins/semantic/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="../../plugins/element-ui/index.css">
+<!-- <link rel="stylesheet" href="../../plugins/nprogress/nprogress.css"> -->
+<link rel="stylesheet" type="text/css" href="../../src/css/erp.css">
+<!-- /全局依赖 -->
+
+  <title>预算清单</title>
+</head>
+
+<body>
+  <!-- 通用布局 === 复用 -->
+  <div class="index-navbar ui menu blue-background print-hide">
+    <span id="sidebarBtn" class="index-navbar-item-left pull-left">
+      <i class="sidebar icon"></i>
+      <span>森乾科技</span>
+    </span>
+    <div class="index-navbar-item-show right menu">
+      <a class="item">
+        <i class="user icon"></i>
+        <span>管理员</span>
+      </a>
+      <a class="item">
+        <i class="help circle icon"></i>
+        <span>帮助</span>
+      </a>
+      <a class="item">
+        <i class="sound icon"></i>
+        <span>客服</span>
+      </a>
+      <a class="item">
+        <i class="power icon"></i>
+        <span>退出</span>
+      </a>
+    </div>
+    <div class="index-navbar-item-hidden margin-right ui dropdown">操作
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item" href="#">
+          <i class="user icon"></i>
+          <span>管理员</span>
+        </a>
+        <a class="item">
+          <i class="help circle icon"></i>
+          <span>帮助</span>
+        </a>
+        <a class="item">
+          <i class="sound icon"></i>
+          <span>客服</span>
+        </a>
+        <a class="item">
+          <i class="power icon"></i>
+          <span>退出</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="index-aside invisible print-hide" id="navbar">
+    <el-menu :unique-opened="true" :default-active="navActive" class="el-menu-vertical-demo">
+      <el-menu-item index="index" style="padding:0;">
+        <a href="../index/index.html" slot="title" style="padding-left:20px">
+          <i class="icon home"></i>
+          <span>首页</span>
+        </a>
+      </el-menu-item>
+      <el-submenu index="project">
+        <template slot="title">
+          <i class="icon sticky note"></i>
+          <span>项目立项管理</span>
+        </template>
+        <el-menu-item index="projectDetail">
+          <a href="../project/detail.html">项目明细清单</a>
+        </el-menu-item>
+        <el-menu-item index="projectList">
+          <a href="../project/list.html">已立项清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="budget">
+        <template slot="title">
+          <i class="icon hashtag"></i>
+          <span>预算管理</span>
+        </template>
+        <el-menu-item index="budgetList">
+          <a href="../budget/list.html">预算清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="check">
+        <template slot="title">
+          <i class="icon suitcase"></i>
+          <span>验收与收款管理</span>
+        </template>
+        <el-menu-item index="checkCheck">
+          <a href="../check/list.html">验收与收款清单</a>
+        </el-menu-item>
+        <el-menu-item index="checkTips">
+          <a href="../check/tips.html">收款提示</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="buy">
+        <template slot="title">
+          <i class="icon shopping basket"></i>
+          <span>采购管理</span>
+        </template>
+        <el-menu-item index="buyList">
+          <a href="../buy/list.html">采购清单</a>
+        </el-menu-item>
+        <el-menu-item index="buyProjectList">
+          <a href="../buy/project_list.html">采购立项清单</a>
+        </el-menu-item>
+        <el-menu-item index="buyPayList">
+          <a href="../buy/pay_list.html">采购付款清单</a>
+        </el-menu-item>
+        <el-menu-item index="buyChargeList">
+          <a href="../buy/charge_list.html">采购收票清单</a>
+        </el-menu-item>
+        <el-menu-item index="buyCollect">
+          <a href="../buy/collect.html">采购汇总清单</a>
+        </el-menu-item>
+        <el-menu-item index="buyParity">
+          <a href="../buy/parity.html">物料采购比价</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="stock">
+        <template slot="title">
+          <i class="icon archive"></i>
+          <span>库存管理</span>
+        </template>
+        <el-menu-item index="stockList">
+          <a href="../stock/list.html">库存清单</a>
+        </el-menu-item>
+        <el-menu-item index="stockBuyList">
+          <a href="../stock/buy_list.html">采购收货清单</a>
+        </el-menu-item>
+        <el-menu-item index="stockReturnList">
+          <a href="../stock/return_list.html">退料入库清单</a>
+        </el-menu-item>
+        <el-menu-item index="stockGetList">
+          <a href="../stock/get_list.html">领料出库清单</a>
+        </el-menu-item>
+        <el-menu-item index="stockOutList">
+          <a href="../stock/out_list.html">退货出库清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="build">
+        <template slot="title">
+          <i class="icon legal"></i>
+          <span>施工管理</span>
+        </template>
+        <el-menu-item index="buildList">
+          <a href="../build/list.html">施工费清单</a>
+        </el-menu-item>
+        <el-menu-item index="buildDealList">
+          <a href="../build/deal_list.html">备案合同清单</a>
+        </el-menu-item>
+        <el-menu-item index="buildFinishList">
+          <a href="../build/finish_list.html">完工请款清单</a>
+        </el-menu-item>
+        <el-menu-item index="buildPayList">
+          <a href="../build/pay_list.html">施工付款清单</a>
+        </el-menu-item>
+        <el-menu-item index="buildGetList">
+          <a href="../build/get_list.html">施工收票清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="loan">
+        <template slot="title">
+          <i class="icon ordered list"></i>
+          <span>报销与借款管理</span>
+        </template>
+        <el-menu-item index="loanList">
+          <a href="../loan/list.html">报销与借款清单</a>
+        </el-menu-item>
+        <el-menu-item index="loanDetailList">
+          <a href="../loan/detail_list.html">查询明细</a>
+        </el-menu-item>
+        <el-menu-item index="loanLoanList">
+          <a href="../loan/loan_list.html">借款清单</a>
+        </el-menu-item>
+        <el-menu-item index="loanSubmitList">
+          <a href="../loan/submit_list.html">报销申请清单</a>
+        </el-menu-item>
+        <el-menu-item index="loanPayList">
+          <a href="../loan/pay_list.html">报销付款清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="pay">
+        <template slot="title">
+          <i class="icon yen"></i>
+          <span>费用付款管理</span>
+        </template>
+        <el-menu-item index="payList">
+          <a href="../pay/list.html">付款审批清单</a>
+        </el-menu-item>
+      </el-submenu>
+      <el-submenu index="data">
+        <template slot="title">
+          <i class="icon database"></i>
+          <span>数据维护</span>
+        </template>
+        <el-menu-item index="dataAuth">
+          <a href="../data/auth_list.html">人员权限</a>
+        </el-menu-item>
+        <el-menu-item index="dataType">
+          <a href="../data/type_list.html">项目类别</a>
+        </el-menu-item>
+        <el-menu-item index="dataSupplier">
+          <a href="../data/supplier_list.html">供应商</a>
+        </el-menu-item>
+        <el-menu-item index="dataMateriel">
+          <a href="../data/material_list.html">物料</a>
+        </el-menu-item>
+        <el-menu-item index="dataWarehouse">
+          <a href="../data/warehouse_list.html">仓库</a>
+        </el-menu-item>
+        <el-menu-item index="dataBank">
+          <a href="../data/bank_list.html">银行账户</a>
+        </el-menu-item>
+        <el-menu-item index="dataInvoice">
+          <a href="../data/invoice_list.html">发票类型</a>
+        </el-menu-item>
+        <el-menu-item index="dataTeam">
+          <a href="../data/team_list.html">施工队</a>
+        </el-menu-item>
+        <el-menu-item index="dataPayment">
+          <a href="../data/payment_list.html">报销费用类型</a>
+        </el-menu-item>
+      </el-submenu>
+    </el-menu>
+  </div>
+  <!-- /通用布局 -->
+
+  <!-- 主体内容 === 不可复用 -->
+  <div class="index-content print-no-padding">
+
+<div class="ui breadcrumb">
+  <a class="section">预算管理</a>
+  <div class="divider"> / </div>
+  <div class="active section">预算清单</div>
+</div>
+
+<!-- 操作区域 -->
+<div class="content-operation flex-row flex-between">
+  <div>
+    <a class="ui green button" href="#">
+      <i class="icon download"></i>
+      <span>Excel 导出</span>
+    </a>
+  </div>
+  <form action="" class="ui form flex-fluid">
+    <div class="ui left action right input fluid">
+      <div class="ui button white dropdown ">
+        <input name="seartch-type" type="hidden">
+        <div class="text">请选中搜索内容</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" data-value="1">项目号</div>
+          <div class="item" data-value="2">项目内容</div>
+        </div>
+      </div>
+      <input name="value" type="text" placeholder="搜索内容" value="">
+      <button class="ui button">搜索</button>
+    </div>
+  </form>
+</div>
+<!-- / 操作区域 -->
+
+<!-- 表格循环 -->
+<div class="content-wrap table-head-nowrap">
+  <table class="ui celled structured table unstackable center aligned">
+    <thead>
+      <tr>
+        <th rowspan="2">类型</th>
+        <th rowspan="2">项目</th>
+        <th rowspan="2">内容</th>
+        <th rowspan="2">金额相关</th>
+        <th rowspan="2">金额类型</th>
+        <th rowspan="2">金额</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="6">基本</td>
+        <td>项目号</td>
+        <td>1234232</td>
+        <td rowspan="2">
+          <div class="flex-row flex-between">
+            <span>项目实际金额</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+        <td>主合同金额</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td>项目内容</td>
+        <td class="detail__content">这是项目内容这是项目内容这是项目内容这是项目内容</td>
+        <td>分包合同金额</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td>项目经理</td>
+        <td>程先生</td>
+        <td rowspan="3">
+          <div class="flex-row flex-between">
+            <span>预算总金额</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+        <td>物料采购金额</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td>合同金额</td>
+        <td>12,423,222 ￥</td>
+        <td>工程金额</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td>验收日期</td>
+        <td>2018-11-21</td>
+        <td>其他</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td>保修截至日期</td>
+        <td>2018-11-21</td>
+        <td rowspan="7">
+          <div class="flex-row flex-between">
+            <span>已发生成本</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+        <td>领料成本</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="font-bold">成本 / 预算</td>
+        <td>施工成本</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td colspan="2">总成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
+        <td rowspan="3">
+          <div class="flex-row flex-between">
+            <span>报销项目成本</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+        <td>
+          <div class="flex-row flex-between">
+            <span>报销材料款</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">物料实际成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
+        <td>
+          <div class="flex-row flex-between">
+            <span>报销材料款</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">工程实际成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
+        <td>
+          <div class="flex-row flex-between">
+            <span>报销工程款</span>
+            <span>12,423,222 ￥</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">其他成本 / 预算</td>
+        <td>123,523 / 123,623 = 0.9</td>
+        <td>费用付款其他成本</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+      <tr>
+        <td class="center aligned" style="font-size: 40px;" colspan="3">
+          <a href="javascript:_helper.fullWindow('../budget/detail.html?id=1')">查看</a>
+        </td>
+        <td>退料成本</td>
+        <td>12,423,222 ￥</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- / 表格循环 -->
+
+</div>
+<!-- /主体内容 === 不可复用 -->
+
+<!-- 全局依赖 js === 通用 -->
+<script src="../../plugins/jquery/jquery.3.2.1.min.js"></script>
+<script src="../../plugins/vue/vue.min.js"></script>
+<script src="../../plugins/semantic/semantic.min.js"></script>
+<script src="../../plugins/element-ui/index.min.js"></script>
+<!-- <script src="../../plugins/lodash/lodash.min.js"></script> -->
+<script src="../../plugins/axios/axios.min.js"></script>
+<script src="../../plugins/axios/qs.min.js"></script>
+<!-- <script src="../../plugins/nprogress/nprogress.js"></script> -->
+<!-- <script src="../../plugins/layDate/laydate.js"></script> -->
+<script src="../../src/js/helper.js"></script>
+<script src="../../src/js/api.js"></script>
+<script src="../../src/js/schema.js"></script>
+<script src="../../src/js/global.js"></script>
+<!-- / 全局依赖 js === 通用 -->
+<!-- 独立 js -->
+<script src="../../src/js/budget_list.js"></script>
+<!-- / 独立 js -->
+</body>
+
+</html>
