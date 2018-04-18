@@ -490,6 +490,11 @@
     selectPaymentCheck(data = {}){
       return this._http.post(`/purchase/payment/select/check`, data, this.dataMethodDefaults)
     }
+
+    // 付款录入
+    createPaymentAdd(data = {}){
+      return this._http.post(`/purchase/payment/finish`, data, this.dataMethodDefaults)
+    }
   }
 
 
