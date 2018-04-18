@@ -446,7 +446,7 @@
 
     //采购收票
     createInvoice(data = {}) {
-      return this._http.post(`/purchase/invoice`, data, this.dataMethodDefaults)
+      return this._http.post(`/purchase/invoice/create`, data, this.dataMethodDefaults)
     }
 
     //采购复核

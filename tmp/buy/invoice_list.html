@@ -10,6 +10,7 @@
   <div class="active section">采购收票查询 - CG12512312521</div>
 </div>
 
+
 <h3 class="ui header center aligned">采购收票查询</h3>
 <div class="table-head-nowrap">
   <table class="ui celled center aligned table selectable unstackable">
