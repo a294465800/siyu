@@ -36,7 +36,7 @@
 
 <!-- 表格循环 -->
 <div class="content-wrap table-head-nowrap">
-  <table class="ui celled structured table unstackable center aligned">
+  <!-- <table class="ui celled structured table unstackable center aligned">
     <thead>
       <tr>
         <th rowspan="2">类型</th>
@@ -156,6 +156,66 @@
         </td>
         <td>退料成本</td>
         <td>12,423,222 ￥</td>
+      </tr>
+    </tbody>
+  </table> -->
+
+
+  <table class="ui center aligned table selectable unstackable">
+    <thead>
+      <tr>
+        <th>项目号</th>
+        <th>项目内容</th>
+        <th>项目经理</th>
+        <th class="function-toggle-one">项目实际金额（展开）</th>
+        <th class="function-one">主合同金额</th>
+        <th class="function-one">分包合同金额</th>
+        <th class="function-toggle-two">预算总额（展开）</th>
+        <th class="function-two">物料采购金额</th>
+        <th class="function-two">工程金额</th>
+        <th class="function-two">其他</th>
+        <th class="function-toggle-three">已发生成本（展开）</th>
+        <th class="function-three">可领料成本</th>
+        <th class="function-three">施工成本</th>
+        <th class="function-three">报销材料款</th>
+        <th class="function-three">报销工程款</th>
+        <th class="function-three">报销其他费用</th>
+        <th class="function-three">费用付款其他成本</th>
+        <th class="function-three">退料成本</th>
+        <th>总成本 / 预算</th>
+        <th>物料实际成本 / 预算</th>
+        <th>工程实际成本 / 预算</th>
+        <th>其他成本 / 预算</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>XM203023</td>
+        <td>项目内容</td>
+        <td>陈经理</td>
+        <td>12,232￥</td>
+        <td class="function-one">12,232￥</td>
+        <td class="function-one">12,232￥</td>
+        <td>12,232￥</td>
+        <td class="function-two">12,232￥</td>
+        <td class="function-two">12,232￥</td>
+        <td class="function-two">12,232￥</td>
+        <td>12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td class="function-three">12,232￥</td>
+        <td>12,232￥</td>
+        <td>12,232￥</td>
+        <td>12,232￥</td>
+        <td>12,232￥</td>
+        <td>
+          <a href="javascript:_helper.fullWindow('../budget/detail.html?id=1')">查看</a>
+        </td>
       </tr>
     </tbody>
   </table>
