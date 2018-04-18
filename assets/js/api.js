@@ -474,6 +474,22 @@
       return this._http.post(`/purchase/select/pass`, data, this.dataMethodDefaults)
     }
 
+    //采购付款申请
+    createPayment(data = {}){
+      return this._http.post(`/purchase/payment/create`, data, this.dataMethodDefaults)
+    }
+
+    //采购付款复核
+    paymentCheck(data = {}){
+      return this._http.get(`/purchase/payment/check`, {
+        params: search
+      })
+    }
+
+    // 选择复核人员
+    selectPaymentCheck(data = {}){
+      return this._http.post(`/purchase/payment/select/check`, data, this.dataMethodDefaults)
+    }
   }
 
 
