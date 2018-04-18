@@ -448,6 +448,32 @@
     createInvoice(data = {}) {
       return this._http.post(`/purchase/invoice`, data, this.dataMethodDefaults)
     }
+
+    //采购复核
+    createCheck(data = {}){
+      return this._http.get(`/purchase/check`, {
+        params: search
+      })
+    }
+
+    
+    //采购复核人选择
+    selectCheck(data = {}) {
+      return this._http.post(`/purchase/select/check`, data, this.dataMethodDefaults)
+    }
+
+    //采购审批
+    createCheck(data = {}){
+      return this._http.get(`/purchase/pass`, {
+        params: search
+      })
+    }
+    
+    //采购审批人选择
+    selectPass(data = {}) {
+      return this._http.post(`/purchase/select/pass`, data, this.dataMethodDefaults)
+    }
+
   }
 
 
