@@ -47,7 +47,7 @@
     }
 
     //项目用户权限删除
-    deleteProjectAuth(data = {}){
+    deleteProjectAuth(data = {}) {
       return this._http.get(`/del/project/role`, {
         params: data
       })
@@ -375,7 +375,7 @@
     createPayPay(data = {}) {
       return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
     }
-    
+
     //选择审批人
     selectPay(data = {}) {
       return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
@@ -456,50 +456,55 @@
       return this._http.post(`/purchase/invoice/create`, data, this.dataMethodDefaults)
     }
 
+    //修改收票
+    editInvoice(data = {}) {
+      return this._http.post(`/purchase/edit/invoice`, data, this.dataMethodDefaults)
+    }
+
     //采购复核
-    createCheck(data = {}){
+    createCheck(data = {}) {
       return this._http.get(`/purchase/check`, {
         params: search
       })
     }
 
-    
+
     //采购复核人选择
     selectCheck(data = {}) {
       return this._http.post(`/purchase/select/check`, data, this.dataMethodDefaults)
     }
 
     //采购审批
-    createCheck(data = {}){
+    createCheck(data = {}) {
       return this._http.get(`/purchase/pass`, {
         params: search
       })
     }
-    
+
     //采购审批人选择
     selectPass(data = {}) {
       return this._http.post(`/purchase/select/pass`, data, this.dataMethodDefaults)
     }
 
     //采购付款申请
-    createPayment(data = {}){
+    createPayment(data = {}) {
       return this._http.post(`/purchase/payment/create`, data, this.dataMethodDefaults)
     }
 
     //采购付款复核
-    paymentCheck(data = {}){
+    paymentCheck(data = {}) {
       return this._http.get(`/purchase/payment/check`, {
         params: search
       })
     }
 
     // 选择复核人员
-    selectPaymentCheck(data = {}){
+    selectPaymentCheck(data = {}) {
       return this._http.post(`/purchase/payment/select/check`, data, this.dataMethodDefaults)
     }
 
     // 付款录入
-    createPaymentAdd(data = {}){
+    createPaymentAdd(data = {}) {
       return this._http.post(`/purchase/payment/finish`, data, this.dataMethodDefaults)
     }
   }

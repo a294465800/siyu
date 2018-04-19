@@ -80,7 +80,7 @@
         <td colspan="6">暂无数据</td>
         <td style="white-space:nowrap;">
           <a class="ui mini button" href="javascript:_helper.fullWindow('../buy/payment_create.html?id=1')" title="修改付款申请">修改</a>
-          <a class="ui mini positive button" href="#" title="复核">复核</a>
+          <a class="ui mini positive button payment-check" data-id="1" title="复核">复核</a>
           <a class="ui mini primary button" href="javascript:_helper.fullWindow('../buy/payment_finish.html?id=1')" title="录入/修改实际付款">录入</a>
         </td>
       </tr>
@@ -98,7 +98,7 @@
         <td>刘一飞</td>
         <td>
           <a class="ui mini button" href="javascript:_helper.fullWindow('../buy/payment_create.html?id=2')" title="修改付款申请">修改</a>
-          <a class="ui mini positive button" href="#" title="复核">复核</a>
+          <a class="ui mini positive button payment-check" data-id="" title="复核">复核</a>
           <a class="ui mini primary button" href="javascript:_helper.fullWindow('../buy/payment_finish.html?id=2')" title="录入/修改实际付款">录入</a>
         </td>
       </tr>
@@ -116,7 +116,7 @@
         <td>刘一飞</td>
         <td>
           <a class="ui mini button" href="javascript:_helper.fullWindow('../buy/payment_create.html?id=3')" title="修改付款申请">修改</a>
-          <a class="ui mini positive button" href="#" title="复核">复核</a>
+          <a class="ui mini positive button payment-check" data-id="" title="复核">复核</a>
           <a class="ui mini primary button" href="javascript:_helper.fullWindow('../buy/payment_finish.html?id=3')" title="录入/修改实际付款">录入</a>
         </td>
       </tr>
