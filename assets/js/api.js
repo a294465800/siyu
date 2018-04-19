@@ -643,6 +643,25 @@
       })
     }
 
+    //报销付款人查询
+    loanUser(data = {}) {
+      return this._http.get(`/search/loan/user`, {
+        params: data
+      })
+    }
+
+    //查询报销人未支付报销单
+    loanListCheck(data = {}){
+      return this._http.get(`/search/loan/submit`, {
+        params: data
+      })
+    }
+
+    //报销
+    createPayAddPost(data = {}){
+      return this._http.post(`/loan/pay/add`, data, this.dataMethodDefaults)
+    }
+
   }
 
 
