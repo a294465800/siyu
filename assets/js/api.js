@@ -619,6 +619,30 @@
       return this._http.post(`/loan/pay/finish`, data, this.dataMethodDefaults)
     }
 
+    //报销复核
+    checkSubmit(data = {}) {
+      return this._http.get(`/check/submit`, {
+        params: data
+      })
+    }
+
+    //选择报销复核人
+    selectCheckSubmit(data = {}){
+      return this._http.post(`/select/check/submit`, data, this.dataMethodDefaults)
+    }
+
+    //选择报销审核人
+    selectPassSubmit(data = {}){
+      return this._http.post(`/select/check/submit`, data, this.dataMethodDefaults)
+    }
+
+    //报销审批
+    passSubmit(data = {}) {
+      return this._http.get(`/pass/submit`, {
+        params: data
+      })
+    }
+
   }
 
 

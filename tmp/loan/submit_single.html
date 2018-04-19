@@ -9,7 +9,9 @@
   <div class="divider"> / </div>
   <div class="active section">报销申请查询 - BXFK20171103001</div>
 </div>
-
+<input type="hidden" id="type" value="">
+<input type="hidden" id="projectId" value="">
+<input type="hidden" id="loanId" value="">
 <h3 class="ui header center aligned">报销申请查询 - BXFK20171103001</h3>
 <table class="ui celled center aligned table selectable">
   <thead>
@@ -87,7 +89,7 @@
     <i class="icon legal"></i>
     <span>复核</span>
   </button>
-  <a class="ui icon button primary" href="#" style="margin:0 20px;">
+  <a class="ui icon button primary" id="submitSinglePass" style="margin:0 20px;">
     <i class="icon edit"></i>
     <span>审批</span>
   </a>
