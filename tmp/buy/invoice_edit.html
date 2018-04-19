@@ -18,6 +18,7 @@
 <input type="hidden" id="type" value="1">
 <input type="hidden" id="withTax" value="1">
 <input type="hidden" id="withoutTax" value="1">
+<input type="hidden" id="number" value="1">
 <div style="display: none" id="invoiceType"></div>
 
 <h1 class="ui red header blue center aligned">收票信息修改</h1>
@@ -57,7 +58,7 @@
           <div class="inline fields">
             <label class="four wide field">发票号码</label>
             <div class="twelve wide field">
-              <input type="text" value="4654654165165" placeholder="请输入发票号码">
+              <input type="text" v-model="number"  placeholder="请输入发票号码">
             </div>
           </div>
         </div>

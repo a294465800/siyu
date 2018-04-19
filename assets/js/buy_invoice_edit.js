@@ -18,6 +18,7 @@
           this.form.id = $('editId').val() || ''
           this.form.date = $('#getDate').val()
           this.form.invoice_date = $('#invoiceDate').val()
+          this.form.number = $('#invoiceDate').val()
           this.form.type = $('#type').val()
           this.form.with_tax = $('#withTax').val()
           this.form.without_tax = $('#withoutTax').val()
