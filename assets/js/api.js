@@ -46,6 +46,13 @@
       })
     }
 
+    //项目用户权限删除
+    deleteProjectAuth(data = {}){
+      return this._http.get(`/del/project/role`, {
+        params: data
+      })
+    }
+
   }
 
   class SupplierManager {

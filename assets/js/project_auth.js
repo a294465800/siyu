@@ -11,10 +11,25 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          $(self).parents('tr').remove()
-          ele.Notification.success({
-            title: '成功',
-            message: '撤销成功!'
+          _http.ProjectManager.deleteProjectAuth({
+            user_id: $(self).data('id')
+          }).then(res => {
+            if(res.data.code === '200'){
+              $(self).parents('tr').remove()
+              ele.Notification.success({
+                title: '成功',
+                message: '撤销成功!'
+              })
+            }else {
+              ele.Message.error({
+                message: res.data.msg
+              })
+            }
+          })
+          .catch(() => {
+            ele.Message.error({
+              message: '服务器错误'
+            })
           })
         }).catch(() => {
           ele.Message.info({
