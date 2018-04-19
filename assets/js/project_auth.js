@@ -37,27 +37,12 @@
         data: {
 
           checkedMen: '',
-          menList: [{
-              id: 1,
-              name: '张先生'
-            },
-            {
-              id: 2,
-              name: '陈一发'
-            },
-            {
-              id: 3,
-              name: '刘芳芳'
-            },
-            {
-              id: 4,
-              name: '乌达奇'
-            },
-            {
-              id: 5,
-              name: '何求'
-            }
-          ],
+          menList: [],
+        },
+
+        created() {
+          const persons = $('#person').val().trim()
+          this.menList = persons === '' ? [] : JSON.parse(persons)
         },
         methods: {
           //选择审核人
@@ -71,7 +56,7 @@
 
           //提交审核人
           confirmRecheck() {
-            const url = `../project/auth_edit.html?type=${currentType}&user_id=${this.checkedMen}`
+            const url = `../project/auth_edit?type=${currentType}&user_id=${this.checkedMen}`
             _helper.fullWindow(url)
             $('.ui.dimmer').dimmer('hide')
           }
