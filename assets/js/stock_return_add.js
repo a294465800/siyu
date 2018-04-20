@@ -79,7 +79,7 @@
             this.stockReturnAdd.project_id = item.id
             this.stockReturnAdd.project_number = item.number
             this.stockReturnAdd.project_content = item.name
-            this.stockReturnAdd.project_manger = item.manager
+            this.stockReturnAdd.project_manger = item.pm
           },
 
           querySearchContent(queryString, cb) {

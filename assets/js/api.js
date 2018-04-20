@@ -541,6 +541,12 @@
       })
     }
 
+    searchStockMaterialSpecial(search = {}){
+      return this._http.get(`/search/stock/material`, {
+        params: search
+      })
+    }
+
     // 领料出库
     createGetAdd(data = {}) {
       return this._http.post(`/stock/get/add`, data, this.dataMethodDefaults)
