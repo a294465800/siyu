@@ -535,6 +535,12 @@
       return this._http.post(`/stock/return/add`, data, this.dataMethodDefaults)
     }
 
+    searchStockMaterial(search = {}){
+      return this._http.get(`/search/stock/get`, {
+        params: search
+      })
+    }
+
     // 领料出库
     createGetAdd(data = {}) {
       return this._http.post(`/stock/get/add`, data, this.dataMethodDefaults)
