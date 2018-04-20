@@ -47,6 +47,7 @@
         $('.ui.dimmer').dimmer('show')
       })
 
+      const projectId = $('#projectId').val()
       new Vue({
         el: '#memberChoose',
         data: {
@@ -71,7 +72,7 @@
 
           //提交审核人
           confirmRecheck() {
-            const url = `../project/auth_edit?type=${currentType}&user_id=${this.checkedMen}`
+            const url = `../project/auth_edit?project_id=${projectId}&type=${currentType}&user_id=${this.checkedMen}`
             _helper.fullWindow(url)
             $('.ui.dimmer').dimmer('hide')
           }
