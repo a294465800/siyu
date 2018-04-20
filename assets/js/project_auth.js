@@ -56,7 +56,7 @@
         },
 
         created() {
-          const persons = $('#person').val().trim()
+          const persons = $('#person').text().trim()
           this.menList = persons === '' ? [] : JSON.parse(persons)
         },
         methods: {
