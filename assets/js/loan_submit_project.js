@@ -229,8 +229,7 @@
                   this.selectData.id = res.data.data.id
                   console.log('send')
                   _http.UserManager.searchAuthUsers({
-                      role: 'loan_project_submit_check',
-                      project_id: this.submitProjectForm.project_id
+                      role: 'loan_project_submit_check'
                     })
                     .then(resp => {
                       if (resp.data.code === '200') {
