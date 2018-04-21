@@ -494,7 +494,7 @@
     //采购付款复核
     paymentCheck(data = {}) {
       return this._http.get(`/purchase/payment/check`, {
-        params: search
+        params: data
       })
     }
 
