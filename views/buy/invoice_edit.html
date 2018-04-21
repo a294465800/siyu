@@ -122,7 +122,7 @@
           <div class="inline fields">
             <label class="four wide field">发票号码</label>
             <div class="twelve wide field">
-              <input type="text" v-model="number"  placeholder="请输入发票号码">
+              <input type="text" v-model="form.number"  placeholder="请输入发票号码">
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
           <div class="inline fields">
             <label class="four wide field">不含税金额</label>
             <div class="twelve wide field">
-              <input type="number" name="without_tax" placeholder="请输入不含税金额" value="">
+              <input type="number" v-model="form.without_tax" name="without_tax" placeholder="请输入不含税金额" value="">
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@
           <div class="inline fields">
             <label class="four wide field">税额</label>
             <div class="twelve wide field">
-              <input type="number" name="tax" placeholder="请输入税额" value="">
+              <input type="number" v-model="form.tax" name="tax" placeholder="请输入税额" value="">
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@
           <div class="inline fields">
             <label class="four wide field">含税金额</label>
             <div class="twelve wide field">
-              <input type="number" v-model="with_tax" name="amount" placeholder="请输入含税金额" value="">
+              <input type="number" v-model="form.with_tax" name="amount" placeholder="请输入含税金额" value="">
             </div>
           </div>
         </div>
