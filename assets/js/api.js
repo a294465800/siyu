@@ -507,6 +507,13 @@
     createPaymentAdd(data = {}) {
       return this._http.post(`/purchase/payment/finish`, data, this.dataMethodDefaults)
     }
+
+    //搜索物价比
+    searchPurchase(search = {}){
+      return this._http.get(`/search/purchase`, {
+        params: search
+      })
+    }
   }
 
 
