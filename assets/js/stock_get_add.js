@@ -8,7 +8,9 @@
           stockGetAdd: _schemas.stockGetAdd,
           currentType: 1,
 
-          currentMaterial: '',
+          currentMaterial: {
+            material: {}
+          },
           currentMaterialName: '',
 
           throttle: {
