@@ -15,7 +15,7 @@
         },
         mounted() {
           $('#checkInvoice').removeClass('invisible')
-          this.invoiceForm.project_id = $('#prokectId').val()
+          this.invoiceForm.project_id = $('#projectId').val()
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
         },
