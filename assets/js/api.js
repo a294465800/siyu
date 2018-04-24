@@ -53,6 +53,13 @@
       })
     }
 
+    //删除项目类型
+    deletProject(data = {}) {
+      return this._http.get(`/del/project/type`, {
+        params: data
+      })
+    }
+
   }
 
   class SupplierManager {
@@ -79,6 +86,13 @@
     //搜索供应商
     searchSuppliers(search = {}) {
       return this._http.get(`/suppliers`, {
+        params: search
+      })
+    }
+
+    //删除供应商
+    deleteSupplier(data = {}) {
+      return this._http.get(`/del/supplier`, {
         params: search
       })
     }
@@ -135,6 +149,12 @@
         params: search
       })
     }
+
+    deleteMaterial(data = {}) {
+      return this._http.get(`/del/material`, {
+        params: data
+      })
+    }
   }
 
   class WarehouseManager {
@@ -155,6 +175,12 @@
     //创建仓库
     createWarehouse(data = {}) {
       return this._http.post('/warehouse/create', data, this.dataMethodDefaults)
+    }
+
+    deleteWarehouse(data = {}) {
+      return this._http.get(`/del/warehouse`, {
+        params: data
+      })
     }
   }
 
@@ -184,6 +210,13 @@
         params: search
       })
     }
+
+    //删除银行
+    deleteBank(data = {}) {
+      return this._http.get(`/del/bank`, {
+        params: data
+      })
+    }
   }
 
   class InvoiceManager {
@@ -201,9 +234,16 @@
         }]
       }
     }
-    //创建银行
+    //创建发票
     createInvoice(data = {}) {
       return this._http.post('/invoice/create', data, this.dataMethodDefaults)
+    }
+
+    //删除发票
+    deleteInvoice(data = {}) {
+      return this._http.get(`/del/invoice`, {
+        params: data
+      })
     }
   }
 
@@ -258,6 +298,13 @@
     //施工   收票
     createGetAdd(data = {}) {
       return this._http.post('/build/get/add', data, this.dataMethodDefaults)
+    }
+
+    //删除施工队
+    deleteTeam(data = {}) {
+      return this._http.get(`/del/team`, {
+        params: data
+      })
     }
   }
 
@@ -329,6 +376,13 @@
         params: search
       })
     }
+
+    //删除员工
+    deleteUser(data = {}) {
+      return this._http.get(`/del/user`, {
+        params: data
+      })
+    }
   }
 
   //费用付款管理
@@ -379,6 +433,13 @@
     //选择审批人
     selectPay(data = {}) {
       return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
+    }
+
+    //删除付费类型
+    deleteCategory(data = {}){
+      return this._http.get(`/del/category`, {
+        params: data
+      })
     }
 
   }
@@ -509,7 +570,7 @@
     }
 
     //搜索物价比
-    searchPurchase(search = {}){
+    searchPurchase(search = {}) {
       return this._http.get(`/search/purchase`, {
         params: search
       })
@@ -542,13 +603,13 @@
       return this._http.post(`/stock/return/add`, data, this.dataMethodDefaults)
     }
 
-    searchStockMaterial(search = {}){
+    searchStockMaterial(search = {}) {
       return this._http.get(`/search/stock/get`, {
         params: search
       })
     }
 
-    searchStockMaterialSpecial(search = {}){
+    searchStockMaterialSpecial(search = {}) {
       return this._http.get(`/search/stock/material`, {
         params: search
       })
@@ -646,12 +707,12 @@
     }
 
     //选择报销复核人
-    selectCheckSubmit(data = {}){
+    selectCheckSubmit(data = {}) {
       return this._http.post(`/select/check/submit`, data, this.dataMethodDefaults)
     }
 
     //选择报销审核人
-    selectPassSubmit(data = {}){
+    selectPassSubmit(data = {}) {
       return this._http.post(`/select/check/submit`, data, this.dataMethodDefaults)
     }
 
@@ -670,14 +731,14 @@
     }
 
     //查询报销人未支付报销单
-    loanListCheck(data = {}){
+    loanListCheck(data = {}) {
       return this._http.get(`/search/loan/submit`, {
         params: data
       })
     }
 
     //报销
-    createPayAddPost(data = {}){
+    createPayAddPost(data = {}) {
       return this._http.post(`/loan/pay/add`, data, this.dataMethodDefaults)
     }
 
