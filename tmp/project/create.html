@@ -11,7 +11,7 @@
 </div>
 
 <div style="display:none;" id="contractContent">
-  [{"id":1,"name":"内容1"},{"id":2,"name":"内容2"},{"id":3,"name":"内容3"}]
+  [{"id":1,"name":"内容1", "rate": 11},{"id":2,"name":"内容2", "rate": 15},{"id":3,"name":"内容3", "rate": 5}]
 </div>
 <div style="display:none;" id="contractTax">
   [{"id":1,"name":"5%"},{"id":2,"name":"9%"},{"id":3,"name":"15%"}]
@@ -224,10 +224,7 @@
               </el-select>
             </div>
             <div class="two wide column">
-              <el-select v-model="subItem.tax" placeholder="请选择税率">
-                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select>
+              <div class="fake-input">{{ TaxIDMap[subItem.name] + '%' }}</div>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -304,10 +301,7 @@
               </el-select>
             </div>
             <div class="two wide column">
-              <el-select v-model="subItem.tax" placeholder="请选择税率">
-                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select>
+              <div class="fake-input">{{ TaxIDMap[subItem.name] + '%' }}</div>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -394,7 +388,7 @@
           <template v-if="sumContent && sumContent.result.length > 0">
             <tr v-for="(item, index) in sumContent.result" :key="item.name">
               <td>{{item.name}}</td>
-              <td>{{item.tax}}</td>
+              <td>{{item.tax}} %</td>
               <td>{{item.amount.toLocaleString('en-US')}} ￥</td>
             </tr>
           </template>
