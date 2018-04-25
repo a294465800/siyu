@@ -25,11 +25,6 @@
           console.log(this.loanForm)
           const bankList = $('#banks').text().trim()
           this.bankList = bankList === '' ? [] : JSON.parse(bankList)
-          this.bankList = [{
-            id: 1,
-            name: 'xxx',
-            account: 'bbbb'
-          }]
           $('#loanLoanPay').removeClass('invisible')
         },
         methods: {
@@ -37,6 +32,7 @@
           bankChange(index) {
             try {
               this.loanForm.account = this.bankList[index].account
+              this.loanForm.bank = this.bankList[index].id
             } catch (error) {
               console.log(error)
             }

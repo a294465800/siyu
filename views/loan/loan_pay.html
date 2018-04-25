@@ -163,7 +163,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">转账银行</label>
             <div class="eleven wide field">
-              <el-select v-model="loanForm.bank" placeholder="请输入转账银行" @change="bankChange">
+              <el-select v-model="loanForm.bank_name" placeholder="请输入转账银行" @change="bankChange">
                 <el-option v-for="(item, index) in bankList" :key="item.id" :label="item.name" :value="index">
                 </el-option>
               </el-select>
