@@ -28,7 +28,6 @@
         data: {
           project: _schemas.projects,
           contractContent,
-          contractTax,
           TaxIDMap,
           ContentIDMap
         },
