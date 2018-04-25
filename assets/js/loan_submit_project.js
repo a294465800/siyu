@@ -56,6 +56,7 @@
                 type: 'error'
               })
             })
+          this.submitProjectForm.loan_user = $('#loanUser').val()
           this.submitProjectForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           $('#loanSubmitOther').removeClass('invisible')
         },

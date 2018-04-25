@@ -31,6 +31,7 @@
         },
         mounted() {
           this.submitOtherForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          this.submitOtherForm.loan_user = $('#loanUser').val()
           _http.LoanManager.searchCategory()
             .then(res => {
               if (res.data.code === '200') {
