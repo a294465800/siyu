@@ -713,7 +713,7 @@
 
     //选择报销审核人
     selectPassSubmit(data = {}) {
-      return this._http.post(`/select/check/submit`, data, this.dataMethodDefaults)
+      return this._http.post(`/select/pass/submit`, data, this.dataMethodDefaults)
     }
 
     //报销审批
