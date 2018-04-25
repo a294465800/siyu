@@ -93,7 +93,7 @@
     //删除供应商
     deleteSupplier(data = {}) {
       return this._http.get(`/del/supplier`, {
-        params: search
+        params: data
       })
     }
   }
