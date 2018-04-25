@@ -182,7 +182,7 @@
       paymentConditions.forEach((it, index) => {
         if (it) {
           let tmp = {
-            radio: it.rate,
+            ratio: it.rate,
             price: it.expected,
             condition: it.condition,
           }
@@ -323,7 +323,7 @@
       paymentConditions.forEach((it, index) => {
         if (it) {
           let tmp = {
-            rate: it.radio,
+            rate: it.ratio,
             expected: it.price,
             condition: it.condition,
           }
