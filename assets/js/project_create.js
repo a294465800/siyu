@@ -32,9 +32,9 @@
           ContentIDMap
         },
         mounted() {
-          // if (projectData) {
-          //   this.project = _helper.projectGetFormat(projectData)
-          // }
+          if (projectData) {
+            this.project = _helper.projectGetFormat(projectData)
+          } 
           $('#projectCreate').removeClass('invisible')
         },
         computed: {
