@@ -18,7 +18,9 @@
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
-              _http.TeamManager.checkPay(postData)
+              _http.TeamManager.checkPay({
+                  id: $(this).data('id')
+                })
                 .then(res => {
                   if (res.data.code === '200') {
                     vm.$message({
@@ -72,7 +74,9 @@
                 type: 'warning'
               })
               .then(() => {
-                _http.TeamManager.passPay(postData)
+                _http.TeamManager.passPay({
+                    id: $(this).data('id')
+                  })
                   .then(res => {
                     if (res.data.code === '200') {
                       vm.$notify({
