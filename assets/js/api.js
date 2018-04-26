@@ -324,6 +324,25 @@
       })
     }
 
+    //复核付款
+    checkPay(data = {}){
+      return this._http.get(`/build/pay/check`, {
+        params: data
+      })
+    }
+
+    //选择付款审批人
+    selectPayPasser(data = {}){
+      return this._http.post('/build/pay/select/passer', data, this.dataMethodDefaults)
+    }
+
+    //审批付款
+    passPay(data = {}){
+      return this._http.get(`/build/pay/pass`, {
+        params: data
+      })
+    }
+
     //删除施工队
     deleteTeam(data = {}) {
       return this._http.get(`/del/team`, {
