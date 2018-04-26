@@ -200,11 +200,11 @@
       <i class="icon edit"></i>
       <span>修改</span>
     </a>
-    <button class="ui icon button primary" @click="recheckFnc" style="margin:0 10px;">
+    <button class="ui icon button primary" v-if="isHide" @click="recheckFnc" style="margin:0 10px;">
       <i class="icon legal"></i>
       <span>复核</span>
     </button>
-    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../buy/extrabudgetary_print.html')" style="margin:0 10px;">
+    <a class="ui icon button primary" v-if="isHide2" @click="passFnc" style="margin:0 10px;">
       <i class="icon edit"></i>
       <span>审批</span>
     </a>
