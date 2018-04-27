@@ -28,16 +28,16 @@
                       message: '已复核!'
                     })
                     $(this).remove()
-                    this.selectData.id = res.data.data.id
+                    vm.selectData.id = res.data.data.id
                     _http.UserManager.searchAuthUsers({
                         role: 'build_finish_pass'
                       })
                       .then(resp => {
                         if (resp.data.code === '200') {
-                          this.menList = resp.data.data
+                          vm.menList = resp.data.data
                           $('.ui.dimmer').addClass('active')
                         } else {
-                          this.$notify({
+                          vm.$notify({
                             title: '错误',
                             message: resp.data.msg,
                             type: 'error'
