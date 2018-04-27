@@ -335,6 +335,11 @@
     selectPayPasser(data = {}){
       return this._http.post('/build/pay/select/passer', data, this.dataMethodDefaults)
     }
+    
+    //选择付款审核人
+    selectPayCheck(data = {}){
+      return this._http.post('/build/pay/select/checker', data, this.dataMethodDefaults)
+    }
 
     //审批付款
     passPay(data = {}){
