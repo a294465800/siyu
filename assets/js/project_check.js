@@ -28,8 +28,8 @@
           const self = this
           $('#projectCheck').on('click', function () {
             _http.ProjectManager.checkProject({
-              id: projectId
-            })
+                id: projectId
+              })
               .then(res => {
                 if (res.data.code === '200') {
                   self.$notify({
@@ -71,17 +71,18 @@
               })
           })
 
-          $("#projectPass").on('click', function(){
+          $("#projectPass").on('click', function () {
             self.$confirm('确认审批, 是否继续?', '提示', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
               _http.ProjectManager.passProject({
-                id: projectId
-              })
+                  id: projectId
+                })
                 .then(res => {
                   if (res.data.code === '200') {
+                    $(this).remove()
                     self.$notify({
                       title: '成功',
                       message: '已审批',
@@ -106,7 +107,7 @@
               self.$message({
                 type: 'info',
                 message: '已取消'
-              });          
+              });
             });
           })
         },
@@ -137,7 +138,7 @@
                     type: 'error'
                   })
                 }
-              }) 
+              })
               .catch(err => {
                 this.$notify({
                   title: '错误',
