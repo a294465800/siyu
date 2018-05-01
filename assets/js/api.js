@@ -60,6 +60,30 @@
       })
     }
 
+    //项目复核
+    checkProject(data = {}) {
+      return this._http.get(`/check/project`, {
+        params: data
+      })
+    }
+
+    //项目审批
+    passProject(data = {}) {
+      return this._http.get(`/pass/project`, {
+        params: data
+      })
+    }
+
+    //选择复核人
+    selectProjectCheck(data = {}) {
+      return this._http.post('/select/project/checker', data, this.dataMethodDefaults)
+    }
+
+    //选择审批人
+    selectProjectPass(data = {}) {
+      return this._http.post('/select/project/passer', data, this.dataMethodDefaults)
+    }
+
   }
 
   class SupplierManager {
@@ -325,24 +349,24 @@
     }
 
     //复核付款
-    checkPay(data = {}){
+    checkPay(data = {}) {
       return this._http.get(`/build/pay/check`, {
         params: data
       })
     }
 
     //选择付款审批人
-    selectPayPasser(data = {}){
+    selectPayPasser(data = {}) {
       return this._http.post('/build/pay/select/passer', data, this.dataMethodDefaults)
     }
-    
+
     //选择付款审核人
-    selectPayCheck(data = {}){
+    selectPayCheck(data = {}) {
       return this._http.post('/build/pay/select/checker', data, this.dataMethodDefaults)
     }
 
     //审批付款
-    passPay(data = {}){
+    passPay(data = {}) {
       return this._http.get(`/build/pay/pass`, {
         params: data
       })
