@@ -197,7 +197,7 @@
               id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
               material: this.currentMaterial.material,
               price: this.currentMaterial.price,
-              material_id: this.currentMaterial.id,
+              material_id: this.currentMaterial.material.id,
               number: 0
             }
             this.stockGetAdd.lists.push(data)
@@ -211,7 +211,7 @@
             const data = this.stockGetAdd
             const list = data.lists
             let result = {
-              type: currentType,
+              type: this.currentType,
               project_id: data.project_id,
               warehouse_id: data.warehouse_id,
               worker: data.worker,
