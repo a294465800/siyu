@@ -197,7 +197,7 @@
               id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
               material: this.currentMaterial.material,
               price: this.currentMaterial.price,
-              material_id: this.currentMaterial.material.id,
+              material_id: this.currentMaterial.id,
               number: 0
             }
             this.stockGetAdd.lists.push(data)
