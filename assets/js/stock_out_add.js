@@ -26,14 +26,13 @@
           outAddCheck(id) {
             this.loader = true
             this.stockCheckDialog = true
-            this.href = `javascript:_helper.fullWindow('../stock/out_add_add.html?id=${id}')`
+            this.href = `javascript:_helper.fullWindow('../stock/out_add_add?id=${id}')`
             _http.StockManager.searchOutAdd({
                 id
               })
               .then(res => {
                 if (res.data.code === '200') {
                   this.singleData = res.data.data
-                  console.log(this.singleData)
                   this.loader = false
                 } else {
                   this.$notify({
