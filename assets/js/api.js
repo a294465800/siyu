@@ -704,6 +704,13 @@
         params: search
       })
     }
+
+    //出货查询
+    searchOutAdd(data = {}) {
+      return this._http.get(`/stock/purchase`, {
+        params: data
+      })
+    }
   }
 
   // 报销借款

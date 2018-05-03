@@ -108,9 +108,33 @@
           outAddCheck(id) {
             this.loader = true
             this.stockCheckDialog = true
-            setTimeout(() => {
-              this.loader = false
-            }, 1000)
+            _http.StockManager.searchOutAdd({
+                id
+              })
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.singleData = res.data.data
+                  this.$notify({
+                    title: '成功',
+                    message: `提交成功`,
+                    type: 'success'
+                  })
+                  this.loader = false
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })
