@@ -705,6 +705,13 @@
       })
     }
 
+    //新仓库搜索
+    searchOutStock(search = {}) {
+      return this._http.get(`/search/purchase/warehouse`, {
+        params: search
+      })
+    }
+
     //出货查询
     searchOutAdd(data = {}) {
       return this._http.get(`/stock/purchase`, {
