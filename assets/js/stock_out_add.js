@@ -31,11 +31,6 @@
               .then(res => {
                 if (res.data.code === '200') {
                   this.singleData = res.data.data
-                  this.$notify({
-                    title: '成功',
-                    message: `提交成功`,
-                    type: 'success'
-                  })
                   this.loader = false
                 } else {
                   this.$notify({
