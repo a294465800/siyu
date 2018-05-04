@@ -120,12 +120,16 @@
               return false
             }
             const list = this.stockOutAdd.lists
-            const material = this.current.material.material
+            const currentValue = this.current.material
+            const material = currentValue.material
             let data = {
               id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
               material: material,
               material_id: material.id,
-              number: 0
+              number: 0,
+              price: currentValue.price || 0,
+              sum: currentValue.sum || 0,
+              cost: currentValue.cost || 0
             }
             this.stockOutAdd.lists.push(data)
           },
