@@ -11,7 +11,8 @@
             record: [],
             purchaseList: [],
             project: {}
-          }
+          },
+          href: ''
         },
         mounted() {
           const vm = this
@@ -25,6 +26,7 @@
           outAddCheck(id) {
             this.loader = true
             this.stockCheckDialog = true
+            this.href = `javascript:_helper.fullWindow('../stock/out_add_add?id=${id}')`
             _http.StockManager.searchOutAdd({
                 id
               })
