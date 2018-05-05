@@ -378,6 +378,14 @@
         params: data
       })
     }
+
+
+    //删除请款
+    deleteFinish(data = {}) {
+      return this._http.get(`build/finish/delete`, {
+        params: data
+      })
+    }
   }
 
   //上传
