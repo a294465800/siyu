@@ -26,7 +26,7 @@
         },
         mounted() {
           const self = this
-          $('#projectCheck').on('click', function () {
+          $('#projectCheckBtn').on('click', function () {
             _http.ProjectManager.checkProject({
                 id: projectId
               })
