@@ -96,7 +96,8 @@
                   const amount = item.amount ? parseFloat(item.amount) : 0
                   sum += amount
                   if (typeof item.name !== 'undefined') {
-                    const key = item.name + '' + item.tax
+                    // const key = item.name + '' + item.tax
+                    const key = item.name
                     resultObj[key] = resultObj[key] ? resultObj[key] + amount : amount
                   }
                 })
@@ -107,9 +108,11 @@
             calc(subContract)
 
             for (let it in resultObj) {
-              const val = it.split('')
-              const contentData = vm.ContentIDMap[val[0]]
-              const taxData = vm.TaxIDMap[val[1]]
+              // const val = it.split('')
+              // const contentData = vm.ContentIDMap[val[0]]
+              // const taxData = vm.TaxIDMap[val[1]]
+              const contentData = vm.ContentIDMap[it]
+              const taxData = vm.TaxIDMap[it]
               result.push({
                 name: contentData,
                 tax: taxData,
