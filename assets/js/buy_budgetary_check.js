@@ -25,7 +25,7 @@
                   })
                   .then(res => {
                     if (res.data.code === '200') {
-                      this.selectData.id = res.data.data
+                      vm.selectData.id = res.data.data
                       vm.$message({
                         type: 'success',
                         message: '已复核!'
