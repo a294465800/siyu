@@ -616,7 +616,7 @@
     }
 
     //采购审批
-    createCheck(data = {}) {
+    createPass(data = {}) {
       return this._http.get(`/purchase/pass`, {
         params: search
       })
