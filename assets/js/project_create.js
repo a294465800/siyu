@@ -13,6 +13,7 @@
         }
         return newObj
       }
+
       function idSearch2(value) {
         let newObj = {}
         for (let it of value) {
@@ -39,7 +40,7 @@
         mounted() {
           if (projectData) {
             this.project = _helper.projectGetFormat(projectData)
-          } 
+          }
           $('#projectCreate').removeClass('invisible')
         },
         computed: {
@@ -252,7 +253,7 @@
 
           //提交
           submit() {
-            const postData = _helper.projectCreatFormat(this.project)
+            const postData = _helper.projectCreatFormat(this.project, ContentIDMap, TaxIDMap)
             _http.ProjectManager.createProject(postData)
               .then(res => {
                 if (res.data.code === '200') {
@@ -294,7 +295,7 @@
               })
           },
 
-          
+
           //选择复核人
           handleCheckManChange(value) {
             console.log(this.checkedMen)
@@ -320,7 +321,7 @@
                     type: 'error'
                   })
                 }
-              }) 
+              })
               .catch(err => {
                 this.$notify({
                   title: '错误',
