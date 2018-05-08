@@ -22,18 +22,34 @@
               .then(() => {
                 console.log(1)
                 _http.BuyManager.createCheck({
-                    id: $(this).data('id')
-                  })
-                  console.log(2)
+                  id: $(this).data('id')
+                })
+                console.log(2)
                   .then(res => {
                     if (res.data.code === '200') {
-                      console.log(3)
-                      vm.selectData.id = res.data.data
+                      const data = res.data.data
+                      const currentType = data.type == 1 ? 'rolebuy_bugetary_pass' : 'buy_extrabugetary_pass'
+                      vm.selectData.id = data.id
                       vm.$message({
                         type: 'success',
                         message: '已复核!'
                       })
-                      $('.ui.dimmer').addClass('active')
+                      _http.UserManager.searchAuthUsers({
+                          role: currentType,
+                          // project_id: this.budgetary_buy.project_id
+                        })
+                        .then(resp => {
+                          if (resp.data.code === '200') {
+                            this.menList = resp.data.data
+                            $('.ui.dimmer').addClass('active')
+                          } else {
+                            this.$notify({
+                              title: '错误',
+                              message: res.data.msg,
+                              type: 'error'
+                            })
+                          }
+                        })
                     } else {
                       vm.$notify({
                         title: '错误',
@@ -58,7 +74,7 @@
               })
           })
 
-          
+
           $('#budgetaryCheckPass').on('click', function () {
             vm.$confirm('确定审批, 是否继续?', '提示', {
                 confirmButtonText: '确定',
