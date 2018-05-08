@@ -605,7 +605,7 @@
     //采购复核
     createCheck(data = {}) {
       return this._http.get(`/purchase/check`, {
-        params: search
+        params: data
       })
     }
 
@@ -618,7 +618,7 @@
     //采购审批
     createPass(data = {}) {
       return this._http.get(`/purchase/pass`, {
-        params: search
+        params: data
       })
     }
 

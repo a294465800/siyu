@@ -20,11 +20,14 @@
                 type: 'warning'
               })
               .then(() => {
+                console.log(1)
                 _http.BuyManager.createCheck({
                     id: $(this).data('id')
                   })
+                  console.log(2)
                   .then(res => {
                     if (res.data.code === '200') {
+                      console.log(3)
                       vm.selectData.id = res.data.data
                       vm.$message({
                         type: 'success',
