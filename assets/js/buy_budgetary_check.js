@@ -40,10 +40,10 @@
                         })
                         .then(resp => {
                           if (resp.data.code === '200') {
-                            this.menList = resp.data.data
+                            vm.menList = resp.data.data
                             $('.ui.dimmer').addClass('active')
                           } else {
-                            this.$notify({
+                            vm.$notify({
                               title: '错误',
                               message: res.data.msg,
                               type: 'error'
