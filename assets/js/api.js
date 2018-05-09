@@ -84,6 +84,20 @@
       return this._http.post('/select/project/passer', data, this.dataMethodDefaults)
     }
 
+    //确认项目
+    confirmProject(data = {}) {
+      return this._http.get(`/confirm/project`, {
+        params: data
+      })
+    }
+
+
+    //删除项目
+    deleteProject(data = {}) {
+      return this._http.get(`/delete/project`, {
+        params: data
+      })
+    }
   }
 
   class SupplierManager {
