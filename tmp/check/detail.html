@@ -910,6 +910,76 @@
   </div>
 </div>
 
+<div id="projectCheckDialog">
+  <el-dialog title="修改" :visible.sync="centerDialogVisible" width="40%" center>
+
+
+    <!-- 保证金 -->
+    <template v-if="currentType === 'margin'">
+      <el-form label-position="left" label-width="160px" :model="marginForm">
+        <el-form-item label="预计回收日期">
+          <el-date-picker v-model="marginForm.preDate" value-format="yyyy-MM-dd" type="date" placeholder="预计回收日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="预计回收金额">
+          <input v-model.number="marginForm.preAmount" type="number" placeholder="预计回收金额">
+        </el-form-item>
+        <el-form-item label="付款人">
+          <input v-model="marginForm.prePeople" type="text" placeholder="付款人">
+        </el-form-item>
+        <el-form-item label="备注">
+          <input v-model="marginForm.preRemark" type="text" placeholder="备注">
+        </el-form-item>
+        <el-form-item label="实际回收日期">
+          <el-date-picker v-model="marginForm.realDate" value-format="yyyy-MM-dd" type="date" placeholder="实际回收日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="实际回收金额">
+          <input v-model.number="marginForm.realAmount" type="number" placeholder="实际回收金额">
+        </el-form-item>
+        <el-form-item label="付款人">
+          <input v-model="marginForm.realPeople" type="text" placeholder="付款人">
+        </el-form-item>
+        <el-form-item label="付款银行">
+          <input v-model="marginForm.realBank" type="text" placeholder="付款银行">
+        </el-form-item>
+        <el-form-item label="付款账户">
+          <input v-model.number="marginForm.realAccount" type="number" placeholder="付款账户">
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /保证金 -->
+
+    <!-- 请款 -->
+    <template v-else-if="currentType === 'finish'">
+
+      <el-form label-position="left" label-width="160px" :model="finishForm">
+        <el-form-item label="请款日期">
+          <el-date-picker v-model="finishForm.date" value-format="yyyy-MM-dd" type="date" placeholder="请款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="请款金额">
+          <input v-model.number="finishForm.amount" type="number" placeholder="请款金额">
+        </el-form-item>
+        <el-form-item label="付款单位">
+          <input v-model.number="finishForm.company" type="text" placeholder="付款单位">
+        </el-form-item>
+        <el-form-item label="备注">
+          <input v-model.number="finishForm.remark" type="text" placeholder="备注">
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /请款 -->
+
+
+
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="centerDialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="submit()">确 定</el-button>
+    </span>
+  </el-dialog>
+</div>
+
 <include src="../template/footer.html">
   @js = ../../src/js/check_detail.js
 </include>
