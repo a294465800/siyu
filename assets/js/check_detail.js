@@ -63,13 +63,52 @@
           console.log(this)
 
           $('#checkDetail').removeClass('invisible')
+
+          function getTdData($td) {
+            const length = $td.length
+            let result = []
+            $td.forEach((item, index) => {
+              if (index >= length - 1) {
+
+              } else {
+                result.push($(item).text())
+              }
+            })
+            return result
+          }
+
+          function setTdData($td, data) {
+            const length = $td.length
+            $td.forEach((item, index) => {
+              if (index >= length - 1) {
+
+              } else {
+                $(item).text() = data[index]
+              }
+            })
+          }
+
+          //保证金修改
+          let margins = []
+          let marginShowTr
+          let marginEditTr
+          $('.margin-edit').on('click', function () {
+            marginShowTr = $(this).parents('tr')
+            marginShowTr.hide()
+            margins = getTdData(marginShowTr.find('td'))
+          })
+          $('.margin-save').on('click', function () {
+            marginShowTr = $(this).parents('tr')
+            marginShowTr.hide()
+            margins = getTdData(marginShowTr.find('td'))
+          })
         },
 
         computed: {
 
           //实际履约保证金合计
           marginCount() {
-            if(!this.marginRecyle.data){
+            if (!this.marginRecyle.data) {
               return 0
             }
             const data = this.marginRecyle.data
@@ -82,7 +121,7 @@
 
           //预计保证金
           preMarginCount() {
-            if(!this.marginRecyle.data){
+            if (!this.marginRecyle.data) {
               return 0
             }
             const data = this.marginRecyle.data
@@ -101,7 +140,7 @@
 
           //请款合计
           requirementCount() {
-            if(!this.requirement.data){
+            if (!this.requirement.data) {
               return 0
             }
             const data = this.requirement.data
@@ -114,7 +153,7 @@
 
           //收票合计
           invoiceCount() {
-            if(!this.invoice.data){
+            if (!this.invoice.data) {
               return 0
             }
             const data = this.invoice.data
@@ -127,7 +166,7 @@
 
           //收票统计
           invoiceTaxCount() {
-            if(!this.invoice.data){
+            if (!this.invoice.data) {
               return []
             }
             const vm = this
@@ -168,7 +207,7 @@
 
           //分包公司合计
           subCompanyCount() {
-            if(!this.subCompany.data){
+            if (!this.subCompany.data) {
               return 0
             }
             const data = this.subCompany.data
@@ -181,7 +220,7 @@
 
           //主合同合计
           masterContractCount() {
-            if(!this.masterContract.data){
+            if (!this.masterContract.data) {
               return 0
             }
             const data = this.masterContract.data
@@ -194,7 +233,7 @@
 
           //分包合同合计
           subContractCount() {
-            if(!this.subContract.data){
+            if (!this.subContract.data) {
               return 0
             }
             const data = this.subContract.data
