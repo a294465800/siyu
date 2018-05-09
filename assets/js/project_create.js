@@ -121,6 +121,9 @@
               })
             }
 
+            console.log('结果：',result)
+            console.log('类型：',contractContent)
+
             return {
               sum: sum,
               result
