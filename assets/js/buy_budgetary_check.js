@@ -24,7 +24,6 @@
                 _http.BuyManager.createCheck({
                   id: $(this).data('id')
                 })
-                console.log(2)
                   .then(res => {
                     if (res.data.code === '200') {
                       const data = res.data.data
