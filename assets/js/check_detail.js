@@ -386,18 +386,221 @@
       new Vue({
         el: '#projectCheckDialog',
         data: {
-          currentType: 'margin',
-          centerDialogVisible: false
+          currentType: 'masterContract',
+          centerDialogVisible: false,
+
+          map: {
+            marginLeft: '预计回收',
+            marginRight: '实际回收',
+            finish: '预计请款',
+            company: '发包公司',
+            subContract: '分包合同',
+            masterContract: '主合同'
+          },
+
+          unitMap: {
+            marginLeft: 'pay_unit',
+            marginRight: 'payee',
+            finish: 'pay_unit',
+            company: '',
+            subContract: 'payee',
+            masterContract: 'payee'
+          },
+
+          marginLeft: {
+            pay_date: '',
+            price: '',
+            pay_unit: '',
+            remark: ''
+          },
+
+          marginRight: {
+            pay_date: '',
+            price: '',
+            payee: '',
+            bank: '',
+            account: ''
+          },
+
+          finish: {
+            pay_date: '',
+            price: '',
+            pay_unit: '',
+            remark: ''
+          },
+
+          company: {
+            pay_date: '',
+            remark: ''
+          },
+
+          subContract: {
+            payee: '',
+            pay_date: '',
+            price: '',
+            bank: '',
+            account: ''
+          },
+
+
+          masterContract: {
+            payee: '',
+            pay_date: '',
+            price: '',
+            bank: '',
+            account: ''
+          },
+
+          throttle: {
+            unit_timer: null,
+            bank_timer: null
+          },
+
+          currentId: '',
+          project_id: ''
         },
-        mounted() {},
+        mounted() {
+          this.project_id = $('#projectId') || ""
+          //点击修改按钮
+          const self = this
+          $('.edit-btn').on('click', function () {
+            const $this = $(this)
+            const type = $this.data('type')
+            const id = $this.data('id')
+            self.currentId = id
+            self.currentType = type
+            const apiUse = (type === 'marginLeft' || type === 'finish') ? 'getTip' : 'getCollect'
+            //左侧和预计请款用 tips
+            _http.CheckManager[apiUse]({
+                id: id
+              })
+              .then(res => {
+                if (res.data.code === '200') {
+                  self[type] = res.data.data
+                  self.centerDialogVisible = true
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg || '未知错误',
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
+          })
+        },
 
         methods: {
+
+          //单位搜索
+          querySearchCompany(queryString, cb) {
+
+            if (this.throttle.unit_timer) {
+              clearTimeout(this.throttle.unit_timer)
+            }
+            this.throttle.unit_timer = setTimeout(() => {
+              const searchKey = {
+                payee: queryString,
+                project_id: this.project_id || ''
+              }
+              _http.ProjectManager.searchProjectUnit(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
+          },
+          handleSelectCompany(item) {
+            const currentType = this.currentType
+            this[currentType][this.unitMap[currentType]] = item
+          },
+
+          //银行搜索
+          querySearchBank(queryString, cb) {
+
+            if (this.throttle.bank_timer) {
+              clearTimeout(this.throttle.bank_timer)
+            }
+            this.throttle.bank_timer = setTimeout(() => {
+              const searchKey = {
+                name: queryString
+              }
+              _http.BankManager.searchBank(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
+          },
+          handleSelectBank(item) {
+            const currentType = this.currentType
+            this[currentType].bank = item.name
+            this[currentType].account = item.account
+          },
+
+
           submit() {
-            this.$notify.success({
-              title: '成功',
-              message: '已修改'
-            })
-            this.centerDialogVisible = false
+            const apiUse = (this.currentType === 'marginLeft' || this.currentType === 'finish') ? 'editTip' : 'editCollect'
+            const postData = Object.assign({}, {
+              id: this.currentId
+            }, this[this.currentType])
+            _http.CheckManager[apiUse](postData)
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.$notify.success({
+                    title: '成功',
+                    message: '已修改'
+                  })
+                  this.centerDialogVisible = false
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg || '未知错误',
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
           }
         }
       })

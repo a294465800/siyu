@@ -573,6 +573,30 @@
     createProjectCollect(data = {}) {
       return this._http.post(`/project/collect`, data, this.dataMethodDefaults)
     }
+
+    //collect 修改
+    editCollect(data = {}) {
+      return this._http.post(`/collect`, data, this.dataMethodDefaults)
+    }
+
+    //collect get
+    getCollect(data = {}) {
+      return this._http.get(`/collect`, {
+        params: data
+      })
+    }
+
+    //tip 修改
+    editTip(data = {}) {
+      return this._http.post(`/tip`, data, this.dataMethodDefaults)
+    }
+
+    //tip get
+    getTip(data = {}) {
+      return this._http.get(`/tip`, {
+        params: data
+      })
+    }
   }
 
   // 采购

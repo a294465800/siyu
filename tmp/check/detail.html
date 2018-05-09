@@ -911,71 +911,201 @@
 </div>
 
 <div id="projectCheckDialog">
-  <el-dialog title="修改" :visible.sync="centerDialogVisible" width="40%" center>
+  <el-dialog :title="'修改' + map[currentType]" :visible.sync="centerDialogVisible" width="60%" center>
 
 
-    <!-- 保证金 -->
-    <template v-if="currentType === 'margin'">
-      <el-form label-position="left" label-width="160px" :model="marginForm">
+    <!-- 保证金左侧 -->
+    <template v-if="currentType === 'marginLeft'">
+      <el-form label-position="left" label-width="160px" :model="marginLeft">
         <el-form-item label="预计回收日期">
-          <el-date-picker v-model="marginForm.preDate" value-format="yyyy-MM-dd" type="date" placeholder="预计回收日期">
+          <el-date-picker v-model="marginLeft.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="预计回收日期">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="预计回收金额">
-          <input v-model.number="marginForm.preAmount" type="number" placeholder="预计回收金额">
+          <el-input v-model.number="marginLeft.price" type="number" placeholder="预计回收金额">
+            <template slot="append">￥</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="付款人">
-          <input v-model="marginForm.prePeople" type="text" placeholder="付款人">
+          <el-input v-model="marginLeft.pay_unit" type="text" placeholder="付款人"></el-input>
         </el-form-item>
         <el-form-item label="备注">
-          <input v-model="marginForm.preRemark" type="text" placeholder="备注">
-        </el-form-item>
-        <el-form-item label="实际回收日期">
-          <el-date-picker v-model="marginForm.realDate" value-format="yyyy-MM-dd" type="date" placeholder="实际回收日期">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="实际回收金额">
-          <input v-model.number="marginForm.realAmount" type="number" placeholder="实际回收金额">
-        </el-form-item>
-        <el-form-item label="付款人">
-          <input v-model="marginForm.realPeople" type="text" placeholder="付款人">
-        </el-form-item>
-        <el-form-item label="付款银行">
-          <input v-model="marginForm.realBank" type="text" placeholder="付款银行">
-        </el-form-item>
-        <el-form-item label="付款账户">
-          <input v-model.number="marginForm.realAccount" type="number" placeholder="付款账户">
+          <el-input v-model="marginLeft.remark" type="text" placeholder="备注"></el-input>
         </el-form-item>
       </el-form>
     </template>
-    <!-- /保证金 -->
+    <!-- /保证金左侧 -->
+
+    <!-- 保证金右侧 -->
+    <template v-else-if="currentType === 'marginRight'">
+      <el-form label-position="left" label-width="160px" :model="marginRight">
+        <el-form-item label="实际回收日期">
+          <el-date-picker v-model="marginRight.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="实际回收日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="实际回收金额">
+          <el-input v-model.number="marginRight.price" type="number" placeholder="实际回收金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="marginRight.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="付款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="marginRight.bank" :fetch-suggestions="querySearchBank" placeholder="付款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="付款账户">
+          <div class="fake-input">{{ marginRight.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
 
     <!-- 请款 -->
     <template v-else-if="currentType === 'finish'">
 
-      <el-form label-position="left" label-width="160px" :model="finishForm">
+      <el-form label-position="left" label-width="160px" :model="finish">
         <el-form-item label="请款日期">
-          <el-date-picker v-model="finishForm.date" value-format="yyyy-MM-dd" type="date" placeholder="请款日期">
+          <el-date-picker v-model="finish.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="请款日期">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="请款金额">
-          <input v-model.number="finishForm.amount" type="number" placeholder="请款金额">
+          <el-input v-model.number="finish.price" type="number" placeholder="请款金额">
+            <template slot="append">￥</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="付款单位">
-          <input v-model.number="finishForm.company" type="text" placeholder="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="finish.pay_unit" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
         </el-form-item>
         <el-form-item label="备注">
-          <input v-model.number="finishForm.remark" type="text" placeholder="备注">
+          <el-input v-model="finish.remark" type="text" placeholder="备注"></el-input>
         </el-form-item>
       </el-form>
     </template>
     <!-- /请款 -->
 
 
+    <!-- 发包公司 -->
+    <template v-else-if="currentType === 'company'">
+      <el-form label-position="left" label-width="160px" :model="company">
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="company.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="company.remark" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /发包公司 -->
+
+
+    <!-- 分包合同 -->
+    <template v-else-if="currentType === 'subContract'">
+      <el-form label-position="left" label-width="160px" :model="subContract">
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="subContract.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="subContract.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="subContract.price" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="收款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="subContract.bank" :fetch-suggestions="querySearchBank" placeholder="收款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款账户">
+          <div class="fake-input">{{ subContract.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /分包合同 -->
+
+    <!-- 主合同 -->
+    <template v-else-if="currentType === 'masterContract'">
+      <el-form label-position="left" label-width="160px" :model="masterContract">
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="masterContract.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="masterContract.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="masterContract.price" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="收款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="masterContract.bank" :fetch-suggestions="querySearchBank" placeholder="收款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款账户">
+          <div class="fake-input">{{ masterContract.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /主合同 -->
 
     <span slot="footer" class="dialog-footer">
       <el-button @click="centerDialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="submit()">确 定</el-button>
+      <el-button type="primary" @click="submit">确 定</el-button>
     </span>
   </el-dialog>
 </div>
