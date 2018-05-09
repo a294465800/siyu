@@ -384,7 +384,7 @@
       // })
 
       new Vue({
-        el: '#projectCheck',
+        el: '#projectCheckDialog',
         data: {
 
         },
