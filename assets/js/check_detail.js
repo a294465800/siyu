@@ -386,71 +386,19 @@
       new Vue({
         el: '#projectCheckDialog',
         data: {
-
+          currentType: 'margin',
+          centerDialogVisible: false
         },
-        mounted() {
-          this.init()
-          this.invoiceCompanyCopy = this.copyData(this.invoiceCompany)
-          console.log(this)
+        mounted() {},
 
-          $('#checkDetail').removeClass('invisible')
-
-          function getTdData($td) {
-            const length = $td.length
-            let result = []
-            $td.forEach((item, index) => {
-              if (index >= length - 1) {
-
-              } else {
-                result.push($(item).text())
-              }
-            })
-            return result
-          }
-
-          function getTdInputData($td){
-            const length = $td.length
-            let result = []
-            $td.forEach((item, index) => {
-              const inputVal = $(item).find('input').value()
-              const inputVal = $(item).find('input').value()
-            })
-          }
-
-          function setTdData($td, data) {
-            const length = $td.length
-            $td.forEach((item, index) => {
-              if (index >= length - 1) {
-
-              } else {
-                $(item).text() = data[index]
-              }
-            })
-          }
-
-          //保证金修改
-          let old_margins = []
-          let new_margin = []
-          let marginEditTr
-          let marginSaveTr
-          $('.margin-edit').on('click', function () {
-            marginEditTr = $(this).parents('tr')
-            marginEditTr.hide()
-            old_margins = getTdData(marginEditTr.find('td'))
-          })
-          $('.margin-save').on('click', function () {
-            marginSaveTr = $(this).parents('tr')
+        methods: {
+          submit() {
             this.$notify.success({
               title: '成功',
               message: '已修改'
             })
-            marginSaveTr.hide()
-            new_margin = getTdData(marginSaveTr.find('td'))
-          })
-        },
-
-        methods: {
-
+            this.centerDialogVisible = false
+          }
         }
       })
     })
