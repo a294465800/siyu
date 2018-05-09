@@ -90,7 +90,6 @@
                         type: 'success',
                         message: '已审批!'
                       })
-                      $('.ui.dimmer').addClass('active')
                     } else {
                       vm.$notify({
                         title: '错误',
