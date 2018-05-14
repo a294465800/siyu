@@ -22,7 +22,7 @@
                 type: 'warning'
               })
               .then(() => {
-                _http.LoanManager.passSubmit({
+                _http.LoanManager.deleteSubmit({
                     id: loanId
                   })
                   .then(res => {

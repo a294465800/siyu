@@ -835,7 +835,7 @@
     checkSubmit(data = {}) {
       return this._http.get(`/check/submit`, {
         params: data
-      })
+      }) 
     }
 
     //选择报销复核人
@@ -851,6 +851,14 @@
     //报销审批
     passSubmit(data = {}) {
       return this._http.get(`/pass/submit`, {
+        params: data
+      })
+    }
+
+
+    //删除
+    deleteSubmit(data = {}) {
+      return this._http.get(`/delete/submit`, {
         params: data
       })
     }
