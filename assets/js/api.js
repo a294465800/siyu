@@ -835,7 +835,7 @@
     checkSubmit(data = {}) {
       return this._http.get(`/check/submit`, {
         params: data
-      }) 
+      })
     }
 
     //选择报销复核人
@@ -880,6 +880,12 @@
     //报销
     createPayAddPost(data = {}) {
       return this._http.post(`/loan/pay/add`, data, this.dataMethodDefaults)
+    }
+
+    searchLoanedUser(data = {}) {
+      return this._http.get(`/search/loaned/user`, {
+        params: data
+      })
     }
 
   }
