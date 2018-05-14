@@ -30,7 +30,7 @@
           $('#loanDetailList').removeClass('invisible')
         },
         methods: {
-          
+
           //报销人搜索
           querySearchMen(queryString, cb) {
             if (this.throttle.user_timer) {
@@ -63,6 +63,7 @@
           },
           handleSelectMen(item) {
             $('#userName').val(item)
+            this.search.name = item
           },
         }
       })
