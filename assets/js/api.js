@@ -193,6 +193,12 @@
         params: data
       })
     }
+
+    searchPurchaseProject(search = {}){
+      return this._http.get(`/search/purchase/project`, {
+        params: search
+      })
+    }
   }
 
   class WarehouseManager {
