@@ -20,7 +20,6 @@
                 type: 'warning'
               })
               .then(() => {
-                console.log(1)
                 _http.BuyManager.createCheck({
                   id: $(this).data('id')
                 })
@@ -131,7 +130,6 @@
                     message: '已选择了审批人',
                     type: 'success'
                   })
-                  $('.ui.dimmer').removeClass('active')
                 } else {
                   vm.$notify({
                     title: '错误',
