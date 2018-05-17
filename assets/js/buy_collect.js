@@ -17,7 +17,8 @@
         el: '#ele-part',
         data: {
           search: {
-            project_name: ''
+            project_name: '',
+            prject_number: ''
           },
           throttle: {
             name_timer: null
@@ -56,7 +57,7 @@
           },
           handleSelectProjectContent(item) {
             this.search.project_name = item.name
-            $('#nameInput').val(item.name)
+            $('#numberInput').val(item.number)
           },
         }
       })
