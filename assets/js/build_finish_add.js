@@ -210,8 +210,8 @@
                 if (res.data.code === '200') {
                   const resData = res.data.data
                   const originList = this.buildFinishAdd.lists
-                  const newList = resData.reduce((all, item) => {
-                    item.id = originList.length > 0 ? originList[originList.length - 1].id ? originList[originList.length - 1].id + 1 : 1 : 1;
+                  const newList = resData.reduce((all, item, index) => {
+                    item.id = originList.length > 0 ? originList[originList.length - 1].id ? originList[originList.length - 1].id + 1 + index : 1 + index : 1 + index;
                     return all.concat()
                   }, [])
                   this.buildFinishAdd.lists = [...this.buildFinishAdd.lists, ...newList]
