@@ -93,7 +93,7 @@
                 }
               }
             } else {
-              if (!newData[name] || newData[price] === '' || newData[number] === '') {
+              if (!newData.name || newData.price === '' || newData.number === '') {
                 this.$notify.error({
                   title: '错误',
                   message: '物料名称、物料价格、物料数量必填！'
