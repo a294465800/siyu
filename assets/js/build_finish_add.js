@@ -212,7 +212,7 @@
                   const originList = this.buildFinishAdd.lists
                   const newList = resData.reduce((all, item, index) => {
                     item.id = originList.length > 0 ? originList[originList.length - 1].id ? originList[originList.length - 1].id + 1 + index : 1 + index : 1 + index;
-                    return all.concat()
+                    return all.concat([item])
                   }, [])
                   this.buildFinishAdd.lists = [...this.buildFinishAdd.lists, ...newList]
                   this.$notify({
