@@ -121,6 +121,7 @@
 
           formatData(data) {
             let result = {
+              id: data.id,
               loan_user: data.loan_user,
               date: data.date,
               price: data.price,
