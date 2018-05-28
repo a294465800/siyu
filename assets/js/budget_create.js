@@ -15,6 +15,8 @@
         },
         mounted() {
           $('#budgetCreate').removeClass('invisible')
+          const lists = $('#lists').text().trim()
+          this.budgetForm = lists === '' ? [] : JSON.parse(lists)
           this.project_id = $('#budgetCreate').data('id')
         },
         methods: {
