@@ -31,6 +31,7 @@
         mounted() {
           this.extrabudgetary.info.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           const invoiceType = $('#invoiceType').text().trim()
+          this.extrabudgetary.buy_id = $('#getId').val()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           $('#buyExtrabudgetary').removeClass('invisible')
         },
@@ -271,6 +272,7 @@
           dataFormat(data) {
             let result = {
               info: data.info,
+              buy_id: data.buy_id,
               project_id: data.project_id,
               contracts: data.contracts,
               lists: []
