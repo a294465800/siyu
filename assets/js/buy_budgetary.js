@@ -23,7 +23,7 @@
             project_content_timer: null
           }
         },
-        mounted() {
+        mounted() { 
           $('#buyBudgetary').removeClass('invisible')
         },
 
