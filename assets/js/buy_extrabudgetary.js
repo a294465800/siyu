@@ -172,8 +172,8 @@
             }
 
             if (newMaterial.status) {
-              data.material = newMaterial
-              data.material_id = newMaterial.id
+              data.material = Object.assign({}, newMaterial)
+              data.material_id = data.material.id
             } else {
               data.name = newMaterial.name
             }
