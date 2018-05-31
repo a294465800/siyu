@@ -19,7 +19,7 @@
           this.form.date = $('#getDate').val()
           this.form.invoice_date = $('#invoiceDate').val()
           this.form.number = $('#invoiceDate').val()
-          this.form.type = $('#type').val()
+          this.form.type = Number($('#type').val())
           this.form.with_tax = $('#withTax').val()
           this.form.without_tax = $('#withoutTax').val()
           const invoiceType = $('#invoiceType').text().val()
