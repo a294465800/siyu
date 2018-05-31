@@ -704,6 +704,12 @@
         params: search
       })
     }
+
+    deleteBuy(data = {}){
+      return this._http.get(`/del/purchase`, {
+        params: data
+      })
+    }
   }
 
 
