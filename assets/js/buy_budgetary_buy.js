@@ -31,6 +31,8 @@
           const materials = $('#materials').text().trim()
           this.materials = materials === '' ? [] : JSON.parse(materials)
           this.budgetary_buy.project_id = $('#projectId').val()
+          const editData = $('#editData').text().trim()
+          editData === ''?'':this.budgetary_buy = JSON.parse(editData);
           $('#budgetaryBuy').removeClass('invisible')
         },
 

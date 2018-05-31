@@ -162,12 +162,23 @@
 
   //预算内采购
   const budgetary_buy = {
+    // lists => [{
+    //           material: { name，model，price、number、buy_number、need_number }
+    //           price、number、cost、warranty_date、warranty_time、own_id
+    //         }]
+    
+    // contracts => [{
+    //                name、href
+    //              }]
     lists: [], //采购物料清单列表： 物料 { 名称，性能， 型号， 生产厂家， 单位，单价， 数量}, 已采购数量， 剩余未采购数量， 新信息 { 本次数量，本次单价，本次金额，截至日期，保修时间 }
     contracts: [], //采购合同：名称
 
     project_id: '', //项目 id
     info: {
       supplier_id: '', //供应商 id
+      supplier_name: '', //供应商 id
+      bank: '', //供应商 id
+      account: '', //供应商 id
       date: '', //日期
       condition: '',  //条件
       content: '', //
@@ -180,7 +191,7 @@
   //预算外采购 第一步
   const extrabudgetary = {
     
-    // list => [{
+    // lists => [{
     //           material: { name，param，model，factory，unit }
     //           price、number、cost、warranty_date、warranty_time、
     //         }]
