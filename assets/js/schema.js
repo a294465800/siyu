@@ -180,15 +180,28 @@
   //预算外采购 第一步
   const extrabudgetary = {
     
+    // list => [{
+    //           material: { name，param，model，factory，unit }
+    //           price、number、cost、warranty_date、warranty_time、
+    //         }]
+
+    // contracts => [{
+    //                name、href
+    //              }]
     lists: [], //采购物料清单列表： 物料 { 名称，性能， 型号， 生产厂家， 单位，单价， 数量}, 已采购数量， 剩余未采购数量， 新信息 { 本次数量，本次单价，本次金额，截至日期，保修时间 }
     contracts: [], //采购合同：名称
 
     project_id: '', //项目 id
+    project_content: '',
+    project_number: '',
     info: {
       supplier_id: '', //供应商 id
+      supplier_name: '', //
+      bank: '', //
+      account: '', //
       date: '', //日期
       condition: '',  //条件
-      content: '', //
+      content: '', //用内容 name
       type: 2  //立项外标志
     }
   }

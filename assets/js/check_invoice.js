@@ -18,7 +18,9 @@
           this.invoiceForm.project_id = $('#projectId').val()
           this.invoiceForm.id = $('#getId').val()
           const invoiceType = $('#invoiceType').text().trim()
+          const editData = $('#editData').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
+          editData === ''?'':this.invoiceForm = JSON.parse(editData)
         },
         methods: {
           //单位搜索
