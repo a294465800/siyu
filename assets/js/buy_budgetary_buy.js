@@ -55,6 +55,7 @@
               let item = list[i]
               let material = item.material
               if (typeof item.number === 'undefined') break
+              if (typeof material.edit) break
               sum += parseFloat(item.cost || 0)
               let materialIndex = material.index
               result[materialIndex].need_number -= parseInt(item.number || 0)
