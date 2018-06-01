@@ -53,7 +53,7 @@
             <label class="four wide field">发票类型</label>
             <div class="twelve wide field">
               <el-select v-model="form.type" placeholder="发票类型" name="type">
-                <el-option v-for="(item, index) in invoice_type" :key="key" :label="item.name" :value="item.id">
+                <el-option v-for="(item, index) in invoice_type" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
               </el-select>
               <input type="hidden" id="invoiceType" value="1">
