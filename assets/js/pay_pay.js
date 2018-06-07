@@ -14,16 +14,27 @@
             bank: '',
             account: '',
             remark: '',
+            bankIndex: ''
           },
+
+          bankList: []
 
         },
         mounted() {
           this.payForm.id = $('#payId').val() || ''
           this.payForm.manager = $('#manager').val() || ''
           this.payForm.pay_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          const bankList = $('#bankList').text().trim()
+          this.bankList = bankList === '' ?[]:JSON.parse(bankList)
           $('#payPay').removeClass('invisible')
         },
         methods: {
+
+          selectBank(index){
+            const value = this.bankList[index]
+            this.payForm.bank = value.name
+            this.payForm.account = value.account
+          },
 
           //提交
           submit() {
