@@ -8,7 +8,9 @@
           form: {
             get_date: '',
             invoice_date: '',
-            type: ''
+            type: '',
+            amount_without_tax: '',
+            tax: ''
           },
           invoice_type: []
         },

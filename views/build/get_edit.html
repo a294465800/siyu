@@ -117,7 +117,7 @@
             <label class="four wide field">发票类型</label>
             <div class="twelve wide field">
               <el-select v-model="form.type" placeholder="发票类型" name="type">
-                <el-option v-for="(item, index) in invoice_type" :key="key" :label="item.name" :value="item.id">
+                <el-option v-for="(item, index) in invoice_type" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
               </el-select>
               <input type="hidden" id="invoiceType" value="1">
@@ -128,7 +128,7 @@
           <div class="inline fields">
             <label class="four wide field">不含税金额</label>
             <div class="twelve wide field">
-              <input type="number" name="amount_without_tax" placeholder="请输入不含税金额" value="200000.00">
+              <input type="number" v-model="form.amount_without_tax" name="amount_without_tax" placeholder="请输入不含税金额" value="200000.00">
             </div>
           </div>
         </div>
@@ -136,7 +136,7 @@
           <div class="inline fields">
             <label class="four wide field">税额</label>
             <div class="twelve wide field">
-              <input type="number" name="tax" placeholder="请输入税额" value="200000.00">
+              <input type="number"  v-model="form.tax" name="tax" placeholder="请输入税额" value="200000.00">
             </div>
           </div>
         </div>
@@ -144,7 +144,8 @@
           <div class="inline fields">
             <label class="four wide field">含税金额</label>
             <div class="twelve wide field">
-              <input type="number" name="amount" placeholder="请输入含税金额" value="200000.00">
+              <!-- <input type="number" name="amount" placeholder="请输入含税金额" value="200000.00"> -->
+              <div class="fake-input">{{ ((form.amount_without_tax * 1) + (form.tax*1)).toLocaleString('en-US') }}￥</div>
             </div>
           </div>
         </div>
