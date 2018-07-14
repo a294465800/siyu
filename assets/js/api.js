@@ -705,10 +705,14 @@
       })
     }
 
-    deleteBuy(data = {}){
+    deleteBuy(data = {}) {
       return this._http.get(`/del/purchase`, {
         params: data
       })
+    }
+
+    createPaySingle(data = {}) {
+      return this._http.post(`/purchase/cheque`, data, this.dataMethodDefaults)
     }
   }
 
