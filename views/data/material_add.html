@@ -93,7 +93,7 @@
               <template slot-scope="props" style="cursor: not-allowed;">
                 <div class="name">{{ props.item.name }}</div>
                 <span class="addr">{{ props.item.model }} {{ props.item.factory }}</span>
-                <span class="addr" :title="props.item.param">{{ props.item.param }}</span>
+                <div class="addr name" :title="props.item.param">{{ props.item.param }}</span> 
               </template>
             </el-autocomplete>
           </div>

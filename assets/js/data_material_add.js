@@ -11,6 +11,9 @@
             model: '',
             factory: '',
             unit: ''
+          },
+          throttle: {
+            material_timer: null
           }
         },
         mounted() {
