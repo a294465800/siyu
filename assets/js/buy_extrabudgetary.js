@@ -185,7 +185,7 @@
 
           //从上传拿数据
           uploadMaterials(e) {
-            const files = e.target.files
+            const file = e.target.files[0]  
             let formData = new FormData()
             formData.append('file', file)
             _http.MaterialManager.uploadMaterialBuy(formData)
