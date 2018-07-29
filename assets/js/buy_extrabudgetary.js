@@ -177,6 +177,9 @@
             if (newMaterial.status) {
               data.material = Object.assign({}, newMaterial)
               data.material_id = data.material.id
+              newMaterial.price && (data.price = newMaterial.price)
+              newMaterial.number && (data.number = newMaterial.number)
+              newMaterial.cost && (data.cost = newMaterial.cost)
             } else {
               data.name = newMaterial.name
             }
