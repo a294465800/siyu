@@ -199,6 +199,10 @@
         params: search
       })
     }
+
+    uploadMaterialBuy(data = {}) {
+      return this._http.post('/import/purchase', data)
+    }
   }
 
   class WarehouseManager {

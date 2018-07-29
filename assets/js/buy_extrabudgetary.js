@@ -11,14 +11,14 @@
 
           //新增物料
           newMaterial: {},
- 
+
           throttle: {
             id_timer: null,
             name_timer: null,
             supplier_timer: null,
             material_timer: null
           },
-          
+
           //复核人dialog
           checkedMen: [],
           menList: [],
@@ -34,7 +34,7 @@
           this.extrabudgetary.buy_id = $('#getId').val()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           const editData = $('#editData').text().trim()
-          editData === ''?'':this.extrabudgetary = JSON.parse(editData);
+          editData === '' ? '' : this.extrabudgetary = JSON.parse(editData);
           $('#buyExtrabudgetary').removeClass('invisible')
         },
 
@@ -183,6 +183,43 @@
             this.extrabudgetary.lists.push(data)
           },
 
+          //从上传拿数据
+          uploadMaterials(e) {
+            const files = e.target.files
+            let formData = new FormData()
+            formData.append('file', file)
+            _http.MaterialManager.uploadMaterialBuy(formData)
+              .then(res => {
+                if (res.data.code === '200') {
+                  const resData = res.data.data
+                  Array.isArray(resData) && resData.forEach(item => {
+                    item.status = 'old'
+                    this.newMaterial = item
+                    this.addMaterial()
+                  })
+                  this.$notify({
+                    title: '成功',
+                    message: `导入成功`,
+                    type: 'success'
+                  })
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+              .catch(err => {
+                console.log(err)
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+              })
+          },
+
           //物料自动提示函数
 
           querySearchMaterial(queryString, cb) {
@@ -316,9 +353,9 @@
                   })
                   this.selectData.id = res.data.data.id
                   _http.UserManager.searchAuthUsers({
-                    role: 'buy_extrabudgetary_check',
-                    // project_id: this.extrabudgetary.project_id
-                  })
+                      role: 'buy_extrabudgetary_check',
+                      // project_id: this.extrabudgetary.project_id
+                    })
                     .then(resp => {
                       if (resp.data.code === '200') {
                         this.menList = resp.data.data
@@ -348,7 +385,7 @@
               })
           },
 
-          
+
           //选择审核人
           handleCheckManChange(value) {
             console.log(this.checkedMen)
