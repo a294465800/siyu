@@ -185,9 +185,9 @@
 
           //从上传拿数据
           uploadMaterials(e) {
-            const file = e.target.files[0]  
+            const file = e.target.files[0]
             let formData = new FormData()
-            formData.append('file', file)
+            formData.append('file', file )
             _http.MaterialManager.uploadMaterialBuy(formData)
               .then(res => {
                 if (res.data.code === '200') {
