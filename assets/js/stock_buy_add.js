@@ -86,12 +86,28 @@
             this.stockBuyAdd.lists.push(data)
           },
 
+          //新增所有
+          addAll() {
+            const materials = this.materials
+
+            const list = materials.map((item, index) => {
+              return {
+                id: index,
+                material_id: item.id,
+                material: item,
+                number: item.need_number
+              }
+            })
+
+            this.stockBuyAdd.lists = list
+          },
+
           //删除
           deleteItem(name, item, index) {
             this.stockBuyAdd[name].splice(index, 1)
           },
 
-          dataFormat(data){
+          dataFormat(data) {
             let result = {
               date: data.date,
               warehouse_id: data.warehouse_id,
