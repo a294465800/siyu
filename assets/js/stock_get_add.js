@@ -18,7 +18,9 @@
             project_id_timer: null,
             material_timer: null,
             stock_timer: null
-          }
+          },
+
+          addAllFlag: false
         },
         mounted() {
           $('.ui.checkbox').checkbox()
@@ -204,6 +206,53 @@
             }
             this.stockGetAdd.lists.push(data)
           },
+
+          // 新增全部
+          addAll() {
+            if (this.addAllFlag) return;
+            if (this.stockGetAdd.warehouse_id === '') {
+              this.$notify.error({
+                title: '错误',
+                message: '请先选择出库仓库'
+              })
+              return;
+            }
+            this.addAllFlag = true
+            _http.StockManager.searchStockMaterialSpecial({
+                id: this.stockGetAdd.warehouse_id || ''
+              })
+              .then(res => {
+                if (res.data.code === '200') {
+                  const materials = res.data.data
+                  const list = materials.map((item, index) => {
+                    return {
+                      id: index,
+                      material: item.material,
+                      price: item.price,
+                      material_id: item.id,
+                      number: item.number
+                    }
+                  })
+                  this.stockGetAdd.lists = list
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg || '未知错误',
+                    type: 'error'
+                  })
+                }
+                this.addAllFlag = false
+              })
+              .catch(err => {
+                this.$notify({
+                  title: '错误',
+                  message: '服务器出错',
+                  type: 'error'
+                })
+                this.addAllFlag = false
+              })
+          },
+
           //删除
           deleteItem(name, item, index) {
             this.stockGetAdd[name].splice(index, 1)
