@@ -14,7 +14,9 @@
 
 <div id="invoiceType" style="display:none">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
 <div id="materials" style="display:none">[{"id":1,"name":"物料一","param":"参数一","model":"型号一","factory":"厂家一","unit":"个","price":253,"number":2534,"buy_number":1500,"need_number":1034},{"id":2,"name":"物料二","param":"参数二","model":"型号二","factory":"厂家二","unit":"件","price":2542,"number":500,"buy_number":300,"need_number":200},{"id":4,"name":"物料三","param":"参数三","model":"型号三","factory":"厂家三","unit":"间","price":123,"number":5000,"buy_number":2300,"need_number":2700},{"id":3,"name":"物料四","param":"参数四","model":"型号四","factory":"厂家四","unit":"间","price":542,"number":5000,"buy_number":5000,"need_number":0}]</div>
+<div id="editData" style="display:none"></div>
 <input type="hidden" id="projectId" value="XM232131223">
+<input type="hidden" id="getId" value="">
 
 <h1 class="ui red header blue center aligned">预算内采购</h1>
 
@@ -39,7 +41,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
   <h4 class="ui dividing header blue">基本信息</h4>
   <div class="ui form form-item">
@@ -97,7 +99,7 @@
         <div class="inline fields">
           <label class="four wide field">发票条件</label>
           <div class="twelve wide field">
-            <el-select v-model="budgetary_buy.invoice_condition" placeholder="请选择内容">
+            <el-select v-model="budgetary_buy.info.content" placeholder="请选择内容">
               <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
@@ -129,18 +131,18 @@
       </tr>
     </thead>
     <tbody>
-      <template v-if="materialsComputed.length">
+      <template v-if="materialsComputed && materialsComputed.length">
         <tr v-for="(item, index) in materialsComputed" :key="item.id">
-          <td>{{ item.name }}</td>
-          <td>{{ item.parameter }}</td>
-          <td>{{ item.model }}</td>
-          <td>{{ item.manufacturer }}</td>
-          <td>{{ item.unit }}</td>
+          <td>{{ item.material.name }}</td>
+          <td>{{ item.material.param }}</td>
+          <td>{{ item.material.model }}</td>
+          <td>{{ item.material.factory }}</td>
+          <td>{{ item.material.unit }}</td>
           <td>{{ item.price.toLocaleString('en-US') }}</td>
-          <td>{{ item.quantity.toLocaleString('en-US') }}</td>
+          <td>{{ item.number.toLocaleString('en-US') }}</td>
           <td>{{ item.buy_number.toLocaleString('en-US') }}</td>
-          <td>{{ item.left_number.toLocaleString('en-US') }}</td>
-          <td v-if="item.left_number>0">
+          <td>{{ item.need_number.toLocaleString('en-US') }}</td>
+          <td v-if="item.need_number>0">
             <button class="ui mini positive icon button" @click="addMaterial(item, index)">
               <i class="icon plus"></i>
               <span>添加物料</span>
@@ -182,10 +184,10 @@
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
       <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in budgetary_buy.lists" :key="item.own_id">
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.name || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.material.name || '无'}}</div>
         </div>
         <div class="one wide column">
-          <div class="fake-input">{{ item.material && item.material.model || '无'}}</div>
+          <div class="fake-input">{{ item.material && item.material.material.model || '无'}}</div>
         </div>
         <div class="one wide column">
           <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || '无'}} ￥</div>

@@ -12,6 +12,15 @@
   <div class="active section">收票信息修改</div>
 </div>
 
+<input type="hidden" value="" id="editId">
+<input type="hidden" value="" id="getDate">
+<input type="hidden" id="invoiceDate" value="2018-03-13">
+<input type="hidden" id="type" value="1">
+<input type="hidden" id="withTax" value="1">
+<input type="hidden" id="withoutTax" value="1">
+<input type="hidden" id="number" value="1">
+<div style="display: none" id="invoiceType"></div>
+
 <h1 class="ui red header blue center aligned">收票信息修改</h1>
 <div class="invisible" id="buyInvoiceEdit">
 
@@ -22,7 +31,7 @@
           <div class="inline fields">
             <label class="four wide field">收票日期</label>
             <div class="twelve wide field">
-              <el-date-picker v-model="form.get_date" name="get_date" type="date" placeholder="请选择收票日期" value-format="yyyy-MM-dd">
+              <el-date-picker v-model="form.date" name="date" type="date" placeholder="请选择收票日期" value-format="yyyy-MM-dd">
               </el-date-picker>
               <input type="hidden" id="getDate" value="2018-02-13">
             </div>
@@ -34,7 +43,7 @@
             <div class="twelve wide field">
               <div class="fake-input">陈先生</div>
             </div>
-          </div>
+          </div> 
         </div>
         <div class="column">
           <div class="inline fields">
@@ -42,7 +51,6 @@
             <div class="twelve wide field">
               <el-date-picker v-model="form.invoice_date" name="invoice_date" type="date" placeholder="请选择开票日期" value-format="yyyy-MM-dd">
               </el-date-picker>
-              <input type="hidden" id="invoiceDate" value="2018-03-13">
             </div>
           </div>
         </div>
@@ -50,7 +58,7 @@
           <div class="inline fields">
             <label class="four wide field">发票号码</label>
             <div class="twelve wide field">
-              <input type="text" value="4654654165165" placeholder="请输入发票号码">
+              <input type="text" v-model="form.number"  placeholder="请输入发票号码">
             </div>
           </div>
         </div>
@@ -59,10 +67,9 @@
             <label class="four wide field">发票类型</label>
             <div class="twelve wide field">
               <el-select v-model="form.type" placeholder="发票类型" name="type">
-                <el-option v-for="(value, key) in {1:'专用发票17%',2:'专用发票11%'}" :key="key" :label="value" :value="key">
+                <el-option v-for="item in invoiceType" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
               </el-select>
-              <input type="hidden" id="invoiceType" value="1">
             </div>
           </div>
         </div>
@@ -70,7 +77,7 @@
           <div class="inline fields">
             <label class="four wide field">不含税金额</label>
             <div class="twelve wide field">
-              <input type="number" name="amount_without_tax" placeholder="请输入不含税金额" value="">
+              <input type="number" v-model="form.without_tax" name="without_tax" placeholder="请输入不含税金额" value="">
             </div>
           </div>
         </div>
@@ -78,7 +85,7 @@
           <div class="inline fields">
             <label class="four wide field">税额</label>
             <div class="twelve wide field">
-              <input type="number" name="tax" placeholder="请输入税额" value="">
+              <input type="number" v-model="form.tax" name="tax" placeholder="请输入税额" value="">
             </div>
           </div>
         </div>
@@ -86,7 +93,7 @@
           <div class="inline fields">
             <label class="four wide field">含税金额</label>
             <div class="twelve wide field">
-              <input type="number" name="amount" placeholder="请输入含税金额" value="">
+              <input type="number" v-model="form.with_tax" name="amount" placeholder="请输入含税金额" value="">
             </div>
           </div>
         </div>

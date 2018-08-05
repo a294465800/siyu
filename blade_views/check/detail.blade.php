@@ -10,6 +10,16 @@
   <div class="active section">项目明细 - 项目编号 XM15823910212</div>
 </div>
 
+<div style="display:none" id="marginPay">{"count1":123123,"count2":123123,"count3":213421252,"data":[{"id":1,"guarantee":{"company":"单位一","amount":12315412,"date":"2018-02-11","cost":5232,"others":"其他信息"},"payment":{"date":"2018-02-04","amount":52321,"payee":"张先生","bank":"广发银行","account":6009876787523154000,"recyle":"回收条件条件"}},{"id":2,"guarantee":{"company":"单位二","amount":223542,"date":"2018-02-15","cost":6234,"others":"其他信息"},"payment":{"date":"2018-02-04","amount":52321,"payee":"张先生","bank":"广发银行","account":6009876787523154000,"recyle":"回收条件条件"}}]}</div>
+<div style="display:none" id="marginRecyle">{"count":1111111,"leftCount":2321,"data":[{"id":1,"preDate":"2018-01-02","preAmount":12342213,"prePeople":"张先生","preRemark":"这是备注","realDate":"2018-02-01","realBank":"中国银行","realAmount":231523,"realPeople":"张先生","realAccount":60002321523215230000},{"id":2,"preDate":"2018-03-02","preAmount":5232124,"prePeople":"成先生","preRemark":"这是备注","realDate":"2018-04-01","realBank":"广发银行","realAmount":2342,"realPeople":"成先生","realAccount":60002321523215230000}]}</div>
+<div style="display:none" id="requirement">{"count":123123,"data":[{"id":1,"date":"2018-10-22","amount":123142,"company":"xxx单位","remark":"这是备注~"},{"id":2,"date":"2017-12-22","amount":123,"company":"xxx单位","remark":"这是备注这是备注~"}]}</div>
+<div style="display:none" id="invoice">{"count":2312312,"data":[{"id":1,"date":"2018-01-02","amount":2132,"company":{"id":1,"value":"单位一"},"tax":{"id":1,"value":5}},{"id":2,"date":"2018-01-02","amount":2132,"company":{"id":1,"value":"单位一"},"tax":{"id":1,"value":5}},{"id":3,"date":"2018-01-02","amount":2132,"company":{"id":2,"value":"单位二"},"tax":{"id":2,"value":9}},{"id":4,"date":"2018-01-02","amount":2132,"company":{"id":3,"value":"单位三"},"tax":{"id":3,"value":15}},{"id":5,"date":"2018-01-02","amount":2132,"company":{"id":3,"value":"单位三"},"tax":{"id":1,"value":5}}]}</div>
+<div style="display:none" id="invoiceCompany">[{"id":1,"value":"单位一"},{"id":2,"value":"单位二"},{"id":3,"value":"单位三"}]</div>
+<div style="display:none" id="invoiceTax">[{"id":1,"value":5},{"id":2,"value":9},{"id":3,"value":15}]</div>
+<div style="display:none" id="subCompany">{"count":323123,"data":[{"id":1,"date":"2018-01-02","amount":213123,"remark":"这是备注啊~"},{"id":2,"date":"2018-01-02","amount":3212,"remark":"这是备注啊~"},{"id":3,"date":"2018-01-02","amount":4274,"remark":"这是备注啊~"}]}</div>
+<div style="display:none" id="masterContract">{"count":123123,"data":[{"id":1,"date":"2018-09-21","amount":213123,"bank":"中国银行","account":6034232123523673000,"remark":"这是备注~"},{"id":2,"date":"2018-09-21","amount":6423,"bank":"中国银行","account":603423212123473200,"remark":"这是备注~"},{"id":3,"date":"2018-09-21","amount":6321,"bank":"广发银行","account":6034232123242673000,"remark":"这是备注~"},{"id":4,"date":"2018-09-21","amount":32421,"bank":"中国银行","account":6034232123523673000,"remark":"这是备注~"}]}</div>
+<div style="display:none" id="subContract">{"count":123123,"data":[{"id":1,"date":"2018-09-21","amount":213123,"bank":"中国银行","account":6034232123523673000,"remark":"这是备注~"},{"id":2,"date":"2018-09-21","amount":6423,"bank":"中国银行","account":603423212123473200,"remark":"这是备注~"},{"id":3,"date":"2018-09-21","amount":6321,"bank":"广发银行","account":6034232123242673000,"remark":"这是备注~"},{"id":4,"date":"2018-09-21","amount":32421,"bank":"中国银行","account":6034232123523673000,"remark":"这是备注~"}]}</div>
+
 <h1 class="inline-center">项目编号 - XM15823910212</h1>
 <div id="projectCheck">
   <!-- 基本信息 -->
@@ -415,7 +425,7 @@
     </div>
 
     <div class="check-item margin-top-50" style="overflow:auto;">
-      <table class="ui celled structured table center aligned special" v-if="marginRecyle.data.length">
+      <table class="ui celled structured table center aligned special" v-if="marginRecyle.data && marginRecyle.data.length">
         <thead>
           <tr>
             <th colspan="10">履约保证金回收情况</th>
@@ -522,7 +532,7 @@
     <!-- 预计请款计划 -->
     <h4 class="ui dividing header blue margin-top-50">预计请款计划</h4>
     <div class="check-item">
-      <table class="ui celled structured table center aligned special" v-if="requirement && requirement.data.length">
+      <table class="ui celled structured table center aligned special" v-if="requirement.data && requirement.data.length">
         <thead>
           <tr>
             <th colspan="5">预计请款计划</th>
@@ -585,7 +595,7 @@
 
     <!-- 开票 -->
     <h4 class="ui dividing header blue margin-top-50">开票</h4>
-    <template v-if="invoice && invoice.data.length">
+    <template v-if="invoice.data && invoice.data.length">
       <div class="check-item">
         <table class="ui celled structured table center aligned">
           <thead>
@@ -679,7 +689,7 @@
     <!-- 发包公司收款情况 -->
     <h4 class="ui dividing header blue">发包公司收款情况</h4>
     <div class="check-item">
-      <table class="ui celled structured table center aligned" v-if="subCompany && subCompany.data.length">
+      <table class="ui celled structured table center aligned" v-if="subCompany.data && subCompany.data.length">
         <thead>
           <tr>
             <th colspan="4">发包公司收款情况</th>
@@ -736,7 +746,7 @@
     <!-- 主合同收款 -->
     <h4 class="ui dividing header blue">主合同收款</h4>
     <div class="check-item">
-      <table class="ui celled structured table center aligned" v-if="masterContract && masterContract.data.length">
+      <table class="ui celled structured table center aligned" v-if="masterContract.data && masterContract.data.length">
         <thead>
           <tr>
             <th colspan="6">主合同收款</th>
@@ -809,7 +819,7 @@
     <!-- 分包合同收款 -->
     <h4 class="ui dividing header blue">分包合同收款</h4>
     <div class="check-item">
-      <table class="ui celled structured table center aligned" v-if="subContract && subContract.data.length">
+      <table class="ui celled structured table center aligned" v-if="subContract.data && subContract.data.length">
         <thead>
           <tr>
             <th colspan="6">分包合同收款</th>
@@ -898,6 +908,206 @@
       <span>收款</span>
     </a>
   </div>
+</div>
+
+<div id="projectCheckDialog">
+  <el-dialog :title="'修改' + map[currentType]" :visible.sync="centerDialogVisible" width="60%" center>
+
+
+    <!-- 保证金左侧 -->
+    <template v-if="currentType === 'marginLeft'">
+      <el-form label-position="left" label-width="160px" :model="marginLeft">
+        <el-form-item label="预计回收日期">
+          <el-date-picker v-model="marginLeft.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="预计回收日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="预计回收金额">
+          <el-input v-model.number="marginLeft.price" type="number" placeholder="预计回收金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="付款人">
+          <el-input v-model="marginLeft.pay_unit" type="text" placeholder="付款人"></el-input>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="marginLeft.remark" type="text" placeholder="备注"></el-input>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /保证金左侧 -->
+
+    <!-- 保证金右侧 -->
+    <template v-else-if="currentType === 'marginRight'">
+      <el-form label-position="left" label-width="160px" :model="marginRight">
+        <el-form-item label="实际回收日期">
+          <el-date-picker v-model="marginRight.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="实际回收日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="实际回收金额">
+          <el-input v-model.number="marginRight.price" type="number" placeholder="实际回收金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="marginRight.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="付款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="marginRight.bank" :fetch-suggestions="querySearchBank" placeholder="付款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="付款账户">
+          <div class="fake-input">{{ marginRight.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
+
+    <!-- 请款 -->
+    <template v-else-if="currentType === 'finish'">
+
+      <el-form label-position="left" label-width="160px" :model="finish">
+        <el-form-item label="请款日期">
+          <el-date-picker v-model="finish.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="请款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="请款金额">
+          <el-input v-model.number="finish.price" type="number" placeholder="请款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="finish.pay_unit" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="finish.remark" type="text" placeholder="备注"></el-input>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /请款 -->
+
+
+    <!-- 发包公司 -->
+    <template v-else-if="currentType === 'company'">
+      <el-form label-position="left" label-width="160px" :model="company">
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="company.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="company.remark" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /发包公司 -->
+
+
+    <!-- 分包合同 -->
+    <template v-else-if="currentType === 'subContract'">
+      <el-form label-position="left" label-width="160px" :model="subContract">
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="subContract.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="subContract.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="subContract.price" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="收款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="subContract.bank" :fetch-suggestions="querySearchBank" placeholder="收款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款账户">
+          <div class="fake-input">{{ subContract.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /分包合同 -->
+
+    <!-- 主合同 -->
+    <template v-else-if="currentType === 'masterContract'">
+      <el-form label-position="left" label-width="160px" :model="masterContract">
+        <el-form-item label="付款单位">
+          <el-autocomplete popper-class="my-autocomplete" v-model="masterContract.payee" :fetch-suggestions="querySearchCompany" placeholder="请选择付款单位"
+            @select="handleSelectCompany">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款日期">
+          <el-date-picker v-model="masterContract.pay_date" value-format="yyyy-MM-dd" type="date" placeholder="收款日期">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="收款金额">
+          <el-input v-model.number="masterContract.price" type="number" placeholder="收款金额">
+            <template slot="append">￥</template>
+          </el-input>
+        </el-form-item>
+        <el-form-item label="收款银行">
+          <el-autocomplete popper-class="my-autocomplete" v-model="masterContract.bank" :fetch-suggestions="querySearchBank" placeholder="收款银行"
+            @select="handleSelectBank">
+            <i class="el-icon-edit el-input__icon" slot="suffix">
+            </i>
+            <template slot-scope="props">
+              <div class="name">{{ props.item.name }}</div>
+              <div class="addr">{{ props.item.account }}</div>
+            </template>
+          </el-autocomplete>
+        </el-form-item>
+        <el-form-item label="收款账户">
+          <div class="fake-input">{{ masterContract.account || '暂无' }}</div>
+        </el-form-item>
+      </el-form>
+    </template>
+    <!-- /主合同 -->
+
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="centerDialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="submit">确 定</el-button>
+    </span>
+  </el-dialog>
 </div>
 
 <include src="../template/footer.html">

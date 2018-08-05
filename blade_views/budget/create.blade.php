@@ -12,6 +12,8 @@
 
 <h1 class="ui header blue center aligned">预算录入 - 项目号 XM15823910212</h1>
 
+<div style="display: none" id="lists"></div>
+
 <div class="invisible" id="budgetCreate" data-id="11">
 
   <!-- 操作 -->
@@ -24,6 +26,106 @@
   </div>
   <!-- / 操作 -->
 
+
+  <h4 class="ui dividing header blue margin-top-50">物料检索添加</h4>
+  <div class="ui form form-item">
+    <div class="ui three column doubling stackable grid">
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">物料名称</label>
+          <div class="twelve wide field">
+            <el-autocomplete popper-class="my-autocomplete" v-model="newMaterial.name" :fetch-suggestions="querySearchMaterial" placeholder="请输入物料名称"
+              @select="handleSelectMaterial">
+              <i class="el-icon-edit el-input__icon" slot="suffix">
+              </i>
+              <template slot-scope="props">
+                <div class="name">{{ props.item.name }}</div>
+                <span class="addr">{{ props.item.model }}</span>
+              </template>
+            </el-autocomplete>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">性能及技术参数</label>
+          <div class="twelve wide field">
+            <div class="fake-input">{{ newMaterial.param || '暂无参数' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">品牌型号</label>
+          <div class="twelve wide field">
+            <div class="fake-input">{{ newMaterial.model || '暂无参数' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">生产厂家</label>
+          <div class="twelve wide field icon input">
+            <div class="fake-input">{{ newMaterial.factor || '暂无参数' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">单位</label>
+          <div class="twelve wide field">
+            <div class="fake-input">{{ newMaterial.unit || '暂无参数' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">单价</label>
+          <div class="twelve wide field">
+            <input v-model.number="newMaterial.price" type="number" placeholder="单价">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">数量</label>
+          <div class="twelve wide field">
+            <input v-model.number="newMaterial.number" type="number" placeholder="数量">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">金额</label>
+          <div class="twelve wide field">
+            <!-- <input v-model.number="newMaterial.cost" type="number" placeholder="金额"> -->
+            <div class="fake-input">{{ (newMaterial.price * newMaterial.number || 0).toLocaleString('en-US') }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field">类型</label>
+          <div class="twelve wide field">
+            <el-select v-model="newMaterial.type" placeholder="类型">
+              <el-option v-for="item in budgetType" :key="item.id" :label="item.name" :value="item.id">
+              </el-option>
+            </el-select>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="inline fields">
+          <button class="ui positive icon button" @click="addOriginMaterial">
+            <i class="icon plus"></i>
+            <span>添加</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="ui dividing header blue margin-top-50">新增物料添加</h4>
   <!-- 添加表单 -->
   <div class="ui form form-item">
     <div class="ui eleven column doubling stackable grid">
@@ -62,7 +164,8 @@
           <input v-model.number="newBudget.number" type="number" placeholder="数量">
         </div>
         <div class="two wide column">
-          <input v-model.number="newBudget.cost" type="number" placeholder="金额">
+          <!-- <input v-model.number="newBudget.cost" type="number" placeholder="金额"> -->
+          <div class="fake-input">{{ (newBudget.price * newBudget.number || 0).toLocaleString('en-US') }}</div>
         </div>
         <div class="one wide column">
           <el-select v-model="newBudget.type" placeholder="类型">
@@ -120,7 +223,7 @@
           <div class="fake-input">{{ item.number.toLocaleString('en-US')}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{item.cost.toLocaleString('en-US')}} ￥</div>
+          <div class="fake-input">{{(item.price * item.number).toLocaleString('en-US')}} ￥</div>
         </div>
         <div class="one wide column">
           <div class="fake-input">{{budgetType[item.type * 1 - 1].name}}</div>

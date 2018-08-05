@@ -1,5 +1,5 @@
 <include src="../template/normalHeader.html">
-  @title = 录入合同
+  @title = 新增请款
 </include>
 
 <div class="ui breadcrumb">
@@ -102,8 +102,12 @@
   <h4 class="ui dividing header blue">请款添加</h4>
   <h4 class="ui header center aligned">请款清单</h4>
   <div class="flex-row flex-end">
-    <div class="ui mini button positive">Excel 导入</div>
-    <div class="ui mini button positive" @click="addItem('list')">手工添加</div>
+    <label for="contractUpload" class="ui mini positive icon button">
+      <i class="icon upload"></i>
+      <span>Excel 导入</span>
+      <input style="display:none;" type="file" id="contractUpload" @change="fileUpload($event)">
+    </label>
+    <div class="ui mini button positive" @click="addItem('lists')">手工添加</div>
   </div>
   <h5 class="ui header right aligned">合计总额：{{ sumAmount.toLocaleString('en-US') }} ￥</h5>
   <div class="ui form form-item">
@@ -118,12 +122,12 @@
       <div class="two wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in buildFinishAdd.list" :key="item.id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in buildFinishAdd.lists" :key="item.id">
         <div class="two wide column">
           <input type="text" placeholder="设备名称" v-model="item.name">
         </div>
         <div class="two wide column">
-          <input type="text" placeholder="性能参数" v-model="item.para">
+          <input type="text" placeholder="性能参数" v-model="item.param">
         </div>
         <div class="two wide column">
           <input type="text" placeholder="数量" v-model.number="item.number">
@@ -135,14 +139,14 @@
           <input type="number" v-model.number="item.price" placeholder="含税单价">
         </div>
         <div class="two wide column">
-          <input type="number" v-model.number="item.total" placeholder="含税总价">
+          <div class="fake-input">{{ ((item.number || 0)*(item.price || 0)).toLocaleString('en-US') }}</div>
         </div>
         <div class="two wide column">
           <input type="text" placeholder="备注" v-model="item.remark">
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">
-            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('list', item, index)"></i>
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem('lists', item, index)"></i>
           </div>
         </div>
       </div>

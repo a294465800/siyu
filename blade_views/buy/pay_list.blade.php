@@ -84,6 +84,7 @@
         <th>应付账款</th>
         <th>系统状态</th>
         <th>操作状态</th>
+        <th>支票</th>
       </tr>
     </thead>
     <tbody>
@@ -100,6 +101,7 @@
         <td>52,212 ￥</td>
         <td>已结清</td>
         <td>待处理</td>
+        <td class="pay-operation" data-id="1">操作</td>
       </tr>
       <tr>
         <td>
@@ -114,6 +116,7 @@
         <td>52,212 ￥</td>
         <td>未结清</td>
         <td>已处理</td>
+        <td class="pay-operation" data-id="1">操作</td>
       </tr>
     </tbody>
   </table>

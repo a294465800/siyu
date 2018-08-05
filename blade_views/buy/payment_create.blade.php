@@ -12,6 +12,8 @@
   <div class="active section">付款申请</div>
 </div>
 
+<input id="projectId" type="hidden" value="xxx">
+<input id="createId" type="hidden" value="1">
 <input id="purchaseId" type="hidden" value="CG12512312521">
 <input id="hiddenDate" type="hidden" value="2018-03-05">
 <input id="hiddenAmount" type="hidden" value="222">

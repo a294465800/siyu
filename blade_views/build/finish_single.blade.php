@@ -9,6 +9,7 @@
   <div class="divider"> / </div>
   <div class="active section">请款查询 - WGQK20171103001</div>
 </div>
+<input value="" id="getId" type="hidden" />
 
 <h2 class="ui header aligned center">请款编号 - WGQK20171103001</h2>
 <h4 class="ui dividing header blue">基本信息</h4>
@@ -131,19 +132,23 @@
     </tfoot>
   </table>
 
-  <div class="flex-row flex-center margin-top-50">
-    <a class="ui icon button" href="#" style="margin:0 10px;">
+  <div class="flex-row flex-center margin-top-50" id="btnGroup">
+    <a class="ui icon button" href="javascript:_helper.fullWindow('./finish_edit.html')" style="margin:0 10px;">
       <i class="icon edit"></i>
       <span>修改</span>
     </a>
-    <button class="ui icon button primary" @click="recheckFnc" style="margin:0 10px;">
+    <button class="ui icon button primary" v-if="isHide" @click="recheckFnc" style="margin:0 10px;">
       <i class="icon legal"></i>
       <span>复核</span>
     </button>
-    <a class="ui icon button primary" href="javascript:_helper.fullWindow('../buy/extrabudgetary_print.html')" style="margin:0 10px;">
+    <a class="ui icon button primary" v-if="isHide2" @click="passFnc" style="margin:0 10px;">
       <i class="icon edit"></i>
       <span>审批</span>
     </a>
+    <button class="ui icon button negative" @click="removeFnc" style="margin:0 10px;">
+      <i class="icon delete"></i>
+      <span>删除</span>
+    </button>
     <a class="ui icon button positive" href="javascript:_helper.fullWindow('../build/finish_print.html')" style="margin:0 10px;">
       <i class="icon print"></i>
       <span>凭证</span>

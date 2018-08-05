@@ -21,12 +21,12 @@
         <div class="inline fields">
           <label class="four wide field flex-center">项目编号</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.project_id" :fetch-suggestions="querySearch" placeholder="请输入项目编号"
+            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.project_number" :fetch-suggestions="querySearch" placeholder="请输入项目编号"
               @select="handleSelect">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.id }}</div>
+                <div class="name">{{ props.item.number }}</div>
                 <span class="addr">{{ props.item.name }}</span>
               </template>
             </el-autocomplete>
@@ -37,13 +37,13 @@
         <div class="inline fields">
           <label class="four wide field flex-center">项目内容</label>
           <div class="twelve wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.project_content" :fetch-suggestions="querySearch"
+            <el-autocomplete popper-class="my-autocomplete" v-model="stockReturnAdd.project_content" :fetch-suggestions="querySearchContent"
               placeholder="请输入项目内容" @select="handleSelect">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
                 <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.id }}</span>
+                <span class="addr">{{ props.item.number }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -75,7 +75,7 @@
               </i>
               <template slot-scope="props">
                 <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.manger }}</span>
+                <span class="addr">{{ props.item.manager }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -127,7 +127,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">性能及参数</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.parameter || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.param || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">生产厂家</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.manufacturer || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.factory || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -242,20 +242,20 @@
           <template v-if="currentMaterialList.length">
             <tr v-for="(item, index) in currentMaterialList" :key="item.id">
               <td>{{ index + 1 }}</td>
-              <td>{{ item.get_id }}</td>
-              <td>{{ item.stock }}</td>
-              <td>{{ item.material_name }}</td>
-              <td>{{ item.material_parameter }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.warehouse }}</td>
+              <td>{{ item.material.name }}</td>
+              <td>{{ item.material.param }}</td>
               <td>{{ item.material_model }}</td>
-              <td>{{ item.material_manufacturer }}</td>
-              <td>{{ item.material_unit }}</td>
-              <td>{{ item.material_price.toLocaleString('en-US') }}</td>
-              <td>{{ item.count.toLocaleString('en-US') }}</td>
-              <td>{{ item.amount.toLocaleString('en-US') }}</td>
-              <td>{{ item.project_id }}</td>
+              <td>{{ item.material.factory }}</td>
+              <td>{{ item.material.unit }}</td>
+              <td>{{ item.price.toLocaleString('en-US') }}</td>
+              <td>{{ item.number.toLocaleString('en-US') }}</td>
+              <td>{{ item.cost.toLocaleString('en-US') }}</td>
+              <td>{{ item.project_number }}</td>
               <td>{{ item.project_content }}</td>
               <td>{{ item.project_manager }}</td>
-              <td>{{ item.people }}</td>
+              <td>{{ item.worker }}</td>
             </tr>
           </template>
           <template v-else>

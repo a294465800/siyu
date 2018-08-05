@@ -20,15 +20,25 @@
           throttle: {
             id_timer: null,
             name_timer: null,
+            payee_timer: null
           },
           selectData: {
             id: ''
-          }
+          },
+          currentSupplier: {},
+          invoiceType: [],
+          payeeType: [],
+          payeeDetail: []
         },
         mounted() {
           this.payForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           this.payForm.apply_user = $('#applyUser').val();
           $('#payAdd').removeClass('invisible')
+          
+          const invoiceType = $('#invoiceType').text().trim()
+          this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
+          const payeeType = $('#payeeType').text().trim()
+          this.payeeType = payeeType === '' ? [] : JSON.parse(payeeType)
         },
         methods: {
 
@@ -98,6 +108,38 @@
             this.payForm.project_id = item.id
             this.payForm.project_number = item.number
             this.payForm.project_content = item.name
+          },
+
+          //收款人搜索
+          querySearchPayee(queryString, cb) {
+            clearTimeout(this.throttle.payee_timer)
+            this.throttle.payee_timer = setTimeout(() => {
+              const searchKey = {
+                name: queryString,
+              }
+              _http.ProjectManager.searchProject(searchKey)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    cb(res.data.data)
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg || '未知错误',
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }, 500)
+          },
+          handleSelectPayee(item) {
+            this.currentSupplier = item
           },
 
           //提交

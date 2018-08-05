@@ -123,8 +123,8 @@
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
                 <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
-                  <span class="addr">{{ props.item.model }}</span>
+                  <div class="name">{{ props.item.material.name }}</div>
+                  <span class="addr">{{ props.item.material.model }}</span>
                 </template>
               </el-autocomplete>
             </div>
@@ -163,7 +163,7 @@
           <div class="inline fields">
             <label class="four wide field flex-center">生产厂家</label>
             <div class="twelve wide field">
-              <div class="fake-input">{{ current.material.material.factor || '暂无'}}</div>
+              <div class="fake-input">{{ current.material.material.factory || '暂无'}}</div>
             </div>
           </div>
         </div>
@@ -202,13 +202,13 @@
           <div class="fake-input">{{ item.material && item.material.unit || '无'}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || 0}} ￥</div>
+          <div class="fake-input">{{ item.price && item.price.toLocaleString('en-US') || 0}} ￥</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.buy_number.toLocaleString('en-US') || 0}}</div>
+          <div class="fake-input">{{ item.sum && item.sum.toLocaleString('en-US') || 0}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.cost.toLocaleString('en-US') || 0}} ￥</div>
+          <div class="fake-input">{{ item.cost && item.cost.toLocaleString('en-US') || 0}} ￥</div>
         </div>
         <div class="two wide column">
           <input type="number" v-model="item.number" placeholder="出货数量">

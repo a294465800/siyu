@@ -10,6 +10,9 @@
   <div class="active section">新增发票类型</div>
 </div>
 
+<input type="hidden" id="invoiceId" value="">
+<input type="hidden" id="invoiceName" value="专用票">
+<input type="hidden" id="invoiceRate" value="11">
 <h1 class="ui header blue aligned center">新增发票类型</h1>
 <div id="dataInvoiceAdd">
   <h4 class="ui dividing header blue">信息录入</h4>
@@ -19,13 +22,19 @@
         <div class="inline fields">
           <label class="six wide field flex-center">发票类型名称</label>
           <div class="eleven wide field">
-            <input type="hidden" id="invoiceId" value="">
-            <input type="hidden" id="invoiceName" value="专用票11%">
             <input type="text" v-model="invoiceForm.name" placeholder="请输入发票类型名称">
           </div>
         </div>
       </div>
       <div class="column">
+        <div class="inline fields">
+          <label class="six wide field flex-center">税率</label>
+          <div class="eleven wide field">
+            <input type="number" v-model.number="invoiceForm.rate" placeholder="请输入税率">
+          </div>
+        </div>
+      </div>
+      <div class="column"> 
         <div class="inline fields">
           <label class="six wide field flex-center">备注</label>
           <div class="eleven wide field">

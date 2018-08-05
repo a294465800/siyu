@@ -17,28 +17,46 @@
             bankIndex: ''
           },
 
-          bankList: []
+          bankList: [],
+          payList: []
 
         },
         mounted() {
-          this.payForm.id = $('#payId').val() || ''
-          this.payForm.manager = $('#manager').val() || ''
-          this.payForm.pay_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
+          // this.payForm.id = $('#payId').val() || ''
+          // this.payForm.manager = $('#manager').val() || ''
+          // this.payForm.pay_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           const bankList = $('#bankList').text().trim()
-          this.bankList = bankList === '' ?[]:JSON.parse(bankList)
+          this.bankList = bankList === '' ? [] : JSON.parse(bankList)
           $('#payPay').removeClass('invisible')
+          this.addItem()
         },
         methods: {
 
-          selectBank(index){
-            const value = this.bankList[index]
-            this.payForm.bank = value.name
-            this.payForm.account = value.account
+          //添加项目
+          addItem() {
+            const list = this.payList
+            const data = {
+              pay_date: _helper.timeFormat(new Date(), 'YYYY-MM-DD'),
+              self_id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
+            }
+            this.payList.push(data)
+          },
+          //删除项
+          deleteItem(item, index) {
+            this.payList.splice(index, 1)
+          },
+
+          selectBank(bankIndex, itemIndex) {
+            const value = this.bankList[bankIndex]
+            // this.payForm.bank = value.name
+            // this.payForm.account = value.account
+            this.payList[itemIndex].bank = value.bank
+            this.payList[itemIndex].account = value.account
           },
 
           //提交
           submit() {
-            _http.PaymentManager.createPayPay(this.payForm)
+            _http.PaymentManager.createPayPay(this.payList)
               .then(res => {
                 if (res.data.code === '200') {
                   this.$notify.success({

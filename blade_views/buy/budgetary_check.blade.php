@@ -126,14 +126,18 @@
     <i class="icon legal"></i>
     <span>复核</span>
   </button>
-  <a class="ui icon button primary" href="#" style="margin:0 10px;">
+  <button class="ui icon button primary" id="budgetaryCheckPass" style="margin:0 10px;">
     <i class="icon write"></i>
     <span>审批</span>
-  </a>
+  </button>
   <a class="ui icon button green" href="javascript:_helper.fullWindow('../buy/budgetary_print.html')" style="margin:0 10px;">
     <i class="icon print"></i>
     <span>凭证</span>
   </a>
+  <button class="ui icon button primary" data-id="1" id="budgetaryCheckDelete" style="margin:0 10px;">
+    <i class="icon cancel"></i>
+    <span>删除</span>
+  </button>
 </div>
 
 <div class="ui page dimmer" id="budgetaryCheck">

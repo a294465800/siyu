@@ -10,6 +10,8 @@
   <div class="active section">新增报销付款</div>
 </div>
 
+<div style="display: none" id="banks"></div>
+
 <h1 class="ui header blue aligned center">新增报销付款</h1>
 <div id="loanPayAdd" class="invisible">
   <h4 class="ui dividing header blue">信息录入</h4>
@@ -29,7 +31,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">报销人</label>
           <div class="eleven wide field">
-            <el-autocomplete popper-class="my-autocomplete" v-model="loanForm.people" :fetch-suggestions="querySearchMen" placeholder="请输入报销人"
+            <el-autocomplete popper-class="my-autocomplete" v-model="loanForm.name" :fetch-suggestions="querySearchMen" placeholder="请输入报销人"
               @select="handleSelectMen">
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
@@ -44,7 +46,7 @@
   </div>
 
   <h4 class="inline-center">未付款报销清单</h4>
-  <h5 class="ui header right aligned">合计总额：123,523 ￥</h5>
+  <h5 class="ui header right aligned">合计总额：{{ listAmount.toLocaleString('en-US') }} ￥</h5>
   <div class="ui form form-item">
     <div class="ui five column doubling stackable grid font-size-13">
       <div class="two wide column form-thead">未支付报销单</div>
@@ -64,13 +66,13 @@
             <div class="fake-input">{{ item.id }}</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.amount.toLocaleString('en-US') }}￥</div>
+            <div class="fake-input">{{ item.price.toLocaleString('en-US') }}￥</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.checkMan }}</div>
+            <div class="fake-input">{{ item.checker }}</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.passMan }}</div>
+            <div class="fake-input">{{ item.passer }}</div>
           </div>
           <div class="two wide column">
             <div class="fake-input" style="margin-top:-2px;">
@@ -113,7 +115,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">报销人</label>
             <div class="eleven wide field">
-              <div class="fake-input">{{ loanForm.people }}</div>
+              <div class="fake-input">{{ loanForm.name }}</div>
             </div>
           </div>
         </div>
@@ -121,7 +123,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">借款余额</label>
             <div class="eleven wide field">
-              <div class="fake-input">123,523￥</div>
+              <div class="fake-input">{{ current_count.toLocaleString('en-US') }}￥</div>
             </div>
           </div>
         </div>
@@ -129,7 +131,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">抵扣借款金额</label>
             <div class="eleven wide field">
-              <input type="number" v-model.number="loanForm.de_amount" placeholder="抵扣借款金额">
+              <input type="number" v-model.number="loanForm.daduction" placeholder="抵扣借款金额">
             </div>
           </div>
         </div>
@@ -137,7 +139,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">现金付款金额</label>
             <div class="eleven wide field">
-              <input type="number" v-model.number="loanForm.cash_amount" placeholder="现金付款金额">
+              <input type="number" v-model.number="loanForm.cash" placeholder="现金付款金额">
             </div>
           </div>
         </div>
@@ -145,7 +147,7 @@
           <div class="inline fields">
             <label class="six wide field flex-center">银行转账金额</label>
             <div class="eleven wide field">
-              <input type="number" v-model.number="loanForm.bank_amount" placeholder="银行转账金额">
+              <input type="number" v-model.number="loanForm.transfer" placeholder="银行转账金额">
             </div>
           </div>
         </div>
@@ -153,7 +155,10 @@
           <div class="inline fields">
             <label class="six wide field flex-center">付款银行</label>
             <div class="eleven wide field">
-              <input type="text" v-model="loanForm.bank" placeholder="付款银行">
+              <el-select v-model="loanForm.bank_index" placeholder="请输入转账银行" @change="bankChange">
+                <el-option v-for="(item, index) in bankList" :key="item.id" :label="item.name" :value="index">
+                </el-option>
+              </el-select>
             </div>
           </div>
         </div>
@@ -161,13 +166,13 @@
           <div class="inline fields">
             <label class="six wide field flex-center">转账账号</label>
             <div class="eleven wide field">
-              <input type="number" v-model.number="loanForm.account" placeholder="转账账号">
+              <div class="fake-input">{{ loanForm.account || '暂无' }}</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <h5 class="ui header right aligned">合计总额：123,523 ￥</h5>
+    <h5 class="ui header right aligned">合计总额：{{ checkAmount.toLocaleString('en-US') }} ￥</h5>
     <div class="ui form form-item">
       <div class="ui five column doubling stackable grid font-size-13">
         <div class="three wide column form-thead">未支付报销单</div>
@@ -185,13 +190,13 @@
             <div class="fake-input">{{ item.value.id }}</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.value.amount.toLocaleString('en-US') }}￥</div>
+            <div class="fake-input">{{ item.value.price.toLocaleString('en-US') }}￥</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.value.checkMan }}</div>
+            <div class="fake-input">{{ item.value.checker }}</div>
           </div>
           <div class="three wide column">
-            <div class="fake-input">{{ item.value.passMan }}</div>
+            <div class="fake-input">{{ item.value.passer }}</div>
           </div>
         </div>
       </transition-group>

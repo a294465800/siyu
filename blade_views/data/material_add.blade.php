@@ -21,7 +21,17 @@
           <div class="eleven wide field">
             <input type="hidden" id="materialId" value="">
             <input type="hidden" id="materialName" value="线缆">
-            <input type="text" v-model="materialForm.name" placeholder="请输入物料名称">
+            <!-- <input type="text" v-model="materialForm.name" placeholder="请输入物料名称"> -->
+            <el-autocomplete popper-class="my-autocomplete" v-model="materialForm.name" :fetch-suggestions="querySearchMaterial" placeholder="请输入物料名称"
+              @select="handleSelectMaterial">
+              <i class="el-icon-edit el-input__icon" slot="suffix">
+              </i>
+              <template slot-scope="props" style="cursor: not-allowed;">
+                <div class="name">{{ props.item.name }}</div>
+                <span class="addr">{{ props.item.model }} {{ props.item.factory }}</span>
+                <div class="addr name" :title="props.item.param">{{ props.item.param }}</span> 
+              </template>
+            </el-autocomplete>
           </div>
         </div>
       </div>
@@ -48,7 +58,7 @@
           <label class="six wide field flex-center">生产厂家</label>
           <div class="eleven wide field">
             <input type="hidden" id="materialFactor" value="xxx工厂">
-            <input type="text" v-model="materialForm.factor" placeholder="请输入生产厂家">
+            <input type="text" v-model="materialForm.factory" placeholder="请输入生产厂家">
           </div>
         </div>
       </div>

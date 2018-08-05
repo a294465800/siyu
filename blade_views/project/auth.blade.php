@@ -10,6 +10,9 @@
   <div class="active section">权限设置 - 15823910212</div>
 </div>
 
+<input type="hiden" value="" id="person">
+<input type="hiden" value="" id="projectId">
+
 <h4 class="ui dividing header blue">项目基本信息</h4>
 <div class="ui form form-item">
   <div class="ui three column doubling stackable grid">
@@ -178,7 +181,7 @@
       <td>张某某</td>
       <td>
         <a href="javascript:_helper.fullWindow('../project/auth_edit.html?id=2')" class="ui primary mini button">查询权限设置</a>
-        <button class="ui negative mini button auth-delete">删除</button>
+        <button class="ui negative mini button auth-delete" data-id="1">删除</button>
       </td>
     </tr>
     <tr>
@@ -214,4 +217,5 @@
 </div>
 
 <include src="../template/footer.html">
+  @js = ../../src/js/project_auth.js
 </include>

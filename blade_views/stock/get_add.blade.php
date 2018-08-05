@@ -24,7 +24,7 @@
               <label>项目采购</label>
             </div>
             <div class="ui radio checkbox">
-              <input type="radio" name="system" value="0" @change="currentType=2">
+              <input type="radio" name="system" value="2" @change="currentType=2">
               <label>统一采购</label>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="inline fields">
             <label class="four wide field flex-center">项目编号</label>
             <div class="twelve wide field">
-              <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.project_id" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
+              <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.project_number" :fetch-suggestions="querySearchProjectId" placeholder="请输入项目编号"
                 @select="handleSelect">
                 <i class="el-icon-edit el-input__icon" slot="suffix">
                 </i>
@@ -74,24 +74,22 @@
           </div>
         </div>
       </template>
-      <template v-else>
-        <div class="column">
-          <div class="inline fields">
-            <label class="four wide field flex-center">出库仓库</label>
-            <div class="twelve wide field">
-              <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.stock_name" :fetch-suggestions="querySearchStock" placeholder="请输入出库仓库"
-                @select="handleSelectStock">
-                <i class="el-icon-edit el-input__icon" slot="suffix">
-                </i>
-                <template slot-scope="props">
-                  <div class="name">{{ props.item.name }}</div>
-                  <span class="addr">{{ props.item.manger }}</span>
-                </template>
-              </el-autocomplete>
-            </div>
+      <div class="column">
+        <div class="inline fields">
+          <label class="four wide field flex-center">出库仓库</label>
+          <div class="twelve wide field">
+            <el-autocomplete popper-class="my-autocomplete" v-model="stockGetAdd.warehouse_name" :fetch-suggestions="querySearchStock" placeholder="请输入出库仓库"
+              @select="handleSelectStock">
+              <i class="el-icon-edit el-input__icon" slot="suffix">
+              </i>
+              <template slot-scope="props">
+                <div class="name">{{ props.item.name }}</div>
+                <span class="addr">{{ props.item.manger }}</span>
+              </template>
+            </el-autocomplete>
           </div>
         </div>
-      </template>
+      </div>
       <div class="column">
         <div class="inline fields">
           <label class="four wide field flex-center">领料人</label>
@@ -114,8 +112,8 @@
               <i class="el-icon-edit el-input__icon" slot="suffix">
               </i>
               <template slot-scope="props">
-                <div class="name">{{ props.item.name }}</div>
-                <span class="addr">{{ props.item.model }}</span>
+                <div class="name">{{ props.item.material.name }}</div>
+                <span class="addr">{{ props.item.material.model }}</span>
               </template>
             </el-autocomplete>
           </div>
@@ -123,6 +121,7 @@
       </div>
       <div class="column">
         <button class="ui button positive" @click="addItem">添加</button>
+        <button class="ui button blue" @click="addAll">全部添加</button>
       </div>
     </div>
     <div class="ui three column doubling stackable grid">
@@ -130,7 +129,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">物料名称</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.name || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.material.name || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -138,7 +137,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">性能及参数</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.parameter || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.material.param || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -146,7 +145,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">品牌型号</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.model }}</div>
+            <div class="fake-input">{{ currentMaterial.material.model }}</div>
           </div>
         </div>
       </div>
@@ -154,7 +153,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">生产厂家</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.manufacturer || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.material.factory || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -162,7 +161,7 @@
         <div class="inline fields">
           <label class="four wide field flex-center">单位</label>
           <div class="twelve wide field">
-            <div class="fake-input">{{ currentMaterial.unit || '暂无'}}</div>
+            <div class="fake-input">{{ currentMaterial.material.unit || '暂无'}}</div>
           </div>
         </div>
       </div>
@@ -204,13 +203,13 @@
           <div class="fake-input">{{ item.material && item.material.unit || '无'}}</div>
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') + ' ￥' || '无'}}</div>
+          <div class="fake-input">{{ item && item.price.toLocaleString('en-US') + ' ￥' || '无'}}</div>
         </div>
         <div class="two wide column">
           <input type="number" v-model.number="item.number" placeholder="领料数量">
         </div>
         <div class="two wide column">
-          <div class="fake-input">{{ item.number?(item.number*item.material.price).toLocaleString('en-US'):0}} ￥</div>
+          <div class="fake-input">{{ item.number?(item.number*item.price).toLocaleString('en-US'):0}} ￥</div>
         </div>
         <div class="two wide column flex-row">
           <div class="fake-input">

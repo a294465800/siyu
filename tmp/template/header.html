@@ -227,6 +227,9 @@
         <el-menu-item index="dataPayment">
           <a href="../data/payment_list.html">报销费用类型</a>
         </el-menu-item>
+        <el-menu-item index="dataFeePayment">
+          <a href="../data/fee_payment_list.html">费用类型</a>
+        </el-menu-item>
       </el-submenu>
     </el-menu>
   </div>

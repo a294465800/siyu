@@ -11,7 +11,7 @@
 </div>
 
 <div style="display:none;" id="contractContent">
-  [{"id":1,"name":"内容1"},{"id":2,"name":"内容2"},{"id":3,"name":"内容3"}]
+  [{"id":1,"name":"内容1", "rate": 11},{"id":2,"name":"内容2", "rate": 15},{"id":3,"name":"内容3", "rate": 5}]
 </div>
 <div style="display:none;" id="contractTax">
   [{"id":1,"name":"5%"},{"id":2,"name":"9%"},{"id":3,"name":"15%"}]
@@ -23,7 +23,6 @@
 <h1 class="ui red header blue center aligned">项目立项</h1>
 
 <div class="invisible" id="projectCreate">
-
   <!-- 项目基本信息 -->
   <h4 class="ui dividing header blue">项目基本信息</h4>
   <div class="ui form form-item">
@@ -117,7 +116,7 @@
         </div>
         <div class="four wide column">
           <div class="block ui icon input">
-            <input v-model="item.amount" type="number" placeholder="请输入发包金额">
+            <input v-model="item.amount" type="number" placeholder="请输入中标金额">
             <i class="yen icon"></i>
           </div>
         </div>
@@ -224,10 +223,7 @@
               </el-select>
             </div>
             <div class="two wide column">
-              <el-select v-model="subItem.tax" placeholder="请选择税率">
-                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select>
+              <div class="fake-input">{{ TaxIDMap[subItem.name]?TaxIDMap[subItem.name] + '%':'暂无'}}</div>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -304,10 +300,7 @@
               </el-select>
             </div>
             <div class="two wide column">
-              <el-select v-model="subItem.tax" placeholder="请选择税率">
-                <el-option v-for="item in contractTax" :key="item.id" :label="item.name" :value="item.id">
-                </el-option>
-              </el-select>
+              <div class="fake-input">{{ TaxIDMap[subItem.name]?TaxIDMap[subItem.name] + '%':'暂无'}}</div>
             </div>
             <div class="two wide column">
               <div class="block ui icon input">
@@ -370,7 +363,7 @@
                 <td>{{item.amount}}￥</td>
               </template>
             </tr>
-          </template>
+          </template> 
         </tbody>
         <tfoot>
           <tr>
@@ -394,7 +387,7 @@
           <template v-if="sumContent && sumContent.result.length > 0">
             <tr v-for="(item, index) in sumContent.result" :key="item.name">
               <td>{{item.name}}</td>
-              <td>{{item.tax}}</td>
+              <td>{{item.tax}} %</td>
               <td>{{item.amount.toLocaleString('en-US')}} ￥</td>
             </tr>
           </template>
@@ -644,6 +637,25 @@
       <span>提交</span>
     </button>
   </div>
+
+<!--   
+  <div class="ui page dimmer">
+    <div class="simple dimmer content">
+      <div class="center">
+        <div class="buy_dialog">
+          <div class="dialog_header">选择复核人</div>
+          <div class="dialog_content">
+            <el-checkbox-group v-model="checkedMen" @change="handleCheckManChange">
+              <el-checkbox v-for="man in menList" :label="man.id" :key="man.id">{{man.name}}</el-checkbox>
+            </el-checkbox-group>
+          </div>
+          <div class="diolag_footer">
+            <button class="ui button primary" @click="confirmRecheck">确 定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
 <include src="../template/footer.html">
   @js = ../../src/js/project_create.js

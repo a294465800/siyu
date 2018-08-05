@@ -9,7 +9,9 @@
   <div class="divider"> / </div>
   <div class="active section">报销申请查询 - BXFK20171103001</div>
 </div>
-
+<input type="hidden" id="type" value="">
+<input type="hidden" id="projectId" value="">
+<input type="hidden" id="loanId" value="">
 <h3 class="ui header center aligned">报销申请查询 - BXFK20171103001</h3>
 <table class="ui celled center aligned table selectable">
   <thead>
@@ -79,7 +81,7 @@
 </table>
 
 <div class="flex-row flex-center margin-top-50">
-  <a class="ui icon button" href="javascript:_helper.fullWindow('../loan/submit_add.html?id=1')" style="margin:0 20px;">
+  <a class="ui icon button" href="javascript:_helper.fullWindow('../loan/submit_other.html?id=1')" style="margin:0 20px;">
     <i class="icon edit"></i>
     <span>修改</span>
   </a>
@@ -87,7 +89,7 @@
     <i class="icon legal"></i>
     <span>复核</span>
   </button>
-  <a class="ui icon button primary" href="#" style="margin:0 20px;">
+  <a class="ui icon button primary" id="submitSinglePass" style="margin:0 20px;">
     <i class="icon edit"></i>
     <span>审批</span>
   </a>
@@ -95,6 +97,10 @@
     <i class="icon print"></i>
     <span>凭证</span>
   </a>
+  <button class="ui icon button negative" id="submitSingleDelete" style="margin:0 20px;">
+    <i class="icon delete"></i>
+    <span>删除</span>
+  </button>
 </div>
 
 

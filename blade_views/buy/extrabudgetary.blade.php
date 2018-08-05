@@ -11,6 +11,8 @@
 </div>
 <div id="invoiceType" style="display:none">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
 
+<input type="hidden" id="getId" value="">
+<div style="display:none" id="editData"></div>
 <h1 class="ui red header blue center aligned">预算外采购</h1>
 <div class="invisible" id="buyExtrabudgetary">
 
@@ -128,7 +130,13 @@
     <div class="font-bold" style="white-space:nowrap;align-self:flex-end;margin-right:20px;">采购金额</div>
     <div class="fake-input inline-center">{{ amount.toLocaleString('en-US') || 0 }} ￥</div>
   </div>
-  <div class="flex-row flex-end margin-top-20">
+  <div class="flex-row flex-end margin-top-20 clearfix" style="justify-content: space-between">
+    <div style="width:30%;">
+        <a class="ui button blue" href="#">导出物料清单标准格式</a>
+        <label class="ui button positive">批量导入物料
+            <input style="display:none;" type="file" @change="uploadMaterials($event)">
+        </label>
+    </div>
     <div style="width:40%;">
       <div class="ui action input" style="width:100%;">
         <el-autocomplete popper-class="my-autocomplete" v-model="newMaterial.name" @input="materialInput" :fetch-suggestions="querySearchMaterial"
@@ -137,7 +145,7 @@
           </i>
           <template slot-scope="props">
             <div class="name">{{ props.item.name }}</div>
-            <span class="addr">{{ props.item.address }}</span>
+            <span class="addr">{{ props.item.model }}</span> 
           </template>
         </el-autocomplete>
         <button class="ui mini button positive" @click="addMaterial">添加物料</button>
@@ -177,9 +185,6 @@
           <div class="one wide column">
             <input v-model="item.unit" type="text" placeholder="单位">
           </div>
-          <div class="one wide column">
-            <input v-model.number="item.price" type="number" placeholder="单价">
-          </div>
         </template>
 
         <template v-else>
@@ -198,10 +203,10 @@
           <div class="one wide column">
             <div class="fake-input">{{ item.material && item.material.unit || '无'}}</div>
           </div>
-          <div class="one wide column">
-            <div class="fake-input">{{ item.material && item.material.price.toLocaleString('en-US') || 0}} ￥</div>
-          </div>
         </template>
+        <div class="one wide column">
+          <input v-model.number="item.price" type="number" placeholder="单价">
+        </div>
         <div class="one wide column">
           <input v-model.number="item.number" type="number" min="0" placeholder="数量">
         </div>
@@ -271,6 +276,26 @@
       <span>提交</span>
     </button>
   </div>
+
+  
+  <div class="ui page dimmer">
+    <div class="simple dimmer content">
+      <div class="center">
+        <div class="buy_dialog">
+          <div class="dialog_header">选择复核人</div>
+          <div class="dialog_content">
+            <el-checkbox-group v-model="checkedMen" @change="handleCheckManChange">
+              <el-checkbox v-for="man in menList" :label="man.id" :key="man.id">{{man.name}}</el-checkbox>
+            </el-checkbox-group>
+          </div>
+          <div class="diolag_footer">
+            <button class="ui button primary" @click="confirmRecheck">确 定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /dialog -->
 </div>
 <include src="../template/footer.html">
   @js = ../../src/js/buy_extrabudgetary.js

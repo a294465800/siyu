@@ -11,5 +11,12 @@
         },
         methods: {}
       })
+
+
+      const $functionToggleOne = $('.function-toggle-one')
+
+      $functionToggleOne.on('click', function () {
+        $('.function-one').toggle(300)
+      })
     })
 }()

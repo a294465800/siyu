@@ -37,7 +37,7 @@
 
 <!-- 表格循环 -->
 <div class="content-wrap table-head-nowrap">
-  <table class="ui celled structured table unstackable">
+  <!-- <table class="ui celled structured table unstackable">
     <thead>
       <tr>
         <th rowspan="2">类型</th>
@@ -127,6 +127,65 @@
       <tr>
         <td>退料成本</td>
         <td>12,423,222 ￥</td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <table class="ui center aligned table selectable unstackable">
+    <thead>
+      <tr>
+        <th>项目号</th>
+        <th>项目内容</th>
+        <th>项目经理</th>
+        <th>约定完工日期</th>
+        <th>验收日期</th>
+        <th>保修截至日期</th>
+        <th class="function-toggle-one">项目实际金额（展开）</th>
+        <th class="function-one">主合同金额</th>
+        <th class="function-one">分包合同金额</th>
+        <th class="function-toggle-two">项目剩余未收款（展开）</th>
+        <th class="function-two">主合同未收款</th>
+        <th class="function-two">分包合同未收款</th>
+        <th class="function-toggle-three">应收账款（展开）</th>
+        <th class="function-three">已开票请款</th>
+        <th class="function-three">主合同收款</th>
+        <th class="function-three">分包合同收款</th>
+        <th class="function-toggle-four">已发生成本（展开）</th>
+        <th class="function-four">可领料成本</th>
+        <th class="function-four">施工成本</th>
+        <th class="function-four">报销项目成本</th>
+        <th class="function-four">费用其他成本</th>
+        <th class="function-four">退料成本</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>XM2023123</td>
+        <td>项目内容</td>
+        <td>程经理</td>
+        <td>2017-01-02</td>
+        <td>2017-01-02</td>
+        <td>2018-04-11</td>
+        <td>221,234￥</td>
+        <td class="function-one">221,234￥</td>
+        <td class="function-one">221,234￥</td>
+        <td>221,234￥</td>
+        <td class="function-two">221,234￥</td>
+        <td class="function-two">221,234￥</td>
+        <td>221,234￥</td>
+        <td class="function-three">221,234￥</td>
+        <td class="function-three">221,234￥</td>
+        <td class="function-three">221,234￥</td>
+        <td>221,234￥</td>
+        <td class="function-four">221,234￥</td>
+        <td class="function-four">221,234￥</td>
+        <td class="function-four">221,234￥</td>
+        <td class="function-four">221,234￥</td>
+        <td class="function-four">221,234￥</td>
+        <td>
+          <a href="javascript:_helper.fullWindow('../project/auth.html?id=1')">权限设置</a>
+        </td>
       </tr>
     </tbody>
   </table>

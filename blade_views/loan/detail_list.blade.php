@@ -8,6 +8,7 @@
   <div class="active section">查询明细</div>
 </div>
 
+<input type="hidden" id="originName" value="">
 <!-- 操作 -->
 <h4 class="ui dividing header blue">录入基本信息</h4>
 <div class="content-operation invisible" id="loanDetailList">
@@ -18,7 +19,15 @@
           <div class="inline fields">
             <label class="six wide field flex-center">人员名称</label>
             <div class="ten wide field">
-              <input type="text" name="name" placeholder="请输入人员名称">
+              <input type="hidden" id="userName" name="name" placeholder="请输入人员名称">
+              <el-autocomplete popper-class="my-autocomplete" v-model="search.name" :fetch-suggestions="querySearchMen" placeholder="请输入报销人"
+                @select="handleSelectMen">
+                <i class="el-icon-edit el-input__icon" slot="suffix">
+                </i>
+                <template slot-scope="props">
+                  <div class="name">{{ props.item }}</div>
+                </template>
+              </el-autocomplete>
             </div>
           </div>
         </div>

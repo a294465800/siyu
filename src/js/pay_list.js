@@ -1,1 +1,1 @@
-"use strict";$(document).ready(function(){new Vue({el:"#navbar",data:{navActive:"payList"},mounted:function(){$("#navbar").removeClass("invisible")},methods:{}})});
+"use strict";$(document).ready(function(){new Vue({el:"#navbar",data:{navActive:"payList"},mounted:function(){$("#navbar").removeClass("invisible")},methods:{}}),$(".function-toggle-one").on("click",function(){$(".function-one").toggle(300)})});

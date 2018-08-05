@@ -10,6 +10,7 @@
   <div class="active section">15823910212</div>
 </div>
 
+<input type="hidden" value="" id="projectId">
 <h1 class="inline-center">项目编号 - XM15823910212</h1>
 <div class="margin-top-20" id="projectCheck">
   <!-- 基本信息 -->
@@ -397,12 +398,47 @@
     </div>
   </div>
   <!-- / 合同 -->
-  <div class="inline-center margin-top-50">
-    <a class="ui button primary large" href="javascript:_helper.fullWindow('../project/create.html')">
+
+  <div class="inline-center margin-top-50" id="projectBtns">
+    <a class="ui button primary" href="javascript:_helper.fullWindow('../project/create.html')">
       <i class="icon edit"></i>
       <span>修改</span>
     </a>
+    <!-- <button class="ui icon button primary" id="projectCheckBtn" style="margin:0 20px;">
+      <i class="icon legal"></i>
+      <span>复核</span>
+    </button> -->
+    <button class="ui icon button primary" id="projectConfirm" style="margin:0 20px;">
+      <i class="icon check"></i>
+      <span>确认</span>
+    </button>
+    <button class="ui icon button negative" id="projectDelete" style="margin:0 20px;">
+      <i class="icon delete"></i>
+      <span>删除</span>
+    </button>
+    <!-- <button class="ui icon button primary" id="projectPass" style="margin:0 20px;">
+      <i class="icon edit"></i>
+      <span>审批</span>
+    </button> -->
   </div>
+
+  <!-- <div class="ui page dimmer" id="projectCheckDialog">
+    <div class="simple dimmer content">
+      <div class="center">
+        <div class="buy_dialog">
+          <div class="dialog_header">选择审批人</div>
+          <div class="dialog_content">
+            <el-checkbox-group v-model="checkedMen" @change="handleCheckManChange">
+              <el-checkbox v-for="man in menList" :label="man.id" :key="man.id">{{man.name}}</el-checkbox>
+            </el-checkbox-group>
+          </div>
+          <div class="diolag_footer">
+            <button class="ui button primary" @click="confirmRecheck">确 定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </div>
 
 <include src="../template/footer.html">

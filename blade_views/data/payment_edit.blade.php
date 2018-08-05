@@ -20,7 +20,8 @@
           <label class="six wide field flex-center">费用类型</label>
           <div class="eleven wide field">
             <input type="hidden" id="paymentType" value="1">
-            <div class="fake-input">交通费</div>
+            <input type="hidden" id="paymentName" value="测试">
+            <input class="special-input" type="text" v-model="paymentForm.title" placeholder="请输入费用类型">
           </div>
         </div>
       </div>
