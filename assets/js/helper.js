@@ -141,9 +141,9 @@
           }
           const details = it.details
           details.forEach((subIt, subIndex) => {
-            let subTmp = {
+          let subTmp = {
               name: ContentIDMap[subIt.name],
-              tax: TaxIDMap[subIt.name],
+              tax: subIt.name,
               price: subIt.amount,
               remark: subIt.remark,
             }
