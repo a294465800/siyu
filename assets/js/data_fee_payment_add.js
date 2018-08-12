@@ -6,20 +6,28 @@
         el: '#dataPaymentAdd',
         data: {
           paymentForm: {
+            id: '',
             title: '',
-            kinds: []
+            details: []
           },
           inputValue: '',
           inputVisible: false
         },
         mounted() {
+          const editData = $('#editData').text().trim()
+          if(editData !== ''){
+            const data = JSON.parse(editData)
+            this.paymentForm.id = data.id
+            this.paymentForm.title = data.title
+            this.paymentForm.details = data.details
+          }
           $('#dataPaymentAdd').removeClass('invisible')
         },
         methods: {
 
           //移除标签
           handleClose(tag, index) {
-            this.paymentForm.kinds.splice(index, 1)
+            this.paymentForm.details.splice(index, 1)
           },
           showInput() {
             this.inputVisible = true
@@ -30,18 +38,18 @@
           handleInputConfirm() {
             let inputValue = this.inputValue
             if (inputValue) {
-              this.paymentForm.kinds.push(inputValue)
+              this.paymentForm.details.push(inputValue)
             }
             this.inputVisible = false
             this.inputValue = ''
           },
           //提交
           submit() {
-            _http.PaymentManager.createPayment(this.paymentForm)
+            _http.PaymentManager.createFeePay(this.paymentForm)
               .then(res => {
                 if (res.data.code === '200') {
                   this.paymentForm.title = ''
-                  this.paymentForm.kinds = []
+                  this.paymentForm.details = []
                   this.$notify({
                     title: '成功',
                     message: '提交成功',

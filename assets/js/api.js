@@ -558,6 +558,10 @@
       })
     }
 
+    createFeePay(data = {}) {
+      return this._http.post(`/add/pay/type`, data, this.dataMethodDefaults)
+    }
+
   }
 
   // 验收
