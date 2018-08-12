@@ -20,7 +20,7 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          _http.PaymentManager.deleteCategory({
+          _http.PaymentManager.deleteFeePay({
               id: $this.data('id')
             })
             .then(res => {

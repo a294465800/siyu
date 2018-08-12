@@ -551,6 +551,13 @@
       })
     }
 
+    //删除费用付款
+    deleteFeePay(data = {}) {
+      return this._http.get(`/del/pay/type`, {
+        params: data
+      })
+    }
+
   }
 
   // 验收
