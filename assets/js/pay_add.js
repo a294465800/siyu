@@ -12,6 +12,7 @@
             application: '',
             project_id: '',
             project_content: '',
+            pay_detail: ''
           },
 
           checkedMen: [],
@@ -27,18 +28,53 @@
           },
           currentSupplier: {},
           invoiceType: [],
-          payeeType: [],
-          payeeDetail: []
+          payType: [{
+            title: 'xxx',
+            id: 1
+          }],
+          pay_type: '',
+          payDetail: []
         },
         mounted() {
           this.payForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           this.payForm.apply_user = $('#applyUser').val();
           $('#payAdd').removeClass('invisible')
-          
+
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
-          const payeeType = $('#payeeType').text().trim()
-          this.payeeType = payeeType === '' ? [] : JSON.parse(payeeType)
+
+          _http.PaymentManager.searchFeePay()
+            .then(res => {
+              if (res.data.code === '200') {
+                this.payType = res.data.data
+              } else {
+                this.$notify({
+                  title: '错误',
+                  message: res.data.msg,
+                  type: 'error'
+                })
+              }
+            })
+        },
+
+        watch: {
+          pay_type(newVal) {
+            if (!newVal) return;
+            _http.PaymentManager.searchFeePayDetail({
+                id: newVal
+              })
+              .then(res => {
+                if (res.data.code === '200') {
+                  this.payDetail = res.data.data
+                } else {
+                  this.$notify({
+                    title: '错误',
+                    message: res.data.msg,
+                    type: 'error'
+                  })
+                }
+              })
+          }
         },
         methods: {
 

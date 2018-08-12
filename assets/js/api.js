@@ -562,6 +562,18 @@
       return this._http.post(`/add/pay/type`, data, this.dataMethodDefaults)
     }
 
+    searchFeePay(data = {}){
+      return this._http.get(`/pay/types`, {
+        params: data
+      })
+    }
+
+    searchFeePayDetail(data = {}){
+      return this._http.get(`/pay/types/detail`, {
+        params: data
+      })
+    }
+
   }
 
   // 验收

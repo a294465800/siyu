@@ -12,7 +12,6 @@
 
 <input type="hidden" value="" id="applyUser">
 <div id="invoiceType"></div>
-<div id="payeeType"></div>
 <h1 class="ui header blue aligned center">费用申请</h1>
 <div id="payAdd">
   <h4 class="ui dividing header blue">信息录入</h4>
@@ -72,8 +71,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">费用类型</label>
           <div class="eleven wide field">
-            <el-select v-model="payForm.payee_type" placeholder="费用类型">
-              <el-option v-for="item in payeeType" :key="item.id" :label="item.name" :value="item.id">
+            <el-select v-model="pay_type" placeholder="费用类型">
+              <el-option v-for="item in payType" :key="item.id" :label="item.title" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -83,8 +82,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">具体事项</label>
           <div class="eleven wide field">
-            <el-select v-model="payForm.payee_type_detail" placeholder="具体事项">
-              <el-option v-for="item in payeeDetail" :key="item.id" :label="item.name" :value="item.id">
+            <el-select v-model="payForm.pay_detail" placeholder="具体事项">
+              <el-option v-for="item in payDetail" :key="item.id" :label="item.title" :value="item.id">
               </el-option>
             </el-select>
           </div>
