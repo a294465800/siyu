@@ -6,7 +6,7 @@
         data: {
 
           payForm: {
-            manager: '',
+            worker: '',
             pay_date: '',
             cash: '',
             transfer: '',
@@ -18,45 +18,62 @@
           },
 
           bankList: [],
-          payList: []
+          postForm: {
+            request_id: '',
+            lists: []
+          },
+          bankMap: {}
 
         },
         mounted() {
-          // this.payForm.id = $('#payId').val() || ''
-          // this.payForm.manager = $('#manager').val() || ''
-          // this.payForm.pay_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
           const bankList = $('#bankList').text().trim()
+          const payList = $('#payList').text().trim()
+          this.postForm.request_id = $('#requestId').val() || ''
+          this.worker = $('#worker').val() || ''
+
           this.bankList = bankList === '' ? [] : JSON.parse(bankList)
+          this.bankList.forEach(item => {
+            this.bankMap[item.id] = {
+              name: item.name,
+              id: item.id,
+              account: item.account
+            } 
+          })
+          this.postForm.lists = payList === '' ? [] : JSON.parse(payList)
+          this.postForm.lists.forEach(item => {
+            item.account = this.bankMap[item.bank].account || ''
+          })
           $('#payPay').removeClass('invisible')
-          this.addItem()
+          if (!this.postForm.lists.length) this.addItem()
         },
         methods: {
 
           //添加项目
           addItem() {
-            const list = this.payList
             const data = {
               pay_date: _helper.timeFormat(new Date(), 'YYYY-MM-DD'),
-              self_id: list.length > 0 ? list[list.length - 1].id ? list[list.length - 1].id + 1 : 1 : 1,
+              worker: this.worker,
+              bank: '',
+              account: '',
+              transfer: '',
+              cash: ''
             }
-            this.payList.push(data)
+            this.postForm.lists.push(data)
           },
           //删除项
           deleteItem(item, index) {
-            this.payList.splice(index, 1)
+            this.postForm.lists.splice(index, 1)
           },
 
-          selectBank(bankIndex, itemIndex) {
-            const value = this.bankList[bankIndex]
-            // this.payForm.bank = value.name
-            // this.payForm.account = value.account
-            this.payList[itemIndex].bank = value.bank
-            this.payList[itemIndex].account = value.account
+          selectBank(bankId, itemIndex) {
+            let findItem = this.bankMap[bankId]
+            this.postForm.lists[itemIndex].bank = findItem.id
+            this.postForm.lists[itemIndex].account = findItem.account
           },
 
           //提交
           submit() {
-            _http.PaymentManager.createPayPay(this.payList)
+            _http.PaymentManager.createNewPayPay(this.postForm)
               .then(res => {
                 if (res.data.code === '200') {
                   this.$notify.success({

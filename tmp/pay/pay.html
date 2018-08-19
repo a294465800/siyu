@@ -15,6 +15,9 @@
 <!-- <input type="hidden" id="payId" value="">
 <input type="hidden" id="manager" value=""> -->
 <div style="display: none;" id="bankList"></div>
+<div style="display: none;" id="payList"></div>
+<input id="requestId" style="display:none" type="text" value="1">
+<input id="worker" style="display:none" type="text" value="1">
 
 <h1 class="ui header blue aligned center">付款录入</h1>
 <div id="payPay">
@@ -106,7 +109,7 @@
       <div class="one wide column form-thead">操作</div>
     </div>
     <transition-group name="slide-down" tag="div" class="form-wrap special-form">
-      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in payList" :key="item.self_id">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in postForm.lists" :key="index">
         <div class="one wide column">
           <div class="fake-input">{{ index + 1 }}</div>
         </div>
@@ -125,7 +128,7 @@
         </div>
         <div class="two wide column">
           <el-select :value="item.bank" placeholder="转账银行" @change="selectBank($event, index)">
-            <el-option v-for="(item, index) in bankList" :key="item.id" :label="item.name + item.account" :value="index">
+            <el-option v-for="(item, index) in bankList" :key="item.id" :label="item.name + item.account" :value="item.id">
             </el-option>
           </el-select>
         </div>
@@ -133,7 +136,7 @@
           <div class="fake-input">{{ item.account || '暂未选择' }}</div>
         </div>
         <div class="two wide column">
-          <input type="text" v-model="item.manager" placeholder="付款经办人">
+          <input type="text" v-model="item.worker" placeholder="付款经办人">
         </div>
         <div class="one wide column">
           <div class="fake-input">

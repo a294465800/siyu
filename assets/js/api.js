@@ -539,6 +539,12 @@
       return this._http.post(`/pay/pay`, data, this.dataMethodDefaults)
     }
 
+    
+    // 付款
+    createNewPayPay(data = {}) {
+      return this._http.post(`/new/pay/pay`, data, this.dataMethodDefaults)
+    }
+
     //选择审批人
     selectPay(data = {}) {
       return this._http.post(`/pay/select`, data, this.dataMethodDefaults)
