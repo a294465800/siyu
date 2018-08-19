@@ -202,12 +202,11 @@
                 .then(res => {
                   if (res.data.code === '200') {
                     const resData = res.data.data
-                    this.buildDealAdd.list.push({
+                    this.payForm.pictures.push({
                       id: resData.size,
                       name: resData.name,
                       url: resData.url
                     })
-                    this.buildDealAdd.lists.push(resData.url)
                     this.$notify({
                       title: '成功',
                       message: `${resData.name} 上传成功`,
