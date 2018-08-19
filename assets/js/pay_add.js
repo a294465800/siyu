@@ -6,13 +6,13 @@
         data: {
 
           payForm: {
-            apply_user: '',
-            date: '',
-            price: '',
+            apply_date: '',
+            apply_price: '',
             application: '',
             project_id: '',
             project_content: '',
-            pay_detail: ''
+            pay_detail: '',
+            pictures: []
           },
 
           checkedMen: [],
@@ -28,20 +28,16 @@
           },
           currentSupplier: {},
           invoiceType: [],
-          payType: [{
-            title: 'xxx',
-            id: 1
-          }],
+          payType: [],
           pay_type: '',
           payDetail: []
         },
         mounted() {
-          this.payForm.date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
-          this.payForm.apply_user = $('#applyUser').val();
-          $('#payAdd').removeClass('invisible')
+          this.payForm.apply_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
 
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
+          $('#payAdd').removeClass('invisible')
 
           _http.PaymentManager.searchFeePay()
             .then(res => {
@@ -55,13 +51,27 @@
                 })
               }
             })
+          // this.payType = [
+          //   {
+          //     id: 1,
+          //     title: '啊啊啊'
+          //   }
+          // ]
         },
+        methods: {
 
-        watch: {
-          pay_type(newVal) {
-            if (!newVal) return;
+          handlePayTypeChange(id) {
+            // console.warn('变化');
+            
+            // this.payDetail = [
+            //   {
+            //     title: '你好',
+            //     id: 1,
+            //   }
+            // ]
+            this.payForm.pay_type = id
             _http.PaymentManager.searchFeePayDetail({
-                id: newVal
+                id
               })
               .then(res => {
                 if (res.data.code === '200') {
@@ -74,9 +84,7 @@
                   })
                 }
               })
-          }
-        },
-        methods: {
+          },
 
           //项目搜索
           querySearchProjectId(queryString, cb) {
@@ -176,11 +184,62 @@
           },
           handleSelectPayee(item) {
             this.currentSupplier = item
+            this.payForm.supplier_id = item.id
+          },
+
+          
+          //上传图片
+          uploadContract(e) {
+            const files = e.target.files
+            if (files.length < 1) {
+              return
+            }
+            let fileArr = []
+            for (let file of files) {
+              let formData = new FormData()
+              formData.append('image', file)
+              _http.UploadManager.createUpload(formData)
+                .then(res => {
+                  if (res.data.code === '200') {
+                    const resData = res.data.data
+                    this.buildDealAdd.list.push({
+                      id: resData.size,
+                      name: resData.name,
+                      url: resData.url
+                    })
+                    this.buildDealAdd.lists.push(resData.url)
+                    this.$notify({
+                      title: '成功',
+                      message: `${resData.name} 上传成功`,
+                      type: 'success'
+                    })
+                  } else {
+                    this.$notify({
+                      title: '错误',
+                      message: res.data.msg,
+                      type: 'error'
+                    })
+                  }
+                })
+                .catch(err => {
+                  console.log(err)
+                  this.$notify({
+                    title: '错误',
+                    message: '服务器出错',
+                    type: 'error'
+                  })
+                })
+            }
+
+          },
+
+          deleteItem(index){
+            this.payForm.pictures.splice(index, 1)
           },
 
           //提交
           submit() {
-            _http.PaymentManager.createPayAdd(this.payForm)
+            _http.PaymentManager.createNewPayAdd(this.payForm)
               .then(res => {
                 if (res.data.code === '200') {
                   this.$notify({

@@ -520,6 +520,11 @@
       return this._http.post(`/pay/add`, data, this.dataMethodDefaults)
     }
 
+    //申请付款
+    createNewPayAdd(data = {}) {
+      return this._http.post(`/new/pay/add`, data, this.dataMethodDefaults)
+    }
+
     //撤销申请
     calcelPay(data) {
       return this._http.get(`/pay/cancel`, {
