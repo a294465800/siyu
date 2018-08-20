@@ -49,9 +49,7 @@
         },
         mounted() {
           if (projectData) {
-            console.warn(TaxIDMap,'xxx');
-            
-            this.project = _helper.projectGetFormat(projectData, ContentNameMap, ContentIDMap)
+            this.project = _helper.projectGetFormat(projectData)
           }
           $('#projectCreate').removeClass('invisible')
         },
