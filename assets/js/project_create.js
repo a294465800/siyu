@@ -53,6 +53,11 @@
           }
           $('#projectCreate').removeClass('invisible')
         },
+        watch: {
+          project(newVal){
+            console.log(newVal)
+          }
+        },
         computed: {
           sumAmount() {
             const vm = this
