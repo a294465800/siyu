@@ -12,7 +12,6 @@
 
 <input type="hidden" value="" id="applyUser">
 <div id="invoiceType"></div>
-<div id="payeeType"></div>
 <h1 class="ui header blue aligned center">费用申请</h1>
 <div id="payAdd">
   <h4 class="ui dividing header blue">信息录入</h4>
@@ -23,7 +22,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">申请日期</label>
           <div class="eleven wide field">
-            <el-date-picker v-model="payForm.date" type="date" placeholder="请选择申请日期" value-format="yyyy-MM-dd">
+            <el-date-picker v-model="payForm.apply_date" type="date" placeholder="请选择申请日期" value-format="yyyy-MM-dd">
             </el-date-picker>
           </div>
         </div>
@@ -32,7 +31,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">付款金额</label>
           <div class="eleven wide field">
-            <input type="number" v-model.number="payForm.price" placeholder="请输入付款金额">
+            <input type="number" v-model.number="payForm.apply_price" placeholder="请输入付款金额">
           </div>
         </div>
       </div>
@@ -72,8 +71,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">费用类型</label>
           <div class="eleven wide field">
-            <el-select v-model="payForm.payee_type" placeholder="费用类型">
-              <el-option v-for="item in payeeType" :key="item.id" :label="item.name" :value="item.id">
+            <el-select :value="payForm.pay_type" @change="handlePayTypeChange" placeholder="费用类型">
+              <el-option v-for="item in payType" :key="item.id" :label="item.title" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -83,8 +82,8 @@
         <div class="inline fields">
           <label class="six wide field flex-center">具体事项</label>
           <div class="eleven wide field">
-            <el-select v-model="payForm.payee_type_detail" placeholder="具体事项">
-              <el-option v-for="item in payeeDetail" :key="item.id" :label="item.name" :value="item.id">
+            <el-select v-model="payForm.pay_detail" placeholder="具体事项">
+              <el-option v-for="item in payDetail" :key="item.id" :label="item.title" :value="item.id">
               </el-option>
             </el-select>
           </div>
@@ -142,7 +141,7 @@
         <div class="inline fields">
           <label class="six wide field flex-center">付款方式</label>
           <div class="eleven wide field">
-            <el-select v-model="payForm.pay_type" placeholder="付款方式">
+            <el-select v-model="payForm.type" placeholder="付款方式">
               <el-option v-for="item in [{id:1,name:'现金'},{id:2,name:'转账'}]" :key="item.id" :label="item.name" :value="item.id">
               </el-option>
             </el-select>
@@ -161,6 +160,44 @@
         </div>
       </div>
     </div>
+    
+  <h4 class="ui dividing header blue">合同录入</h4>
+  <div class="flex-row flex-end">
+    <label class="ui icon button positive" for="upload">
+      <i class="icon upload"></i>
+      <span>添加合同</span>
+      <input style="display:none;" id="upload" accept="image/jpg,image/jpeg,application/pdf" type="file"  @change="uploadContract($event)">
+    </label>
+  </div>
+  <h4 class="inline-center">合同清单</h4>
+  <div class="ui form form-item">
+    <div class="ui five column doubling stackable grid font-size-13">
+      <div class="two wide column form-thead">序号</div>
+      <div class="six wide column form-thead">合同名称</div>
+      <div class="six wide column form-thead">访问地址</div>
+      <div class="two wide column form-thead">操作</div>
+    </div>
+    <transition-group name="slide-down" tag="div" class="form-wrap special-form">
+      <div class="ui column doubling stackable grid center aligned" v-for="(item, index) in payForm.pictures" :key="item.id">
+        <div class="two wide column">
+          <div class="fake-input">{{ index + 1 }}</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">{{ item.name }}</div>
+        </div>
+        <div class="six wide column">
+          <div class="fake-input">
+            <a :href="item.url" target="_blank">{{ item.url }}</a>
+          </div>
+        </div>
+        <div class="two wide column flex-row">
+          <div class="fake-input">
+            <i class="icon minus red" style="cursor:pointer;" @click="deleteItem(index)"></i>
+          </div>
+        </div>
+      </div>
+    </transition-group>
+  </div>
   </div>
 
   <div class="inline-center margin-top-20">

@@ -1,5 +1,5 @@
 <include src="../template/normalHeader.html">
-  @title = 新增费用付款类型
+  @title = 编辑费用付款类型
 </include>
 
 <div class="ui breadcrumb">
@@ -7,10 +7,10 @@
   <div class="divider"> / </div>
   <a class="section" href="../data/fee_payment_list.html">费用付款列表</a>
   <div class="divider"> / </div>
-  <div class="active section">新增费用付款类型</div>
+  <div class="active section">编辑费用付款类型</div>
 </div>
-
-<h1 class="ui header blue aligned center">新增费用付款类型</h1>
+<div style="display: none" id="editData"></div>
+<h1 class="ui header blue aligned center">编辑费用付款类型</h1>
 <div id="dataPaymentAdd" class="invisible">
   <h4 class="ui dividing header blue">信息录入</h4>
   <div class="ui form">
@@ -27,7 +27,7 @@
         <div class="inline fields">
           <label class="two wide field flex-center">具体事项</label>
           <div class="eleven wide field">
-            <el-tag :key="tag" v-for="(tag, index) in paymentForm.kinds" closable :disable-transitions="false" @close="handleClose(tag, index)">
+            <el-tag :key="tag" v-for="(tag, index) in paymentForm.details" closable :disable-transitions="false" @close="handleClose(tag, index)">
               {{tag}}
             </el-tag>
             <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="small" @keyup.enter.native="handleInputConfirm"

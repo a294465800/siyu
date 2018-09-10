@@ -188,6 +188,26 @@
   </tfoot>
 </table>
 
+<h4 class="ui header center aligned">合同</h4>
+<table class="ui celled center aligned table unstackable">
+  <thead>
+    <tr>
+      <th>序号</th>
+      <th>名称</th>
+      <th>链接</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>xxx</td>
+      <td>
+        <a href="aaa" target="_blank">aaa</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="flex-row flex-center margin-top-50" id="paySingleBtn">
   <button class="ui icon button negative" id="paySingleCancel" style="margin:0 20px;">
     <i class="icon delete"></i>

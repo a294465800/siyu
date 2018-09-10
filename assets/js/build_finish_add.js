@@ -36,7 +36,7 @@
             }
             let sum = 0
             list.forEach((it, index) => {
-              const amount = it.total
+              const amount = it.price * 1 * it.number * 1
               if (amount) {
                 sum += amount * 1
               }
