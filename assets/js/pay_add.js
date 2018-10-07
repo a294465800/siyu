@@ -51,24 +51,47 @@
                 })
               }
             })
-          // this.payType = [
-          //   {
+          const addEdit = $('#addEdit').text.trim()
+          // const addEdit = {
+          //   apply_date: '2018-02-11',
+          //   apply_price: 22222,
+          //   application: 'zheshiyongtu',
+          //   project_id: 1,
+          //   project_number: 'XM1232132100123',
+          //   project_content: 'name',
+          //   pay_detail: 1,
+          //   remark: 'beizhu',
+          //   invoice_type: 1,
+          //   type: 1,
+          //   supplier_id: 1,
+          //   payee: 'gongyingshang',
+          //   pay_type: 1,
+
+          //   // 记得加这个结构，把当前的 payee 顺便塞到这个对象
+          //   currentSupplier: {
           //     id: 1,
-          //     title: '啊啊啊'
-          //   }
-          // ]
+          //     name: 'name',
+          //     bank: 'bank',
+          //     account: 'account'
+          //   },
+
+          //   pictures: [{
+          //     id: 1,
+          //     name: 'tupian',
+          //     url: 'http://www.baidu.jpg'
+          //   }]
+          // }
+          if (addEdit) {
+            this.payForm = addEdit === '' ? [] : JSON.parse(addEdit)
+            // this.payForm = addEdit
+            this.currentSupplier = this.payForm.currentSupplier
+            this.handlePayTypeChange(addEdit.pay_type)
+          }
+
         },
         methods: {
 
           handlePayTypeChange(id) {
-            // console.warn('变化');
-            
-            // this.payDetail = [
-            //   {
-            //     title: '你好',
-            //     id: 1,
-            //   }
-            // ]
             this.payForm.pay_type = id
             _http.PaymentManager.searchFeePayDetail({
                 id
@@ -185,10 +208,10 @@
           handleSelectPayee(item) {
             this.currentSupplier = item
             this.payForm.supplier_id = item.id
-            this.payForm.payee = item.name 
+            this.payForm.payee = item.name
           },
 
-          
+
           //上传图片
           uploadContract(e) {
             const files = e.target.files
@@ -233,7 +256,7 @@
 
           },
 
-          deleteItem(index){
+          deleteItem(index) {
             this.payForm.pictures.splice(index, 1)
           },
 
