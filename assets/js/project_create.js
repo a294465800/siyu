@@ -53,11 +53,6 @@
           }
           $('#projectCreate').removeClass('invisible')
         },
-        watch: {
-          project(newVal){
-            console.log(newVal)
-          }
-        },
         computed: {
           sumAmount() {
             const vm = this
@@ -71,8 +66,8 @@
                 return false
               }
               value.forEach((item, index) => {
-                const amount = item.amount ? parseFloat(item.amount) : 0
-                sum += amount
+                const amount = new BigNumber(item.amount ? item.amount : 0)
+                sum = amount.plus(sum)
                 result.push({
                   head: index === 0,
                   id: name + item.id,
@@ -109,10 +104,9 @@
                   return false
                 }
                 details.forEach((item, index) => {
-                  const amount = item.amount ? parseFloat(item.amount) : 0
-                  sum += amount
+                  const amount = new BigNumber(item.amount ? item.amount : 0)
+                  sum = amount.plus(sum)
                   if (typeof item.name !== 'undefined') {
-                    // const key = item.name + '' + item.tax
                     const key = item.name
                     resultObj[key] = resultObj[key] ? resultObj[key] + amount : amount
                   }
@@ -124,9 +118,6 @@
             calc(subContract)
 
             for (let it in resultObj) {
-              // const val = it.split('')
-              // const contentData = vm.ContentIDMap[val[0]]
-              // const taxData = vm.TaxIDMap[val[1]]
               const contentData = vm.ContentIDMap[it]
               const taxData = vm.TaxIDMap[it]
               result.push({
@@ -146,9 +137,9 @@
             const vm = this
             const margins = vm.project.margins
             let sum = {
-              sumGuaranteeAmount: 0,
-              sumGuaranteeCost: 0,
-              sumPaymentCost: 0,
+              sumGuaranteeAmount: new BigNumber(0),
+              sumGuaranteeCost: new BigNumber(0),
+              sumPaymentCost: new BigNumber(0),
             }
 
             if (margins.length < 1) {
@@ -156,9 +147,9 @@
             }
 
             margins.forEach((item, index) => {
-              sum.sumGuaranteeAmount += item.guarantee_amount ? parseFloat(item.guarantee_amount) : 0
-              sum.sumGuaranteeCost += item.guarantee_cost ? parseFloat(item.guarantee_cost) : 0
-              sum.sumPaymentCost += item.payment_amount ? parseFloat(item.payment_amount) : 0
+              sum.sumGuaranteeAmount = sum.sumGuaranteeAmount.plus(item.guarantee_amount || 0)
+              sum.sumGuaranteeCost = sum.sumGuaranteeCost.plus(item.guarantee_cost || 0)
+              sum.sumPaymentCost = sum.sumPaymentCost.plus(item.payment_amount || 0)
             })
             return sum
           },
@@ -166,14 +157,14 @@
           sumPaymentConditions() {
             const vm = this
             const payment = vm.project.paymentConditions
-            let sum = 0
+            let sum = new BigNumber(0)
 
             if (payment.length < 1) {
               return sum
             }
 
             payment.forEach((item, index) => {
-              sum += item.expected ? parseFloat(item.expected) : 0
+              sum = sum.plus(item.expected || 0)
             })
             return sum
           }
@@ -277,22 +268,6 @@
                     message: `提交成功`,
                     type: 'success'
                   })
-                  // this.selectData.id = res.data.data.id
-                  // _http.UserManager.searchAuthUsers({
-                  //     role: 'project_check'
-                  //   })
-                  //   .then(resp => {
-                  //     if (resp.data.code === '200') {
-                  //       this.menList = resp.data.data
-                  //       $('.ui.dimmer').addClass('active')
-                  //     } else {
-                  //       this.$notify({
-                  //         title: '错误',
-                  //         message: res.data.msg,
-                  //         type: 'error'
-                  //       })
-                  //     }
-                  //   })
 
                   setTimeout(() => {
                     window.close()
