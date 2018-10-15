@@ -67,7 +67,7 @@
           //新增第一层数据
           addItem(name) {
             const invoiceForm = this.invoiceForm[name]
-            const length = invoiceForm.length
+            const length = invoiceForm.length || 0
             let id
             if (length > 0) {
               id = invoiceForm[length - 1].id + 1
