@@ -34,7 +34,7 @@
         },
         mounted() {
           this.payForm.apply_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
-
+          
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           $('#payAdd').removeClass('invisible')
@@ -51,7 +51,7 @@
                 })
               }
             })
-          const addEdit = $('#addEdit').text.trim()
+          const addEdit = $('#addEdit').text().trim()
           // const addEdit = {
           //   apply_date: '2018-02-11',
           //   apply_price: 22222,
