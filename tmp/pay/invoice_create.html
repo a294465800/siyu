@@ -14,7 +14,7 @@
 
 <div style="display: none" id="invoiceType">[{"id":1,"name":"专用发票17%"},{"id":2,"name":"专用发票11%"}]</div>
 <input type="hidden" id="purchaseId" value="CG12512312521">
-<div style="display: none" id="invoiceEdit"></div>
+<div style="display: none" id="invoiceEdit">{"date":"2018-10-16","pay_id":0,"purchase_id":"14","lists":[{"id":7,"cost_id":"14","date":"2018-10-11","worker":"test","worker_id":"76","invoice_date":"2018-10-11","number":"333","type":5,"without_tax":"11.10","tax":"12.20","with_tax":"23.30","created_at":"2018-10-16 22:27:25","updated_at":"2018-10-16 22:27:25"},{"id":8,"cost_id":"14","date":"2018-10-24","worker":"test","worker_id":"76","invoice_date":"2018-10-24","number":"11","type":6,"without_tax":"10.00","tax":"5.00","with_tax":"15.00","created_at":"2018-10-16 22:27:25","updated_at":"2018-10-16 22:27:25"}]}</div>
 
 <h1 class="ui red header blue center aligned">收票信息录入</h1>
 <div class="invisible" id="payInvoiceCreate">
@@ -89,7 +89,8 @@
           <input type="text" v-model.number="item.tax" placeholder="税额">
         </div>
         <div class="two wide column">
-          <input type="text" v-model.number="item.with_tax" placeholder="含税金额">
+          <!-- <input type="text" v-model.number="item.with_tax" placeholder="含税金额"> -->
+          <div class="fake-input">{{ add(item.without_tax, item.tax, 22).toLocaleString('en-US') }}</div>
         </div>
         <div class="two wide column">
           <div class="fake-input">

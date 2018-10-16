@@ -85,7 +85,9 @@
             this.payForm = addEdit === '' ? [] : JSON.parse(addEdit)
             // this.payForm = addEdit
             this.currentSupplier = this.payForm.currentSupplier
-            this.handlePayTypeChange(addEdit.pay_type)
+            this.handlePayTypeChange(this.payForm.pay_type)
+          console.log(this.invoiceType, 'leixing')
+console.log(this.payForm)
           }
 
         },
