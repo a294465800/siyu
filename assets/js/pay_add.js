@@ -34,7 +34,7 @@
         },
         mounted() {
           this.payForm.apply_date = _helper.timeFormat(new Date(), 'YYYY-MM-DD')
-          
+
           const invoiceType = $('#invoiceType').text().trim()
           this.invoiceType = invoiceType === '' ? [] : JSON.parse(invoiceType)
           $('#payAdd').removeClass('invisible')
@@ -86,8 +86,6 @@
             // this.payForm = addEdit
             this.currentSupplier = this.payForm.currentSupplier
             this.handlePayTypeChange(this.payForm.pay_type)
-          console.log(this.invoiceType, 'leixing')
-console.log(this.payForm)
           }
 
         },

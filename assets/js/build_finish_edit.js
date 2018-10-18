@@ -4,7 +4,7 @@
       new Vue({
         el: '#buildFinishAdd',
         data: {
-          buildFinishAdd: {},
+          buildFinishAdd: _schemas.buildFinishAdd,
 
           //施工队
           build_teams: [],
@@ -39,12 +39,9 @@
             if (!list.length) {
               return 0
             }
-            let sum = 0
+            let sum = new BigNumber(0)
             list.forEach((it, index) => {
-              const amount = it.price * 1 * it.number * 1
-              if (amount) {
-                sum += amount * 1
-              }
+              sum = sum.plus(new BigNumber(it.price).times(it.number))
             })
             return sum
           }
