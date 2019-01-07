@@ -36,8 +36,9 @@
             }
             let sum = new BigNumber(0)
             list.forEach((it, index) => {
-              sum = sum.plus(new BigNumber(it.price).times(it.number))
+              sum = sum.plus(new BigNumber(it.price || 0).times(it.number || 0))
             })
+            console.log(sum, 'aaa')
             return sum
           }
         },
